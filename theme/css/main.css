@@ -113,7 +113,6 @@ li > p {
  */
 th, td {
     text-align: left;
-    word-break: break-word;
 }
 
 table {
@@ -143,6 +142,15 @@ main {
 
     /* Intelligent word-breaking on line wrap */
     hyphens: auto;
+}
+
+/*
+ * Small screens
+ */
+@media (max-width: 700px) {
+    th, td {
+        word-break: break-word;
+    }
 }
 
 /*
