@@ -1,0 +1,172 @@
+/*
+ * Static elements
+ * (Layout and positioning)
+ */
+
+* {
+    border-radius: 3px;
+}
+
+/* header */
+header {
+    width: 100%;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+header > p {
+    text-align: right;
+}
+
+/*
+ *     ARTICLE
+ */
+article {
+    line-height: 1.5em;
+}
+
+img, svg, .svg-container {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
+
+.caption {
+    display: block;
+    font-size: 90%;
+    max-width: 90%;
+    margin: auto;
+}
+
+.math {
+    text-align: center;
+}
+
+/* headers
+ */
+h1 > a, h2 > a, h3 > a, h4 > a {
+    position: absolute;
+    left: -0.5ch;
+}
+
+/* blockquotes
+ */
+blockquote:before {
+    content: open-quote;
+    line-height: 0.1em;
+    vertical-align: -0.6em;
+}
+
+blockquote {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 3px 1em 3px;
+    border-left-style: solid;
+    border-left-width: 5px;
+    quotes: "“" "”";
+}
+
+/* block code
+ */
+pre {
+    line-height: 1.4em;
+    overflow: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* inline code
+ */
+code {
+    padding: 0.2em 0.4em;
+}
+
+/* footnote
+ */
+.footnote {
+    text-align: left;
+}
+
+/* lists
+ */
+ul, ol {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 2ch;
+    padding-left: 2ch;
+}
+/* first level */
+article > ul, article > ol,
+div.toc > ul, div.toc > ol,
+div.footnote > ul, div.footnote > ol {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    padding-right: 3ch;
+    padding-left: 4ch;
+}
+li > p {
+    margin-bottom: 0;
+}
+
+/* tables
+ */
+th, td {
+    text-align: left;
+    word-break: break-word;
+}
+
+table {
+    width: 100%;
+}
+
+/* math
+ */
+
+.math {
+    overflow: auto;
+    width: 100%;
+}
+
+/* main
+ */
+main {
+    position: relative;
+    max-width: 66ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    margin: auto;
+
+    /* Enables ligatures and antialiasing */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+    /* Intelligent word-breaking on line wrap */
+    hyphens: auto;
+}
+
+/*
+ * Desktop ( > 1200 px width)
+ *
+ * Place TOC on left
+ * Distribute text
+ */
+@media (min-width: 1200px) {
+
+    article {
+        text-align: justify;
+        text-justify: distribute;
+    }
+
+    div.toc {
+        text-align: left;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        max-width: 28ch;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}

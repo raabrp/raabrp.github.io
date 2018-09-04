@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Links    </title>
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/color-dark-default.css">
+
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/dc@3/dc.css" />
+<style>
+ main { max-width: unset; }
+</style>
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Info
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Favorite Readings
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+
+<header>
+    <h1>
+        All External Links
+    </h1>
+</header>
+<article style="font-size: 80%;">
+    <table class="sortable">
+        <tr>
+        <th>
+            Subdomain
+        </th>
+        <th>
+            Domain
+        </th>
+        <th>
+            Page
+        </th>
+        <th>
+            Document
+        </th>
+        <th>
+            Context
+        </th>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                aibrt.org
+            </td>
+            <td>
+                <a href="http://aibrt.org/downloads/EPSTEIN_and_Robertson_2013-Democracy_at_Risk-APS-summary-5-13.pdf">downloads/EPSTEIN_and_Robertson_2013-Democracy_at_Risk-APS-summary-5-13.pdf</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Epstein and Robertson’s 2013 research about electoral manipulation via search rankings « <a href="facebook.html#generated-link-id286">aibrt.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                archive.org
+            </td>
+            <td>
+                <a href="https://archive.org/details/genealogyofmoral00nietuoft">details/genealogyofmoral00nietuoft</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Nietzsche very nearly identified the fact that we construct our moral systems in response to our circumstances (and our power in relation to others) - not the other way around « <a href="facebook.html#generated-link-id316">archive.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                arxiv.org
+            </td>
+            <td>
+                <a href="https://arxiv.org/abs/quant-ph/0105127">abs/quant-ph/0105127</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id43">Decoherence, einselection, and the quantum origins of the classical</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                arxiv.org
+            </td>
+            <td>
+                <a href="https://arxiv.org/pdf/0704.0646.pdf">pdf/0704.0646.pdf</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id44">The Mathematical Universe</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                axios.com
+            </td>
+            <td>
+                <a href="https://www.axios.com/sean-parker-facebook-was-designed-to-exploit-human-vulnerability-1513306782-6d18fa32-5438-4e60-af71-13d126b58e41.html">sean-parker-facebook-was-designed-to-exploit-human-vulnerability-1513306782-6d18fa32-5438-4e60-af71-13d126b58e41.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Interview with Sean Parker « <a href="facebook.html#generated-link-id166">axios.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                bbc.com
+            </td>
+            <td>
+                <a href="http://www.bbc.com/news/world-asia-china-34592186">news/world-asia-china-34592186</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                China’s plans to use a social credit system tied to data about each individual « <a href="facebook.html#generated-link-id307">bbc.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                bloomberg.com
+            </td>
+            <td>
+                <a href="https://www.bloomberg.com/features/2016-baltimore-secret-surveillance/">features/2016-baltimore-secret-surveillance</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An article detailing the use of drones to surveil the people of Baltimore without their knowledge « <a href="facebook.html#generated-link-id277">bloomberg.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                businessinsider.com
+            </td>
+            <td>
+                <a href="http://www.businessinsider.com/well-these-new-zuckerberg-ims-wont-help-facebooks-privacy-problems-2010-5">well-these-new-zuckerberg-ims-wont-help-facebooks-privacy-problems-2010-5</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Zuckerberg’s “Dumb fucks” comment « <a href="facebook.html#generated-link-id162">buisnessinsider.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                cloudflare.com
+            </td>
+            <td>
+                <a href="https://www.cloudflare.com/">None</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                My domain is registered with Namecheap, which points to <a href="about.html#generated-link-id7">cloudflare</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www.archive.ece
+            </td>
+            <td>
+                cmu.edu
+            </td>
+            <td>
+                <a href="https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf">~ganger/712.fall02/papers/p761-thompson.pdf</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id42">Reflections on Trusting Trust</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ciesin
+            </td>
+            <td>
+                columbia.edu
+            </td>
+            <td>
+                <a href="https://ciesin.columbia.edu/data/hrsl/">data/hrsl</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Facebook’s high resolution population settlement maps to target users previously unconnected to the internet « <a href="facebook.html#generated-link-id267">columbia.edu</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                duckduckgo.com
+            </td>
+            <td>
+                <a href="https://duckduckgo.com">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id132">duckduckgo</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                ecmuniverse.com
+            </td>
+            <td>
+                <a href="http://ecmuniverse.com/our-work.html">our-work.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                ECM Universe « <a href="facebook.html#generated-link-id271">escmuniverse.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                economist.com
+            </td>
+            <td>
+                <a href="https://www.economist.com/news/briefing/21582042-it-getting-easier-foresee-wrongdoing-and-spot-likely-wrongdoers-dont-even-think-about-it">news/briefing/21582042-it-getting-easier-foresee-wrongdoing-and-spot-likely-wrongdoers-dont-even-think-about-it</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                PredPol « <a href="facebook.html#generated-link-id273">economist.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ssd
+            </td>
+            <td>
+                eff.org
+            </td>
+            <td>
+                <a href="https://ssd.eff.org/">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id130">Electronic Frontier Foundation</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                facebook.com
+            </td>
+            <td>
+                <a href="https://www.facebook.com/ads/about">ads/about</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                About Facebook Ads « <a href="facebook.html#generated-link-id160">facebook.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                fivethirtyeight.com
+            </td>
+            <td>
+                <a href="https://fivethirtyeight.com/features/science-isnt-broken/">features/science-isnt-broken</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id18">Science Isn’t Broken</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                forbes.com
+            </td>
+            <td>
+                <a href="https://www.forbes.com/sites/gregorymcneal/2014/06/28/facebook-manipulated-user-news-feeds-to-create-emotional-contagion/">sites/gregorymcneal/2014/06/28/facebook-manipulated-user-news-feeds-to-create-emotional-contagion</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Research coordinated with Facebook on “emotional contagion” involved manipulating users’ emotional states by altering their news feeds without their awareness « <a href="facebook.html#generated-link-id144">forbes.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                github.com
+            </td>
+            <td>
+                <a href="https://github.com/StevenBlack/hosts">StevenBlack/hosts</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id128">github.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                docs
+            </td>
+            <td>
+                gitlab.com
+            </td>
+            <td>
+                <a href="https://docs.gitlab.com/ee/user/project/pages/">ee/user/project/pages</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                I’m using pelican to render this site from markdown, and hosting the result via <a href="about.html#generated-link-id5">gitlab pages</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                gitlab.com
+            </td>
+            <td>
+                <a href="https://gitlab.com/raabrp/static-website">raabrp/static-website</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                The relevant <a href="about.html#generated-link-id8">code</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                gnu.org
+            </td>
+            <td>
+                <a href="http://www.gnu.org/philosophy/right-to-read.html">philosophy/right-to-read.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                He has his own prescient understanding «» of Facebook (and a large number of other companies in this space), fears for the future « <a href="facebook.html#generated-link-id251">gnu.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                hackaday.com
+            </td>
+            <td>
+                <a href="https://hackaday.com/2017/02/02/hacking-the-aether/">2017/02/02/hacking-the-aether</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                A fascinating and terrifying set of examples relating to air-gapped (non network-connected) computers may be found online « <a href="facebook.html#generated-link-id243">hackaday.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                corpgov.law
+            </td>
+            <td>
+                harvard.edu
+            </td>
+            <td>
+                <a href="https://corpgov.law.harvard.edu/2012/01/05/the-corporate-capture-of-the-united-states/">2012/01/05/the-corporate-capture-of-the-united-states</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The political and regulatory system of the USA has been captured by corporations, and Citizens United has not helped « <a href="facebook.html#generated-link-id150">law.harvard.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www-03
+            </td>
+            <td>
+                ibm.com
+            </td>
+            <td>
+                <a href="https://www-03.ibm.com/press/us/en/pressrelease/44056.wss">press/us/en/pressrelease/44056.wss</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                IBM’s press release for behavioral identification « <a href="facebook.html#generated-link-id326">ibm.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                info
+            </td>
+            <td>
+                internet.org
+            </td>
+            <td>
+                <a href="https://info.internet.org/en/story/free-basics-from-internet-org/">en/story/free-basics-from-internet-org</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Facebook’s Free Basics « <a href="facebook.html#generated-link-id263">info.internet.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                cecs
+            </td>
+            <td>
+                louisville.edu
+            </td>
+            <td>
+                <a href="http://cecs.louisville.edu/ry/Behavioral.pdf">ry/Behavioral.pdf</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An overview of several methods of behavioral identification may be found at « <a href="facebook.html#generated-link-id236">cecs.louisville.edu</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                markmanson.net
+            </td>
+            <td>
+                <a href="https://markmanson.net/attention">attention</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Mark Manson « <a href="facebook.html#generated-link-id147">markmanson.net</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                markmanson.net
+            </td>
+            <td>
+                <a href="https://markmanson.net/stop-trying-to-be-happy">stop-trying-to-be-happy</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id12">Stop Trying to be Happy</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                markmanson.net
+            </td>
+            <td>
+                <a href="https://markmanson.net/fuck-yes">fuck-yes</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id13">Fuck Yes or No</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                markmanson.net
+            </td>
+            <td>
+                <a href="https://markmanson.net/disney">disney</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id14">How Disney Ruined Sex for Everyone</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                markmanson.net
+            </td>
+            <td>
+                <a href="https://markmanson.net/life-purpose">life-purpose</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id16">7 Strange Questions That Help You Find Your Life Purpose</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                medium.com
+            </td>
+            <td>
+                <a href="https://medium.com/@Rob79/what-i-learned-selling-my-reddit-accounts-c5e9f6348005">@Rob79/what-i-learned-selling-my-reddit-accounts-c5e9f6348005</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                A market exists for highly visible accounts « <a href="facebook.html#generated-link-id170">medium.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                medium.com
+            </td>
+            <td>
+                <a href="https://medium.com/@jamesbridle/something-is-wrong-on-the-internet-c39c471271d2">@jamesbridle/something-is-wrong-on-the-internet-c39c471271d2</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                A popular essay « <a href="facebook.html#generated-link-id176">medium.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                microg.org
+            </td>
+            <td>
+                <a href="https://microg.org/">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                See <a href="facebook.html#generated-link-id137">MicroG</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                pgp
+            </td>
+            <td>
+                mit.edu
+            </td>
+            <td>
+                <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=0x3C987EE03CA9982A">pks/lookup</a>
+            </td>
+            <td>
+                <a href="contact.html">
+                    Contact Info
+                </a>
+            </td>
+            <td>
+                 <a href="contact.html#generated-link-id2">pgp.mit.edu</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                motherjones.com
+            </td>
+            <td>
+                <a href="https://www.motherjones.com/politics/2013/01/terror-factory-fbi-trevor-aaronson-book/">politics/2013/01/terror-factory-fbi-trevor-aaronson-book</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id210">motherjones.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                namecheap.com
+            </td>
+            <td>
+                <a href="https://www.namecheap.com/">None</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                My domain is registered with <a href="about.html#generated-link-id6">Namecheap</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                ncase.me
+            </td>
+            <td>
+                <a href="https://ncase.me/crowds/">crowds</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id19">The Wisdom/Madness of Crowds</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                ncase.me
+            </td>
+            <td>
+                <a href="https://ncase.me/polygons/">polygons</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id20">Parable of the Polygons</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                ncase.me
+            </td>
+            <td>
+                <a href="http://ncase.me/trust/">trust</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id21">The Evolution of Trust</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                netflix.com
+            </td>
+            <td>
+                <a href="https://www.netflix.com/title/80114666">title/80114666</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                “Get Me Roger Stone” is a highly revealing documentary « <a href="facebook.html#generated-link-id190">netflix.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                nytimes.com
+            </td>
+            <td>
+                <a href="https://www.nytimes.com/interactive/2018/02/16/us/politics/russia-propaganda-election-2016.html">interactive/2018/02/16/us/politics/russia-propaganda-election-2016.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id133">New York Times on the 2016 Election</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                nytimes.com
+            </td>
+            <td>
+                <a href="https://www.nytimes.com/2017/09/17/technology/facebook-government-regulations.html">2017/09/17/technology/facebook-government-regulations.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Facebook’s power struggles with various countries « <a href="facebook.html#generated-link-id261">nytimes.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                nytimes.com
+            </td>
+            <td>
+                <a href="http://www.nytimes.com/2012/07/15/sunday-review/thats-not-my-phone-its-my-tracker.html">2012/07/15/sunday-review/thats-not-my-phone-its-my-tracker.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Our phones are tracking devices nonpareil « <a href="facebook.html#generated-link-id282">nytimes.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                paulgraham.com
+            </td>
+            <td>
+                <a href="http://www.paulgraham.com/say.html">say.html</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id9">What You Can’t Say</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                paulgraham.com
+            </td>
+            <td>
+                <a href="http://www.paulgraham.com/hs.html">hs.html</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id10">What You’ll Wish You’d Known</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                paulgraham.com
+            </td>
+            <td>
+                <a href="http://www.paulgraham.com/lies.html">lies.html</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id11">Lies We Tell Kids</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                pbs.org
+            </td>
+            <td>
+                <a href="https://www.pbs.org/newshour/show/investor-says-he-tried-to-warn-facebook-about-bad-actors-harming-innocent-people">newshour/show/investor-says-he-tried-to-warn-facebook-about-bad-actors-harming-innocent-people</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Interview with Roger McNamee « <a href="facebook.html#generated-link-id164">pbs.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                pbs.org
+            </td>
+            <td>
+                <a href="http://www.pbs.org/video/putins-revenge-mzz1lp/">video/putins-revenge-mzz1lp</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                A PBS documentary exploring Putin’s motivations for influencing the American electoral process « <a href="facebook.html#generated-link-id294">pbs.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                pi-hole.net
+            </td>
+            <td>
+                <a href="https://pi-hole.net/">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Use network hardware « <a href="facebook.html#generated-link-id129">pi-hole.net</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                pnas.org
+            </td>
+            <td>
+                <a href="http://www.pnas.org/content/111/24/8788">content/111/24/8788</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com», « <a href="facebook.html#generated-link-id145">pnas.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                pnas.org
+            </td>
+            <td>
+                <a href="https://www.pnas.org/content/110/15/5802.full">content/110/15/5802.full</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Kosinski’s research on what can be learned just from Facebook likes (2013) « <a href="facebook.html#generated-link-id222">pnas.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                pnas.org
+            </td>
+            <td>
+                <a href="http://www.pnas.org/content/early/2017/11/27/1700035114">content/early/2017/11/27/1700035114</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The distribution of cars in a neighborhood can predict several demographic variables « <a href="facebook.html#generated-link-id240">pnas.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                princeton.edu
+            </td>
+            <td>
+                <a href="https://www.princeton.edu/~aylinc/papers/caliskan-islam_when.pdf">~aylinc/papers/caliskan-islam_when.pdf</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Identifying the authors of compiled programs « <a href="facebook.html#generated-link-id232">princeton.edu</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                np
+            </td>
+            <td>
+                reddit.com
+            </td>
+            <td>
+                <a href="https://np.reddit.com/r/shills/comments/4kdq7n/astroturfing_information_megathread_revision_8/?st=iwlbcoon&sh=9e44591e">r/shills/comments/4kdq7n/astroturfing_information_megathread_revision_8</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com» It is also not unique to Reddit that corporate agents are known to masquerade as normal users on the platform to covertly promote a product or special interest « <a href="facebook.html#generated-link-id171">reddit.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                rt.com
+            </td>
+            <td>
+                <a href="https://www.rt.com/news/414397-wechat-china-digital-ld/">news/414397-wechat-china-digital-ld</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com», « <a href="facebook.html#generated-link-id305">rt.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                dashboard
+            </td>
+            <td>
+                securingdemocracy.org
+            </td>
+            <td>
+                <a href="http://dashboard.securingdemocracy.org/">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id134">SecuringDemocracy.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                signal.org
+            </td>
+            <td>
+                <a href="https://www.signal.org/">None</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id131">signal.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                stallman.org
+            </td>
+            <td>
+                <a href="https://stallman.org/stallman-computing.html">stallman-computing.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Stallman «» (of GNU «» fame) pays only in cash, uses only free and open source software, refuses to give out information online, and uses a program like wget from a remote server or tor «» to browse the web « <a href="facebook.html#generated-link-id249">stallman.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                stallman.org
+            </td>
+            <td>
+                <a href="https://stallman.org/facebook.html">facebook.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                He has his own prescient understanding « <a href="facebook.html#generated-link-id250">stallman.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                tcf.org
+            </td>
+            <td>
+                <a href="https://tcf.org/content/report/surveillance-without-borders-the-traffic-shaping-loophole-and-why-it-matters/">content/report/surveillance-without-borders-the-traffic-shaping-loophole-and-why-it-matters</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Legal protections from domestic surveillance in America have been an ongoing struggle « <a href="facebook.html#generated-link-id207">tcf.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                playground
+            </td>
+            <td>
+                tensorflow.org
+            </td>
+            <td>
+                <a href="http://playground.tensorflow.org">None</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id22">Tensor Flow Playground</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theatlantic.com
+            </td>
+            <td>
+                <a href="https://www.theatlantic.com/magazine/archive/2005/04/host/303812/">magazine/archive/2005/04/host/303812</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An interesting perspective into the world of American political radio with David Foster Wallace « <a href="facebook.html#generated-link-id194">theatlantic.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theguardian.com
+            </td>
+            <td>
+                <a href="https://www.theguardian.com/technology/2011/mar/17/us-spy-operation-social-networks">technology/2011/mar/17/us-spy-operation-social-networks</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                State intelligence agencies actively participate in the covert manipulation of public sentiments through “psychological warfare” «» Social media is merely the latest battlefield for our minds, where individual companies have significant influence « <a href="facebook.html#generated-link-id140">theguardian.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theguardian.com
+            </td>
+            <td>
+                <a href="https://www.theguardian.com/news/2018/mar/17/data-war-whistleblower-christopher-wylie-faceook-nix-bannon-trump?CMP=share_btn_tw">news/2018/mar/17/data-war-whistleblower-christopher-wylie-faceook-nix-bannon-trump</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id185">theguardian.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theguardian.com
+            </td>
+            <td>
+                <a href="https://www.theguardian.com/world/2013/jun/06/us-tech-giants-nsa-data">world/2013/jun/06/us-tech-giants-nsa-data</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The original articles exposing PRISM « <a href="facebook.html#generated-link-id199">theguardian.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theguardian.com
+            </td>
+            <td>
+                <a href="https://www.theguardian.com/world/2016/aug/01/facebook-free-basics-internet-africa-mark-zuckerberg">world/2016/aug/01/facebook-free-basics-internet-africa-mark-zuckerberg</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Facebook’s expansion in Africa with “Free Basics” « <a href="facebook.html#generated-link-id269">theguardian.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theguardian.com
+            </td>
+            <td>
+                <a href="https://www.theguardian.com/world/2018/mar/21/china-state-media-merger-to-create-propaganda-giant">world/2018/mar/21/china-state-media-merger-to-create-propaganda-giant</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Voice of China unified state media « <a href="facebook.html#generated-link-id302">theguardian.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                theverge.com
+            </td>
+            <td>
+                <a href="https://www.theverge.com/2018/2/1/16721230/wechat-china-app-mini-programs-messaging-electronic-id-system">2018/2/1/16721230/wechat-china-app-mini-programs-messaging-electronic-id-system</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                WeChat becomes official ID « <a href="facebook.html#generated-link-id304">theverge.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                time.com
+            </td>
+            <td>
+                <a href="http://time.com/4064698/social-media-propaganda/">4064698/social-media-propaganda</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id135">Time - 2015</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ccs
+            </td>
+            <td>
+                ucsb.edu
+            </td>
+            <td>
+                <a href="https://ccs.ucsb.edu/">None</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                ) at <a href="about.html#generated-link-id1">UC Santa Barbara’s College of Creative Studies</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                web.physics
+            </td>
+            <td>
+                ucsb.edu
+            </td>
+            <td>
+                <a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">~martinisgroup/theses/Raab2015.pdf</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                my undergraduate <a href="about.html#generated-link-id2">thesis</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www-bcf
+            </td>
+            <td>
+                usc.edu
+            </td>
+            <td>
+                <a href="http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf">~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id41">The Market for Lemons</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                usenix.org
+            </td>
+            <td>
+                <a href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-caliskan-islam.pdf">system/files/conference/usenixsecurity15/sec15-paper-caliskan-islam.pdf</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Identifying the authors of source code « <a href="facebook.html#generated-link-id230">usenix.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                usenix.org
+            </td>
+            <td>
+                <a href="https://www.usenix.org/system/files/1401_08-12_mickens.pdf">system/files/1401_08-12_mickens.pdf</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id15">This World of Ours</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                motherboard
+            </td>
+            <td>
+                vice.com
+            </td>
+            <td>
+                <a href="https://motherboard.vice.com/en_us/article/mg9vvn/how-our-likes-helped-trump-win">en_us/article/mg9vvn/how-our-likes-helped-trump-win</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An important article for this essay regarding Kosinski’s research, Facebook, Cambridge Analytica, Brexit, and Trump « <a href="facebook.html#generated-link-id180">motherboard.vice.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                vimeo.com
+            </td>
+            <td>
+                <a href="https://vimeo.com/139094998">139094998</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Sigler’s law of Eponymy «» and “Everything is a Remix” « <a href="facebook.html#generated-link-id158">vimeo.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                vox.com
+            </td>
+            <td>
+                <a href="https://www.vox.com/conversations/2017/6/13/15768622/facebook-social-media-seth-stephens-davidowitz-everybody-lies">conversations/2017/6/13/15768622/facebook-social-media-seth-stephens-davidowitz-everybody-lies</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Seth Stephens-Davidowitz has written about the extent to which Google knows things we tend to conceal « <a href="facebook.html#generated-link-id284">vox.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                washingtonpost.com
+            </td>
+            <td>
+                <a href="https://www.washingtonpost.com/investigations/us-intelligence-mining-data-from-nine-us-internet-companies-in-broad-secret-program/2013/06/06/3a0c0da8-cebf-11e2-8845-d970ccb04497_story.html?utm_term=.c1ab905204fe">investigations/us-intelligence-mining-data-from-nine-us-internet-companies-in-broad-secret-program/2013/06/06/3a0c0da8-cebf-11e2-8845-d970ccb04497_story.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com», « <a href="facebook.html#generated-link-id200">washingtonpost.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                washingtonpost.com
+            </td>
+            <td>
+                <a href="https://www.washingtonpost.com/news/world/wp/2018/01/07/feature/in-china-facial-recognition-is-sharp-end-of-a-drive-for-total-surveillance/?utm_term=.334e1115dc36">news/world/wp/2018/01/07/feature/in-china-facial-recognition-is-sharp-end-of-a-drive-for-total-surveillance</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id298">washingtonpost.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                washingtonpost.com
+            </td>
+            <td>
+                <a href="https://www.washingtonpost.com/world/asia_pacific/the-walls-are-closing-in-chinafinds-new-ways-to-tighten-internet-controls/2017/09/26/2e0d3562-9ee6-11e7-b2a7-bc70b6f98089_story.html?utm_term=.d3cbf665f966">world/asia_pacific/the-walls-are-closing-in-chinafinds-new-ways-to-tighten-internet-controls/2017/09/26/2e0d3562-9ee6-11e7-b2a7-bc70b6f98089_story.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An article detailing China’s effort to crack down on VPNs, force ISPs to log real names, and rate social interactions online « <a href="facebook.html#generated-link-id300">washingtonpost.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                washingtonpost.com
+            </td>
+            <td>
+                <a href="https://www.washingtonpost.com/world/asia_pacific/chinas-plan-to-organize-its-whole-society-around-big-data-a-rating-for-everyone/2016/10/20/1cd0dd9c-9516-11e6-ae9d-0030ac1899cd_story.html">world/asia_pacific/chinas-plan-to-organize-its-whole-society-around-big-data-a-rating-for-everyone/2016/10/20/1cd0dd9c-9516-11e6-ae9d-0030ac1899cd_story.html</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com», « <a href="facebook.html#generated-link-id308">washingtonpost.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                washingtonpost.com
+            </td>
+            <td>
+                <a href="https://www.washingtonpost.com/news/worldviews/wp/2017/01/04/in-china-big-brother-isnt-just-watching-your-every-move-he-may-be-selling-your-personal-data/?utm_term=.42edecb07d92">news/worldviews/wp/2017/01/04/in-china-big-brother-isnt-just-watching-your-every-move-he-may-be-selling-your-personal-data</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The ability to buy personal information in China « <a href="facebook.html#generated-link-id310">washingtonpost.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                welivesecurity.com
+            </td>
+            <td>
+                <a href="https://www.welivesecurity.com/2017/03/24/gdpr-an-explainer/">2017/03/24/gdpr-an-explainer</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Legal protections from domestic surveillance in America have been an ongoing struggle «» Meanwhile, the EU is leading the demand for new privacy laws « <a href="facebook.html#generated-link-id208">welivesecurity.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Psychological_warfare">wiki/Psychological_warfare</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                State intelligence agencies actively participate in the covert manipulation of public sentiments through “psychological warfare” « <a href="facebook.html#generated-link-id139">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy">wiki/Stigler%27s_law_of_eponymy</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Sigler’s law of Eponymy « <a href="facebook.html#generated-link-id157">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Elsagate">wiki/Elsagate</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The phenomenon captured the imagination of a wider community and gained attention under the name “Elsagate” « <a href="facebook.html#generated-link-id177">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Yellow_journalism">wiki/Yellow_journalism</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Another example is provided by a period of “Yellow Journalism” - purposely inflammatory and factually loose reporting characteristic of the period of domestic power struggle between newspaper tycoons William Randolph Hearst and Joseph Pulitzer « <a href="facebook.html#generated-link-id192">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Attack_ad">wiki/Attack_ad</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Television attack ads « <a href="facebook.html#generated-link-id196">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/No_true_Scotsman">wiki/No_true_Scotsman</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                This “True Scotsman” assertion is dangerous in the context of personal liberties « <a href="facebook.html#generated-link-id205">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Nothing_to_hide_argument">wiki/Nothing_to_hide_argument</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The “Nothing to Hide” argument for surveillance « <a href="facebook.html#generated-link-id215">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Nash_equilibrium">wiki/Nash_equilibrium</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Our failure to act more decisively following the Snowden revelations is explained by Nash equilibrium « <a href="facebook.html#generated-link-id217">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Network_effect">wiki/Network_effect</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Our failure to act more decisively following the Snowden revelations is explained by Nash equilibrium «» and the network effect « <a href="facebook.html#generated-link-id218">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Escalation_of_commitment">wiki/Escalation_of_commitment</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The end result was a societal escalation of commitment « <a href="facebook.html#generated-link-id219">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Stylometry">wiki/Stylometry</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Stylometry « <a href="facebook.html#generated-link-id225">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Stylometry">wiki/Stylometry</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                « <a href="facebook.html#generated-link-id227">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Biometrics">wiki/Biometrics</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                The identification of individuals by behavioral patterns is not mutually exclusive with stylometry or even biometrics « <a href="facebook.html#generated-link-id235">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Side-channel_attack">wiki/Side-channel_attack</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                A sidechannel attack « <a href="facebook.html#generated-link-id242">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Richard_Stallman">wiki/Richard_Stallman</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Stallman « <a href="facebook.html#generated-link-id246">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/GNU">wiki/GNU</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Stallman «» (of GNU « <a href="facebook.html#generated-link-id247">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29">wiki/Tor_%28anonymity_network%29</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Stallman «» (of GNU «» fame) pays only in cash, uses only free and open source software, refuses to give out information online, and uses a program like wget from a remote server or tor « <a href="facebook.html#generated-link-id248">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Brave_New_World">wiki/Brave_New_World</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Elements of our society have long been noted to exhibit attributes of both Huxely’s “Brave New World” « <a href="facebook.html#generated-link-id253">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four">wiki/Nineteen_Eighty-Four</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Elements of our society have long been noted to exhibit attributes of both Huxely’s “Brave New World” «» and Orwell’s “Nineteen Eighty-Four” « <a href="facebook.html#generated-link-id254">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Brave_New_World#Comparisons_with_George_Orwell's_Nineteen_Eighty-Four">wiki/Brave_New_World</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Huxley noted the utility of apathy, anesthesia, and distractive pleasure « <a href="facebook.html#generated-link-id255">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/AI_winter">wiki/AI_winter</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Artificial Intelligence as a field has gone through multiple cycles of interest and funding driven by largely by hype « <a href="facebook.html#generated-link-id259">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Don't_be_evil">wiki/Don't_be_evil</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                While Google’s parent company, Alphabet, has taken “Do the right thing” as motto for the company, Google retains “Do the Right Thing” in its code of conduct « <a href="facebook.html#generated-link-id288">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/SORM">wiki/SORM</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Russia’s System for Operative Investigative Activities (SORM) « <a href="facebook.html#generated-link-id296">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Manufacturing_Consent">wiki/Manufacturing_Consent</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Chomsky’s Manufacturing Consent « <a href="facebook.html#generated-link-id312">wikipedia</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Surveillance_capitalism">wiki/Surveillance_capitalism</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Surveillance Capitalism « <a href="facebook.html#generated-link-id314">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Hanlon's_razor">wiki/Hanlon's_razor</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Hanlon’s Razor « <a href="facebook.html#generated-link-id321">wikipedia.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Hacker_culture">wiki/Hacker_culture</a>
+            </td>
+            <td>
+                <a href="about.html">
+                    About
+                </a>
+            </td>
+            <td>
+                Please, use and <a href="about.html#generated-link-id9">hack</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Brave_New_World">wiki/Brave_New_World</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id25">Brave New World</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four">wiki/Nineteen_Eighty-Four</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id26">Nineteen Eighty-Four</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Catch-22">wiki/Catch-22</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id27">Catch-22</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Dune_%28novel%29">wiki/Dune_%28novel%29</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id28">Dune</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/A_Fire_Upon_the_Deep">wiki/A_Fire_Upon_the_Deep</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id29">A Fire Upon the Deep</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/The_Communist_Manifesto">wiki/The_Communist_Manifesto</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id31">The Communist Manifesto</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/On_the_Genealogy_of_Morality">wiki/On_the_Genealogy_of_Morality</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id32">On the Genealogy of Morality</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/G%C3%B6del%2C_Escher%2C_Bach">wiki/G%C3%B6del%2C_Escher%2C_Bach</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id33">Gödel, Escher, Bach</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Surely_You're_Joking%2C_Mr._Feynman!">wiki/Surely_You're_Joking%2C_Mr._Feynman!</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id34">Surely You’re Joking, Mr. Feynman</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Lies_My_Teacher_Told_Me">wiki/Lies_My_Teacher_Told_Me</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id35">Lies My Teacher Told Me</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel">wiki/Guns%2C_Germs%2C_and_Steel</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id36">Guns, Germs, and Steel</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/The_Big_Short">wiki/The_Big_Short</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id37">The Big Short</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Debt:_The_First_5000_Years">wiki/Debt:_The_First_5000_Years</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id38">Debt: The First 5000 Years</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikipedia.org
+            </td>
+            <td>
+                <a href="https://en.wikipedia.org/wiki/Quantum_Computing_Since_Democritus">wiki/Quantum_Computing_Since_Democritus</a>
+            </td>
+            <td>
+                <a href="reading-list.html">
+                    Favorite Readings
+                </a>
+            </td>
+            <td>
+                 <a href="reading-list.html#generated-link-id39">Quantum Computing Since Democritus</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                en
+            </td>
+            <td>
+                wikiquote.org
+            </td>
+            <td>
+                <a href="https://en.wikiquote.org/wiki/Andrew_Fletcher">wiki/Andrew_Fletcher</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Quote by Andrew Fletcher « <a href="facebook.html#generated-link-id257">wikiquote.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                wired.com
+            </td>
+            <td>
+                <a href="https://www.wired.com/1997/12/es-attention/">1997/12/es-attention</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                net» and Michael Goldhaber « <a href="facebook.html#generated-link-id148">wired.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                wired.com
+            </td>
+            <td>
+                <a href="https://www.wired.com/story/exactis-database-leak-340-million-records/">story/exactis-database-leak-340-million-records</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Leaks from Equifax, and <a href="facebook.html#generated-link-id265">Exactis</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                wired.com
+            </td>
+            <td>
+                <a href="https://www.wired.com/story/how-peter-thiels-secretive-data-company-pushed-into-policing/">story/how-peter-thiels-secretive-data-company-pushed-into-policing</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Palantir’s dominance in this space carries a wide range of consequences - both for us and for law-enforcement « <a href="facebook.html#generated-link-id275">wired.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                wired.com
+            </td>
+            <td>
+                <a href="https://www.wired.com/2015/04/ny-cops-used-stingray-spy-tool-46-times-without-warrant/">2015/04/ny-cops-used-stingray-spy-tool-46-times-without-warrant</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Local police have been documented secretly using “stingrays” (which mimic cellular towers to identify and track mobile phones - and which may be augmented to intercept communications) in coordination with the FBI and US Marshals Service while deceiving courts of this practice « <a href="facebook.html#generated-link-id279">wired.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                wired.com
+            </td>
+            <td>
+                <a href="https://www.wired.com/2014/06/feds-told-cops-to-deceive-courts-about-stingray/">2014/06/feds-told-cops-to-deceive-courts-about-stingray</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                com», « <a href="facebook.html#generated-link-id280">wired.com</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                -
+            </td>
+            <td>
+                worldpolicy.org
+            </td>
+            <td>
+                <a href="https://worldpolicy.org/2013/09/12/russias-surveillance-state/">2013/09/12/russias-surveillance-state</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                An outline of Russia’s slide to a surveillance state « <a href="facebook.html#generated-link-id291">WorldPolicy.org</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                www
+            </td>
+            <td>
+                youtube.com
+            </td>
+            <td>
+                <a href="https://www.youtube.com/watch?v=PMotykw0SIk&feature=youtu.be&t=21m21s">watch</a>
+            </td>
+            <td>
+                <a href="facebook.html">
+                    It's So Much Bigger Than Facebook
+                </a>
+            </td>
+            <td>
+                Chamath Palihapitiy’s talk at the Stanford Business School in November 2017 « <a href="facebook.html#generated-link-id154">Youtube</a>
+            </td>
+        </tr>
+    </table>
+</article>
+    </main>
+
+
+
+  </body>
+
+</html>

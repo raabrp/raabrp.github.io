@@ -1,0 +1,68 @@
+body {
+    font-family: Roboto, Arial, sans-serif;
+}
+
+strong > em {
+    font-family: Raleway, Arial, sans-serif;
+    font-weight: 600;
+}
+
+/* header */
+header > h1 {
+    font-size: 350%;
+}
+header > p {
+    font-size: 70%;
+    text-align: right;
+}
+
+h1 {
+    font-family: Arial;
+    font-size: 150%;
+}
+h2 {
+    font-family: Arial;
+    font-size: 125%;
+}
+
+blockquote:before {
+    font-size: 350%;
+}
+
+ul, ol, blockquote, .footnote {
+    font-size: 95%;
+}
+
+/* past second level*/
+li li ul, li li ol {
+    font-size: 100%;
+}
+
+pre, code {
+    font-size: 95%;
+}
+
+main {
+    font-size: 100%;
+}
+
+/*
+ * Desktop ( > 1200 px width)
+ *
+ * Place TOC on left
+ * Make headers larger
+ * Distribute text
+ */
+@media (min-width: 1200px) {
+    header > h1 {
+        font-size: 550%;
+    }
+
+    h1 {
+        font-size: 250%;
+    }
+
+    h2 {
+        font-size: 200%;
+    }
+}

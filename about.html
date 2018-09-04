@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+About    </title>
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/color-dark-default.css">
+
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Info
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Favorite Readings
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+
+<header>
+    <h1>
+        About
+    </h1>
+</header>
+<article>
+    <h2 id="me">Me<a class="headerlink" href="#me" id="generated-link-id0" title="Permanent link">#</a></h2>
+<p>Hi! My name is Reilly. </p>
+<p>I’m originally from the foothills of northern California, and I studied physics
+(B.Sc.) at 
+<a href="https://ccs.ucsb.edu/" id="generated-link-id1">UC Santa Barbara’s College of Creative Studies</a>; my
+undergraduate 
+<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf" id="generated-link-id2">thesis</a> focused
+on signal processing related to the quest to construct a superconducting quantum
+computer.</p>
+<p>I’ve spent the last few years travelling (Eastern Asia, Eastern Australia, and
+North America), reading, thinking, and working in software.</p>
+<h2 id="this-site-non-technical">This Site (Non-Technical)<a class="headerlink" href="#this-site-non-technical" id="generated-link-id3" title="Permanent link">#</a></h2>
+<p>This is mostly a space for me to publish personal essays and projects. </p>
+<p>I enjoy sharing things which I find fascinating about the world. I also wish
+to share some of my personal reflections with the hope that they might be 
+beneficial to others.</p>
+<h2 id="this-site-technical">This Site (Technical)<a class="headerlink" href="#this-site-technical" id="generated-link-id4" title="Permanent link">#</a></h2>
+<p>I’m using pelican to render this site from markdown, and hosting the result via
+<a href="https://docs.gitlab.com/ee/user/project/pages/" id="generated-link-id5">gitlab pages</a>. </p>
+<p>My domain is registered with <a href="https://www.namecheap.com/" id="generated-link-id6">Namecheap</a>, which 
+points to <a href="https://www.cloudflare.com/" id="generated-link-id7">cloudflare</a>‘s nameservers, which have a
+DNS <code>A</code> record pointing to the IP address for the gitlab pages server. The 
+server resolves requests for the domain to the public directory of a private, 
+hosted git repository (this is really no more complicated than what happens with
+any website, but the steps are seldom made explicit).</p>
+<p>At the end of the day, I write in Markdown with a few custom extensions, use a 
+script that builds and previews the site locally, (with python and node.js), and
+I publish my changes by pushing to the hosted git repo on the master branch. As
+of 2018, the setup costs ~10 USD annually – the sole cost is the domain.</p>
+<p>The relevant <a href="https://gitlab.com/raabrp/static-website" id="generated-link-id8">code</a> is hosted
+publically on gitlab for anyone to use, under the MIT license. It is not 
+perfect, but seeks to avoid as much bloat as possible while doing what I want 
+it to. Please, use and <a href="https://en.wikipedia.org/wiki/Hacker_culture" id="generated-link-id9">hack</a> it
+to your heart’s content.</p>
+</article>
+    </main>
+
+  </body>
+
+</html>

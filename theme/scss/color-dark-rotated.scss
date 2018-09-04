@@ -1,0 +1,229 @@
+// https://github.com/nashamri/spacemacs-theme/blob/master/spacemacs-common.el
+// http://www.workwithcolor.com/color-converter-01.htm
+
+
+// we use sass for (among other things) the `rgba` function.
+
+// DEFAULT
+$color-blockquote:  #d2a5af; // blockquote
+$color-strong:      #a18832; // strong
+$color-link:        #818bbb; // links
+$color-pre:         #b1b2b2; // pre
+$color-code:        #b9baba; // code
+
+$color-h1:          #cf7698; // h1
+$color-h2:          #248cc5; // h2
+$color-h3:          #00b2d0; // h3
+$color-h4:          #00ac97; // h4
+
+// DARK
+$color-emph:        #cbcccc; // emph
+$color-text:        #b1b2b2; // standard text
+$bg-main:           #212222; // primary background
+$bg-alt:            #262727; // lists, blockquotes, buttons
+$bg-alt-alpha:      rgba(#262727, .93); // .active-ref
+$bg-code:           #2d2e2e; // code
+$bg-pre:            #181919; // pre
+$blockquote-bar:    #3a3b3b; // blockquote bar
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// for SVG
+
+.sc0 {
+    stroke: $color-text;
+}
+.sc1 {
+    stroke: $color-h1;
+}
+.sc2 {
+    stroke: $color-h2;
+}
+.sc3 {
+    stroke: $color-h3;
+}
+.sc4 {
+    stroke: $color-h4;
+}
+.sc5 {
+    stroke: $color-emph;
+}
+.sbg0 {
+    stroke: $bg-main;
+}
+.sbg1 {
+    stroke: $bg-alt;
+}
+
+.fc0 {
+    fill: $color-text;
+}
+.fc1 {
+    fill: $color-h1;
+}
+.fc2 {
+    fill: $color-h2;
+}
+.fc3 {
+    fill: $color-h3;
+}
+.fc4 {
+    fill: $color-h4;
+}
+.fc5 {
+    fill: $color-emph;
+}
+.fbg0 {
+    fill: $bg-main;
+}
+.fbg1 {
+    fill: $bg-alt;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+body {
+    background: $bg-main;
+    color: $color-text;
+}
+
+strong {
+    color: $color-strong;
+}
+
+strong > em {
+    color: $color-emph;
+}
+
+a {
+    color: $color-link;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#hamburger > :nth-child(1),
+#hamburger > :nth-child(2),
+#hamburger > :nth-child(3) {
+    background: $color-text;
+}
+
+h1 {
+    color: $color-h1;
+}
+
+h2 {
+    color: $color-h2;
+}
+
+h3 {
+    color: $color-h3;
+}
+
+h4 {
+    color: $color-h4;
+}
+
+blockquote {
+    color: $color-blockquote;
+    background: $bg-alt;
+    border-left-color: $blockquote-bar;
+}
+
+pre {
+    background: $bg-pre;
+    color: $color-pre;
+}
+
+code {
+    background: $bg-code;
+    color: $color-code;
+}
+
+ul, ol, nav, div.toc {
+    background: $bg-alt;
+}
+
+li.active-ref {
+    border: 1px solid $color-text;
+    background: $bg-alt-alpha;
+}
+
+th, tr:nth-child(even) {background-color: $bg-alt;}
+
+////////////////////////////////////////////////////////////////////////////////
+// pygments
+
+.highlight .err {
+    color: #5d4800;
+    background-color: #110900;
+} /* Error */
+.highlight .hll { background-color: #3b4a49; }
+.highlight      { background: #1f2929; color: #f0f9f9;}
+.highlight .c   { color: #597673;}  /* Comment */
+.highlight .k   { color: #d8befa;}  /* Keyword */
+.highlight .l   { color: #e37c67;}  /* Literal */
+.highlight .n   { color: #f0f9f9;}  /* Name */
+.highlight .o   { color: #8e842c;}  /* Operator */
+.highlight .p   { color: #f0f9f9;}  /* Punctuation */
+.highlight .ch  { color: #597673;} /* Comment.Hashbang */
+.highlight .cm  { color: #597673;} /* Comment.Multiline */
+.highlight .cp  { color: #597673;} /* Comment.Preproc */
+.highlight .cpf { color: #597673;} /* Comment.PreprocFile */
+.highlight .c1  { color: #597673;} /* Comment.Single */
+.highlight .cs  { color: #597673;} /* Comment.Special */
+.highlight .gd  { color: #8e842c;} /* Generic.Deleted */
+.highlight .gi  { color: #00e6fa;} /* Generic.Inserted */
+.highlight .gu  { color: #597673;} /* Generic.Subheading */
+.highlight .kc  { color: #d8befa;} /* Keyword.Constant */
+.highlight .kd  { color: #d8befa;} /* Keyword.Declaration */
+.highlight .kn  { color: #8e842c;} /* Keyword.Namespace */
+.highlight .kp  { color: #d8befa;} /* Keyword.Pseudo */
+.highlight .kr  { color: #d8befa;} /* Keyword.Reserved */
+.highlight .kt  { color: #d8befa;} /* Keyword.Type */
+.highlight .ld  { color: #29f0e7;} /* Literal.Date */
+.highlight .m   { color: #e37c67;}  /* Literal.Number */
+.highlight .s   { color: #29f0e7;}  /* Literal.String */
+.highlight .na  { color: #00e6fa;} /* Name.Attribute */
+.highlight .nb  { color: #f0f9f9;} /* Name.Builtin */
+.highlight .nc  { color: #00e6fa;} /* Name.Class */
+.highlight .no  { color: #d8befa;} /* Name.Constant */
+.highlight .nd  { color: #00e6fa;} /* Name.Decorator */
+.highlight .ni  { color: #f0f9f9;} /* Name.Entity */
+.highlight .ne  { color: #00e6fa;} /* Name.Exception */
+.highlight .nf  { color: #00e6fa;} /* Name.Function */
+.highlight .nl  { color: #f0f9f9;} /* Name.Label */
+.highlight .nn  { color: #f0f9f9;} /* Name.Namespace */
+.highlight .nx  { color: #00e6fa;} /* Name.Other */
+.highlight .py  { color: #f0f9f9;} /* Name.Property */
+.highlight .nt  { color: #8e842c;} /* Name.Tag */
+.highlight .nv  { color: #f0f9f9;} /* Name.Variable */
+.highlight .ow  { color: #8e842c;} /* Operator.Word */
+.highlight .w   { color: #f0f9f9;}  /* Text.Whitespace */
+.highlight .mb  { color: #e37c67;} /* Literal.Number.Bin */
+.highlight .mf  { color: #e37c67;} /* Literal.Number.Float */
+.highlight .mh  { color: #e37c67;} /* Literal.Number.Hex */
+.highlight .mi  { color: #e37c67;} /* Literal.Number.Integer */
+.highlight .mo  { color: #e37c67;} /* Literal.Number.Oct */
+.highlight .sa  { color: #29f0e7;} /* Literal.String.Affix */
+.highlight .sb  { color: #29f0e7;} /* Literal.String.Backtick */
+.highlight .sc  { color: #29f0e7;} /* Literal.String.Char */
+.highlight .dl  { color: #29f0e7;} /* Literal.String.Delimiter */
+.highlight .sd  { color: #29f0e7;} /* Literal.String.Doc */
+.highlight .s2  { color: #29f0e7;} /* Literal.String.Double */
+.highlight .se  { color: #e37c67;} /* Literal.String.Escape */
+.highlight .sh  { color: #29f0e7;} /* Literal.String.Heredoc */
+.highlight .si  { color: #29f0e7;} /* Literal.String.Interpol */
+.highlight .sx  { color: #29f0e7;} /* Literal.String.Other */
+.highlight .sr  { color: #29f0e7;} /* Literal.String.Regex */
+.highlight .s1  { color: #29f0e7;} /* Literal.String.Single */
+.highlight .ss  { color: #29f0e7;} /* Literal.String.Symbol */
+.highlight .bp  { color: #f0f9f9;} /* Name.Builtin.Pseudo */
+.highlight .fm  { color: #00e6fa;} /* Name.Function.Magic */
+.highlight .vc  { color: #f0f9f9;} /* Name.Variable.Class */
+.highlight .vg  { color: #f0f9f9;} /* Name.Variable.Global */
+.highlight .vi  { color: #f0f9f9;} /* Name.Variable.Instance */
+.highlight .vm  { color: #f0f9f9;} /* Name.Variable.Magic */
+.highlight .il  { color: #e37c67;} /* Literal.Number.Integer.Long */
