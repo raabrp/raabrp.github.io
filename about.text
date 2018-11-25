@@ -29,19 +29,19 @@ are important to me.
 
 ## Technical
 
-I'm using pelican to render this site from markdown and hosting the result via
-github pages.
+I'm using [pelican](https://blog.getpelican.com) to render this site from
+[markdown](https://en.wikipedia.org/wiki/Markdown) and hosting the result via
+[github pages](https://pages.github.com/).
 
 My domain is registered with [Namecheap](https://www.namecheap.com/), which 
 points to [cloudflare](https://www.cloudflare.com/)'s nameservers, which have
-DNS `A` records pointing to the IP address for the github pages servers, where
-the site is hosted as a public git repository.
+DNS `A` records pointing to the IP address for the github pages servers.
 
 At the end of the day, I write in Markdown with a few custom extensions, use a 
 script that builds and previews the site locally, (with python and node.js), and
 I publish my changes by pushing to the hosted git repo.
 
-The relevant [code](https://gitlab.com/raabrp/static-website) is hosted
+The relevant [code](https://github.com/raabrp/rraabblog) is hosted
 publically on github for anyone to use, under the MIT license. It is not 
 perfect, but seeks to avoid as much bloat as possible while doing what I want 
 it to. Please, use and [hack](https://en.wikipedia.org/wiki/Hacker_culture) it
