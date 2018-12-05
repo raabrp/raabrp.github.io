@@ -75,7 +75,7 @@
  }
 
  function generate_url() {
-     payload = game.pgn().replace(/\s*[0-9]\.\s+|\s+/g, ' ').replace(/ /g, '_');
+     payload = game.pgn().replace(/\s*[0-9]+\.\s+|\s+/g, ' ').replace(/ /g, '_');
      return window.location.hostname + window.location.pathname + '?' + payload;
  }
 
