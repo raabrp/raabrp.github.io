@@ -42,6 +42,8 @@
         <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
 
 <script type="text/javascript">
+(function() {
+
 
  function mask_fen(game, wturn) {
 
@@ -160,6 +162,7 @@
 
      var start = {
          'w': true,
+         'r': false,
          'p': '', // pgn
      };
 
@@ -185,6 +188,7 @@
  function generate_url() {
      payload = btoa(JSON.stringify({
          'w': !params.w,
+         'r': is_over(),
          'p': game.pgn()
      }));
      return window.location.hostname + window.location.pathname + '?' + payload;
@@ -197,6 +201,7 @@
  move_num = hist.length;
  var max_move_num = move_num;
  var max_mask = mask_fen(game, params.w);
+ var op_max_mask = mask_fen(game, !params.w);
 
  function domove(m) {
 
@@ -221,19 +226,23 @@
      return is_valid;
  }
 
+ function is_over() {
+     return ((game.fen().split(' ')[0].search(/K/) == -1) ||
+             (game.fen().split(' ')[0].search(/k/) == -1) ||
+             (game.in_draw() === true));
+ }
+
  ///////////////////////////////////////////////////////////////////////////////
 
  // do not pick up pieces if the game is over
  // only pick up pieces for the side to move
  var onDragStart = function(source, piece, position, orientation) {
-     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
-         (game.fen().split(' ')[0].search(/k/) == -1) ||
-         (game.in_draw() === true) ||
-       (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-     return false;
-   }
- };
+     if ((is_over() ||
+         (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+          (game.turn() === 'b' && piece.search(/^w/) !== -1))) {
+         return false;
+     }
+ }
 
  var onDrop = function(source, target) {
    // see if the move is legal
@@ -244,7 +253,7 @@
    });
 
    // illegal move
-   if (move === null) return 'snapback';
+   if (move === null) { return 'snapback'; }
 
    updateStatus();
  };
@@ -289,26 +298,55 @@
  var update = function() {
 
      // reset fog
-     $(".square-55d63").removeClass("fog");
+     $(".square-55d63").removeClass("wfog");
+     $(".square-55d63").removeClass("bfog");
+
+     var fcls, ofcls;
+     if (params.w) {
+          fcls = 'wfog'; ofcls = 'bfog';
+     } else {
+         fcls = 'bfog'; ofcls = 'wfog';
+     }
 
      var el;
      if (move_num <= max_move_num) {
          var hist_mask = mask_fen(game, params.w);
-         board.position(hist_mask.fen);
+
+         if (!params.r) { // review
+             board.position(hist_mask.fen);
+         }
 
          for (var i = 0; i < hist_mask.fog.length; i++) {
              el = $("div[data-square='" + hist_mask.fog[i] + "']");
-             el.addClass('fog');
+             el.addClass(fcls);
          }
      } else {
          for (var i = 0; i < max_mask.fog.length; i++) {
              el = $("div[data-square='" + max_mask.fog[i] + "']");
-             el.addClass('fog');
+             el.addClass(fcls);
          }
      }
 
+     if (params.r) {// review
+         if (move_num <= max_move_num) {
+             var hist_mask = mask_fen(game, !params.w);
+             board.position(game.fen());
+
+             for (var i = 0; i < hist_mask.fog.length; i++) {
+                 el = $("div[data-square='" + hist_mask.fog[i] + "']");
+                 el.addClass(ofcls);
+             }
+         } else {
+             for (var i = 0; i < op_max_mask.fog.length; i++) {
+                 el = $("div[data-square='" + op_max_mask.fog[i] + "']");
+                 el.addClass(ofcls);
+             }
+         }
+
+     }
+
      updateStatus();
- }
+ };
 
  board = ChessBoard('board', {
      draggable: true,
@@ -358,18 +396,14 @@
      fieldEl.val(generate_url());
  });
  $('#fenBtn').on('click', function() {
-     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
-         (game.fen().split(' ')[0].search(/k/) == -1) ||
-         (game.in_draw() === true)) {
+     if (is_over()) {
          fieldEl.val(game.fen());
      } else {
          fieldEl.val('Review is available upon game conclusion');
      }
  });
  $('#pgnBtn').on('click', function() {
-     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
-         (game.fen().split(' ')[0].search(/k/) == -1) ||
-         (game.in_draw() === true)) {
+     if (is_over()) {
          fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
      } else {
          fieldEl.val('Review is available upon game conclusion');
@@ -389,6 +423,7 @@
 
  update();
 
+ })();
 </script>
 
     </body>

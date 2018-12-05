@@ -72,17 +72,30 @@
 .button {
     background-color: #444;
     color: white;
-    padding: 15px 32px;
+    padding: 7px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 
-.fog.white-1e1d7 {
+.wfog.white-1e1d7 {
     background-color: #a9a9ff;
 }
 
-.fog.black-3c85d {
+.wfog.black-3c85d {
     background-color: #448
+}
+.bfog.white-1e1d7 {
+    background-color: #ffa9a9;
+}
+
+.bfog.black-3c85d {
+    background-color: #844
+}
+.bfog.wfog.black-3c85d {
+    background-color: #424
+}
+.bfog.wfog.white-1e1d7 {
+    background-color: #c9c
 }
