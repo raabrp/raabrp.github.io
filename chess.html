@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Chess    </title>
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/color-dark-default.css">
+
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Info
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Favorite Readings
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+
+<header>
+    <h1>
+        Chess
+    </h1>
+</header>
+<article>
+    
+<h2>For Correspondence Play</h2>
+<link href="/css/chess.css" rel="stylesheet" type="text/css"/>
+<script crossorigin="anonymous" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/js/chessboard.js"></script>
+<script src="/js/chess.js"></script>
+<p><span id="status"></span></p>
+<div id="board" style="width: 100%"></div>
+<br/>
+<div style="text-align:center;">
+<input class="button" id="startBtn" type="button" value="&lt;&lt;"/>
+<input class="button" id="prevBtn" type="button" value="&lt;"/>
+<input class="button" id="resetBtn" type="button" value="_"/>
+<input class="button" id="nextBtn" type="button" value="&gt;"/>
+<input class="button" id="lastBtn" type="button" value="&gt;&gt;"/>
+<input class="button" id="flipBtn" type="button" value="Flip"/>
+</div>
+<hr/>
+<div style="text-align:center;">
+<input class="button" id="linkBtn" type="button" value="Link"/>
+<input class="button" id="fenBtn" type="button" value="FEN"/>
+<input class="button" id="pgnBtn" type="button" value="PGN"/>
+<input class="button" id="loadBtn" type="button" value="Load"/>
+</div>
+<br/>
+<textarea id="field" style="width: 100%; height: 400px;"></textarea>
+<hr/>
+        See also:<br/>
+<a href="/chess.html?dark" id="generated-link-id0">Dark-Chess Variant</a><br/>
+<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id1">Apronus chess viewer</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id2">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
+<script type="text/javascript">
+
+ var board,
+     pgn,
+     hist,
+     move_num,
+     game = new Chess(),
+     statusEl = $('#status'),
+     fieldEl = $('#field');
+
+ function parse_url() {
+
+     var chess = new Chess(); // for validation only
+
+     var start = '';
+
+     if (window.location.search) {
+         try {
+             pgn = window.location.search.substr(1).replace(/_/g, ' ');
+             if (!chess.load_pgn(pgn)) {
+                 throw "Invalid URL String";
+             } else {
+                 return pgn;
+             }
+         } catch (e) {
+             fieldEl.val("Invalid URL String");
+             return start;
+         }
+     } else {
+         return start;
+     }
+ }
+
+ function generate_url() {
+     payload = game.pgn().replace(/\s*[0-9]\.\s+|\s+/g, ' ').replace(/ /g, '_');
+     return window.location.hostname + window.location.pathname + '?' + payload;
+ }
+
+ pgn = parse_url();
+ game.load_pgn(pgn);
+
+ var position = game.fen() || 'start';
+ hist = game.history();
+ move_num = hist.length;
+
+ function domove(m) {
+
+     if (hist.length > game.history().length) {
+         eq_test = new Chess(game.fen());
+         eq_test.move(m);
+     }
+
+     var is_valid = game.move(m);
+
+     if (is_valid) {
+
+         if (((hist.length > game.history().length) &&
+              (!(eq_test.fen() == game.fen()))) ||
+             (game.history().length > hist.length)) {
+             hist = game.history();
+         }
+
+         move_num += 1;
+     }
+
+     return is_valid;
+ }
+
+ ///////////////////////////////////////////////////////////////////////////////
+
+ // do not pick up pieces if the game is over
+ // only pick up pieces for the side to move
+ var onDragStart = function(source, piece, position, orientation) {
+     if (game.game_over() === true ||
+       (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+     return false;
+   }
+ };
+
+ var onDrop = function(source, target) {
+   // see if the move is legal
+   var move = domove({
+     from: source,
+     to: target,
+     promotion: 'q' // note: always promote to a queen for example simplicity
+   });
+
+   // illegal move
+   if (move === null) return 'snapback';
+
+   updateStatus();
+ };
+
+ // update the board position after the piece snap
+ // for castling, en passant, pawn promotion
+ var onSnapEnd = function() {
+     board.position(game.fen());
+ };
+
+ var updateStatus = function() {
+     var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
+
+     var movecolor = 'White';
+     if (game.turn() === 'b') {
+         movecolor = 'Black';
+     }
+
+     // checkmate?
+     if (game.in_checkmate() === true) {
+         status = 'Game over, ' + movecolor + ' is in checkmate.';
+     }
+
+     // draw?
+     else if (game.in_draw() === true) {
+         status = 'Game over, drawn position';
+     }
+
+     // game still on
+     else {
+         status += movecolor + ' to move';
+
+         // check?
+         if (game.in_check() === true) {
+             status += '; ' + movecolor + ' is in check';
+         }
+     }
+
+     statusEl.html(status);
+ };
+
+ var update = function() {
+     board.position(game.fen());
+     updateStatus();
+ }
+
+ board = ChessBoard('board', {
+     draggable: true,
+     position: position,
+     pieceTheme: '/images/chesspieces/{piece}.png',
+     moveSpeed: 50,
+     snapbackSpeed: 50,
+     snapSpeed: 50,
+     onDragStart: onDragStart,
+     onDrop: onDrop,
+     onSnapEnd: onSnapEnd
+ });
+
+ //////////////////////////////////////////////////////////////////////////////
+
+ $('#startBtn').on('click', function(){
+     game.reset();
+     move_num = 0;
+     update();
+ });
+ $('#prevBtn').on('click', function(){
+     if (move_num > 0) {
+         game.undo();
+         move_num -= 1;
+         update();
+     }
+ });
+ $('#resetBtn').on('click', function(){
+     game.load_pgn(pgn);
+     move_num = game.history().length;
+     update();
+ });
+ $('#nextBtn').on('click', function(){
+     domove(hist[move_num]);
+     update();
+ });
+ $('#lastBtn').on('click', function(){
+     while (move_num < hist.length) {
+         domove(hist[move_num]);
+     }
+     update();
+ });
+ $('#flipBtn').on('click', board.flip);
+
+ $('#linkBtn').on('click', function() {
+     fieldEl.val(generate_url());
+ });
+ $('#fenBtn').on('click', function() {
+     fieldEl.val(game.fen());
+ });
+ $('#pgnBtn').on('click', function() {
+     fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+ });
+ $('#loadBtn').on('click', function() {
+     if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
+         update();
+         hist = game.history();
+         move_num = hist.length;
+         window.history.pushState({}, '', generate_url());
+     } else {
+         fieldEl.val('Could not load input');
+     }
+ });
+
+
+ update();
+
+</script>
+
+</article>
+    </main>
+
+  </body>
+
+</html>

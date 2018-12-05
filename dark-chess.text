@@ -1,0 +1,395 @@
+<html>
+    <head>
+        <title>Dark-Chess</title>
+        <meta name="date" content="2018-12-04" />
+        <meta name="slug" content="dark-chess" />
+    </head>
+    <body>
+        <h2>For Correspondence Play</h2>
+        <link rel="stylesheet" type="text/css" href="/css/chess.css">
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script src="/js/chessboard.js"></script>
+        <script src="/js/dark-chess.js"></script>
+        <!-- <script src="/js/md5.min.js"></script> -->
+
+        <p><span id="status"></span></p>
+        <div id="board" style="width: 100%"></div>
+        <br>
+        <div style="text-align:center;">
+          <input type="button" class="button" id="startBtn" value="<<" />
+          <input type="button" class="button" id="prevBtn" value="<" />
+          <input type="button" class="button" id="resetBtn" value="_" />
+          <input type="button" class="button" id="nextBtn" value=">" />
+          <input type="button" class="button" id="lastBtn" value=">>" />
+          <input type="button" class="button" id="flipBtn" value="Flip" />
+        </div>
+        <hr>
+        <div style="text-align:center;">
+            <input type="button" class="button" id="linkBtn" value="Link" />
+            <input type="button" class="button" id="fenBtn" value="FEN" />
+            <input type="button" class="button" id="pgnBtn" value="PGN"/>
+            <input type="button" class="button" id="loadBtn" value="Load"/>
+        </div>
+        <br>
+        <textarea id="field" style="width: 100%; height: 400px;"></textarea>
+        <hr>
+        See also:<br>
+        <a href="https://en.wikipedia.org/wiki/Dark_chess">Dark Chess (Wikipedia)</a><br>
+        <a href="http://chessboardjs.com/">chessboard.js</a><br>
+        <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
+
+<script type="text/javascript">
+
+ function mask_fen(game, wturn) {
+
+     var mask = [];
+     var piece;
+
+     var moves;
+     if ((wturn ^ game.turn() == 'w')) { // not our turn
+         if (move_num == 0) { // only happens in review
+             mask = [
+                 'a5', 'a6', 'b5', 'b6',
+                 'c5', 'c6', 'd5', 'd6',
+                 'e5', 'e6', 'f5', 'f6',
+                 'g5', 'g6', 'h5', 'h6'
+             ];
+             moves = [];
+         } else {
+             pgame = new Chess();
+             pgame.load_pgn(game.pgn());
+             pgame.undo()
+             qgame = pgame
+             moves = qgame.moves({'verbose': true});
+         }
+     } else {
+         qgame = game
+         moves = qgame.moves({'verbose': true});
+     }
+
+     // deal with pawns and own pieces
+     for (i = 0; i < 8; i++) {
+         for (j = 0; j < 8; j++) {
+             sqname = idx(i, j);
+             piece = qgame.get(sqname);
+             if (piece && piece.type == 'p') {
+                 if (piece.color == 'b' && !wturn) {
+                     mask.push(idx(i + 1, j));
+                     mask.push(idx(i + 1, j - 1));
+                     mask.push(idx(i + 1, j + 1));
+                 } else if (piece.color == 'w' && wturn) {
+                     mask.push(idx(i - 1, j));
+                     mask.push(idx(i - 1, j - 1));
+                     mask.push(idx(i - 1, j + 1));
+                 }
+             }
+             if (piece && ((piece.color == 'b') ^ wturn)) {
+                     mask.push(idx(i, j));
+             }
+         }
+     }
+
+     var fen = '';
+
+     for (var i = 0; i < moves.length; i++) {
+         mask.push(moves[i].to);
+     }
+
+     function idx(r, c) {
+         var s = String.fromCharCode(97 + c);
+         return (s + (8 - r).toString());
+     }
+
+     function up(s, c){
+         if (c == 'w') {
+             return s.toUpperCase();
+         } else {
+             return s.toLowerCase();
+         }
+     }
+
+     var fog = [];
+
+     var sq;
+     var j;
+     for (i = 0; i < 8; i++) {
+         for (j = 0; j < 8; j++) {
+             sqname = idx(i, j);
+             piece = game.get(sqname);
+             if (piece && // our color or a move we can make
+                 (wturn ^ (piece.color == 'b') ||
+                  mask.indexOf(sqname) > -1)
+             ) {
+                 fen += up(piece.type, piece.color);
+             } else if (mask.indexOf(sqname) == -1) { // moves we can't make, not our pieces
+                 fog.push(sqname);
+                 fen += ' ';
+             }
+             else {
+                 fen += ' ';
+             }
+         }
+         if (i < 7) { fen += '/'; }
+     }
+
+     fen = fen.replace(/        /g, '8')
+              .replace(/       /g, '7')
+              .replace(/      /g, '6')
+              .replace(/     /g, '5')
+              .replace(/    /g, '4')
+              .replace(/   /g, '3')
+              .replace(/  /g, '2')
+              .replace(/ /g, '1');
+
+    return {'fen': fen, 'fog': fog}
+ }
+
+ var board,
+     hist,
+     move_num,
+     game = new Chess(),
+     statusEl = $('#status'),
+     fieldEl = $('#field');
+
+ function parse_url() {
+
+     var chess = new Chess(); // for validation only
+
+     var start = {
+         'w': true,
+         'p': '', // pgn
+     };
+
+     if (window.location.search) {
+         try {
+             obj = JSON.parse(atob(window.location.search.substr(1)));
+             if (!((typeof(obj.w) === 'boolean') &&
+                   (typeof(obj.p) === 'string') &&
+                   chess.load_pgn(obj.p))) {
+                 throw "Invalid URL String";
+             } else {
+                 return obj;
+             }
+         } catch (e) {
+             fieldEl.val("Invalid URL String");
+             return start;
+         }
+     } else {
+         return start;
+     }
+ }
+
+ function generate_url() {
+     payload = btoa(JSON.stringify({
+         'w': !params.w,
+         'p': game.pgn()
+     }));
+     return window.location.hostname + window.location.pathname + '?' + payload;
+ }
+
+ params = parse_url();
+
+ game.load_pgn(params.p);
+ hist = game.history();
+ move_num = hist.length;
+ var max_move_num = move_num;
+ var max_mask = mask_fen(game, params.w);
+
+ function domove(m) {
+
+     if (hist.length > game.history().length) {
+         eq_test = new Chess(game.fen());
+         eq_test.move(m);
+     }
+
+     var is_valid = game.move(m);
+
+     if (is_valid) {
+
+         if (((hist.length > game.history().length) &&
+              (!(eq_test.fen() == game.fen()))) ||
+             (game.history().length > hist.length)) {
+             hist = game.history();
+         }
+
+         move_num += 1;
+     }
+
+     return is_valid;
+ }
+
+ ///////////////////////////////////////////////////////////////////////////////
+
+ // do not pick up pieces if the game is over
+ // only pick up pieces for the side to move
+ var onDragStart = function(source, piece, position, orientation) {
+     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
+         (game.fen().split(' ')[0].search(/k/) == -1) ||
+         (game.in_draw() === true) ||
+       (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+     return false;
+   }
+ };
+
+ var onDrop = function(source, target) {
+   // see if the move is legal
+   var move = domove({
+     from: source,
+     to: target,
+     promotion: 'q' // note: always promote to a queen for example simplicity
+   });
+
+   // illegal move
+   if (move === null) return 'snapback';
+
+   updateStatus();
+ };
+
+ // update the board position after the piece snap
+ // for castling, en passant, pawn promotion
+ var onSnapEnd = function() {
+     update();
+ };
+
+ var updateStatus = function() {
+     var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
+
+     var movecolor = 'White';
+     if (game.turn() === 'b') {
+         movecolor = 'Black';
+     }
+
+     // black victory
+     if (game.fen().split(' ')[0].search(/K/) == -1) {
+         status = "Game over: White King captured."
+     }
+
+     // white victory
+     else if (game.fen().split(' ')[0].search(/k/) == -1) {
+         status = "Game over: Black King captured."
+     }
+
+     // draw?
+     else if (game.in_draw() === true) {
+         status = 'Game over, drawn position';
+     }
+
+     // game still on
+     else {
+         status += movecolor + ' to move';
+     }
+
+     statusEl.html(status);
+ };
+
+ var update = function() {
+
+     // reset fog
+     $(".square-55d63").removeClass("fog");
+
+     var el;
+     if (move_num <= max_move_num) {
+         var hist_mask = mask_fen(game, params.w);
+         board.position(hist_mask.fen);
+
+         for (var i = 0; i < hist_mask.fog.length; i++) {
+             el = $("div[data-square='" + hist_mask.fog[i] + "']");
+             el.addClass('fog');
+         }
+     } else {
+         for (var i = 0; i < max_mask.fog.length; i++) {
+             el = $("div[data-square='" + max_mask.fog[i] + "']");
+             el.addClass('fog');
+         }
+     }
+
+     updateStatus();
+ }
+
+ board = ChessBoard('board', {
+     draggable: true,
+     position: '8/8/8/8/8/8/8/8',
+     pieceTheme: '/images/chesspieces/{piece}.png',
+     moveSpeed: 50,
+     snapbackSpeed: 50,
+     snapSpeed: 50,
+     onDragStart: onDragStart,
+     onDrop: onDrop,
+     onSnapEnd: onSnapEnd
+ });
+
+ //////////////////////////////////////////////////////////////////////////////
+
+ $('#startBtn').on('click', function(){
+     game.reset();
+     move_num = 0;
+     update();
+ });
+ $('#prevBtn').on('click', function(){
+     if (move_num > 0) {
+         game.undo();
+         move_num -= 1;
+         update();
+     }
+ });
+ $('#resetBtn').on('click', function(){
+     game.load_pgn(params.p);
+     move_num = game.history().length;
+     update();
+ });
+ $('#nextBtn').on('click', function(){
+     domove(hist[move_num]);
+     update();
+ });
+ $('#lastBtn').on('click', function(){
+     while (move_num < hist.length) {
+         domove(hist[move_num]);
+     }
+     update();
+ });
+ $('#flipBtn').on('click', function() {
+     board.flip(); update();
+ });
+ $('#linkBtn').on('click', function() {
+     fieldEl.val(generate_url());
+ });
+ $('#fenBtn').on('click', function() {
+     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
+         (game.fen().split(' ')[0].search(/k/) == -1) ||
+         (game.in_draw() === true)) {
+         fieldEl.val(game.fen());
+     } else {
+         fieldEl.val('Review is available upon game conclusion');
+     }
+ });
+ $('#pgnBtn').on('click', function() {
+     if ((game.fen().split(' ')[0].search(/K/) == -1) ||
+         (game.fen().split(' ')[0].search(/k/) == -1) ||
+         (game.in_draw() === true)) {
+         fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+     } else {
+         fieldEl.val('Review is available upon game conclusion');
+     }
+ });
+ $('#loadBtn').on('click', function() {
+     if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
+         hist = game.history();
+         move_num = hist.length;
+         max_move_num = move_num;
+         update();
+     } else {
+         fieldEl.val('Could not load input');
+     }
+ });
+
+
+ update();
+
+</script>
+
+    </body>
+</html>
