@@ -32,6 +32,10 @@
             user-select: none;
 }
 
+.square-55d63 > img {
+    touch-action: none;
+}
+
 /* white square */
 .white-1e1d7 {
   background-color: #d9d9d9;
