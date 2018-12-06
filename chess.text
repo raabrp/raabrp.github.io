@@ -90,14 +90,18 @@
 
      if (hist.length > game.history().length) {
          eq_test = new Chess(game.fen());
-         eq_test.move(m);
+         eq_test.move(hist[move_num]);
      }
 
      var is_valid = game.move(m);
 
      if (is_valid) {
 
-         if (((hist.length > game.history().length) &&
+         console.log('eq 2 game');
+         console.log(eq_test.fen());
+         console.log(game.fen());
+
+         if (((hist.length >= game.history().length) &&
               (!(eq_test.fen() == game.fen()))) ||
              (game.history().length > hist.length)) {
              hist = game.history();
