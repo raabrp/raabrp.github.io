@@ -348,7 +348,7 @@ Dark-Chess    </title>
 
      if (hist.length > game.history().length) {
          eq_test = new Chess(game.fen());
-         eq_test.move(m);
+         eq_test.move(hist[move_num]);
      }
 
      var is_valid = game.move(m);

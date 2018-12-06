@@ -238,10 +238,6 @@ Chess    </title>
 
      if (is_valid) {
 
-         console.log('eq 2 game');
-         console.log(eq_test.fen());
-         console.log(game.fen());
-
          if (((hist.length >= game.history().length) &&
               (!(eq_test.fen() == game.fen()))) ||
              (game.history().length > hist.length)) {
