@@ -44,7 +44,7 @@
 <script type="text/javascript">
 
  // anonymous function to disallow trivial console inspection
- /* (function() { */
+ (function() {
 
 
  // given row and column numbers (starting at 0), convert to
@@ -502,7 +502,7 @@
 
  update();
 
-     /* })(); */
+ })();
 </script>
 
     </body>
