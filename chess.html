@@ -162,7 +162,7 @@ Chess    </title>
 <div style="text-align:center;">
 <input class="button" id="startBtn" type="button" value="&lt;&lt;"/>
 <input class="button" id="prevBtn" type="button" value="&lt;"/>
-<input class="button" id="resetBtn" type="button" value="_"/>
+<input class="button" id="resetBtn" type="button" value="Init"/>
 <input class="button" id="nextBtn" type="button" value="&gt;"/>
 <input class="button" id="lastBtn" type="button" value="&gt;&gt;"/>
 <input class="button" id="flipBtn" type="button" value="Flip"/>
@@ -184,14 +184,7 @@ Chess    </title>
 <a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
 <script type="text/javascript">
 
- var board,
-     pgn,
-     hist,
-     move_num,
-     game = new Chess(),
-     statusEl = $('#status'),
-     fieldEl = $('#field');
-
+ // url is simply PGN sequence. Cross-compatible with Apronus
  function parse_url() {
 
      var chess = new Chess(); // for validation only
@@ -215,32 +208,53 @@ Chess    </title>
      }
  }
 
+ // generate link for opponent
  function generate_url() {
-     payload = game.pgn().replace(/\s*[0-9]+\.\s+|\s+/g, ' ').replace(/ /g, '_');
+     if (move_num == 0) {
+         return window.location.hostname + window.location.pathname;
+     }
+
+     payload = game.pgn()
+                   .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
+                   .replace(/ /g, '_')
+                   .substr(1);
      return window.location.hostname + window.location.pathname + '?' + payload;
  }
 
- pgn = parse_url();
+ var board,                   // Chessboard
+     game = new Chess(),      // Chess
+     hist,                    // history of moves
+     move_num,                // current move number
+     statusEl = $('#status'), // status field
+     fieldEl = $('#field'),   // text box
+     pgn = pgn = parse_url(); // PGN of game
+
  game.load_pgn(pgn);
 
- var position = game.fen() || 'start';
  hist = game.history();
  move_num = hist.length;
 
+ // intercept movement to check against history
  function domove(m) {
 
-     if (hist.length > game.history().length) {
-         eq_test = new Chess(game.fen());
-         eq_test.move(hist[move_num]);
-     }
 
+     var current_fen = game.fen();
      var is_valid = game.move(m);
 
      if (is_valid) {
 
-         if (((hist.length >= game.history().length) &&
-              (!(eq_test.fen() == game.fen()))) ||
-             (game.history().length > hist.length)) {
+         if (hist.length > game.history().length) {
+
+             // compare against known history
+             eq_test = new Chess(current_fen);
+             eq_test.move(hist[move_num]);
+
+             // new branch of history
+             if (!(eq_test.fen() == game.fen())) {
+                 hist = game.history();
+             }
+
+         } else {
              hist = game.history();
          }
 
@@ -250,39 +264,14 @@ Chess    </title>
      return is_valid;
  }
 
- ///////////////////////////////////////////////////////////////////////////////
-
- // do not pick up pieces if the game is over
- // only pick up pieces for the side to move
- var onDragStart = function(source, piece, position, orientation) {
-     if (game.game_over() === true ||
-       (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-     return false;
-   }
- };
-
- var onDrop = function(source, target) {
-   // see if the move is legal
-   var move = domove({
-     from: source,
-     to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
-   });
-
-   // illegal move
-   if (move === null) return 'snapback';
-
-   updateStatus();
- };
-
- // update the board position after the piece snap
- // for castling, en passant, pawn promotion
- var onSnapEnd = function() {
+ // repaint to allow previous states of play to be examined
+ function update() {
      board.position(game.fen());
- };
+     updateStatus();
+ }
 
- var updateStatus = function() {
+ // update status element
+ function updateStatus() {
      var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
 
      var movecolor = 'White';
@@ -313,14 +302,45 @@ Chess    </title>
      statusEl.html(status);
  };
 
- var update = function() {
+ ///////////////////////////////////////////////////////////////////////////////
+ // CHESSBOARD HOOKS
+ // see chessboard.js example 5000
+
+ // do not pick up pieces if the game is over
+ // only pick up pieces for the side to move
+ var onDragStart = function(source, piece, position, orientation) {
+     if (game.game_over() === true || // game is over
+       (game.turn() === 'w' && piece.search(/^b/) !== -1) || // not our piece
+       (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
+     return false;
+   }
+ };
+
+ var onDrop = function(source, target) {
+   // see if the move is legal and update game if so
+   var move = domove({
+     from: source,
+     to: target,
+     promotion: 'q' // note: always promote to a queen for example simplicity
+   });
+
+   // illegal move
+   if (move === null) return 'snapback';
+
+   // board has already updated its position
+   // do not update again and tear animations
+   updateStatus();
+ };
+
+ // update the board position after the piece snap
+ // for castling, en passant, pawn promotion
+ var onSnapEnd = function() {
      board.position(game.fen());
-     updateStatus();
- }
+ };
 
  board = ChessBoard('board', {
      draggable: true,
-     position: position,
+     position: '8/8/8/8/8/8/8/8',
      pieceTheme: '/images/chesspieces/{piece}.png',
      moveSpeed: 50,
      snapbackSpeed: 50,
@@ -331,6 +351,8 @@ Chess    </title>
  });
 
  //////////////////////////////////////////////////////////////////////////////
+ // Buttons and fields
+ //
 
  $('#startBtn').on('click', function(){
      game.reset();
@@ -346,12 +368,15 @@ Chess    </title>
  });
  $('#resetBtn').on('click', function(){
      game.load_pgn(pgn);
+     hist = game.history();
      move_num = game.history().length;
      update();
  });
  $('#nextBtn').on('click', function(){
-     domove(hist[move_num]);
-     update();
+     if (move_num < hist.length) {
+         domove(hist[move_num]);
+         update();
+     }
  });
  $('#lastBtn').on('click', function(){
      while (move_num < hist.length) {
@@ -360,15 +385,17 @@ Chess    </title>
      update();
  });
  $('#flipBtn').on('click', board.flip);
-
  $('#linkBtn').on('click', function() {
      fieldEl.val(generate_url());
+     fieldEl.select();
  });
  $('#fenBtn').on('click', function() {
      fieldEl.val(game.fen());
+     fieldEl.select();
  });
  $('#pgnBtn').on('click', function() {
      fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+     fieldEl.select();
  });
  $('#loadBtn').on('click', function() {
      if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {

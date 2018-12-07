@@ -1532,7 +1532,7 @@ window['Chess'] = window['Chess'] || function(fen) {
       return turn;
     },
 
-    move: function(move) {
+    move: function(move, legal) {
       /* The move function can be called with in the following parameters:
        *
        * .move('Nxb7')      <- where 'move' is a case-sensitive SAN string
@@ -1543,7 +1543,11 @@ window['Chess'] = window['Chess'] || function(fen) {
        *      })
        */
       var move_obj = null;
-      var moves = generate_moves();
+
+      if (legal === undefined) {
+            legal = true;
+      }
+      var moves = generate_moves({'legal': legal});
 
       if (typeof move === 'string') {
         /* convert the move string to a move object */

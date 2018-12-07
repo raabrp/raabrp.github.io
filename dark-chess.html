@@ -155,7 +155,7 @@ Dark-Chess    </title>
 <link href="/css/chess.css" rel="stylesheet" type="text/css"/>
 <script crossorigin="anonymous" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/js/chessboard.js"></script>
-<script src="/js/dark-chess.js"></script>
+<script src="/js/chess.js"></script>
 <!-- <script src="/js/md5.min.js"></script> -->
 <p><span id="status"></span></p>
 <div id="board" style="width: 100%"></div>
@@ -163,7 +163,7 @@ Dark-Chess    </title>
 <div style="text-align:center;">
 <input class="button" id="startBtn" type="button" value="&lt;&lt;"/>
 <input class="button" id="prevBtn" type="button" value="&lt;"/>
-<input class="button" id="resetBtn" type="button" value="_"/>
+<input class="button" id="resetBtn" type="button" value="Init"/>
 <input class="button" id="nextBtn" type="button" value="&gt;"/>
 <input class="button" id="lastBtn" type="button" value="&gt;&gt;"/>
 <input class="button" id="flipBtn" type="button" value="Flip"/>
@@ -183,69 +183,112 @@ Dark-Chess    </title>
 <a href="http://chessboardjs.com/" id="generated-link-id1">chessboard.js</a><br/>
 <a href="https://github.com/jhlywa/chess.js" id="generated-link-id2">chess.js</a><br/>
 <script type="text/javascript">
-(function() {
+
+ // anonymous function to disallow trivial console inspection
+ /* (function() { */
 
 
- function mask_fen(game, wturn) {
+ // given row and column numbers (starting at 0), convert to
+ // square name. e.g. 0,0 -> a8
+ function idx(r, c) {
+     var s = String.fromCharCode(97 + c);
+     return (s + (8 - r).toString());
+ }
 
-     var mask = [];
-     var piece;
+ // generate vision of a particular player at a state of the game
+ function vision(game, as_w) {
+     // returns:
+     //    set of visible squares
+     // arguments:
+     //    game: state of play (Chess object from chess.js)
+     //    as_wn: boolean for whether we are playing as white
 
-     var moves;
-     if ((wturn ^ game.turn() == 'w')) { // not our turn
-         if (move_num == 0) { // only happens in review
-             mask = [
-                 'a5', 'a6', 'b5', 'b6',
-                 'c5', 'c6', 'd5', 'd6',
-                 'e5', 'e6', 'f5', 'f6',
-                 'g5', 'g6', 'h5', 'h6'
-             ];
-             moves = [];
+     var visible = new Set(); // set of seen squares
+     var fog_game; // game used for querying player's vision
+
+     var moves; // list of available moves (verbose)
+     if ((as_w ^ game.turn() == 'w')) { // not our turn
+         if (move_num == 0) {
+             // only happens for black during review
+             // since we cannot undo when no moves have been made
+             vis_game = new Chess();
+             vis_game.move('b3');
          } else {
-             pgame = new Chess();
-             pgame.load_pgn(game.pgn());
-             pgame.undo()
-             qgame = pgame
-             moves = qgame.moves({'verbose': true});
+             var prev_game = new Chess(); // inspect previous state of play
+             prev_game.load_pgn(game.pgn());
+             prev_game.undo()
+             vis_game = prev_game;
          }
-     } else {
-         qgame = game
-         moves = qgame.moves({'verbose': true});
+     } else { // our turn
+         vis_game = game;
      }
 
-     // deal with pawns and own pieces
-     for (i = 0; i < 8; i++) {
-         for (j = 0; j < 8; j++) {
+     // deal with pawns (seen squares != legal moves)
+     // and own pieces (we can see squares our pieces occupy)
+     var piece;
+     for (var i = 0; i < 8; i++) {
+         for (var j = 0; j < 8; j++) {
              sqname = idx(i, j);
-             piece = qgame.get(sqname);
+             piece = vis_game.get(sqname); // we see current piece placement
              if (piece && piece.type == 'p') {
-                 if (piece.color == 'b' && !wturn) {
-                     mask.push(idx(i + 1, j));
-                     mask.push(idx(i + 1, j - 1));
-                     mask.push(idx(i + 1, j + 1));
-                 } else if (piece.color == 'w' && wturn) {
-                     mask.push(idx(i - 1, j));
-                     mask.push(idx(i - 1, j - 1));
-                     mask.push(idx(i - 1, j + 1));
+                 if (piece.color == 'b' && !as_w) {
+                     visible.add(idx(i + 1, j));
+                     visible.add(idx(i + 1, j - 1));
+                     visible.add(idx(i + 1, j + 1));
+                     if (i == 1) { // pawn has not moved yet
+                         visible.add(idx(i + 2, j));
+                     }
+                 } else if (piece.color == 'w' && as_w) {
+                     visible.add(idx(i - 1, j));
+                     visible.add(idx(i - 1, j - 1));
+                     visible.add(idx(i - 1, j + 1));
+                     if (i == 6) { // pawn has not moved yet
+                         visible.add(idx(i - 2, j));
+                     }
                  }
              }
-             if (piece && ((piece.color == 'b') ^ wturn)) {
-                     mask.push(idx(i, j));
+             // we can see the squares of our own pieces
+             if (piece && ((piece.color == 'b') ^ as_w)) {
+                     visible.add(idx(i, j));
              }
          }
      }
+
+     // generate moves, allowing moves which leave us in check
+     moves = vis_game.moves({'verbose': true, 'legal': false});
+
+     // add moves to `visible`
+     for (var i = 0; i < moves.length; i++) {
+         visible.add(moves[i].to);
+     }
+
+     return visible;
+ }
+
+ // all squares which are NOT visible
+ function get_fog(visible) { 
+     var fog = []; // list of unseen squares (opposite of visible)
+     // iterate over every square on the board
+     var sq;
+     for (var i = 0; i < 8; i++) {
+         for (var j = 0; j < 8; j++) {
+             sqname = idx(i, j);
+             if (!visible.has(sqname)) { // we can't see this square
+                 fog.push(sqname);
+             }
+         }
+     }
+     return fog;
+ }
+
+ // return subset of FEN which is visible
+ function mask_fen(game, visible) {
+     //////////////////////////////////////////////////////////////
+     // generate FEN, fog
 
      var fen = '';
 
-     for (var i = 0; i < moves.length; i++) {
-         mask.push(moves[i].to);
-     }
-
-     function idx(r, c) {
-         var s = String.fromCharCode(97 + c);
-         return (s + (8 - r).toString());
-     }
-
+     // return correct capitalization for pieces based on side
      function up(s, c){
          if (c == 'w') {
              return s.toUpperCase();
@@ -254,24 +297,15 @@ Dark-Chess    </title>
          }
      }
 
-     var fog = [];
-
+     // iterate over every square on the board
      var sq;
-     var j;
-     for (i = 0; i < 8; i++) {
-         for (j = 0; j < 8; j++) {
+     for (var i = 0; i < 8; i++) {
+         for (var j = 0; j < 8; j++) {
              sqname = idx(i, j);
              piece = game.get(sqname);
-             if (piece && // our color or a move we can make
-                 (wturn ^ (piece.color == 'b') ||
-                  mask.indexOf(sqname) > -1)
-             ) {
+             if (piece && visible.has(sqname)) { // we can can see this piece
                  fen += up(piece.type, piece.color);
-             } else if (mask.indexOf(sqname) == -1) { // moves we can't make, not our pieces
-                 fog.push(sqname);
-                 fen += ' ';
-             }
-             else {
+             } else { // we can't see this square or it is empty
                  fen += ' ';
              }
          }
@@ -287,24 +321,19 @@ Dark-Chess    </title>
               .replace(/  /g, '2')
               .replace(/ /g, '1');
 
-    return {'fen': fen, 'fog': fog}
- }
+    return fen
+ } 
 
- var board,
-     hist,
-     move_num,
-     game = new Chess(),
-     statusEl = $('#status'),
-     fieldEl = $('#field');
-
+ // parse url and read state params
+ // URL is base64 of stringified JSON.
  function parse_url() {
 
-     var chess = new Chess(); // for validation only
+     var chess = new Chess(); // for pgn validation
 
      var start = {
-         'w': true,
-         'r': false,
-         'p': '', // pgn
+         'w': true,       // playing as white
+         'r': false,      // game is in review
+         'p': '',         // pgn
      };
 
      if (window.location.search) {
@@ -326,86 +355,144 @@ Dark-Chess    </title>
      }
  }
 
+ // generate link for opponent
  function generate_url() {
+
+     if (move_num == 0) {
+         return window.location.hostname + window.location.pathname;
+     }
+
      payload = btoa(JSON.stringify({
-         'w': !params.w,
-         'r': is_over(),
+         'w': !params.w, // change playing_as side
+         'r': is_over(), // when game is over, automatically enter review
          'p': game.pgn()
      }));
      return window.location.hostname + window.location.pathname + '?' + payload;
  }
 
- params = parse_url();
+ var board,                   // Chessboard
+     game = new Chess(),      // Chess
+     hist,                    // history of moves
+     move_num,                // current move number
+     statusEl = $('#status'), // status field
+     fieldEl = $('#field'),   // text box
+     params = parse_url();    // playing_as, pgn, review
 
  game.load_pgn(params.p);
+
  hist = game.history();
  move_num = hist.length;
- var max_move_num = move_num;
- var max_mask = mask_fen(game, params.w);
- var op_max_mask = mask_fen(game, !params.w);
 
+ // for review (showing fog for both players)
+ // `update()` will not allow players to fish for information with prospective
+ // moves
+ var max_move_num = move_num;
+ var max_visible = vision(game, params.w);
+
+ // dark-chess allows checked positions to play unrestricted
+ // and capture of kings, but check-mate is check-mate
+ function is_over() {
+     return ((game.fen().split(' ')[0].search(/K/) == -1) ||
+             (game.fen().split(' ')[0].search(/k/) == -1) ||
+             (game.in_draw() === true) ||
+             (game.in_checkmate() === true));
+ }
+
+ // intercept movement to check against history
  function domove(m) {
 
-     if (hist.length > game.history().length) {
-         eq_test = new Chess(game.fen());
-         eq_test.move(hist[move_num]);
-     }
-
-     var is_valid = game.move(m);
+     var current_fen = game.fen();
+     var is_valid = game.move(m, false); // allow illegal moves (in check)
 
      if (is_valid) {
 
-         if (((hist.length > game.history().length) &&
-              (!(eq_test.fen() == game.fen()))) ||
-             (game.history().length > hist.length)) {
+         if (hist.length > game.history().length) {
+
+             // compare against known history
+             eq_test = new Chess(current_fen);
+             eq_test.move(hist[move_num], false);
+
+             // new branch of history
+             if (!(eq_test.fen() == game.fen())) {
+                 hist = game.history();
+             }
+
+         } else {
              hist = game.history();
          }
 
          move_num += 1;
      }
 
+     // allow instant review on game end
+     if (is_over()) {
+         params.r = true;
+     }
+
      return is_valid;
  }
 
- function is_over() {
-     return ((game.fen().split(' ')[0].search(/K/) == -1) ||
-             (game.fen().split(' ')[0].search(/k/) == -1) ||
-             (game.in_draw() === true));
- }
-
- ///////////////////////////////////////////////////////////////////////////////
-
- // do not pick up pieces if the game is over
- // only pick up pieces for the side to move
- var onDragStart = function(source, piece, position, orientation) {
-     if ((is_over() ||
-         (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-          (game.turn() === 'b' && piece.search(/^w/) !== -1))) {
-         return false;
+ function paint(squares, cls) {
+     var el;
+     for (var i = 0; i < squares.length; i++) {
+         el = $("div[data-square='" + squares[i] + "']");
+         el.addClass(cls);
      }
  }
 
- var onDrop = function(source, target) {
-   // see if the move is legal
-   var move = domove({
-     from: source,
-     to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
-   });
 
-   // illegal move
-   if (move === null) { return 'snapback'; }
+ // repaint to allow previous states of play to be examined
+ // allow partial review of board without revealing information
+ // allow full review when params.r is set
+ function update() {
 
-   updateStatus();
- };
+     // reset fog
+     $(".square-55d63").removeClass("wfog");
+     $(".square-55d63").removeClass("bfog");
 
- // update the board position after the piece snap
- // for castling, en passant, pawn promotion
- var onSnapEnd = function() {
-     update();
- };
+     // set classes based on who's side we are viewing
+     var fcls, opcls;
+     if (params.w) {
+         fcls = 'wfog'; opcls = 'bfog';
+     } else {
+         fcls = 'bfog'; opcls = 'wfog';
+     }
 
- var updateStatus = function() {
+     var visible;
+     if (move_num <= max_move_num) { // current or past state of play
+
+         // get mask of proper game state
+         visible = vision(game, params.w);
+
+     } else { // prospective move
+
+         // do not allow information to be revealed
+         // use mask at latest assured state of play
+         visible = max_visible;
+
+     }
+
+     paint(get_fog(visible), fcls)
+
+     if (!params.r) { // partial review
+
+         // see only our pieces
+         board.position(mask_fen(game, visible));
+     }
+     else { // full review
+
+         // see opponent's fog
+         paint(get_fog(vision(game, !params.w)), opcls);
+
+         // see all pieces
+         board.position(game.fen());
+     }
+
+     updateStatus();
+ }
+
+ // update status element
+ function updateStatus() {
      var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
 
      var movecolor = 'White';
@@ -434,59 +521,43 @@ Dark-Chess    </title>
      }
 
      statusEl.html(status);
+ }
+
+
+ ///////////////////////////////////////////////////////////////////////////////
+ // CHESSBOARD HOOKS
+ // see chessboard.js example 5000
+
+ // do not pick up pieces if the game is over
+ // only pick up pieces for the side to move
+ var onDragStart = function(source, piece, position, orientation) {
+     if (is_over() || // game is over
+         (game.turn() === 'w' && piece.search(/^b/) !== -1) ||  // not our piece
+         (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
+         return false;
+     }
  };
 
- var update = function() {
+ var onDrop = function(source, target) {
+   // see if the move is legal and update game if so
+   var move = domove({
+     from: source,
+     to: target,
+     promotion: 'q' // note: always promote to a queen for example simplicity
+   });
 
-     // reset fog
-     $(".square-55d63").removeClass("wfog");
-     $(".square-55d63").removeClass("bfog");
+   // illegal move
+   if (move === null) { return 'snapback'; }
 
-     var fcls, ofcls;
-     if (params.w) {
-          fcls = 'wfog'; ofcls = 'bfog';
-     } else {
-         fcls = 'bfog'; ofcls = 'wfog';
-     }
+   // board has already updated its position
+   // do not update again and tear animations
+   updateStatus();
+ };
 
-     var el;
-     if (move_num <= max_move_num) {
-         var hist_mask = mask_fen(game, params.w);
-
-         if (!params.r) { // review
-             board.position(hist_mask.fen);
-         }
-
-         for (var i = 0; i < hist_mask.fog.length; i++) {
-             el = $("div[data-square='" + hist_mask.fog[i] + "']");
-             el.addClass(fcls);
-         }
-     } else {
-         for (var i = 0; i < max_mask.fog.length; i++) {
-             el = $("div[data-square='" + max_mask.fog[i] + "']");
-             el.addClass(fcls);
-         }
-     }
-
-     if (params.r) {// review
-         if (move_num <= max_move_num) {
-             var hist_mask = mask_fen(game, !params.w);
-             board.position(game.fen());
-
-             for (var i = 0; i < hist_mask.fog.length; i++) {
-                 el = $("div[data-square='" + hist_mask.fog[i] + "']");
-                 el.addClass(ofcls);
-             }
-         } else {
-             for (var i = 0; i < op_max_mask.fog.length; i++) {
-                 el = $("div[data-square='" + op_max_mask.fog[i] + "']");
-                 el.addClass(ofcls);
-             }
-         }
-
-     }
-
-     updateStatus();
+ // update the board position after the piece snap
+ // for castling, en passant, pawn promotion
+ var onSnapEnd = function() {
+     update();
  };
 
  board = ChessBoard('board', {
@@ -502,6 +573,8 @@ Dark-Chess    </title>
  });
 
  //////////////////////////////////////////////////////////////////////////////
+ // Buttons and fields
+ //
 
  $('#startBtn').on('click', function(){
      game.reset();
@@ -517,12 +590,15 @@ Dark-Chess    </title>
  });
  $('#resetBtn').on('click', function(){
      game.load_pgn(params.p);
+     hist = game.history();
      move_num = game.history().length;
      update();
  });
  $('#nextBtn').on('click', function(){
-     domove(hist[move_num]);
-     update();
+     if (move_num < hist.length) {
+         domove(hist[move_num]);
+         update();
+     }
  });
  $('#lastBtn').on('click', function(){
      while (move_num < hist.length) {
@@ -535,10 +611,12 @@ Dark-Chess    </title>
  });
  $('#linkBtn').on('click', function() {
      fieldEl.val(generate_url());
+     fieldEl.select();
  });
  $('#fenBtn').on('click', function() {
      if (is_over()) {
          fieldEl.val(game.fen());
+         fieldEl.select();
      } else {
          fieldEl.val('Review is available upon game conclusion');
      }
@@ -546,6 +624,7 @@ Dark-Chess    </title>
  $('#pgnBtn').on('click', function() {
      if (is_over()) {
          fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+         fieldEl.select();
      } else {
          fieldEl.val('Review is available upon game conclusion');
      }
@@ -564,7 +643,7 @@ Dark-Chess    </title>
 
  update();
 
- })();
+     /* })(); */
 </script>
 
 </article>
