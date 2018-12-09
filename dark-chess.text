@@ -65,7 +65,7 @@
      hist,                                   // history of moves
      move_num,                               // current move number
      statusEl = $('#status'),                // status field
-     fieldEl = $('#field'),                  // text box console.log(params)
+     fieldEl = $('#field'),                  // text box
      params = parse_url();
  var game = new Chess(undefined, !params.l); // Chess
 
@@ -175,7 +175,6 @@
          }
 
          if (capturedsq) {
-             console.log(capturedsq);
              visible.add(capturedsq);
              visible.add(emptysq);
          }
@@ -370,7 +369,6 @@
 
      var current_fen = game.fen();
      var is_valid = game.move(m);
-     console.log(is_valid, params.l);
 
      if (is_valid) {
 
