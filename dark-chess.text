@@ -61,6 +61,13 @@
  // anonymous function to disallow trivial console inspection
  (function() {
 
+ var board,                                  // Chessboard
+     hist,                                   // history of moves
+     move_num,                               // current move number
+     statusEl = $('#status'),                // status field
+     fieldEl = $('#field'),                  // text box console.log(params)
+     params = parse_url();
+ var game = new Chess(undefined, !params.l); // Chess
 
  // given row and column numbers (starting at 0), convert to
  // square name. e.g. 0,0 -> a8
@@ -79,17 +86,17 @@
 
      // determine state of game to use for querying player's vision
      // Chess.js has some strange side-effects when querying possible moves
-     var vis_game = new Chess(game.fen());
+     var vis_game = new Chess(game.fen(), !params.l);
      var prev_game;
      if ((as_w ^ game.turn() == 'w')) { // not our turn (we just moved)
          if (move_num == 0) {
              // only happens for black during review
              // (since we cannot undo when no moves have been made)
-             vis_game = new Chess();
+             vis_game = new Chess(undefined, !params.l);
              vis_game.move('b3'); // inconsequential
          } else if (!params.s) { // pieces gain vision on full move
              // inspect previous state of play (before the move we just made)
-             var prev_game = new Chess();
+             var prev_game = new Chess(undefined, !params.l);
              prev_game.load_pgn(game.pgn());
              prev_game.undo()
              vis_game = prev_game;
@@ -131,7 +138,6 @@
      // generate moves, allowing moves which leave us in check
      var moves = vis_game.moves({
          'verbose': true,
-         'legal': false,
          'as_opponent': (as_w ^ vis_game.turn() == 'w') // not our turn in visgame
      });
 
@@ -145,7 +151,7 @@
          as_w ^ game.turn() == 'b'  // our turn
      ) {
          if (prev_game === undefined) {
-             prev_game = new Chess();
+             prev_game = new Chess(undefined, !params.l);
              prev_game.load_pgn(game.pgn());
              prev_game.undo()
          }
@@ -237,11 +243,12 @@
     return fen
  }
 
+ var invalid_url = false;
  // parse url and read state params
  // URL is base64 of stringified JSON.
  function parse_url() {
 
-     var chess = new Chess(); // for pgn validation
+     var chess = new Chess(undefined, true); // for pgn validation
 
      var params = {
          'w': true,       // playing as white
@@ -256,12 +263,30 @@
      if (window.location.search) {
          try {
              obj = JSON.parse(atob(window.location.search.substr(1)));
-             if (!((typeof(obj.w) === 'boolean') &&
-                   (typeof(obj.p) === 'string') &&
-                   chess.load_pgn(obj.p))) {
+             if (!((typeof(obj.p) === 'string') &&
+                   chess.load_pgn(obj.p)
+             )) {
+                 invalid_url = true;
                  throw "Invalid URL String";
-             } else {
-                 return obj;
+             } else { // valid URL
+                 // new URL format
+                 if (obj.hasOwnProperty('f') && (typeof(obj.f) === 'string')) {
+                     params.w = (obj.f.search('w') >= 0);
+                     params.r = (obj.f.search('r') >= 0);
+                     params.s = (obj.f.search('s') >= 0);
+                     params.o = (obj.f.search('o') >= 0);
+                     params.a = (obj.f.search('a') >= 0);
+                     params.l = (obj.f.search('l') >= 0);
+                 } else { // backwards compatibility with old URL format
+                     obj.hasOwnProperty('w') ? params.w = obj.w : null;
+                     obj.hasOwnProperty('r') ? params.a = obj.a : null;
+                     obj.hasOwnProperty('s') ? params.s = obj.s : null;
+                     obj.hasOwnProperty('o') ? params.o = obj.o : null;
+                     obj.hasOwnProperty('a') ? params.a = obj.a : null;
+                     obj.hasOwnProperty('l') ? params.l = obj.l : null;
+                 }
+                 params.p = obj.p;
+                 return params;
              }
          } catch (e) {
              fieldEl.val("Invalid URL String");
@@ -275,41 +300,32 @@
  // generate link for opponent
  function generate_url() {
 
-     while (game.history().length < max_move_num) {
-         domove(hist[game.history().length]);
+     if (invalid_url) {
+         return "Request originated from invalid URL String."
      }
-     if (hist[max_move_num] != undefined) {
-         domove(hist[max_move_num]);
-         update();
-     }
-     else if (move_num == 0) {
+     if (move_num == 0) {
          return window.location.hostname + window.location.pathname;
      }
-     else {
+     else if (!is_over()) {
          update();
          return "You must first make a move."
      }
 
+     var flags = '';
+     !params.w ? flags += 'w' : null; // change playing_as
+     is_over() ? flags += 'r' : null; // when game is over, automatically enter review
+     document.getElementById('scouting').checked ? flags += 's' : null;
+     document.getElementById('overrun').checked ? flags += 'o' : null;
+     (document.getElementById('warn').checked ||
+      document.getElementById('legal').checked) ? flags += 'a' : null;
+     document.getElementById('legal').checked ? flags += 'l' : null;
+
      payload = btoa(JSON.stringify({
-         'w': !params.w, // change playing_as side
-         'r': is_over(), // when game is over, automatically enter review
-         's': document.getElementById('scouting').checked,
-         'o': document.getElementById('overrun').checked,
-         'a': (document.getElementById('warn').checked ||
-               document.getElementById('legal').checked),
-         'l': document.getElementById('legal').checked,
+         'f': flags,
          'p': game.pgn()
      }));
      return window.location.hostname + window.location.pathname + '?' + payload;
  }
-
- var board,                   // Chessboard
-     game = new Chess(),      // Chess
-     hist,                    // history of moves
-     move_num,                // current move number
-     statusEl = $('#status'), // status field
-     fieldEl = $('#field'),   // text box
-     params = parse_url();    // playing_as, pgn, review, overrun, scouting
 
  game.load_pgn(params.p);
 
@@ -353,15 +369,16 @@
  function domove(m) {
 
      var current_fen = game.fen();
-     var is_valid = game.move(m, {'legal': params.l});
+     var is_valid = game.move(m);
+     console.log(is_valid, params.l);
 
      if (is_valid) {
 
          if (hist.length > game.history().length) {
 
              // compare against known history
-             eq_test = new Chess(current_fen);
-             eq_test.move(hist[move_num], {'legal': params.l});
+             eq_test = new Chess(current_fen, !params.l);
+             eq_test.move(hist[move_num]);
 
              // new branch of history
              if (!(eq_test.fen() == game.fen())) {
@@ -559,7 +576,9 @@
  });
  $('#lastBtn').on('click', function(){
      while (move_num < hist.length) {
-         domove(hist[move_num]);
+         if (!domove(hist[move_num])) {
+             break;
+         };
      }
      update();
  });
@@ -567,6 +586,12 @@
      board.flip(); update();
  });
  $('#linkBtn').on('click', function() {
+     while (move_num < hist.length) {
+         if (!domove(hist[move_num])) {
+             break;
+         };
+     }
+     update();
      fieldEl.val(generate_url());
      fieldEl.select();
  });
@@ -587,7 +612,8 @@
      }
  });
  $('#loadBtn').on('click', function() {
-     if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
+     if (game.load(fieldEl.val()) ||
+         game.load_pgn(fieldEl.val())) {
          hist = game.history();
          move_num = hist.length;
          max_move_num = move_num;

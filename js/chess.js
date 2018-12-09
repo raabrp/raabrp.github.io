@@ -33,15 +33,12 @@
  * https://github.com/jhlywa/chess.js/blob/master/LICENSE
  */
 
-/* plus a few lines by raabrp                 */
-/* made for use in dark-chess variant         */
-/* (search for `raabrp` to quickly find)      */
-/* All are non-breaking, however using the    */
-/* `as_opponent` option for function          */
-/* `generate_moves` produces side-effects for */
-/* game state                                 */
+var Chess = function(fen, dark_chess) {
 
-var Chess = function(fen) {
+  // raabrp
+  var legal = (dark_chess !== undefined) ? !dark_chess : true;
+  console.log(legal);
+
   var BLACK = 'b';
   var WHITE = 'w';
 
@@ -528,14 +525,10 @@ var Chess = function(fen) {
     var moves = [];
     var us = turn;
 
-    /* edit (raabrp)*/
-    /* Generate hypothetical moves for opponent in current state */
-    /* produces side-effects which corrupts piece color */
-    /* Recommend using in branched copy of Chess object */
+    // raabrp
     if (typeof options !== 'undefined' && options.as_opponent) {
         us = swap_color(turn);
     }
-    /* end edit */
 
     var them = swap_color(us);
     var second_rank = { b: RANK_7, w: RANK_2 };
@@ -544,11 +537,12 @@ var Chess = function(fen) {
     var last_sq = SQUARES.h1;
     var single_square = false;
 
-    /* do we want legal moves? */
-    var legal =
-      typeof options !== 'undefined' && 'legal' in options
-        ? options.legal
-        : true;
+    // commented by raabrp
+    // /* do we want legal moves? */
+    // var legal =
+    //   typeof options !== 'undefined' && 'legal' in options
+    //     ? options.legal
+    //     : true;
 
     /* are we generating moves for a single square? */
     if (typeof options !== 'undefined' && 'square' in options) {
@@ -633,11 +627,11 @@ var Chess = function(fen) {
         if (
           board[castling_from + 1] == null &&
           board[castling_to] == null &&
-          (!legal || (                                /* edit (raabrp)          */
-              !attacked(them, kings[us]) &&           /* castling through check */
-              !attacked(them, castling_from + 1) &&   /* is illegal, and can    */
-              !attacked(them, castling_to)            /* be allowed with other  */
-          ))                                          /* moves into check       */
+          (!legal || ( // raabrp
+          !attacked(them, kings[us]) &&
+          !attacked(them, castling_from + 1) &&
+          !attacked(them, castling_to)
+          ))
         ) {
           add_move(board, moves, kings[us], castling_to, BITS.KSIDE_CASTLE);
         }
@@ -652,9 +646,11 @@ var Chess = function(fen) {
           board[castling_from - 1] == null &&
           board[castling_from - 2] == null &&
           board[castling_from - 3] == null &&
+          (!legal || ( // raabrp
           !attacked(them, kings[us]) &&
           !attacked(them, castling_from - 1) &&
           !attacked(them, castling_to)
+          ))
         ) {
           add_move(board, moves, kings[us], castling_to, BITS.QSIDE_CASTLE);
         }
@@ -1663,25 +1659,12 @@ var Chess = function(fen) {
           ? options.sloppy
           : false;
 
-      /* edit (raabrp) */
-      /* allow user to make moves into and through check */
-      /* disambiguation bugs in Fritz and Chessbase */
-      var legal =
-          typeof options !== 'undefined' && 'legal' in options
-          ? options.legal
-          : true;
-      /* end edit */
-
       var move_obj = null;
 
       if (typeof move === 'string') {
         move_obj = move_from_san(move, sloppy);
       } else if (typeof move === 'object') {
-
-        /* edit (raabrp)                          */
-        /* pass legal parameter to generate_moves */
-        var moves = generate_moves({'legal': legal});
-        /* end edit */
+        var moves = generate_moves();
 
         /* convert the pretty move object to an ugly move object */
         for (var i = 0, len = moves.length; i < len; i++) {

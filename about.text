@@ -39,7 +39,7 @@ I promise.
 ## Technical
 
 I'm using [pelican](https://blog.getpelican.com) to render this site from
-[markdown](https://en.wikipedia.org/wiki/Markdown) and hosting the result via
+[markdown](/test.html) and hosting the result via 
 [github pages](https://pages.github.com/).
 
 My domain is registered with [Namecheap](https://www.namecheap.com/), which 
