@@ -36,7 +36,7 @@ function onReady(callback) {
     } else {
         window.onload = function() {
             callback();
-        }
+        };
     }
 }
 

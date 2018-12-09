@@ -161,27 +161,42 @@ Dark-Chess    </title>
 <div id="board" style="width: 100%"></div>
 <br/>
 <div style="text-align:center;">
-<input class="button" id="startBtn" type="button" value="&lt;&lt;"/>
-<input class="button" id="prevBtn" type="button" value="&lt;"/>
-<input class="button" id="resetBtn" type="button" value="Init"/>
-<input class="button" id="nextBtn" type="button" value="&gt;"/>
-<input class="button" id="lastBtn" type="button" value="&gt;&gt;"/>
-<input class="button" id="flipBtn" type="button" value="Flip"/>
+<input id="startBtn" type="button" value="&lt;&lt;"/>
+<input id="prevBtn" type="button" value="&lt;"/>
+<input id="resetBtn" type="button" value="Init"/>
+<input id="nextBtn" type="button" value="&gt;"/>
+<input id="lastBtn" type="button" value="&gt;&gt;"/>
+<input id="flipBtn" type="button" value="Flip"/>
 </div>
 <hr/>
 <div style="text-align:center;">
-<input class="button" id="linkBtn" type="button" value="Link"/>
-<input class="button" id="fenBtn" type="button" value="FEN"/>
-<input class="button" id="pgnBtn" type="button" value="PGN"/>
-<input class="button" id="loadBtn" type="button" value="Load"/>
+<input id="linkBtn" type="button" value="Link"/>
+<input id="fenBtn" type="button" value="FEN"/>
+<input id="pgnBtn" type="button" value="PGN"/>
+<input id="loadBtn" type="button" value="Load"/>
 </div>
 <br/>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
 <hr/>
-        See also:<br/>
-<a href="https://en.wikipedia.org/wiki/Dark_chess" id="generated-link-id0">Dark Chess (Wikipedia)</a><br/>
-<a href="http://chessboardjs.com/" id="generated-link-id1">chessboard.js</a><br/>
-<a href="https://github.com/jhlywa/chess.js" id="generated-link-id2">chess.js</a><br/>
+        Game Options: <br/><i>must be set at beginning of game</i> <br/><br/>
+<input id="scouting" type="checkbox"/>
+        Vision updates on half turn (vs full turn) <br/>
+<input id="overrun" type="checkbox"/>
+        Capturing pieces are revealed to opponent <br/>
+<input id="warn" type="checkbox"/>
+        Warn opponent on check <br/>
+<input id="legal" type="checkbox"/>
+        Disallow movement into and through check (forces warning)<br/>
+<br/>
+<i>
+        The game is won by capturing your opponent's king.
+        </i>
+<hr/>
+        See Also:<br/>
+<a href="/chess.html" id="generated-link-id0">Normal Chess</a><br/>
+<a href="https://en.wikipedia.org/wiki/Dark_chess" id="generated-link-id1">Dark Chess (Wikipedia)</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id2">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
 <script type="text/javascript">
 
  // anonymous function to disallow trivial console inspection
@@ -201,44 +216,44 @@ Dark-Chess    </title>
      //    set of visible squares
      // arguments:
      //    game: state of play (Chess object from chess.js)
-     //    as_wn: boolean for whether we are playing as white
+     //    as_w: boolean for whether we are playing as white
 
-     var visible = new Set(); // set of seen squares
-     var fog_game; // game used for querying player's vision
-
-     var moves; // list of available moves (verbose)
-     if ((as_w ^ game.turn() == 'w')) { // not our turn
+     // determine state of game to use for querying player's vision
+     // Chess.js has some strange side-effects when querying possible moves
+     var vis_game = new Chess(game.fen());
+     var prev_game;
+     if ((as_w ^ game.turn() == 'w')) { // not our turn (we just moved)
          if (move_num == 0) {
              // only happens for black during review
-             // since we cannot undo when no moves have been made
+             // (since we cannot undo when no moves have been made)
              vis_game = new Chess();
-             vis_game.move('b3');
-         } else {
-             var prev_game = new Chess(); // inspect previous state of play
+             vis_game.move('b3'); // inconsequential
+         } else if (!params.s) { // pieces gain vision on full move
+             // inspect previous state of play (before the move we just made)
+             var prev_game = new Chess();
              prev_game.load_pgn(game.pgn());
              prev_game.undo()
              vis_game = prev_game;
          }
-     } else { // our turn
-         vis_game = game;
      }
 
      // deal with pawns (seen squares != legal moves)
      // and own pieces (we can see squares our pieces occupy)
+     var visible = new Set(); // set of seen squares
      var piece;
      for (var i = 0; i < 8; i++) {
          for (var j = 0; j < 8; j++) {
              sqname = idx(i, j);
              piece = vis_game.get(sqname); // we see current piece placement
              if (piece && piece.type == 'p') {
-                 if (piece.color == 'b' && !as_w) {
+                 if (piece.color == 'b' && !as_w) { // our black pawn
                      visible.add(idx(i + 1, j));
                      visible.add(idx(i + 1, j - 1));
                      visible.add(idx(i + 1, j + 1));
                      if (i == 1) { // pawn has not moved yet
                          visible.add(idx(i + 2, j));
                      }
-                 } else if (piece.color == 'w' && as_w) {
+                 } else if (piece.color == 'w' && as_w) { // our white pawn
                      visible.add(idx(i - 1, j));
                      visible.add(idx(i - 1, j - 1));
                      visible.add(idx(i - 1, j + 1));
@@ -255,18 +270,57 @@ Dark-Chess    </title>
      }
 
      // generate moves, allowing moves which leave us in check
-     moves = vis_game.moves({'verbose': true, 'legal': false});
+     var moves = vis_game.moves({
+         'verbose': true,
+         'legal': false,
+         'as_opponent': (as_w ^ vis_game.turn() == 'w') // not our turn in visgame
+     });
 
      // add moves to `visible`
      for (var i = 0; i < moves.length; i++) {
          visible.add(moves[i].to);
      }
 
+     if (params.o &&                // reveal capturing pieces
+         move_num > 0 &&
+         as_w ^ game.turn() == 'b'  // our turn
+     ) {
+         if (prev_game === undefined) {
+             prev_game = new Chess();
+             prev_game.load_pgn(game.pgn());
+             prev_game.undo()
+         }
+
+         var emptysq;
+         var capturedsq = false;
+
+         // test whether our piece was just captured
+         var a, b;
+         for (var i = 0; i < 8; i++) {
+             for (var j = 0; j < 8; j++) {
+                 sqname = idx(i, j);
+                 a = prev_game.get(sqname);
+                 b = game.get(sqname);
+                 if (a && b && (a.color != b.color)) {
+                     capturedsq = sqname;
+                 } else if (a && !b) {
+                     emptysq = sqname;
+                 }
+             }
+         }
+
+         if (capturedsq) {
+             console.log(capturedsq);
+             visible.add(capturedsq);
+             visible.add(emptysq);
+         }
+     }
+
      return visible;
  }
 
  // all squares which are NOT visible
- function get_fog(visible) { 
+ function get_fog(visible) {
      var fog = []; // list of unseen squares (opposite of visible)
      // iterate over every square on the board
      var sq;
@@ -322,7 +376,7 @@ Dark-Chess    </title>
               .replace(/ /g, '1');
 
     return fen
- } 
+ }
 
  // parse url and read state params
  // URL is base64 of stringified JSON.
@@ -330,9 +384,13 @@ Dark-Chess    </title>
 
      var chess = new Chess(); // for pgn validation
 
-     var start = {
+     var params = {
          'w': true,       // playing as white
          'r': false,      // game is in review
+         's': true,       // scouting
+         'o': false,      // overrun
+         'a': false,      // warn on check
+         'l': false,      // legal moves only
          'p': '',         // pgn
      };
 
@@ -348,23 +406,39 @@ Dark-Chess    </title>
              }
          } catch (e) {
              fieldEl.val("Invalid URL String");
-             return start;
+             return params;
          }
      } else {
-         return start;
+         return params;
      }
  }
 
  // generate link for opponent
  function generate_url() {
 
-     if (move_num == 0) {
+     while (game.history().length < max_move_num) {
+         domove(hist[game.history().length]);
+     }
+     if (hist[max_move_num] != undefined) {
+         domove(hist[max_move_num]);
+         update();
+     }
+     else if (move_num == 0) {
          return window.location.hostname + window.location.pathname;
+     }
+     else {
+         update();
+         return "You must first make a move."
      }
 
      payload = btoa(JSON.stringify({
          'w': !params.w, // change playing_as side
          'r': is_over(), // when game is over, automatically enter review
+         's': document.getElementById('scouting').checked,
+         'o': document.getElementById('overrun').checked,
+         'a': (document.getElementById('warn').checked ||
+               document.getElementById('legal').checked),
+         'l': document.getElementById('legal').checked,
          'p': game.pgn()
      }));
      return window.location.hostname + window.location.pathname + '?' + payload;
@@ -376,12 +450,30 @@ Dark-Chess    </title>
      move_num,                // current move number
      statusEl = $('#status'), // status field
      fieldEl = $('#field'),   // text box
-     params = parse_url();    // playing_as, pgn, review
+     params = parse_url();    // playing_as, pgn, review, overrun, scouting
 
  game.load_pgn(params.p);
 
  hist = game.history();
  move_num = hist.length;
+
+ // game options
+ document.getElementById('scouting').checked = params.s;
+ document.getElementById('overrun').checked = params.o;
+ document.getElementById('warn').checked = params.a;
+ document.getElementById('legal').checked = params.l;
+ if (move_num > 0) {
+     document.getElementById('scouting').disabled = true;
+     document.getElementById('overrun').disabled = true;
+     document.getElementById('warn').disabled = true;
+     document.getElementById('legal').disabled = true;
+ }
+ document.getElementById('legal').onchange = function() {
+     if (document.getElementById('legal').checked &&
+         !(document.getElementById('legal').disabled)) {
+         document.getElementById('warn').checked = true;
+     }
+ };
 
  // for review (showing fog for both players)
  // `update()` will not allow players to fish for information with prospective
@@ -402,7 +494,7 @@ Dark-Chess    </title>
  function domove(m) {
 
      var current_fen = game.fen();
-     var is_valid = game.move(m, false); // allow illegal moves (in check)
+     var is_valid = game.move(m, {'legal': params.l});
 
      if (is_valid) {
 
@@ -410,7 +502,7 @@ Dark-Chess    </title>
 
              // compare against known history
              eq_test = new Chess(current_fen);
-             eq_test.move(hist[move_num], false);
+             eq_test.move(hist[move_num], {'legal': params.l});
 
              // new branch of history
              if (!(eq_test.fen() == game.fen())) {
@@ -464,7 +556,7 @@ Dark-Chess    </title>
          // get mask of proper game state
          visible = vision(game, params.w);
 
-     } else { // prospective move
+     } else { // prospective move (link not yet sent to opponent)
 
          // do not allow information to be revealed
          // use mask at latest assured state of play
@@ -518,6 +610,12 @@ Dark-Chess    </title>
      // game still on
      else {
          status += movecolor + ' to move';
+
+         // check?
+         if (params.a && game.in_check() === true) {
+             status += '; ' + movecolor + ' is in check';
+         }
+
      }
 
      statusEl.html(status);
@@ -614,7 +712,7 @@ Dark-Chess    </title>
      fieldEl.select();
  });
  $('#fenBtn').on('click', function() {
-     if (is_over()) {
+     if (params.r) {
          fieldEl.val(game.fen());
          fieldEl.select();
      } else {

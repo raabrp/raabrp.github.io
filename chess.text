@@ -15,7 +15,7 @@
         <script src="/js/chess.js"></script>
 
         <p><span id="status"></span></p>
-        <div id="board" style="width: 100%"></div>
+        <div id="board" style="width: 100%;"></div>
         <br>
         <div style="text-align:center;">
           <input type="button" class="button" id="startBtn" value="<<" />
@@ -35,7 +35,7 @@
         <br>
         <textarea id="field" style="width: 100%; height: 400px;"></textarea>
         <hr>
-        See also:<br>
+        See Also:<br>
         <a href="/dark-chess.html">Dark-Chess Variant</a><br>
         <a href="https://www.apronus.com/chess/pgnviewer/">Apronus chess viewer</a><br>
         <a href="http://chessboardjs.com/">chessboard.js</a><br>

@@ -99,7 +99,7 @@ function makeSVG(params={}) {
     // attach a <g> element with offset.
     // the returned object will also get a few other convenience
     // methods attached to it
-    return _subplot.call(svg).transform(SVG_MARGIN, SVG_MARGIN)
+    return _subplot.call(svg).transform(SVG_MARGIN, SVG_MARGIN);
 }
 
 function _subplot() {
@@ -143,7 +143,7 @@ function _subplot() {
 
         // bind the transform method to the parent <g> of the component
         chart.transform = function() {
-            g_css_transform.apply(anchor, arguments)
+            g_css_transform.apply(anchor, arguments);
             return this;
         };
 
@@ -174,7 +174,7 @@ function _subplot() {
         }
 
         return this;
-    }
+    };
 
     g.parametric_update = function(data) {
 
@@ -272,7 +272,7 @@ function animate_with(parameterized_object_generator) {
                 animate_frame_callback
             );
         }
-    )
+    );
 
     return this;
 };

@@ -11,16 +11,23 @@ last_updated: 2018-07-21
 
 ## Essays
 
-| Title                                                                            | Author        | Year |
-|----------------------------------------------------------------------------------|---------------|------|
-| [What You Can't Say](http://www.paulgraham.com/say.html)                         | Paul Graham   | 2004 |
-| [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)                | Paul Graham   | 2005 |
-| [Lies We Tell Kids](http://www.paulgraham.com/lies.html)                         | Paul Graham   | 2008 |
-| [Stop Trying to be Happy](https://markmanson.net/stop-trying-to-be-happy)        | Mark Manson   | 2013 |
-| [Fuck Yes or No](https://markmanson.net/fuck-yes)                                | Mark Manson   | 2013 |
-| [How Disney Ruined Sex for Everyone](https://markmanson.net/disney)              | Mark Manson   | 2013 |
-| [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf) | James Mickens | 2014 |
-| [7 Strange Questions That Help You Find Your Life Purpose](https://markmanson.net/life-purpose)    | Mark Manson   | 2014 |
+| Title                                                                                           | Author             | Year |
+|-------------------------------------------------------------------------------------------------|--------------------|------|
+| [What You Can't Say](http://www.paulgraham.com/say.html)                                        | Paul Graham        | 2004 |
+| [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)                               | Paul Graham        | 2005 |
+| [Lies We Tell Kids](http://www.paulgraham.com/lies.html)                                        | Paul Graham        | 2008 |
+| [Stop Trying to be Happy](https://markmanson.net/stop-trying-to-be-happy)                       | Mark Manson        | 2013 |
+| [Fuck Yes or No](https://markmanson.net/fuck-yes)                                               | Mark Manson        | 2013 |
+| [How Disney Ruined Sex for Everyone](https://markmanson.net/disney)                             | Mark Manson        | 2013 |
+| [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)                | James Mickens      | 2014 |
+| [7 Strange Questions That Help You Find Your Life Purpose](https://markmanson.net/life-purpose) | Mark Manson        | 2014 |
+
+## Fiction
+
+| Title                                                                         | Author             | Year |
+|-------------------------------------------------------------------------------|--------------------|------|
+| [The Right to Read](https://www.gnu.org/philosophy/right-to-read.html)        | Richard Stallman   | 1997 |
+| [Coding Machines](https://www.teamten.com/lawrence/writings/coding-machines/) | Lawrence Kesteloot | 2009 |
 
 ## Interactive
 
@@ -61,9 +68,11 @@ last_updated: 2018-07-21
 
 # Papers
 
-| Title                                                                                                         | Author         | Year |
-|---------------------------------------------------------------------------------------------------------------|----------------|------|
-| [The Market for Lemons](http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf)          | George Akerlof | 1970 |
-| [Reflections on Trusting Trust](https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf)  | Ken Thompson   | 1984 |
-| [Decoherence, einselection, and the quantum origins of the classical](https://arxiv.org/abs/quant-ph/0105127) | Wojciech Zurek | 2001 |
-| [The Mathematical Universe](https://arxiv.org/pdf/0704.0646.pdf)                                              | Max Tegmark    | 2007 |
+| Title                                                                                                                                                         | Author          | Year |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|------|
+| [The Market for Lemons](http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf)                                                          | George Akerlof  | 1970 |
+| [Reflections on Trusting Trust](https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf)                                                  | Ken Thompson    | 1984 |
+| [Co-Evolving Parasites Improve Simulated Evolution as an Optimization Procedure](https://www.cse.unr.edu/~sushil/class/gas/papers/DannyHillisCoevolution.pdf) | Danny Hillis    | 1990 |
+| [Decoherence, einselection, and the quantum origins of the classical](https://arxiv.org/abs/quant-ph/0105127)                                                 | Wojciech Zurek  | 2001 |
+| [The Mathematical Universe](https://arxiv.org/pdf/0704.0646.pdf)                                                                                              | Max Tegmark     | 2007 |
+| [Mastering the game of Go with deep neural networks and tree search](https://ai.google/research/pubs/pub44806)                                                | Google DeepMind | 2016 |

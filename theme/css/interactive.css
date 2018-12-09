@@ -46,6 +46,10 @@ main menu {
     width: 50px;
     padding: 0px;
     margin: 0px;
+    pointer-events:none;
+}
+main menu * {
+    pointer-events:auto;
 }
 menu input {
     display: none;

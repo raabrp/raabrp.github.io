@@ -66,7 +66,7 @@ def _saturate(lab):
 #         B >|--0 <- point of interest
 #            | /
 #            |/)<-T              Let l, a, b be coordinates in CIELAB
-# -----------+-----------        and L, T, D be coordinates in LTD
+# -----------+-----------        and T, M, Z be coordinates in TMZ
 # -1         |  ^       1        l is in [0, 100]; a and b are in [-127, 127]
 #            |  A
 #            |                   We have A = a / 127; B = b / 127

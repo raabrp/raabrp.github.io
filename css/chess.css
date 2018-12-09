@@ -72,8 +72,11 @@
   left: 2px;
 }
 
+input[type=checkbox] {
+    transform: scale(1.5);
+}
 
-.button {
+input[type=button] {
     background-color: #444;
     color: white;
     padding: 7px 15px;
