@@ -37,7 +37,6 @@ var Chess = function(fen, dark_chess) {
 
   // raabrp
   var legal = (dark_chess !== undefined) ? !dark_chess : true;
-  console.log(legal);
 
   var BLACK = 'b';
   var WHITE = 'w';
