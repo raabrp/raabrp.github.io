@@ -47,9 +47,13 @@
         Disallow movement into and through check (forces warning)<br>
         <br>
         <i>
-        The game is won by capturing your opponent's king.
+        The game is won by capturing your opponent's king.<br><br>
         </i>
+        And yes, it's simple to cheat. It's not interesting:
+
+        <pre>JSON.parse(atob(window.location.search.substring(1))).p</pre>
         <hr>
+
         See Also:<br>
         <a href="/chess.html">Normal Chess</a><br>
         <a href="https://en.wikipedia.org/wiki/Dark_chess">Dark Chess (Wikipedia)</a><br>
@@ -315,7 +319,7 @@
          return "Request originated from invalid URL String."
      }
      if (move_num == 0) {
-         return window.location.hostname + window.location.pathname;
+         return window.location.hostname + 'dark-chess';
      }
      else if (move_num != (max_move_num + 1) && !is_over()) {
          update();
@@ -334,6 +338,8 @@
      payload = btoa(JSON.stringify({
          'f': flags,
          'p': game.pgn()
+                  .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
+                  .substr(1)
      }));
      return window.location.hostname + window.location.pathname + '?' + payload;
  }
