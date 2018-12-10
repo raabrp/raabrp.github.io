@@ -319,7 +319,7 @@
          return "Request originated from invalid URL String."
      }
      if (move_num == 0) {
-         return window.location.hostname + 'dark-chess';
+         return window.location.hostname + '/dark-chess';
      }
      else if (move_num != (max_move_num + 1) && !is_over()) {
          update();
@@ -341,7 +341,7 @@
                   .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
                   .substr(1)
      }));
-     return window.location.hostname + window.location.pathname + '?' + payload;
+     return window.location.hostname + '/dark-chess?' + payload;
  }
 
  // game options
