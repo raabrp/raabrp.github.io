@@ -651,7 +651,9 @@ var Chess = function(fen, dark_chess) {
           !attacked(them, castling_to)
           ))
         ) {
-          add_move(board, moves, kings[us], castling_to, BITS.QSIDE_CASTLE);
+            if (kings[us] >= 0) { // raabrp: king may not exist.
+                add_move(board, moves, kings[us], castling_to, BITS.QSIDE_CASTLE);
+            }
         }
       }
     }
