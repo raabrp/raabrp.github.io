@@ -511,8 +511,8 @@
  // only pick up pieces for the side to move
  var onDragStart = function(source, piece, position, orientation) {
      if (is_over() || // game is over
-         (game.turn() === 'w' && piece.search(/^b/) !== -1) ||  // not our piece
-         (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
+         (params.w ^ piece.search(/^w/) >= 0) || // not our piece
+         (params.w ^ (game.turn() === 'w'))) { // not our turn
          return false;
      }
  };
