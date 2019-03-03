@@ -1,35 +1,76 @@
 ---
-slug: reading-list
 title: Favorite Readings
+slug: reading-list
 date: 2018-07-21
 last_updated: 2018-07-21
 ---
 
-[TOC]
-
-# Web
+# Written
 
 ## Essays
 
-| Title                                                                                           | Author             | Year |
-|-------------------------------------------------------------------------------------------------|--------------------|------|
-| [What You Can't Say](http://www.paulgraham.com/say.html)                                        | Paul Graham        | 2004 |
-| [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)                               | Paul Graham        | 2005 |
-| [Lies We Tell Kids](http://www.paulgraham.com/lies.html)                                        | Paul Graham        | 2008 |
-| [Stop Trying to be Happy](https://markmanson.net/stop-trying-to-be-happy)                       | Mark Manson        | 2013 |
-| [Fuck Yes or No](https://markmanson.net/fuck-yes)                                               | Mark Manson        | 2013 |
-| [How Disney Ruined Sex for Everyone](https://markmanson.net/disney)                             | Mark Manson        | 2013 |
-| [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)                | James Mickens      | 2014 |
-| [7 Strange Questions That Help You Find Your Life Purpose](https://markmanson.net/life-purpose) | Mark Manson        | 2014 |
+| Title                                                                                                                             | Author          | Year |
+|-----------------------------------------------------------------------------------------------------------------------------------|-----------------|------|
+| [What You Can't Say](http://www.paulgraham.com/say.html)                                                                          | Paul Graham     | 2004 |
+| [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)                                                                 | Paul Graham     | 2005 |
+| [Lies We Tell Kids](http://www.paulgraham.com/lies.html)                                                                          | Paul Graham     | 2008 |
+| [Stop Trying to be Happy](https://markmanson.net/stop-trying-to-be-happy)                                                         | Mark Manson     | 2013 |
+| [Fuck Yes or No](https://markmanson.net/fuck-yes)                                                                                 | Mark Manson     | 2013 |
+| [How Disney Ruined Sex for Everyone](https://markmanson.net/disney)                                                               | Mark Manson     | 2013 |
+| [How Doctors Die](https://www.saturdayeveningpost.com/2013/03/how-doctors-die/2/)                                                 | Ken Murray      | 2013 |
+| [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf)                                                  | James Mickens   | 2014 |
+| [7 Strange Questions That Help You Find Your Life Purpose](https://markmanson.net/life-purpose)                                   | Mark Manson     | 2014 |
+| [I Can Tolerate Anything Except The Outgroup](https://slatestarcodex.com/2014/09/30/i-can-tolerate-anything-except-the-outgroup/) | Scott Alexander | 2014 |
+| [The Control Group is Out of Control](https://slatestarcodex.com/2014/04/28/the-control-group-is-out-of-control/)                 | Scott Alexander | 2014 |
+| [Staying Classy](https://slatestarcodex.com/2016/01/30/staying-classy/)                                                           | Scott Alexander | 2016 |
 
-## Fiction
+## Non-Fiction Books
 
-| Title                                                                         | Author             | Year |
-|-------------------------------------------------------------------------------|--------------------|------|
-| [The Right to Read](https://www.gnu.org/philosophy/right-to-read.html)        | Richard Stallman   | 1997 |
-| [Coding Machines](https://www.teamten.com/lawrence/writings/coding-machines/) | Lawrence Kesteloot | 2009 |
+| Title                                                                                                                                   | Author              | Year |
+|-----------------------------------------------------------------------------------------------------------------------------------------|---------------------|------|
+| [The Communist Manifesto](https://en.wikipedia.org/wiki/The_Communist_Manifesto)                                                        | Karl Marx           | 1848 |
+| [On the Genealogy of Morality](https://en.wikipedia.org/wiki/On_the_Genealogy_of_Morality)                                              | Friedrich Nietzsche | 1887 |
+| [Gödel, Escher, Bach](https://en.wikipedia.org/wiki/G%C3%B6del%2C_Escher%2C_Bach)                                                       | Douglas Hofstadter  | 1979 |
+| [Class: A Guide Through the American Status System](https://www.nytimes.com/2017/07/27/books/paul-fussell-class-in-america.html)        | Paul Fussell        | 1983 |
+| [Surely You're Joking, Mr. Feynman](https://en.wikipedia.org/wiki/Surely_You're_Joking%2C_Mr._Feynman!)                                 | Richard Feynman     | 1985 |
+| [Lies My Teacher Told Me](https://en.wikipedia.org/wiki/Lies_My_Teacher_Told_Me)                                                        | James Loewen        | 1995 |
+| [Guns, Germs, and Steel](https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel)                                                      | Jared Diamond       | 1997 |
+| [The Big Short](https://en.wikipedia.org/wiki/The_Big_Short)                                                                            | Michael Lewis       | 2010 |
+| [Debt: The First 5000 Years](https://en.wikipedia.org/wiki/Debt:_The_First_5000_Years)                                                  | David Graeber       | 2011 |
+| [Quantum Computing Since Democritus](https://en.wikipedia.org/wiki/Quantum_Computing_Since_Democritus)                                  | Scott Aaronson      | 2013 |
 
-## Interactive
+## Academic Papers
+
+| Title                                                                                                                                                         | Field            | Author          | Year |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|------|
+| [The Market for Lemons](http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf)                                                          | Economics        | George Akerlof  | 1970 |
+| [Reflections on Trusting Trust](https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf)                                                  | Computer Science | Ken Thompson    | 1984 |
+| [Co-Evolving Parasites Improve Simulated Evolution as an Optimization Procedure](https://www.cse.unr.edu/~sushil/class/gas/papers/DannyHillisCoevolution.pdf) | Computer Science | Danny Hillis    | 1990 |
+| [Decoherence, Einselection, and the Quantum Origins of the Classical](https://arxiv.org/abs/quant-ph/0105127)                                                 | Physics          | Wojciech Zurek  | 2001 |
+| [Can A Biologist Fix a Radio?](https://www.cmu.edu/biolphys/deserno/pdf/can_a_biologist_fix_a_radio.pdf)                                                      | Biochemistry     | Y. Lazebnik     | 2002 |
+| [The Mathematical Universe](https://arxiv.org/pdf/0704.0646.pdf)                                                                                              | Math / Cosmology | Max Tegmark     | 2007 |
+| [Mastering the Game of Go with Deep Neural Networks and Tree Search](https://ai.google/research/pubs/pub44806)                                                | Computer Science | Google DeepMind | 2016 | 
+
+## Fiction Books
+
+| Title                                                                      | Author        | Year |
+|----------------------------------------------------------------------------|---------------|------|
+| [Brave New World](https://en.wikipedia.org/wiki/Brave_New_World)           | Aldous Huxley | 1931 |
+| [Nineteen Eighty-Four](https://en.wikipedia.org/wiki/Nineteen_Eighty-Four) | George Orwell | 1949 |
+| [Catch-22](https://en.wikipedia.org/wiki/Catch-22)                         | Joseph Heller | 1961 |
+| [Dune](https://en.wikipedia.org/wiki/Dune_%28novel%29)                     | Frank Herbert | 1965 |
+| [A Fire Upon the Deep](https://en.wikipedia.org/wiki/A_Fire_Upon_the_Deep) | Vernor Vinge  | 1992 |
+
+## Short Fiction
+
+| Title                                                                                                                                                   | Author             | Year |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|------|
+| [The Right to Read](https://www.gnu.org/philosophy/right-to-read.html)                                                                                  | Richard Stallman   | 1997 |
+| [Coding Machines](https://www.teamten.com/lawrence/writings/coding-machines/)                                                                           | Lawrence Kesteloot | 2009 |
+| [I'm Harvesting Credit Card Numbers and Passwords From Your Site. Here's How](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5) | David Gilbretson   | 2017 |
+|                                                                                                                                                         |                    |      |
+
+# Interactive Web Pages
 
 | Title                                                                             | Site                |
 |-----------------------------------------------------------------------------------|---------------------|
@@ -39,40 +80,23 @@ last_updated: 2018-07-21
 | [The Evolution of Trust](http://ncase.me/trust/)                                  | ncase.me            |
 | [Tensor Flow Playground](http://playground.tensorflow.org)                        | tensorflow.org      |
 
+# Video
 
-# Books
+## Talks
 
-## Fiction
+| Title                                                                               | Author      | Year |
+|-------------------------------------------------------------------------------------|-------------|------|
+| [Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII)               | Bret Victor | 2012 |
+| [The Humane Representation of Thought](https://www.youtube.com/watch?v=agOdP2Bmieg) | Bret Victor | 2015 |
 
-| Title                                                                      | Author        | Date |
-|----------------------------------------------------------------------------|---------------|------|
-| [Brave New World](https://en.wikipedia.org/wiki/Brave_New_World)           | Aldous Huxley | 1931 |
-| [Nineteen Eighty-Four](https://en.wikipedia.org/wiki/Nineteen_Eighty-Four) | George Orwell | 1949 |
-| [Catch-22](https://en.wikipedia.org/wiki/Catch-22)                         | Joseph Heller | 1961 |
-| [Dune](https://en.wikipedia.org/wiki/Dune_%28novel%29)                     | Frank Herbert | 1965 |
-| [A Fire Upon the Deep](https://en.wikipedia.org/wiki/A_Fire_Upon_the_Deep) | Vernor Vinge  | 1992 |
+## Playlists
 
-## Non-Fiction
+* [The Alt-Right Playbook](https://www.youtube.com/playlist?list=PLJA_jUddXvY7v0VkYRbANnTnzkA_HMFtQ) (Innuendo Studios)
 
-| Title                                                                                                   | Author              | Year |
-|---------------------------------------------------------------------------------------------------------|---------------------|------|
-| [The Communist Manifesto](https://en.wikipedia.org/wiki/The_Communist_Manifesto)                        | Karl Marx           | 1848 |
-| [On the Genealogy of Morality](https://en.wikipedia.org/wiki/On_the_Genealogy_of_Morality)              | Friedrich Nietzsche | 1887 |
-| [Gödel, Escher, Bach](https://en.wikipedia.org/wiki/G%C3%B6del%2C_Escher%2C_Bach)                       | Douglas Hofstadter  | 1979 |
-| [Surely You're Joking, Mr. Feynman](https://en.wikipedia.org/wiki/Surely_You're_Joking%2C_Mr._Feynman!) | Richard Feynman     | 1985 |
-| [Lies My Teacher Told Me](https://en.wikipedia.org/wiki/Lies_My_Teacher_Told_Me)                        | James Loewen        | 1995 |
-| [Guns, Germs, and Steel](https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel)                      | Jared Diamond       | 1997 |
-| [The Big Short](https://en.wikipedia.org/wiki/The_Big_Short)                                            | Michael Lewis       | 2010 |
-| [Debt: The First 5000 Years](https://en.wikipedia.org/wiki/Debt:_The_First_5000_Years)                  | David Graeber       | 2011 |
-| [Quantum Computing Since Democritus](https://en.wikipedia.org/wiki/Quantum_Computing_Since_Democritus)  | Scott Aaronson      | 2013 |
+## Content Creators
 
-# Papers
-
-| Title                                                                                                                                                         | Author          | Year |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|------|
-| [The Market for Lemons](http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf)                                                          | George Akerlof  | 1970 |
-| [Reflections on Trusting Trust](https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf)                                                  | Ken Thompson    | 1984 |
-| [Co-Evolving Parasites Improve Simulated Evolution as an Optimization Procedure](https://www.cse.unr.edu/~sushil/class/gas/papers/DannyHillisCoevolution.pdf) | Danny Hillis    | 1990 |
-| [Decoherence, einselection, and the quantum origins of the classical](https://arxiv.org/abs/quant-ph/0105127)                                                 | Wojciech Zurek  | 2001 |
-| [The Mathematical Universe](https://arxiv.org/pdf/0704.0646.pdf)                                                                                              | Max Tegmark     | 2007 |
-| [Mastering the game of Go with deep neural networks and tree search](https://ai.google/research/pubs/pub44806)                                                | Google DeepMind | 2016 |
+* [Beau of the Fifth Column](https://www.youtube.com/channel/UC0YvoAYGgdOfySQSLcxtu1w)
+* [Crash Course](https://www.youtube.com/user/crashcourse)
+* [ContraPoints](https://www.youtube.com/user/ContraPoints)
+* [Extra History](https://www.youtube.com/playlist?list=PLhyKYa0YJ_5Aq7g4bil7bnGi0A8gTsawu)
+* [Historia Civilis](https://www.youtube.com/channel/UCv_vLHiWVBh_FR9vbeuiY-A)

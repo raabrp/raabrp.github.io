@@ -1,35 +1,63 @@
-body {
-    font-family: Roboto, Arial, sans-serif;
+/*
+ * fonts, sizes, outlines, colors, etc.
+ */
+
+main {
+    /* For PurpleHack, line-length is ~80ch*/
+    max-width: 55ch;
 }
 
-strong > em {
-    font-family: Raleway, Arial, sans-serif;
-    font-weight: 600;
+body {
+    font-family: PurpleHack, serif;
+    font-size: 22px;
+}
+pre {
+    font-family: SourceCodePro, Liberation Mono, monospace;
+    font-size: 62%;
+}
+code {
+    font-size: 80%;
+}
+h1, h2, h3, h4,
+.toc, nav ul {
+    font-size: 80%;
+    font-family: Liberation Sans, sans-serif;
+}
+
+/*******************************************************************/
+
+
+/* links */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 /* header */
 header > h1 {
-    font-size: 350%;
+    font-size: 280%;
 }
 header > p {
-    font-size: 70%;
+    font-size: 80%;
     text-align: right;
 }
 
 h1 {
-    font-family: Arial;
-    font-size: 150%;
+    font-size: 120%;
 }
 h2 {
-    font-family: Arial;
-    font-size: 125%;
+    font-size: 100%;
 }
 
+/* blockquote */
 blockquote:before {
-    font-size: 350%;
+    font-size: 280%;
 }
 
-ul, ol, blockquote, .footnote {
+/* lists */
+ul, ol, blockquote, .footnote, .wiki-extract {
     font-size: 95%;
 }
 
@@ -38,31 +66,56 @@ li li ul, li li ol {
     font-size: 100%;
 }
 
+/* code */
 pre, code {
-    font-size: 95%;
+    padding-left: 1ch;
+    padding-right: 1ch;
 }
 
-main {
-    font-size: 100%;
+td.linenos {
+    width: 2ch;
 }
 
 /*
  * Desktop ( > 1200 px width)
  *
- * Place TOC on left
- * Make headers larger
- * Distribute text
  */
 @media (min-width: 1200px) {
     header > h1 {
-        font-size: 550%;
+        font-size: 450%;
     }
 
     h1 {
-        font-size: 250%;
+        font-size: 205%;
     }
 
     h2 {
-        font-size: 200%;
+        font-size: 160%;
     }
+}
+
+/* Forms, Input */
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+input[type=button], button {
+    padding: 0.8ch 2ch;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid;
+}
+
+
+/* Pygments */
+
+.codehilite .kd, /* keyword declaration */
+.codehilite .nt, /* tag name */
+.codehilite .nd, /* decorator name */
+.codehilite .nc, /* class name */
+.codehilite .k,  /* keyword */
+.codehilite .nf { /* function name */
+    font-weight: bold;
 }

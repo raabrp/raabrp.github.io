@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
     <title>
 Reilly Raab    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
 
     <!-- CSS for Layout -->
     <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
@@ -17,21 +19,20 @@ Reilly Raab    </title>
 
     <!-- CSS for Colors -->
     <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/color-light-rotated.css">
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
     <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/color-light-default.css">
+          class="color-css" href="theme/css/colors/color-light-default.css">
     <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/color-dark-rotated.css">
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
     <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/color-dark-default.css">
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
 
-    <!--
-    The google fonts API nominally minimizes data collection
-    https://developers.google.com/fonts/faq
-    #what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
-    -->
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:600i|Roboto">
+          href="theme/css/fonts.css">
 
     <!-- JS for Color Theming -->
     <script type="text/javascript">
@@ -52,7 +53,7 @@ Reilly Raab    </title>
          for (var i=0; i < color_links.length; i++) {
              var link = color_links[i];
              if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/color-' + val + '.css';
+                 link.href = 'theme/css/colors/color-' + val + '.css';
              } else {
                  link.removeAttribute('href');
              }
@@ -150,6 +151,7 @@ Reilly Raab    </title>
         </nav>
       </menu>
 
+      <div id="top-spacer"></div>
 
 <header>
     <h1>
@@ -160,12 +162,26 @@ Reilly Raab    </title>
     <h2>
         Articles
     </h2>
-    <ul>
+    <ul class="toc">
         <li>
             <p>
-                <span style="font-family: monospace;">
-                    (2018 Apr 10)
-                </span>
+                <!--
+                     <span style="font-family: monospace;">
+                     (2018 Jan 01)
+                     </span>
+                -->
+                <a href="demo.html">
+                    Markdown Demo
+                </a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <!--
+                     <span style="font-family: monospace;">
+                     (2018 Apr 10)
+                     </span>
+                -->
                 <a href="facebook.html">
                     It's So Much Bigger Than Facebook
                 </a>
@@ -175,7 +191,7 @@ Reilly Raab    </title>
     <h2>
         Pages
     </h2>
-    <ul>
+    <ul class="toc">
         <li>
             <p>
                 <a href="about.html">
@@ -201,7 +217,7 @@ Reilly Raab    </title>
     <h2>
         Projects
     </h2>
-    <ul>
+    <ul class="toc">
         <li>
             <p>
                 <a href="chess.html">
@@ -220,6 +236,9 @@ Reilly Raab    </title>
 </article>
     </main>
 
+    <script type="text/javascript">
+     engage();
+    </script>
   </body>
 
 </html>

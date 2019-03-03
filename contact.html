@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
     <title>
 Contact Info    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
 
     <!-- CSS for Layout -->
     <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
@@ -17,21 +19,20 @@ Contact Info    </title>
 
     <!-- CSS for Colors -->
     <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/color-light-rotated.css">
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
     <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/color-light-default.css">
+          class="color-css" href="theme/css/colors/color-light-default.css">
     <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/color-dark-rotated.css">
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
     <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/color-dark-default.css">
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
 
-    <!--
-    The google fonts API nominally minimizes data collection
-    https://developers.google.com/fonts/faq
-    #what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
-    -->
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:600i|Roboto">
+          href="theme/css/fonts.css">
 
     <!-- JS for Color Theming -->
     <script type="text/javascript">
@@ -52,7 +53,7 @@ Contact Info    </title>
          for (var i=0; i < color_links.length; i++) {
              var link = color_links[i];
              if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/color-' + val + '.css';
+                 link.href = 'theme/css/colors/color-' + val + '.css';
              } else {
                  link.removeAttribute('href');
              }
@@ -150,25 +151,25 @@ Contact Info    </title>
         </nav>
       </menu>
 
+      <div id="top-spacer"></div>
 
 <header>
-    <h1>
+    <h1 id="title-header">
         Contact Info
     </h1>
 </header>
 <article>
     <h2 id="email">Email<a class="headerlink" href="#email" id="generated-link-id0" title="Permanent link">#</a></h2>
 <p><code>contact</code> @ <code>reillyraab.com</code></p>
-<p>Hosted by protonmail.ch</p>
-<h2 id="alternate-email">Alternate Email<a class="headerlink" href="#alternate-email" id="generated-link-id1" title="Permanent link">#</a></h2>
-<p><code>raabrp</code> @ <code>gmail.com</code></p>
-<p>Optional PGP Key: <a href="https://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x3C987EE03CA9982A" id="generated-link-id2">pgp.mit.edu</a></p>
+<p>(Hosted by <a href="http://protonmail.ch/" id="generated-link-id1">protonmail.ch</a>)</p>
+<h2 id="social-media">Social Media<a class="headerlink" href="#social-media" id="generated-link-id2" title="Permanent link">#</a></h2>
+<p>I have none.</p>
 </article>
     </main>
 
-
-
-
+    <script type="text/javascript">
+     engage();
+    </script>
   </body>
 
 </html>

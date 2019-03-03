@@ -13,10 +13,9 @@
             crossorigin="anonymous"></script>
         <script src="/js/chessboard.js"></script>
         <script src="/js/chess.js"></script>
-        <!-- <script src="/js/md5.min.js"></script> -->
 
         <p><span id="status"></span></p>
-        <div id="board" style="width: 100%"></div>
+        <div id="board" style="width: 100%;"></div>
         <br>
         <div style="text-align:center;">
           <input type="button" id="startBtn" value="<<" />
@@ -28,12 +27,15 @@
         </div>
         <hr>
         <div style="text-align:center;">
+            <input type="button" value="New"
+                   onclick="window.location.href='/dark-chess'"/>
             <input type="button" id="linkBtn" value="Link" />
             <input type="button" id="fenBtn" value="FEN" />
             <input type="button" id="pgnBtn" value="PGN"/>
             <input type="button" id="loadBtn" value="Load"/>
         </div>
-        <br>
+        <br />
+        </div>
         <textarea id="field" style="width: 100%; height: 400px;"></textarea>
         <hr>
         Game Options: <br><i>must be set at beginning of game</i> <br><br>
@@ -61,6 +63,11 @@
         <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
 
 <script type="text/javascript">
+
+ function copyField() {
+     document.getElementById("field").select();
+     document.execCommand("copy");
+ }
 
  // anonymous function to disallow trivial console inspection
  (function() {
@@ -492,8 +499,10 @@
      else {
          status += movecolor + ' to move';
 
-         // check?
-         if (params.a && game.in_check() === true) {
+         var ourturn = params.w == (game.turn() == 'w');
+
+         // check, and our turn
+         if (ourturn && params.a && game.in_check() === true) {
              status += '; ' + movecolor + ' is in check';
          }
 
@@ -598,12 +607,12 @@
      }
      update();
      fieldEl.val(generate_url());
-     fieldEl.select();
+     copyField();
  });
  $('#fenBtn').on('click', function() {
      if (params.r) {
          fieldEl.val(game.fen());
-         fieldEl.select();
+         copyField();
      } else {
          fieldEl.val('Review is available upon game conclusion');
      }
@@ -611,7 +620,7 @@
  $('#pgnBtn').on('click', function() {
      if (is_over()) {
          fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
-         fieldEl.select();
+         copyField();
      } else {
          fieldEl.val('Review is available upon game conclusion');
      }
@@ -627,7 +636,6 @@
          fieldEl.val('Could not load input');
      }
  });
-
 
  update();
 

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Markdown Demo    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/colors/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
+
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
+    <link rel="stylesheet"
+          href="theme/css/fonts.css">
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/colors/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Info
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Favorite Readings
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+      <div id="top-spacer"></div>
+
+<header>
+    <h1 id="title-header">
+        Markdown Demo
+    </h1>
+    <p>
+        Estimated read time: 17 minutes
+    </p>
+    <p>
+        Publish Date: 2018 January 01 <br><br>
+        Last Updated: 2019 March 02
+    </p>
+</header>
+<article>
+    <h2>(How I write my content)</h2>
+<p>Original markdown source for this page hosted <a href="/demo.text" id="generated-link-id0">here</a> for inspection.</p>
+<hr/>
+<div class="toc">
+<ul>
+<li><a href="#article-meta" id="generated-link-id1">Article Meta</a></li>
+<li><a href="#header-1" id="generated-link-id2">Header 1</a><ul>
+<li><a href="#header-2" id="generated-link-id3">Header 2</a><ul>
+<li><a href="#header-3" id="generated-link-id4">Header 3</a><ul>
+<li><a href="#header-4" id="generated-link-id5">Header 4</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#plain-text" id="generated-link-id6">Plain text</a></li>
+<li><a href="#links" id="generated-link-id7">Links</a></li>
+<li><a href="#text-decoration" id="generated-link-id8">Text Decoration</a></li>
+<li><a href="#block-quotes" id="generated-link-id9">Block Quotes</a></li>
+<li><a href="#footnotes" id="generated-link-id10">Footnotes</a></li>
+<li><a href="#images" id="generated-link-id11">Images</a></li>
+<li><a href="#horizontal-rule" id="generated-link-id12">Horizontal Rule</a></li>
+<li><a href="#lists-and-bullets" id="generated-link-id13">Lists and Bullets</a></li>
+<li><a href="#tables" id="generated-link-id14">Tables</a></li>
+<li><a href="#comments" id="generated-link-id15">Comments</a></li>
+<li><a href="#injected-html-javascript" id="generated-link-id16">Injected HTML / Javascript</a></li>
+<li><a href="#math-katex" id="generated-link-id17">Math (KaTeX)</a></li>
+<li><a href="#syntax-highlighting" id="generated-link-id18">Syntax Highlighting</a></li>
+<li><a href="#reusable-d3-charts" id="generated-link-id19">Reusable D3 Charts</a></li>
+<li><a href="#glsl" id="generated-link-id20">GLSL</a></li>
+</ul>
+</div>
+<h1 id="article-meta">Article Meta<a class="headerlink" href="#article-meta" id="generated-link-id21" title="Permanent link">#</a></h1>
+<p>The top of this file includes</p>
+<div class="codehilite"><pre><span></span>---
+title: Markdown Demo
+slug: demo
+date: 2018-01-01
+---
+
+[TOC]
+</pre></div>
+<hr/>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Appears at top of page and title of browser tab</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td>Path of generated html file relative to website root</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Date shown at top and sorted by on index page</td>
+</tr>
+<tr>
+<td><code>[TOC]</code></td>
+<td>Generates Table of Contents (at this location for mobile)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="header-1">Header 1<a class="headerlink" href="#header-1" id="generated-link-id22" title="Permanent link">#</a></h1>
+<h2 id="header-2">Header 2<a class="headerlink" href="#header-2" id="generated-link-id23" title="Permanent link">#</a></h2>
+<h3 id="header-3">Header 3<a class="headerlink" href="#header-3" id="generated-link-id24" title="Permanent link">#</a></h3>
+<h4 id="header-4">Header 4<a class="headerlink" href="#header-4" id="generated-link-id25" title="Permanent link">#</a></h4>
+<div class="codehilite"><pre><span></span># Header 1
+
+## Header 2
+
+### Header 3
+
+#### Header 4
+</pre></div>
+<h1 id="plain-text">Plain text<a class="headerlink" href="#plain-text" id="generated-link-id26" title="Permanent link">#</a></h1>
+<p>This is plain text … with – ｕｎｉｃｏｄｅ – 👍 and HTML escape sequences!</p>
+<p>Two line breaks start a new paragraph.</p>
+<div class="codehilite"><pre><span></span>This is plain text ... with – ｕｎｉｃｏｄｅ – 👍 and HTML escape sequences&amp;#33;
+
+Two line breaks start a new paragraph.
+</pre></div>
+<h1 id="links">Links<a class="headerlink" href="#links" id="generated-link-id27" title="Permanent link">#</a></h1>
+<p>Link to an <a href="http://www.example.com" id="generated-link-id28">example</a> domain</p>
+<div class="codehilite"><pre><span></span>Link to an [example](http://www.example.com) domain
+</pre></div>
+<p>Links to <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Wikipedia" href="https://en.wikipedia.org/wiki/Wikipedia" id="generated-link-id29">Wikipedia</a> pages will
+display summaries when hovered over.</p>
+<div class="codehilite"><pre><span></span>Links to [Wikipedia](https://en.wikipedia.org/wiki/Wikipedia) pages will
+display summaries when hovered over.
+</pre></div>
+<h1 id="text-decoration">Text Decoration<a class="headerlink" href="#text-decoration" id="generated-link-id30" title="Permanent link">#</a></h1>
+<p>Text decoration may include <em>italicized text</em>, <em>alternate italicized text</em>,
+<strong>bold text</strong>, <strong>alternate bold text</strong>, <code>monospace text</code>, <strong><em>nested</em> text
+decorations</strong>, and standard HTML<sup>when necessary<sub>.</sub></sup></p>
+<div class="codehilite"><pre><span></span>Text decoration may include *italicized text*, _alternate italicized text_,
+**bold text**, __alternate bold text__, `monospace text`, **_nested_ text
+decorations**, and standard HTML&lt;sup&gt;when&amp;nbsp;necessary&lt;sub&gt;.
+</pre></div>
+<h1 id="block-quotes">Block Quotes<a class="headerlink" href="#block-quotes" id="generated-link-id31" title="Permanent link">#</a></h1>
+<blockquote>
+<p>There was only one catch and that was Catch-22, which specified that a concern
+for one’s own safety in the face of dangers that were real and immediate was 
+the process of a rational mind. Orr was crazy and could be grounded. All he 
+had to do was ask; and as soon as he did, he would no longer be crazy and 
+would have to fly more missions.</p>
+<p>– Joseph Heller, Catch-22 (1961)</p>
+</blockquote>
+<div class="codehilite"><pre><span></span>&gt; There was only one catch and that was Catch-22, which specified that a concern
+&gt; for one's own safety in the face of dangers that were real and immediate was 
+&gt; the process of a rational mind. Orr was crazy and could be grounded. All he 
+&gt; had to do was ask; and as soon as he did, he would no longer be crazy and 
+&gt; would have to fly more missions.
+&gt;
+&gt; -- Joseph Heller, Catch-22 (1961)
+</pre></div>
+<h1 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" id="generated-link-id32" title="Permanent link">#</a></h1>
+<p>A provocative or dubious claim is well served by a footnote, which will be
+placed at the bottom of the page.<sup id="fnref-unique string"><a class="footnote-ref" href="#fn-unique string" id="generated-link-id33">1</a></sup> The link representing the
+footnote may be hovered over to show the footnote or clicked to scroll to it.</p>
+<div class="codehilite"><pre><span></span>A provocative or dubious claim is well served by a footnote, which will be
+placed at the bottom of the page.[^unique string] The link representing the
+footnote may be hovered over to show the footnote or clicked to scroll to it.
+
+[^unique string]: You may source or comment upon your claims within footnotes,
+embedding external references as appropriate
+&lt;&lt;[example.com](https://www.example.com)&gt;&gt;. A user may hover over the ↩ icon
+next to the footnote to see the context surrounding its usage and click it to
+return to that location in the article.
+</pre></div>
+<p>If you leave a space between a sentence and a footnote, no context will be given
+by the <code>title</code> attribute of the ↩ return link. <sup id="fnref-nocontext"><a class="footnote-ref" href="#fn-nocontext" id="generated-link-id34">2</a></sup></p>
+<div class="codehilite"><pre><span></span>If you leave a space between a sentence and a footnote, no context will be given
+by the `title` attribute of the ↩ return link. [^nocontext]
+
+[^nocontext]: This footnote will not display its context when the ↩ icon is
+hovered over.
+</pre></div>
+<h1 id="images">Images<a class="headerlink" href="#images" id="generated-link-id35" title="Permanent link">#</a></h1>
+<p><img alt='Recursive Landscape. Courtesy of 
+&lt;a href="https://imgur.com/tos"&gt;Imgur&lt;/a&gt;' id="generated-img-id0" src="/images/RecursiveLandscape.gif"/>
+<p class="caption">Recursive Landscape. Courtesy of 
+<a href="https://imgur.com/tos">Imgur</a></p></p>
+<div class="codehilite"><pre><span></span>![Recursive Landscape. Courtesy of 
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://imgur.com/tos"</span><span class="nt">&gt;</span>Imgur<span class="nt">&lt;/a&gt;</span>](/images/RecursiveLandscape.gif)
+</pre></div>
+<p>Clicking on an image will make it fullscreen.</p>
+<h1 id="horizontal-rule">Horizontal Rule<a class="headerlink" href="#horizontal-rule" id="generated-link-id36" title="Permanent link">#</a></h1>
+<p>Text above the line.</p>
+<hr/>
+<p>Text below the line.</p>
+<div class="codehilite"><pre><span></span>Text above the line.
+
+***
+
+Text below the line.
+</pre></div>
+<h1 id="lists-and-bullets">Lists and Bullets<a class="headerlink" href="#lists-and-bullets" id="generated-link-id37" title="Permanent link">#</a></h1>
+<ol>
+<li>The first list item determines it’s type (numbered or unordered)</li>
+<li>
+<p>Other bullets can be numbers, <code>+</code>, <code>-</code>, or <code>*</code></p>
+<ul>
+<li>Sublists may be ordered or unordered</li>
+</ul>
+<p><!-- two newlines and other content (e.g. a comment) divides list types -->
+ 1. Ordered sub-list</p>
+<p>You can have properly indented paragraphs within list items.</p>
+<p>Merely indent content by 4 spaces, as you do with sublists.</p>
+</li>
+<li>
+<p>Continuation of the first list</p>
+</li>
+<li>Last item</li>
+</ol>
+<!-- Comment again used to divide lists types -->
+<ul>
+<li>First item determines its type (this list is unordered)</li>
+<li>Even if later items are digits<ul>
+<li>Sub item<ul>
+<li>sub-sub item<ul>
+<li>sub-sub-sub item</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span>1. The first list item determines it's type (numbered or unordered)
++ Other bullets can be numbers, `+`, `-`, or `*`
+     * Sublists may be ordered or unordered
+
+     &lt;!-- two newlines and other content (e.g. a comment) divides list types --&gt;
+     1. Ordered sub-list
+
+     You can have properly indented paragraphs within list items.
+
+     Merely indent content by 4 spaces, as you do with sublists.
+
+- Continuation of the first list
+* Last item
+
+&lt;!-- Comment again used to divide lists types --&gt;
+
+* First item determines its type (this list is unordered)
+1. Even if later items are digits
+    * Sub item
+        * sub-sub item
+            * sub-sub-sub item
+</pre></div>
+<h1 id="tables">Tables<a class="headerlink" href="#tables" id="generated-link-id38" title="Permanent link">#</a></h1>
+<table>
+<thead>
+<tr>
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr>
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr>
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr>
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr>
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr>
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span>| Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species |
+|--------------|-------------|--------------|-------------|---------|
+|          5.1 |         3.5 |          1.4 |         0.2 | setosa  |
+|          4.9 |         3.0 |          1.4 |         0.2 | setosa  |
+|          4.7 |         3.2 |          1.3 |         0.2 | setosa  |
+|          4.6 |         3.1 |          1.5 |         0.2 | setosa  |
+|          5.0 |         3.6 |          1.4 |         0.2 | setosa  |
+|          5.4 |         3.9 |          1.7 |         0.4 | setosa  |
+</pre></div>
+<h1 id="comments">Comments<a class="headerlink" href="#comments" id="generated-link-id39" title="Permanent link">#</a></h1>
+<p>Prior to comment. <!-- This is a comment --> After comment.</p>
+<div class="codehilite"><pre><span></span>Prior to comment. &lt;!-- This is a comment --&gt; After comment.
+</pre></div>
+<h1 id="injected-html-javascript">Injected HTML / Javascript<a class="headerlink" href="#injected-html-javascript" id="generated-link-id40" title="Permanent link">#</a></h1>
+<div id="example"></div>
+<div><script type="text/javascript">
+document.getElementById("example").innerHTML="Hello, world!";
+</script></div>
+<!-- there is a zero-width non-breaking space after the `<` in the `<(\)script>`
+     tags below -->
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"example"</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/javascript"</span><span class="p">&gt;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="hlrb1">(</span><span class="s2">"example"</span><span class="hlrb1">)</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">"Hello, world!"</span><span class="p">;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+<p>Note: the <code>&lt;div&gt;</code> tag wrapping the <code>&lt;​script&gt;</code> tag is not necessary; it is
+inserted by the preprocessor.</p>
+<h1 id="math-katex">Math (KaTeX)<a class="headerlink" href="#math-katex" id="generated-link-id41" title="Permanent link">#</a></h1>
+<p>Using <a href="https://katex.org" id="generated-link-id42">
+<!--\KaTeX-->
+<span class="math"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.904999em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord text"><span class="mord textrm sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></span>
+</a></p>
+<p>Use <code>$</code> to wrap inline math:</p>
+<p>As 
+<!--x \to \infty-->
+<span class="math"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">x \to \infty</annotation></semantics></math></span><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span></span>
+, 
+<!--(1 - \frac{1}{x})^{x}-->
+<span class="math"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>x</mi></mfrac><msup><mo>)</mo><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">(1 - \frac{1}{x})^{x}</annotation></semantics></math></span><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></span>
+ approaches 
+<!--\frac{1}{e}-->
+<span class="math"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mi>e</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{e}</annotation></semantics></math></span><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+.</p>
+<div class="codehilite"><pre><span></span>As $x \to \infty$, $(1 - \frac{1}{x})^{x}$ approaches $\frac{1}{e}$.
+</pre></div>
+<p>Use <code>$$</code> to wrap multi-line expressions:</p>
+<p>
+
+<!--
+\forall \delta \in X^Y,
+\frac{\partial}{\partial \varepsilon}
+\int_X ~ L ( 
+f^\dagger + \varepsilon \delta, 
+f^\dagger_x + \varepsilon \delta_x,
+x 
+) ~ dx = 0
+-->
+<div class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∀</mi><mi>δ</mi><mo>∈</mo><msup><mi>X</mi><mi>Y</mi></msup><mo separator="true">,</mo><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><mi>ε</mi></mrow></mfrac><msub><mo>∫</mo><mi>X</mi></msub><mtext> </mtext><mi>L</mi><mo>(</mo><msup><mi>f</mi><mo>†</mo></msup><mo>+</mo><mi>ε</mi><mi>δ</mi><mo separator="true">,</mo><msubsup><mi>f</mi><mi>x</mi><mo>†</mo></msubsup><mo>+</mo><mi>ε</mi><msub><mi>δ</mi><mi>x</mi></msub><mo separator="true">,</mo><mi>x</mi><mo>)</mo><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+\forall \delta \in X^Y,
+\frac{\partial}{\partial \varepsilon}
+\int_X ~ L ( 
+f^\dagger + \varepsilon \delta, 
+f^\dagger_x + \varepsilon \delta_x,
+x 
+) ~ dx = 0
+</annotation></semantics></math></span><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.28339em;vertical-align:-0.9119499999999999em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913309999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.22222em;">Y</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathdefault">ε</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.433619em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">†</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.146108em;vertical-align:-0.247em;"></span><span class="mord mathdefault">ε</span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.4530000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">†</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ε</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace nobreak"> </span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></div>
+
+</p>
+<div class="codehilite"><pre><span></span>$$
+\forall \delta \in X^Y,
+\frac{\partial}{\partial \varepsilon}
+\int_X ~ L ( 
+f^\dagger + \varepsilon \delta, 
+f^\dagger_x + \varepsilon \delta_x,
+x 
+) ~ dx = 0
+$$
+</pre></div>
+<h1 id="syntax-highlighting">Syntax Highlighting<a class="headerlink" href="#syntax-highlighting" id="generated-link-id43" title="Permanent link">#</a></h1>
+<p>Syntax highlighting uses <a href="http://pygments.org/languages/" id="generated-link-id44">pygments</a> via
+<a href="https://python-markdown.github.io/extensions/code_hilite/#syntax" id="generated-link-id45">codehilite</a>,
+with post-processing for rainbow parentheses.</p>
+<p>Lines may be highlighted (here lines 4 and 8 are)</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="nd">@decorator</span>
+<span class="hll"><span class="k">def</span> <span class="nf">foo</span><span class="hlrb1">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="hlrb1">)</span><span class="p">:</span>
+</span>    <span class="sd">'''Docstring for foo'''</span>
+    <span class="k">if</span> <span class="n">boolean_expression</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="hlrb1">(</span><span class="s1">'condition met'</span><span class="hlrb1">)</span> <span class="c1"># inline comment</span>
+<span class="hll">    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span>    <span class="k">return</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>```python hl_lines='4 8'
+
+import numpy as np
+
+@decorator
+def foo(x, y):
+    '''Docstring for foo'''
+    if boolean_expression is True:
+        print('condition met') # inline comment
+    return x + y + 0
+
+class MyClass:
+    pass
+```
+</pre></div>
+<p>Indent blocks with a shebang specifying language for line numbers</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// Comment</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="hlrb1">(</span><span class="hlrb1">)</span> <span class="hlrb1">{</span> 
+    <span class="k">for</span> <span class="hlrb2">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">alert</span><span class="hlrb3">(</span><span class="s1">'Hello World!'</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span>
+<span class="hlrb1">}</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span>    #!javascript
+
+    // Comment
+    window.onload = function() { 
+        for (var i = 0; i &lt; 100; i++) {
+            alert('Hello World!');
+        }
+    };
+</pre></div>
+<p>Note, each of these:</p>
+<ul>
+<li><code>&lt;code&gt;source code&lt;/code&gt;</code></li>
+<li><code>```source code```</code></li>
+<li><code>~~~source code~~~</code></li>
+<li><code>source code indented by 4 spaces</code></li>
+</ul>
+<p>will wrap the resulting HTML in <code>code</code> tags, though nesting can create
+difficulties, and specifying a language cannot be done with each method.</p>
+<h1 id="reusable-d3-charts">Reusable D3 Charts<a class="headerlink" href="#reusable-d3-charts" id="generated-link-id46" title="Permanent link">#</a></h1>
+<p>I’m still working out how to do charting most effectively. 
+<a href="https://acko.net/blog/mathbox2/" id="generated-link-id47">Mathbox</a> is high on the todo list for this
+purpose, but I’m more familiar with D3. This is mostly a proof-of-concept at the
+moment, but may be extended upon in the future.</p>
+<p>By default, only content in view is rendered or animated. Animations are
+parametric, as are some components (see the line below, which uses adaptive
+resampling by default).</p>
+<div>
+<div class="svg-container" id="generated-d3-id0">
+<noscript>JavaScript is not Enabled</noscript>
+<script>
+        onReady(function() {
+            var svg = makeSVG({"height": "50", "id": "generated-d3-id0"});
+
+            (function() {
+                
+
+/*
+ * Uses components Line and Text from `theme/static/js/chart_components.js`
+ * See `theme/static/js/charts.js`
+ * See `plugins/charts/d3.py`
+ */
+
+this.attach_component(Line, 'someline')
+    .use(function(selection) {
+        selection.attr("style", function(d) { 
+            return "stroke:" + d.color + "; fill: none;";
+        });
+    });
+
+this.attach_component(Text, 'arclength_label')
+    .transform(250, 0)
+    .use(function(selection) {
+        selection.attr("style", function(d) {
+            return "fill:" + d.color + ";";
+        });
+    });
+
+this.attach_component(Text, 'mode1_label')
+    .transform(250, 20)
+    .use(function(selection) {
+        selection.attr("style", function(d) {
+            return "fill:" + d.color + ";";
+        });
+    });
+
+this.attach_component(Text, 'mode2_label')
+    .transform(250, 40)
+    .use(function(selection) {
+        selection.attr("style", function(d) {
+            return "fill:" + d.color + ";";
+        });
+    });
+
+this.attach_component(Text, 'mode3_label')
+    .transform(250, 60)
+    .use(function(selection) {
+        selection.attr("style", function(d) {
+            return "fill:" + d.color + ";";
+        });
+    });
+
+this.animate_periodic_with(200, function(p) {
+  /*
+   * the first parameter of animate_periodic_with is the number of 
+   * frames per period.
+   *
+   * the second is a function of p, where p is in domain [0, 1),
+   * corresponding to one period of animation
+   */
+
+  const num_points = 100;
+  const width = 200;
+  const amp = 25;
+  const min_arc_length = width;
+  const Tau = 2 * Math.PI;
+
+  var mode1_c = Math.sin(Tau * p + .1) * 0.3;
+  var mode2_c = Math.sin(Tau * p * 2 + .2) * 0.2;
+  var mode3_c = Math.sin(Tau * p * 3 - .1) * 0.2;
+
+  // is closure with respect to p
+  function parameterized(s) {
+    return {
+      x: width * s,
+      y: amp * (
+        Math.sin(Tau * s ) * mode1_c - 
+        Math.sin(Tau * s * 2) * mode2_c + 
+        Math.sin(Tau * s * 3) * mode3_c
+      ) + amp
+    };
+  }
+
+  var pts = new Array(num_points);
+  var arc_length = 0;
+
+  for (var i = 0; i < num_points; i++) {
+    pts[i] = parameterized(i / (num_points - 1));
+  }
+  // integrate to compute arc length
+  for (var i = 0; i < num_points - 1; i++) {
+    arc_length += Math.sqrt(
+      (pts[i].x - pts[i + 1].x) ** 2 + 
+      (pts[i].y - pts[i + 1].y) ** 2
+    )
+  }
+
+  return {
+      someline: {
+          points: pts,
+          color: "var(--w0)"
+      },
+      arclength_label: {
+          color: "var(--w0)",
+          value: "Arclength: " + (arc_length / min_arc_length)
+                                  .toFixed(2).toString()
+      },
+      mode1_label: {
+          color: "var(--w0)",
+          value: "Mode 0 Coefficient: " + mode1_c.toFixed(2).toString()
+      },
+      mode2_label: {
+          color: "var(--w0)",
+          value: "Mode 1 Coefficient: " + mode2_c.toFixed(2).toString()
+      },
+      mode3_label: {
+          color: "var(--w0)",
+          value: "Mode 2 Coefficient: " + mode3_c.toFixed(2).toString()
+      }
+  };
+});
+
+
+            }).call(svg);
+        });
+    </script>
+</div></div>
+<p>The animation routines for the d3 svg will run only when scrolled into view.</p>
+<!-- there is a zero-width non-breaking space following the `<` in the `<(\)d3>`
+     tags below -->
+<div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="err">​</span><span class="nx">d3</span> <span class="nx">height</span><span class="o">=</span><span class="s2">"50"</span><span class="o">&gt;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Uses components Line and Text from `theme/static/js/chart_components.js`</span>
+<span class="cm"> * See `theme/static/js/charts.js`</span>
+<span class="cm"> * See `plugins/charts/d3.py`</span>
+<span class="cm"> */</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">attach_component</span><span class="hlrb1">(</span><span class="nx">Line</span><span class="p">,</span> <span class="s1">'someline'</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">use</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="nx">selection</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">selection</span><span class="p">.</span><span class="nx">attr</span><span class="hlrb3">(</span><span class="s2">"style"</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb4">(</span><span class="nx">d</span><span class="hlrb4">)</span> <span class="hlrb4">{</span> 
+            <span class="k">return</span> <span class="s2">"stroke:"</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s2">"; fill: none;"</span><span class="p">;</span>
+        <span class="hlrb4">}</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">attach_component</span><span class="hlrb1">(</span><span class="nx">Text</span><span class="p">,</span> <span class="s1">'arclength_label'</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">transform</span><span class="hlrb1">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">0</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">use</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="nx">selection</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">selection</span><span class="p">.</span><span class="nx">attr</span><span class="hlrb3">(</span><span class="s2">"style"</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb4">(</span><span class="nx">d</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+            <span class="k">return</span> <span class="s2">"fill:"</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s2">";"</span><span class="p">;</span>
+        <span class="hlrb4">}</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">attach_component</span><span class="hlrb1">(</span><span class="nx">Text</span><span class="p">,</span> <span class="s1">'mode1_label'</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">transform</span><span class="hlrb1">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">20</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">use</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="nx">selection</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">selection</span><span class="p">.</span><span class="nx">attr</span><span class="hlrb3">(</span><span class="s2">"style"</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb4">(</span><span class="nx">d</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+            <span class="k">return</span> <span class="s2">"fill:"</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s2">";"</span><span class="p">;</span>
+        <span class="hlrb4">}</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">attach_component</span><span class="hlrb1">(</span><span class="nx">Text</span><span class="p">,</span> <span class="s1">'mode2_label'</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">transform</span><span class="hlrb1">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">40</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">use</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="nx">selection</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">selection</span><span class="p">.</span><span class="nx">attr</span><span class="hlrb3">(</span><span class="s2">"style"</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb4">(</span><span class="nx">d</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+            <span class="k">return</span> <span class="s2">"fill:"</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s2">";"</span><span class="p">;</span>
+        <span class="hlrb4">}</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">attach_component</span><span class="hlrb1">(</span><span class="nx">Text</span><span class="p">,</span> <span class="s1">'mode3_label'</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">transform</span><span class="hlrb1">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">60</span><span class="hlrb1">)</span>
+    <span class="p">.</span><span class="nx">use</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="nx">selection</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+        <span class="nx">selection</span><span class="p">.</span><span class="nx">attr</span><span class="hlrb3">(</span><span class="s2">"style"</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb4">(</span><span class="nx">d</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+            <span class="k">return</span> <span class="s2">"fill:"</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s2">";"</span><span class="p">;</span>
+        <span class="hlrb4">}</span><span class="hlrb3">)</span><span class="p">;</span>
+    <span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">animate_periodic_with</span><span class="hlrb1">(</span><span class="mi">200</span><span class="p">,</span> <span class="kd">function</span><span class="hlrb2">(</span><span class="nx">p</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+  <span class="cm">/*</span>
+<span class="cm">   * the first parameter of animate_periodic_with is the number of </span>
+<span class="cm">   * frames per period.</span>
+<span class="cm">   *</span>
+<span class="cm">   * the second is a function of p, where p is in domain [0, 1),</span>
+<span class="cm">   * corresponding to one period of animation</span>
+<span class="cm">   */</span>
+
+  <span class="kr">const</span> <span class="nx">num_points</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">amp</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">min_arc_length</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">Tau</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">mode1_c</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb3">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">p</span> <span class="o">+</span> <span class="mf">.1</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">mode2_c</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb3">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">p</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">.2</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">mode3_c</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb3">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">p</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">-</span> <span class="mf">.1</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">;</span>
+
+  <span class="c1">// is closure with respect to p</span>
+  <span class="kd">function</span> <span class="nx">parameterized</span><span class="hlrb3">(</span><span class="nx">s</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+    <span class="k">return</span> <span class="hlrb4">{</span>
+      <span class="nx">x</span><span class="o">:</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">s</span><span class="p">,</span>
+      <span class="nx">y</span><span class="o">:</span> <span class="nx">amp</span> <span class="o">*</span> <span class="hlrb5">(</span>
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb6">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">s</span> <span class="hlrb6">)</span> <span class="o">*</span> <span class="nx">mode1_c</span> <span class="o">-</span> 
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb6">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">s</span> <span class="o">*</span> <span class="mi">2</span><span class="hlrb6">)</span> <span class="o">*</span> <span class="nx">mode2_c</span> <span class="o">+</span> 
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="hlrb6">(</span><span class="nx">Tau</span> <span class="o">*</span> <span class="nx">s</span> <span class="o">*</span> <span class="mi">3</span><span class="hlrb6">)</span> <span class="o">*</span> <span class="nx">mode3_c</span>
+      <span class="hlrb5">)</span> <span class="o">+</span> <span class="nx">amp</span>
+    <span class="hlrb4">}</span><span class="p">;</span>
+  <span class="hlrb3">}</span>
+
+  <span class="kd">var</span> <span class="nx">pts</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="hlrb3">(</span><span class="nx">num_points</span><span class="hlrb3">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">arc_length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="hlrb3">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">num_points</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+    <span class="nx">pts</span><span class="hlrb4">[</span><span class="nx">i</span><span class="hlrb4">]</span> <span class="o">=</span> <span class="nx">parameterized</span><span class="hlrb4">(</span><span class="nx">i</span> <span class="o">/</span> <span class="hlrb5">(</span><span class="nx">num_points</span> <span class="o">-</span> <span class="mi">1</span><span class="hlrb5">)</span><span class="hlrb4">)</span><span class="p">;</span>
+  <span class="hlrb3">}</span>
+  <span class="c1">// integrate to compute arc length</span>
+  <span class="k">for</span> <span class="hlrb3">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">num_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+    <span class="nx">arc_length</span> <span class="o">+=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="hlrb4">(</span>
+      <span class="hlrb5">(</span><span class="nx">pts</span><span class="hlrb6">[</span><span class="nx">i</span><span class="hlrb6">]</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">pts</span><span class="hlrb6">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="hlrb6">]</span><span class="p">.</span><span class="nx">x</span><span class="hlrb5">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> 
+      <span class="hlrb5">(</span><span class="nx">pts</span><span class="hlrb6">[</span><span class="nx">i</span><span class="hlrb6">]</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">pts</span><span class="hlrb6">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="hlrb6">]</span><span class="p">.</span><span class="nx">y</span><span class="hlrb5">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="hlrb4">)</span>
+  <span class="hlrb3">}</span>
+
+  <span class="k">return</span> <span class="hlrb3">{</span>
+      <span class="nx">someline</span><span class="o">:</span> <span class="hlrb4">{</span>
+          <span class="nx">points</span><span class="o">:</span> <span class="nx">pts</span><span class="p">,</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">"var(--w0)"</span>
+      <span class="hlrb4">}</span><span class="p">,</span>
+      <span class="nx">arclength_label</span><span class="o">:</span> <span class="hlrb4">{</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">"var(--w0)"</span><span class="p">,</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="s2">"Arclength: "</span> <span class="o">+</span> <span class="hlrb5">(</span><span class="nx">arc_length</span> <span class="o">/</span> <span class="nx">min_arc_length</span><span class="hlrb5">)</span>
+                                  <span class="p">.</span><span class="nx">toFixed</span><span class="hlrb5">(</span><span class="mi">2</span><span class="hlrb5">)</span><span class="p">.</span><span class="nx">toString</span><span class="hlrb5">(</span><span class="hlrb5">)</span>
+      <span class="hlrb4">}</span><span class="p">,</span>
+      <span class="nx">mode1_label</span><span class="o">:</span> <span class="hlrb4">{</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">"var(--w0)"</span><span class="p">,</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="s2">"Mode 0 Coefficient: "</span> <span class="o">+</span> <span class="nx">mode1_c</span><span class="p">.</span><span class="nx">toFixed</span><span class="hlrb5">(</span><span class="mi">2</span><span class="hlrb5">)</span><span class="p">.</span><span class="nx">toString</span><span class="hlrb5">(</span><span class="hlrb5">)</span>
+      <span class="hlrb4">}</span><span class="p">,</span>
+      <span class="nx">mode2_label</span><span class="o">:</span> <span class="hlrb4">{</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">"var(--w0)"</span><span class="p">,</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="s2">"Mode 1 Coefficient: "</span> <span class="o">+</span> <span class="nx">mode2_c</span><span class="p">.</span><span class="nx">toFixed</span><span class="hlrb5">(</span><span class="mi">2</span><span class="hlrb5">)</span><span class="p">.</span><span class="nx">toString</span><span class="hlrb5">(</span><span class="hlrb5">)</span>
+      <span class="hlrb4">}</span><span class="p">,</span>
+      <span class="nx">mode3_label</span><span class="o">:</span> <span class="hlrb4">{</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">"var(--w0)"</span><span class="p">,</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="s2">"Mode 2 Coefficient: "</span> <span class="o">+</span> <span class="nx">mode3_c</span><span class="p">.</span><span class="nx">toFixed</span><span class="hlrb5">(</span><span class="mi">2</span><span class="hlrb5">)</span><span class="p">.</span><span class="nx">toString</span><span class="hlrb5">(</span><span class="hlrb5">)</span>
+      <span class="hlrb4">}</span>
+  <span class="hlrb3">}</span><span class="p">;</span>
+<span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+
+<span class="o">&lt;</span><span class="err">​</span><span class="o">/</span><span class="nx">d3</span><span class="o">&gt;</span>
+</pre></div>
+<h1 id="glsl">GLSL<a class="headerlink" href="#glsl" id="generated-link-id48" title="Permanent link">#</a></h1>
+<p>I’ve used <a href="https://twgljs.org" id="generated-link-id49">twgl.js</a> to allow me to play with fragment 
+shaders.</p>
+<div>
+<div class="twgl-container" id="julia-container">
+<noscript>JavaScript is not Enabled</noscript>
+<script id="julia_shader" type="x-shader/x-fragment">
+        
+ precision mediump float;
+
+ // default uniforms (built in)
+ uniform vec2 resolution;
+ uniform float min_dim;
+ uniform bool mouseover;
+ uniform bool mousedown;
+ uniform vec2 mouse;
+ uniform vec2 mouse_click;
+ uniform float click_elapsed;
+
+ vec2 c = mouse;
+ float p = max(0., 1000. - click_elapsed) / 1000.;
+
+ const int iter = 130;
+ const float fiter = 130.;
+
+ /*
+  * map interval [0, 1] to RGB color
+  * use YCoCg color space for simplicity
+  * https://en.wikipedia.org/wiki/YCoCg 
+  */
+ vec3 colormap(float v) {
+     float Y = pow(1. - pow(v - 1., 2.), 2.); // logistic on v [0, 1] -> [0, 1]
+     float cr = (1. - cos(6.283 * v)) / 2.;   // radius in "hue space"
+     float Cg = cr * sin(4. * Y + 3.);        // in [-1, 1]
+     float Co = cr * cos(4. * Y + 3.);        // in [-1, 1]
+     float R = Y + Co - Cg;
+     float G = Y + Cg;
+     float B = Y - Co - Cg;
+
+     return vec3(R, G, B);
+ }
+
+ /* multiply two complex numbers */
+ vec2 c_mul(vec2 x, vec2 y) {
+     vec2 z;
+
+     z.x = x.x * y.x - x.y * y.y;
+     z.y = x.x * y.y + x.y * y.x;
+
+     return z;
+ }
+
+ /* raise complex number to power e */
+ const int MAX_EXPONENT = 10;
+ vec2 c_pow(vec2 x, int e) {
+
+     vec2 y = vec2(1.0, 0.0);
+
+     for(int i=0; i < MAX_EXPONENT; i++) {
+
+         if (i >= e) { break; }
+
+         y = c_mul(y, x);
+
+     }
+
+     return y;
+
+ }
+
+ /* get magnitude-squared of 2-vector */
+ float mag2(vec2 z) {
+     return (z.x * z.x + z.y * z.y);
+ }
+
+ float iterate(vec2 z) {
+
+     /* Compute map on z and c up to max iteration */
+
+     vec2 w;
+     float v;
+     float r2;
+
+     // iterate map
+     for(int i=0; i < iter; i++) {
+
+         w = c_pow(z, 2) + c;
+
+         v = float(i);
+         r2 = mag2(w);
+
+         // bailout radius
+         if(r2 > 5.0) {
+             break;
+         }
+         z.x = w.x;
+         z.y = w.y;
+     }
+
+     // "real" iteration number using potential function
+     if (v == (fiter - 1.)) {
+         v = v / fiter;
+     } else {
+         v = (v - log2( log(r2) / log(5.))) / fiter;
+     }
+
+     return v;
+
+ }
+
+ float single_point(vec2 z) {
+
+     /*
+      * Compute value for single point, allowing
+      * for parameterization of mapping with cut
+      *
+      * Call multiple times for anti-aliasing
+      */
+
+     float r2;
+     float a;
+     float theta;
+
+     float theta2;
+     vec2 zcut;
+     float v = 0.;
+
+     float rc2 = (z.x - c.x) * (z.x - c.x) + (z.y - c.y) * (z.y - c.y);
+
+     // display c
+     if (rc2 < 0.0001) {
+         return 0.0;
+     }
+
+     // apply parameterized, partial inverse mapping
+     // so we can visualize the map
+     if (p > 0.) {
+
+         z.x = z.x + (p - 1.) * c.x;
+         z.y = z.y + (p - 1.) * c.y;
+
+         a = 1.0 - 0.5 * (1. - p);
+         r2 = z.x * z.x + z.y * z.y;
+
+         theta = a * atan(z.y, z.x);
+         z.y = pow(r2, a / 2.) * sin(theta);
+         z.x = pow(r2, a / 2.) * cos(theta);
+
+         theta2 = theta + sign(z.y) * 3.14159 * (1. - p);
+         zcut.y = pow(r2, a / 2.) * sin(theta2);
+         zcut.x = pow(r2, a / 2.) * cos(theta2);
+
+         if (sign(zcut.y) != sign(z.y)) {
+             v = iterate(zcut);
+         }
+
+     }
+
+     return max(v, iterate(z));
+
+ }
+
+ void main() {
+
+     float v = 0.;
+
+     // 4-Rook Antialiasing
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.375)) - resolution.y) / min_dim
+         )
+     );
+     /*
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim
+         )
+     );
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim
+         )
+     );
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim
+         )
+     ); */
+
+     vec4 value = vec4(colormap(v / 1.0), 1.0);
+
+     // with antialiasing
+     // vec4 value = vec4(colormap(v / 4.0), 1.0);
+
+     gl_FragColor = value;
+}
+
+
+    </script>
+<canvas id="julia_canvas"></canvas>
+<a id="julia_fs">View fullscreen</a>
+<script type="text/javascript">
+        onReady(function() {
+            julia_obj = new shade("julia", "twgl_vs");
+        });
+    </script>
+</div>
+</div>
+<div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">twgl</span> <span class="n">id</span><span class="o">=</span><span class="err">"</span><span class="n">julia</span><span class="err">"</span><span class="o">&gt;</span>
+ <span class="k">precision</span> <span class="k">mediump</span> <span class="kt">float</span><span class="p">;</span>
+
+ <span class="c1">// default uniforms (built in)</span>
+ <span class="k">uniform</span> <span class="kt">vec2</span> <span class="n">resolution</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">float</span> <span class="n">min_dim</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">bool</span> <span class="n">mouseover</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">bool</span> <span class="n">mousedown</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">vec2</span> <span class="n">mouse</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">vec2</span> <span class="n">mouse_click</span><span class="p">;</span>
+ <span class="k">uniform</span> <span class="kt">float</span> <span class="n">click_elapsed</span><span class="p">;</span>
+
+ <span class="kt">vec2</span> <span class="n">c</span> <span class="o">=</span> <span class="n">mouse</span><span class="p">;</span>
+ <span class="kt">float</span> <span class="n">p</span> <span class="o">=</span> <span class="n">max</span><span class="hlrb1">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1000.</span> <span class="o">-</span> <span class="n">click_elapsed</span><span class="hlrb1">)</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">;</span>
+
+ <span class="k">const</span> <span class="kt">int</span> <span class="n">iter</span> <span class="o">=</span> <span class="mi">130</span><span class="p">;</span>
+ <span class="k">const</span> <span class="kt">float</span> <span class="n">fiter</span> <span class="o">=</span> <span class="mf">130.</span><span class="p">;</span>
+
+ <span class="cm">/*</span>
+<span class="cm">  * map interval [0, 1] to RGB color</span>
+<span class="cm">  * use YCoCg color space for simplicity</span>
+<span class="cm">  * https://en.wikipedia.org/wiki/YCoCg </span>
+<span class="cm">  */</span>
+ <span class="kt">vec3</span> <span class="n">colormap</span><span class="hlrb1">(</span><span class="kt">float</span> <span class="n">v</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+     <span class="kt">float</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">pow</span><span class="hlrb2">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">pow</span><span class="hlrb3">(</span><span class="n">v</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="hlrb3">)</span><span class="p">,</span> <span class="mf">2.</span><span class="hlrb2">)</span><span class="p">;</span> <span class="c1">// logistic on v [0, 1] -&gt; [0, 1]</span>
+     <span class="kt">float</span> <span class="n">cr</span> <span class="o">=</span> <span class="hlrb2">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">cos</span><span class="hlrb3">(</span><span class="mf">6.283</span> <span class="o">*</span> <span class="n">v</span><span class="hlrb3">)</span><span class="hlrb2">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">;</span>   <span class="c1">// radius in "hue space"</span>
+     <span class="kt">float</span> <span class="n">Cg</span> <span class="o">=</span> <span class="n">cr</span> <span class="o">*</span> <span class="n">sin</span><span class="hlrb2">(</span><span class="mf">4.</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">3.</span><span class="hlrb2">)</span><span class="p">;</span>        <span class="c1">// in [-1, 1]</span>
+     <span class="kt">float</span> <span class="n">Co</span> <span class="o">=</span> <span class="n">cr</span> <span class="o">*</span> <span class="n">cos</span><span class="hlrb2">(</span><span class="mf">4.</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">3.</span><span class="hlrb2">)</span><span class="p">;</span>        <span class="c1">// in [-1, 1]</span>
+     <span class="kt">float</span> <span class="n">R</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">Co</span> <span class="o">-</span> <span class="n">Cg</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">G</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">Cg</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">B</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">Co</span> <span class="o">-</span> <span class="n">Cg</span><span class="p">;</span>
+
+     <span class="k">return</span> <span class="kt">vec3</span><span class="hlrb2">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="hlrb2">)</span><span class="p">;</span>
+ <span class="hlrb1">}</span>
+
+ <span class="cm">/* multiply two complex numbers */</span>
+ <span class="kt">vec2</span> <span class="n">c_mul</span><span class="hlrb1">(</span><span class="kt">vec2</span> <span class="n">x</span><span class="p">,</span> <span class="kt">vec2</span> <span class="n">y</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+     <span class="kt">vec2</span> <span class="n">z</span><span class="p">;</span>
+
+     <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+     <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">x</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+
+     <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+ <span class="hlrb1">}</span>
+
+ <span class="cm">/* raise complex number to power e */</span>
+ <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_EXPONENT</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+ <span class="kt">vec2</span> <span class="n">c_pow</span><span class="hlrb1">(</span><span class="kt">vec2</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">e</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+
+     <span class="kt">vec2</span> <span class="n">y</span> <span class="o">=</span> <span class="kt">vec2</span><span class="hlrb2">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="hlrb2">)</span><span class="p">;</span>
+
+     <span class="k">for</span><span class="hlrb2">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mo">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_EXPONENT</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+
+         <span class="k">if</span> <span class="hlrb3">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">e</span><span class="hlrb3">)</span> <span class="hlrb3">{</span> <span class="k">break</span><span class="p">;</span> <span class="hlrb3">}</span>
+
+         <span class="n">y</span> <span class="o">=</span> <span class="n">c_mul</span><span class="hlrb3">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="hlrb3">)</span><span class="p">;</span>
+
+     <span class="hlrb2">}</span>
+
+     <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+
+ <span class="hlrb1">}</span>
+
+ <span class="cm">/* get magnitude-squared of 2-vector */</span>
+ <span class="kt">float</span> <span class="n">mag2</span><span class="hlrb1">(</span><span class="kt">vec2</span> <span class="n">z</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+     <span class="k">return</span> <span class="hlrb2">(</span><span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="hlrb2">)</span><span class="p">;</span>
+ <span class="hlrb1">}</span>
+
+ <span class="kt">float</span> <span class="n">iterate</span><span class="hlrb1">(</span><span class="kt">vec2</span> <span class="n">z</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+
+     <span class="cm">/* Compute map on z and c up to max iteration */</span>
+
+     <span class="kt">vec2</span> <span class="n">w</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">v</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">r2</span><span class="p">;</span>
+
+     <span class="c1">// iterate map</span>
+     <span class="k">for</span><span class="hlrb2">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mo">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iter</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+
+         <span class="n">w</span> <span class="o">=</span> <span class="n">c_pow</span><span class="hlrb3">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">2</span><span class="hlrb3">)</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+
+         <span class="n">v</span> <span class="o">=</span> <span class="kt">float</span><span class="hlrb3">(</span><span class="n">i</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">r2</span> <span class="o">=</span> <span class="n">mag2</span><span class="hlrb3">(</span><span class="n">w</span><span class="hlrb3">)</span><span class="p">;</span>
+
+         <span class="c1">// bailout radius</span>
+         <span class="k">if</span><span class="hlrb3">(</span><span class="n">r2</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+             <span class="k">break</span><span class="p">;</span>
+         <span class="hlrb3">}</span>
+         <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">w</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+         <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">w</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+     <span class="hlrb2">}</span>
+
+     <span class="c1">// "real" iteration number using potential function</span>
+     <span class="k">if</span> <span class="hlrb2">(</span><span class="n">v</span> <span class="o">==</span> <span class="hlrb3">(</span><span class="n">fiter</span> <span class="o">-</span> <span class="mf">1.</span><span class="hlrb3">)</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">fiter</span><span class="p">;</span>
+     <span class="hlrb2">}</span> <span class="k">else</span> <span class="hlrb2">{</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="hlrb3">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">log2</span><span class="hlrb4">(</span> <span class="n">log</span><span class="hlrb5">(</span><span class="n">r2</span><span class="hlrb5">)</span> <span class="o">/</span> <span class="n">log</span><span class="hlrb5">(</span><span class="mf">5.</span><span class="hlrb5">)</span><span class="hlrb4">)</span><span class="hlrb3">)</span> <span class="o">/</span> <span class="n">fiter</span><span class="p">;</span>
+     <span class="hlrb2">}</span>
+
+     <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+
+ <span class="hlrb1">}</span>
+
+ <span class="kt">float</span> <span class="n">single_point</span><span class="hlrb1">(</span><span class="kt">vec2</span> <span class="n">z</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+
+     <span class="cm">/*</span>
+<span class="cm">      * Compute value for single point, allowing</span>
+<span class="cm">      * for parameterization of mapping with cut</span>
+<span class="cm">      *</span>
+<span class="cm">      * Call multiple times for anti-aliasing</span>
+<span class="cm">      */</span>
+
+     <span class="kt">float</span> <span class="n">r2</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">a</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">theta</span><span class="p">;</span>
+
+     <span class="kt">float</span> <span class="n">theta2</span><span class="p">;</span>
+     <span class="kt">vec2</span> <span class="n">zcut</span><span class="p">;</span>
+     <span class="kt">float</span> <span class="n">v</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+
+     <span class="kt">float</span> <span class="n">rc2</span> <span class="o">=</span> <span class="hlrb2">(</span><span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">c</span><span class="p">.</span><span class="n">x</span><span class="hlrb2">)</span> <span class="o">*</span> <span class="hlrb2">(</span><span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">c</span><span class="p">.</span><span class="n">x</span><span class="hlrb2">)</span> <span class="o">+</span> <span class="hlrb2">(</span><span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="p">.</span><span class="n">y</span><span class="hlrb2">)</span> <span class="o">*</span> <span class="hlrb2">(</span><span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="p">.</span><span class="n">y</span><span class="hlrb2">)</span><span class="p">;</span>
+
+     <span class="c1">// display c</span>
+     <span class="k">if</span> <span class="hlrb2">(</span><span class="n">rc2</span> <span class="o">&lt;</span> <span class="mf">0.0001</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+         <span class="k">return</span> <span class="mf">0.0</span><span class="p">;</span>
+     <span class="hlrb2">}</span>
+
+     <span class="c1">// apply parameterized, partial inverse mapping</span>
+     <span class="c1">// so we can visualize the map</span>
+     <span class="k">if</span> <span class="hlrb2">(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mf">0.</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+
+         <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="hlrb3">(</span><span class="n">p</span> <span class="o">-</span> <span class="mf">1.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+         <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="hlrb3">(</span><span class="n">p</span> <span class="o">-</span> <span class="mf">1.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+         <span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="hlrb3">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">p</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">r2</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+         <span class="n">theta</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">atan</span><span class="hlrb3">(</span><span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">x</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">z</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pow</span><span class="hlrb3">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">sin</span><span class="hlrb3">(</span><span class="n">theta</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">z</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pow</span><span class="hlrb3">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">cos</span><span class="hlrb3">(</span><span class="n">theta</span><span class="hlrb3">)</span><span class="p">;</span>
+
+         <span class="n">theta2</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">sign</span><span class="hlrb3">(</span><span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="mf">3.14159</span> <span class="o">*</span> <span class="hlrb3">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">p</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">zcut</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pow</span><span class="hlrb3">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">sin</span><span class="hlrb3">(</span><span class="n">theta2</span><span class="hlrb3">)</span><span class="p">;</span>
+         <span class="n">zcut</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pow</span><span class="hlrb3">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="hlrb3">)</span> <span class="o">*</span> <span class="n">cos</span><span class="hlrb3">(</span><span class="n">theta2</span><span class="hlrb3">)</span><span class="p">;</span>
+
+         <span class="k">if</span> <span class="hlrb3">(</span><span class="n">sign</span><span class="hlrb4">(</span><span class="n">zcut</span><span class="p">.</span><span class="n">y</span><span class="hlrb4">)</span> <span class="o">!=</span> <span class="n">sign</span><span class="hlrb4">(</span><span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="hlrb4">)</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+             <span class="n">v</span> <span class="o">=</span> <span class="n">iterate</span><span class="hlrb4">(</span><span class="n">zcut</span><span class="hlrb4">)</span><span class="p">;</span>
+         <span class="hlrb3">}</span>
+
+     <span class="hlrb2">}</span>
+
+     <span class="k">return</span> <span class="n">max</span><span class="hlrb2">(</span><span class="n">v</span><span class="p">,</span> <span class="n">iterate</span><span class="hlrb3">(</span><span class="n">z</span><span class="hlrb3">)</span><span class="hlrb2">)</span><span class="p">;</span>
+
+ <span class="hlrb1">}</span>
+
+ <span class="kt">void</span> <span class="n">main</span><span class="hlrb1">(</span><span class="hlrb1">)</span> <span class="hlrb1">{</span>
+
+     <span class="kt">float</span> <span class="n">v</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+
+     <span class="c1">// 4-Rook Antialiasing</span>
+     <span class="n">v</span> <span class="o">+=</span> <span class="n">single_point</span><span class="hlrb2">(</span>
+         <span class="kt">vec2</span><span class="hlrb3">(</span>
+             <span class="hlrb4">(</span><span class="hlrb5">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="hlrb6">(</span><span class="nb">gl_FragCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.125</span><span class="hlrb6">)</span><span class="hlrb5">)</span> <span class="o">-</span> <span class="n">resolution</span><span class="p">.</span><span class="n">x</span><span class="hlrb4">)</span> <span class="o">/</span> <span class="n">min_dim</span><span class="p">,</span>
+             <span class="hlrb4">(</span><span class="hlrb5">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="hlrb6">(</span><span class="nb">gl_FragCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.375</span><span class="hlrb6">)</span><span class="hlrb5">)</span> <span class="o">-</span> <span class="n">resolution</span><span class="p">.</span><span class="n">y</span><span class="hlrb4">)</span> <span class="o">/</span> <span class="n">min_dim</span>
+         <span class="hlrb3">)</span>
+     <span class="hlrb2">)</span><span class="p">;</span>
+     <span class="cm">/*</span>
+<span class="cm">     v += single_point(</span>
+<span class="cm">         vec2(</span>
+<span class="cm">             ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,</span>
+<span class="cm">             ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim</span>
+<span class="cm">         )</span>
+<span class="cm">     );</span>
+<span class="cm">     v += single_point(</span>
+<span class="cm">         vec2(</span>
+<span class="cm">             ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,</span>
+<span class="cm">             ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim</span>
+<span class="cm">         )</span>
+<span class="cm">     );</span>
+<span class="cm">     v += single_point(</span>
+<span class="cm">         vec2(</span>
+<span class="cm">             ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,</span>
+<span class="cm">             ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim</span>
+<span class="cm">         )</span>
+<span class="cm">     ); */</span>
+
+     <span class="kt">vec4</span> <span class="n">value</span> <span class="o">=</span> <span class="kt">vec4</span><span class="hlrb2">(</span><span class="n">colormap</span><span class="hlrb3">(</span><span class="n">v</span> <span class="o">/</span> <span class="mf">1.0</span><span class="hlrb3">)</span><span class="p">,</span> <span class="mf">1.0</span><span class="hlrb2">)</span><span class="p">;</span>
+
+     <span class="c1">// with antialiasing</span>
+     <span class="c1">// vec4 value = vec4(colormap(v / 4.0), 1.0);</span>
+
+     <span class="nb">gl_FragColor</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+<span class="hlrb1">}</span>
+
+<span class="o">&lt;/</span><span class="n">twgl</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+<div><script>
+onReady(function() {
+
+ var julia = shaders['julia'];
+
+ var k = 1 / 30;
+ var c0 = 2 * Math.sqrt(k); // critical damping
+ var c = c0 * 0.8 // slightly under damped
+ var qx = 0;
+ var qy = 0;
+ var px = 0;
+ var py = 0;
+
+ var first_run = false;
+ function render(frame_number, time) {
+
+     var u = {}
+     Object.setPrototypeOf(u, julia.uniforms);
+     u.mouse = [0, 0];
+
+     if (!first_run) {
+         first_run = true;
+         julia.render(u);
+     } else if (u.mouseover) {
+
+         var ax = k * (julia.uniforms.mouse[0] - qx) - c * px;
+         var ay = k * (julia.uniforms.mouse[1] - qy) - c * py; 
+         qx += px;
+         qy += py;
+         px += ax;
+         py += ay;
+
+         u.mouse[0] = qx;
+         u.mouse[1] = qy;
+
+         julia.render(u);
+     } 
+ }
+
+ bindScrollTriggers(
+     julia.gl.canvas,
+     function(){ 
+         addAnimation(render);
+     },
+     function(){
+         removeAnimation(render);
+     }
+ );
+
+});
+</script></div>
+<div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nx">onReady</span><span class="hlrb1">(</span><span class="kd">function</span><span class="hlrb2">(</span><span class="hlrb2">)</span> <span class="hlrb2">{</span>
+
+ <span class="kd">var</span> <span class="nx">julia</span> <span class="o">=</span> <span class="nx">shaders</span><span class="hlrb3">[</span><span class="s1">'julia'</span><span class="hlrb3">]</span><span class="p">;</span>
+
+ <span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">30</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">c0</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="hlrb3">(</span><span class="nx">k</span><span class="hlrb3">)</span><span class="p">;</span> <span class="c1">// critical damping</span>
+ <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">c0</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="c1">// slightly under damped</span>
+ <span class="kd">var</span> <span class="nx">qx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">qy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">py</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+ <span class="kd">var</span> <span class="nx">first_run</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+ <span class="kd">function</span> <span class="nx">render</span><span class="hlrb3">(</span><span class="nx">frame_number</span><span class="p">,</span> <span class="nx">time</span><span class="hlrb3">)</span> <span class="hlrb3">{</span>
+
+     <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="hlrb4">{</span><span class="hlrb4">}</span>
+     <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="hlrb4">(</span><span class="nx">u</span><span class="p">,</span> <span class="nx">julia</span><span class="p">.</span><span class="nx">uniforms</span><span class="hlrb4">)</span><span class="p">;</span>
+     <span class="nx">u</span><span class="p">.</span><span class="nx">mouse</span> <span class="o">=</span> <span class="hlrb4">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="hlrb4">]</span><span class="p">;</span>
+
+     <span class="k">if</span> <span class="hlrb4">(</span><span class="o">!</span><span class="nx">first_run</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+         <span class="nx">first_run</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+         <span class="nx">julia</span><span class="p">.</span><span class="nx">render</span><span class="hlrb5">(</span><span class="nx">u</span><span class="hlrb5">)</span><span class="p">;</span>
+     <span class="hlrb4">}</span> <span class="k">else</span> <span class="k">if</span> <span class="hlrb4">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">mouseover</span><span class="hlrb4">)</span> <span class="hlrb4">{</span>
+
+         <span class="kd">var</span> <span class="nx">ax</span> <span class="o">=</span> <span class="nx">k</span> <span class="o">*</span> <span class="hlrb5">(</span><span class="nx">julia</span><span class="p">.</span><span class="nx">uniforms</span><span class="p">.</span><span class="nx">mouse</span><span class="hlrb6">[</span><span class="mi">0</span><span class="hlrb6">]</span> <span class="o">-</span> <span class="nx">qx</span><span class="hlrb5">)</span> <span class="o">-</span> <span class="nx">c</span> <span class="o">*</span> <span class="nx">px</span><span class="p">;</span>
+         <span class="kd">var</span> <span class="nx">ay</span> <span class="o">=</span> <span class="nx">k</span> <span class="o">*</span> <span class="hlrb5">(</span><span class="nx">julia</span><span class="p">.</span><span class="nx">uniforms</span><span class="p">.</span><span class="nx">mouse</span><span class="hlrb6">[</span><span class="mi">1</span><span class="hlrb6">]</span> <span class="o">-</span> <span class="nx">qy</span><span class="hlrb5">)</span> <span class="o">-</span> <span class="nx">c</span> <span class="o">*</span> <span class="nx">py</span><span class="p">;</span> 
+         <span class="nx">qx</span> <span class="o">+=</span> <span class="nx">px</span><span class="p">;</span>
+         <span class="nx">qy</span> <span class="o">+=</span> <span class="nx">py</span><span class="p">;</span>
+         <span class="nx">px</span> <span class="o">+=</span> <span class="nx">ax</span><span class="p">;</span>
+         <span class="nx">py</span> <span class="o">+=</span> <span class="nx">ay</span><span class="p">;</span>
+
+         <span class="nx">u</span><span class="p">.</span><span class="nx">mouse</span><span class="hlrb5">[</span><span class="mi">0</span><span class="hlrb5">]</span> <span class="o">=</span> <span class="nx">qx</span><span class="p">;</span>
+         <span class="nx">u</span><span class="p">.</span><span class="nx">mouse</span><span class="hlrb5">[</span><span class="mi">1</span><span class="hlrb5">]</span> <span class="o">=</span> <span class="nx">qy</span><span class="p">;</span>
+
+         <span class="nx">julia</span><span class="p">.</span><span class="nx">render</span><span class="hlrb5">(</span><span class="nx">u</span><span class="hlrb5">)</span><span class="p">;</span>
+     <span class="hlrb4">}</span> 
+ <span class="hlrb3">}</span>
+
+ <span class="nx">bindScrollTriggers</span><span class="hlrb3">(</span>
+     <span class="nx">julia</span><span class="p">.</span><span class="nx">gl</span><span class="p">.</span><span class="nx">canvas</span><span class="p">,</span>
+     <span class="kd">function</span><span class="hlrb4">(</span><span class="hlrb4">)</span><span class="hlrb4">{</span> 
+         <span class="nx">addAnimation</span><span class="hlrb5">(</span><span class="nx">render</span><span class="hlrb5">)</span><span class="p">;</span>
+     <span class="hlrb4">}</span><span class="p">,</span>
+     <span class="kd">function</span><span class="hlrb4">(</span><span class="hlrb4">)</span><span class="hlrb4">{</span>
+         <span class="nx">removeAnimation</span><span class="hlrb5">(</span><span class="nx">render</span><span class="hlrb5">)</span><span class="p">;</span>
+     <span class="hlrb4">}</span>
+ <span class="hlrb3">)</span><span class="p">;</span>
+
+<span class="hlrb2">}</span><span class="hlrb1">)</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/script&gt;&lt;/div&gt;</span>
+</pre></div>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn-unique string">
+<p>You may source or comment upon your claims within footnotes,
+embedding external references as appropriate
+«<a href="https://www.example.com" id="generated-link-id50">example.com</a>». A user may hover over the ↩ icon
+next to the footnote to see the context surrounding its usage and click it to
+return to that location in the article. <a class="footnote-backref" href="#fnref-unique string" id="generated-link-id51" title="A provocative or dubious claim is well served by a footnote, which will be placed at the bottom of the page">↩</a></p>
+</li>
+<li id="fn-nocontext">
+<p>This footnote will not display its context when the ↩ icon is
+hovered over. <a class="footnote-backref" href="#fnref-nocontext" id="generated-link-id52" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+<script src="theme/js/lib/d3.v5.min.js"></script>
+<script src="theme/js/lib/simplify.js"></script>
+<script src="theme/js/charts.js"></script>
+<script src="theme/js/chart_components.js"></script>
+
+<script src="theme/js/lib/twgl.min.js"></script>
+<script src="theme/js/minshader.js"></script>
+<script id="twgl_vs" type="x-shader/x-vertex">
+ attribute vec4 position;
+
+ void main() {
+     gl_Position = position;
+}
+</script>
+
+</article>
+    </main>
+
+    <script type="text/javascript">
+     engage();
+    </script>
+  </body>
+
+</html>

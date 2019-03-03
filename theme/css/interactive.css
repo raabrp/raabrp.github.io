@@ -3,6 +3,10 @@
  * Layout and positions only
  */
 
+.hidden {
+    visibility: hidden;
+}
+
 /* global links */
 a {
     text-decoration: none;
@@ -31,7 +35,7 @@ nav li > a:only-child {
 menu nav {
     white-space: nowrap;
     font-size: 150%;
-    line-height: 1.5em;
+    line-height: 1.2em;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -159,7 +163,21 @@ menu input:checked ~ label > div > :nth-child(3) {
         bottom: 1em;
         padding: 2ch;
         list-style-position: inside;
-        width: 66ch;
+        width: 55ch;
         pointer-events: none;
     }
+}
+
+/*
+ *  ____                  _
+ * / ___| _ __   ___  ___| | __
+ * \___ \| '_ \ / _ \/ __| |/ /
+ *  ___) | |_) |  __/ (__|   <
+ * |____/| .__/ \___|\___|_|\_\
+ *       |_|
+ */
+
+.speck-canvas {
+    width: 100%;
+    height: 100%;
 }

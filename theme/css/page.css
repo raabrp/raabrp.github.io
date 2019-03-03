@@ -2,3 +2,16 @@
  * Different css for index.html and pages
  * (Layout and positioning)
  */
+
+/* Hide table of contents */
+div.toc {
+    display: none;
+}
+
+main {
+    max-width: 80ch;
+}
+
+.active-ref {
+    width: 80ch;
+}

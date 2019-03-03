@@ -294,7 +294,7 @@ function animate_periodic_with(
     var tabulated_values = {};
 
     for(var p=0; p < frames_per_period; p++) {
-        tabulated_values[p] = 
+        tabulated_values[p] =
             parameterized_object_generator(p / frames_per_period);
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
     <title>
 Chess    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
 
     <!-- CSS for Layout -->
     <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
@@ -17,21 +19,20 @@ Chess    </title>
 
     <!-- CSS for Colors -->
     <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/color-light-rotated.css">
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
     <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/color-light-default.css">
+          class="color-css" href="theme/css/colors/color-light-default.css">
     <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/color-dark-rotated.css">
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
     <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/color-dark-default.css">
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
 
-    <!--
-    The google fonts API nominally minimizes data collection
-    https://developers.google.com/fonts/faq
-    #what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
-    -->
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:600i|Roboto">
+          href="theme/css/fonts.css">
 
     <!-- JS for Color Theming -->
     <script type="text/javascript">
@@ -52,7 +53,7 @@ Chess    </title>
          for (var i=0; i < color_links.length; i++) {
              var link = color_links[i];
              if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/color-' + val + '.css';
+                 link.href = 'theme/css/colors/color-' + val + '.css';
              } else {
                  link.removeAttribute('href');
              }
@@ -150,9 +151,10 @@ Chess    </title>
         </nav>
       </menu>
 
+      <div id="top-spacer"></div>
 
 <header>
-    <h1>
+    <h1 id="title-header">
         Chess
     </h1>
 </header>
@@ -167,19 +169,19 @@ Chess    </title>
 <div id="board" style="width: 100%;"></div>
 <br/>
 <div style="text-align:center;">
-<input class="button" id="startBtn" type="button" value="&lt;&lt;"/>
-<input class="button" id="prevBtn" type="button" value="&lt;"/>
-<input class="button" id="resetBtn" type="button" value="Init"/>
-<input class="button" id="nextBtn" type="button" value="&gt;"/>
-<input class="button" id="lastBtn" type="button" value="&gt;&gt;"/>
-<input class="button" id="flipBtn" type="button" value="Flip"/>
+<input id="startBtn" type="button" value="&lt;&lt;"/>
+<input id="prevBtn" type="button" value="&lt;"/>
+<input id="resetBtn" type="button" value="Init"/>
+<input id="nextBtn" type="button" value="&gt;"/>
+<input id="lastBtn" type="button" value="&gt;&gt;"/>
+<input id="flipBtn" type="button" value="Flip"/>
 </div>
 <hr/>
 <div style="text-align:center;">
-<input class="button" id="linkBtn" type="button" value="Link"/>
-<input class="button" id="fenBtn" type="button" value="FEN"/>
-<input class="button" id="pgnBtn" type="button" value="PGN"/>
-<input class="button" id="loadBtn" type="button" value="Load"/>
+<input id="linkBtn" type="button" value="Link"/>
+<input id="fenBtn" type="button" value="FEN"/>
+<input id="pgnBtn" type="button" value="PGN"/>
+<input id="loadBtn" type="button" value="Load"/>
 </div>
 <br/>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
@@ -190,6 +192,11 @@ Chess    </title>
 <a href="http://chessboardjs.com/" id="generated-link-id2">chessboard.js</a><br/>
 <a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
 <script type="text/javascript">
+
+ function copyField() {
+     document.getElementById("field").select();
+     document.execCommand("copy");
+ }
 
  // url is simply PGN sequence. Cross-compatible with Apronus
  function parse_url() {
@@ -394,15 +401,16 @@ Chess    </title>
  $('#flipBtn').on('click', board.flip);
  $('#linkBtn').on('click', function() {
      fieldEl.val(generate_url());
-     fieldEl.select();
+     copyField();
  });
  $('#fenBtn').on('click', function() {
      fieldEl.val(game.fen());
-     fieldEl.select();
+     copyField();
+
  });
  $('#pgnBtn').on('click', function() {
      fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
-     fieldEl.select();
+     copyField();
  });
  $('#loadBtn').on('click', function() {
      if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
@@ -423,9 +431,9 @@ Chess    </title>
 </article>
     </main>
 
-
-
-
+    <script type="text/javascript">
+     engage();
+    </script>
   </body>
 
 </html>

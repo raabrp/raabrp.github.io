@@ -1,60 +1,40 @@
 ---
-slug: about
 title: About
+slug: about
 date: 2018-04-04
-last_updated: 2018-07-20
 ---
 
-# Me
+# About me
 
 Hi! My name is Reilly.
 
-I'm originally from the foothills of northern California, and I studied physics
-(BSc) at 
-[UC Santa Barbara's College of Creative Studies](https://ccs.ucsb.edu/) 
-(my undergraduate thesis[^Thesis] addressed errors in high-frequency, analog
-signal processing used for controlling a superconducting quantum computer).
+I'm originally from the foothills of northern California.
 
-I've spent the last few years travelling (Eastern Asia, Eastern Australia, and
-North America) while reading extensively, pursuing a few personal projects, and
-working in software.
+I studied physics (BSc) at UC Santa Barbara's
+[College of Creative Studies](https://ccs.ucsb.edu/).[^Thesis]
 
-## Online Presence 
-
-Is currently minimal, having shunned social media. 
-
-I have a [github](https://github.com/raabrp), though it represents a small slice
-of my private codebase, much like this site in relation to my essays.
-
-# This Site 
-
-## Non-Technical
-
-This is mostly a space for me share my fascination with various subjects, to 
-publish personal essays and to communicate about projects or developments which
-are important to me. I have over 45000 words spread over various essays sitting
-in my drafts folder as of Nov 2018... I'll put more of them up here soon enough,
-I promise.
-
-## Technical
-
-I'm using [pelican](https://blog.getpelican.com) to render this site from
-[markdown](/test.html) and hosting the result via 
-[github pages](https://pages.github.com/).
-
-My domain is registered with [Namecheap](https://www.namecheap.com/), which 
-points to [cloudflare](https://www.cloudflare.com/)'s nameservers, which have
-DNS `A` records pointing to the IP address for the github pages servers.
-
-At the end of the day, I write in Markdown with a few custom extensions, use a 
-script that builds and previews the site locally, (with python and node.js), and
-I publish my changes by pushing to the hosted git repo.
-
-The relevant [code](https://github.com/raabrp/rraabblog) is hosted
-publically on github for anyone to use, under the MIT license. It is not 
-perfect, but seeks to avoid as much bloat as possible while doing what I want 
-it to. Please, use and [hack](https://en.wikipedia.org/wiki/Hacker_culture) it
-to your heart's content.
-
-[^Thesis]: Undergrad thesis: 
+[^Thesis]: My undergraduate thesis addresses errors in superconducting qubit
+control caused by signal-processing hardware imperfections:
 <<[web.physics.ucsb.edu](http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf)>>
+
+After graduation, I spent a few years traveling (Eastern Asia, Eastern
+Australia, and North America) while reading extensively, pursuing a few personal
+projects, and working in software development.
+
+In 2019, I'll be starting graduate study in Computer Science.
+
+# About this site
+
+This a space for me share my fascination with various subjects, to publish
+personal essays, and to communicate about projects or developments which
+are important to me.
+
+This site is generated using a combination of Javascript and Python. I write
+content in Markdown[^Demo] and publish my changes using
+git ([github](https://github.com/raabrp/raabrp.github.io)). The 
+[code](https://github.com/raabrp/rraabblog) I've written for this purpose is
+published under the MIT license. It is not perfect, but seeks to avoid as much
+bloat as possible while doing what I want it to. Please, use and
+[hack](https://en.wikipedia.org/wiki/Hacker_culture) it to your heart's content.
+
+[^Demo]: See [this demo](/demo.html)

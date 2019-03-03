@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
     <title>
 It's So Much Bigger Than Facebook    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
 
     <!-- CSS for Layout -->
     <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
@@ -17,21 +19,20 @@ It's So Much Bigger Than Facebook    </title>
 
     <!-- CSS for Colors -->
     <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/color-light-rotated.css">
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
     <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/color-light-default.css">
+          class="color-css" href="theme/css/colors/color-light-default.css">
     <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/color-dark-rotated.css">
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
     <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/color-dark-default.css">
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
 
-    <!--
-    The google fonts API nominally minimizes data collection
-    https://developers.google.com/fonts/faq
-    #what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
-    -->
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:600i|Roboto">
+          href="theme/css/fonts.css">
 
     <!-- JS for Color Theming -->
     <script type="text/javascript">
@@ -52,7 +53,7 @@ It's So Much Bigger Than Facebook    </title>
          for (var i=0; i < color_links.length; i++) {
              var link = color_links[i];
              if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/color-' + val + '.css';
+                 link.href = 'theme/css/colors/color-' + val + '.css';
              } else {
                  link.removeAttribute('href');
              }
@@ -149,16 +150,17 @@ It's So Much Bigger Than Facebook    </title>
         </nav>
       </menu>
 
+      <div id="top-spacer"></div>
 
 <header>
-    <h1>
+    <h1 id="title-header">
         It's So Much Bigger Than Facebook
     </h1>
     <p>
         Estimated read time: 32 minutes
     </p>
     <p>
-        Publish Date: 2018 April 10 <br>
+        Publish Date: 2018 April 10 <br><br>
         Last Updated: 2018 July 20
     </p>
 </header>
@@ -169,11 +171,11 @@ It's So Much Bigger Than Facebook    </title>
 <li>
 <p>The free online tools we rely on are being used to divide and conquer our
 sources of information and our understanding of current events via methods
-once considered the purview of military psychological operations.<sup id="fnref3:Psyops"><a class="footnote-ref" href="#fn:Psyops" id="generated-link-id0" rel="footnote">1</a></sup></p>
+once considered the purview of military psychological operations.<sup id="fnref3-Psyops"><a class="footnote-ref" href="#fn-Psyops" id="generated-link-id0">1</a></sup></p>
 </li>
 <li>
 <p>What we buy, what we share online, what we think about, how we 
-feel<sup id="fnref:Contagion"><a class="footnote-ref" href="#fn:Contagion" id="generated-link-id1" rel="footnote">2</a></sup>, and how we voice our opinions are being tracked and 
+feel<sup id="fnref-Contagion"><a class="footnote-ref" href="#fn-Contagion" id="generated-link-id1">2</a></sup>, and how we voice our opinions are being tracked and 
 manipulated to drive this process towards a future where intellectual liberty 
 and individual agency are increasingly illusory.</p>
 </li>
@@ -190,7 +192,7 @@ structural and much more significant than a single company:</p>
   surveillance as a service.</p>
 </li>
 <li>
-<p>Our attention has become a precious and rationed commodity.<sup id="fnref:Attention"><a class="footnote-ref" href="#fn:Attention" id="generated-link-id2" rel="footnote">3</a></sup> As we
+<p>Our attention has become a precious and rationed commodity.<sup id="fnref-Attention"><a class="footnote-ref" href="#fn-Attention" id="generated-link-id2">3</a></sup> As we
   are besought on all fronts by advertising, directed messaging, and our own 
   needs to be heard by each other, viewership must be solicited by viral 
   exploitation of human psychology - sometimes in tragic and destructive ways, 
@@ -198,9 +200,9 @@ structural and much more significant than a single company:</p>
 </li>
 <li>
 <p>The government agencies we depend on to reconcile corporate incentives with 
-  our social values have been captured by corporations.<sup id="fnref3:Regulations"><a class="footnote-ref" href="#fn:Regulations" id="generated-link-id3" rel="footnote">4</a></sup> 
+  our social values have been captured by corporations.<sup id="fnref3-Regulations"><a class="footnote-ref" href="#fn-Regulations" id="generated-link-id3">4</a></sup> 
   Meanwhile, we lack confidence in our political leaders to challenge existing
-  power or to restrain government use of this apparatus<sup id="fnref2:Psyops"><a class="footnote-ref" href="#fn:Psyops" id="generated-link-id4" rel="footnote">1</a></sup> from ends 
+  power or to restrain government use of this apparatus<sup id="fnref2-Psyops"><a class="footnote-ref" href="#fn-Psyops" id="generated-link-id4">1</a></sup> from ends 
   immiscible with our core values as a people.</p>
 </li>
 <li>
@@ -225,12 +227,12 @@ opinion. It is eroding the core foundations of how people behave by and
 between each other.</p>
 <p>Um, and I don’t have a good solution. You know, my solution is I just don’t 
 use these tools anymore.</p>
-<p>– Chamath Palihapitiy (Facebook Former Executive)<sup id="fnref2:Palihapitiy"><a class="footnote-ref" href="#fn:Palihapitiy" id="generated-link-id5" rel="footnote">5</a></sup></p>
+<p>– Chamath Palihapitiy (Facebook Former Executive)<sup id="fnref2-Palihapitiy"><a class="footnote-ref" href="#fn-Palihapitiy" id="generated-link-id5">5</a></sup></p>
 </blockquote>
 <p>This page is intended to offer a starting place for outlining the mechanisms
 and trends that both transcend and explain our recent revelations regarding 
 Facebook and Cambridge Analytica. In many ways, these developments have long 
-been predicted.<sup id="fnref:Predictions"><a class="footnote-ref" href="#fn:Predictions" id="generated-link-id6" rel="footnote">6</a></sup> We are now witnessing <em>how</em>.</p>
+been predicted.<sup id="fnref-Predictions"><a class="footnote-ref" href="#fn-Predictions" id="generated-link-id6">6</a></sup> We are now witnessing <em>how</em>.</p>
 <div class="toc">
 <ul>
 <li><a href="#building-the-machine" id="generated-link-id7">Building the Machine</a><ul>
@@ -279,7 +281,7 @@ viral content, and the security implications may wish to skip to
 <p>We’ve long recognized that Facebook is free because <em>we are the product</em>. We 
 give up our privacy on the platform and allow Facebook to sell information about
 us to advertisers for directing marketing campaigns. This is nothing new, 
-nor is it secret.<sup id="fnref:FacebookAds"><a class="footnote-ref" href="#fn:FacebookAds" id="generated-link-id31" rel="footnote">7</a></sup></p>
+nor is it secret.<sup id="fnref-FacebookAds"><a class="footnote-ref" href="#fn-FacebookAds" id="generated-link-id31">7</a></sup></p>
 <blockquote>
 <p>Zuck: <br/>
 <code>&gt; Yeah so if you ever need info about anyone at Harvard</code> <br/>
@@ -292,7 +294,7 @@ nor is it secret.<sup id="fnref:FacebookAds"><a class="footnote-ref" href="#fn:F
 <code>&gt; I don't know why.</code> <br/>
 <code>&gt; They "trust me"</code> <br/>
 <code>&gt; Dumb fucks</code></p>
-<p>– IM exchange between Zuckerberg at age 19 and an unknown friend<sup id="fnref:Dumbfucks"><a class="footnote-ref" href="#fn:Dumbfucks" id="generated-link-id32" rel="footnote">8</a></sup>
+<p>– IM exchange between Zuckerberg at age 19 and an unknown friend<sup id="fnref-Dumbfucks"><a class="footnote-ref" href="#fn-Dumbfucks" id="generated-link-id32">8</a></sup>
 </p>
 </blockquote>
 <p>This issue is usually discussed as one of privacy vs discretion. Nobody <em>forces</em>
@@ -327,7 +329,7 @@ more value to the company through a higher volume of collected personal data:</p
 <p>The incentives created by an advertising business model are to essentially 
 addict people psychologically to your product… They spend more time on the
 site and see more ads. They’re just more valuable to them.</p>
-<p>– Roger McNamee (one of Facebook’s original investors)<sup id="fnref:PBS"><a class="footnote-ref" href="#fn:PBS" id="generated-link-id34" rel="footnote">9</a></sup></p>
+<p>– Roger McNamee (one of Facebook’s original investors)<sup id="fnref-PBS"><a class="footnote-ref" href="#fn-PBS" id="generated-link-id34">9</a></sup></p>
 </blockquote>
 <p>One way to literally addict you to the platform is by exploiting our human need
 for social validation. By treating our online profiles as extensions of our
@@ -342,7 +344,7 @@ liked or commented on a photo or a post or whatever. And that’s going to get
 you to contribute more content … It’s a social-validation feedback loop 
 … you’re exploiting a vulnerability in human psychology. The inventors …
 understood this consciously. And we did it anyway.</p>
-<p>– Sean Parker (First President of Facebook)<sup id="fnref:Axios"><a class="footnote-ref" href="#fn:Axios" id="generated-link-id35" rel="footnote">10</a></sup></p>
+<p>– Sean Parker (First President of Facebook)<sup id="fnref-Axios"><a class="footnote-ref" href="#fn-Axios" id="generated-link-id35">10</a></sup></p>
 </blockquote>
 <p>As a consequence of this social feedback system, our own incentives lead us to 
 misrepresent our lives, warping both our own self-image and our sense of 
@@ -359,7 +361,7 @@ rewarded in these short-term signals - hearts, likes, thumb’s up - and we
 conflate that with value and we conflate it with truth. And instead what it 
 really is is fake, brittle popularity that’s short-term and that leaves you 
 even more – and admit it – vacant and empty.</p>
-<p>– Chamath Palihapitiy (Former Executive of Facebook)<sup id="fnref:Palihapitiy"><a class="footnote-ref" href="#fn:Palihapitiy" id="generated-link-id36" rel="footnote">5</a></sup></p>
+<p>– Chamath Palihapitiy (Former Executive of Facebook)<sup id="fnref-Palihapitiy"><a class="footnote-ref" href="#fn-Palihapitiy" id="generated-link-id36">5</a></sup></p>
 </blockquote>
 <h2 id="the-perversion-of-content-creation">The Perversion of Content Creation<a class="headerlink" href="#the-perversion-of-content-creation" id="generated-link-id37" title="Permanent link">#</a></h2>
 <p>While companies like Facebook were constructed to appeal to our vanity and our 
@@ -370,10 +372,10 @@ spawns the typical click-bait articles and sensational headlines, but it also
 singles out other specific patterns:</p>
 <p>The content and memes that go viral - reproducing through our shares, upvotes, 
 and reposts - are reflections of the selective pressures our emotional reactions
-exert on content.<sup id="fnref:Selection"><a class="footnote-ref" href="#fn:Selection" id="generated-link-id38" rel="footnote">11</a></sup> The analogy to genetic evolution is deep and 
-well-established.<sup id="fnref:Memes"><a class="footnote-ref" href="#fn:Memes" id="generated-link-id39" rel="footnote">13</a></sup> As a consequence, when the feedback mechanism goes
+exert on content.<sup id="fnref-Selection"><a class="footnote-ref" href="#fn-Selection" id="generated-link-id38">11</a></sup> The analogy to genetic evolution is deep and 
+well-established.<sup id="fnref-Memes"><a class="footnote-ref" href="#fn-Memes" id="generated-link-id39">13</a></sup> As a consequence, when the feedback mechanism goes
 awry - such as allowing young children to repeatedly select Youtube views - so 
-too does the content.<sup id="fnref:Elsagate"><a class="footnote-ref" href="#fn:Elsagate" id="generated-link-id40" rel="footnote">14</a></sup>,<sup id="fnref:Dogs"><a class="footnote-ref" href="#fn:Dogs" id="generated-link-id41" rel="footnote">15</a></sup></p>
+too does the content.<sup id="fnref-Elsagate"><a class="footnote-ref" href="#fn-Elsagate" id="generated-link-id40">14</a></sup>,<sup id="fnref-Dogs"><a class="footnote-ref" href="#fn-Dogs" id="generated-link-id41">15</a></sup></p>
 <p>As we vie alongside companies for each other’s increasingly besought attention
 and content is driven to extremes, less of our time is invested reading 
 articles or focusing on the complexities of any given issue: Our perceptions are
@@ -381,14 +383,14 @@ shaped by the headlines and images alone, and we conclude that the world is
 going crazy. We react to misleading stories without evaluating context, bias, or
 source material. Worse, we actively spread such content.</p>
 <p><strong><em>For political ends, the most effective content plays to our fears and 
-outrage.</em></strong><sup id="fnref:Vice"><a class="footnote-ref" href="#fn:Vice" id="generated-link-id42" rel="footnote">16</a></sup>,<sup id="fnref:Guardian"><a class="footnote-ref" href="#fn:Guardian" id="generated-link-id43" rel="footnote">17</a></sup> This is not, as Roger Stone would explain it, 
-because “Hate is a stronger motivator than love”.<sup id="fnref:GetMeRogerStone"><a class="footnote-ref" href="#fn:GetMeRogerStone" id="generated-link-id44" rel="footnote">18</a></sup> Quite the 
+outrage.</em></strong><sup id="fnref-Vice"><a class="footnote-ref" href="#fn-Vice" id="generated-link-id42">16</a></sup>,<sup id="fnref-Guardian"><a class="footnote-ref" href="#fn-Guardian" id="generated-link-id43">17</a></sup> This is not, as Roger Stone would explain it, 
+because “Hate is a stronger motivator than love”.<sup id="fnref-GetMeRogerStone"><a class="footnote-ref" href="#fn-GetMeRogerStone" id="generated-link-id44">18</a></sup> Quite the 
 opposite: We alert our communities to perceived threats to our survival. As with
 many animals, human society depends on such behavior.</p>
 <p>This flavor of fear-inducing and hateful messaging in times of power struggle is
 not new. The nature of propaganda in virtually every war reflects this, as do 
-historical political pamphlets, newspapers,<sup id="fnref:Newspaper"><a class="footnote-ref" href="#fn:Newspaper" id="generated-link-id45" rel="footnote">19</a></sup> radio,<sup id="fnref:Radio"><a class="footnote-ref" href="#fn:Radio" id="generated-link-id46" rel="footnote">20</a></sup> and 
-television.<sup id="fnref:Television"><a class="footnote-ref" href="#fn:Television" id="generated-link-id47" rel="footnote">21</a></sup> <strong><em>What is new is the ability to target this messaging 
+historical political pamphlets, newspapers,<sup id="fnref-Newspaper"><a class="footnote-ref" href="#fn-Newspaper" id="generated-link-id45">19</a></sup> radio,<sup id="fnref-Radio"><a class="footnote-ref" href="#fn-Radio" id="generated-link-id46">20</a></sup> and 
+television.<sup id="fnref-Television"><a class="footnote-ref" href="#fn-Television" id="generated-link-id47">21</a></sup> <strong><em>What is new is the ability to target this messaging 
 with laser precision.</em></strong> Throughout the 21st century, our media will be 
 increasingly individualized and capable of responding in near real-time to our 
 thoughts and actions - a data-driven battlefield for our minds where the powers 
@@ -402,30 +404,29 @@ social connections, messages, searches, posts, images, videos, emails, location
 history, group affiliations, and everything we’ve ever clicked on through the
 platform … nor what this information really entailed … nor who had access.</p>
 <p>In 2013, Facebook was revealed as a participant in the PRISM government 
-surveillance program through documents leaked by Edward Snowden.<sup id="fnref:PRISM"><a class="footnote-ref" href="#fn:PRISM" id="generated-link-id49" rel="footnote">22</a></sup>,
-<sup id="fnref:Snowden"><a class="footnote-ref" href="#fn:Snowden" id="generated-link-id50" rel="footnote">23</a></sup></p>
+surveillance program through documents leaked by Edward Snowden.<sup id="fnref-PRISM"><a class="footnote-ref" href="#fn-PRISM" id="generated-link-id49">22</a></sup>,
+<sup id="fnref-Snowden"><a class="footnote-ref" href="#fn-Snowden" id="generated-link-id50">23</a></sup></p>
 <p>This should have changed the calculus.</p>
 <blockquote>
 <p>Businesses that make money by collecting and selling detailed records of 
 private lives were once plainly described as “surveillance companies.” Their 
 rebranding as “social media” is the most successful deception since the 
 Department of War became the Department of Defense.</p>
-<p>– Edward Snowden<sup id="fnref3:Snowden"><a class="footnote-ref" href="#fn:Snowden" id="generated-link-id51" rel="footnote">23</a></sup></p>
+<p>– Edward Snowden<sup id="fnref3-Snowden"><a class="footnote-ref" href="#fn-Snowden" id="generated-link-id51">23</a></sup></p>
 </blockquote>
 <p>While some people abandoned ship in the wake of this revelation, the rest of us 
 collectively adapted to the new information, adopting the conclusion that only 
 criminals, perverts, and terrorists should be concerned. We convinced ourselves 
-that no True American<sup id="fnref:TrueScotsman"><a class="footnote-ref" href="#fn:TrueScotsman" id="generated-link-id52" rel="footnote">24</a></sup> need fear, putting our faith in the legal
-protections extended to our information<sup id="fnref:LegalProtections"><a class="footnote-ref" href="#fn:LegalProtections" id="generated-link-id53" rel="footnote">25</a></sup> and accepting that 
-this was the price we must pay for safety against terrorism.<sup id="fnref:FearTerrorism"><a class="footnote-ref" href="#fn:FearTerrorism" id="generated-link-id54" rel="footnote">26</a></sup></p>
+that no True American<sup id="fnref-TrueScotsman"><a class="footnote-ref" href="#fn-TrueScotsman" id="generated-link-id52">24</a></sup> need fear, putting our faith in the legal
+protections extended to our information<sup id="fnref-LegalProtections"><a class="footnote-ref" href="#fn-LegalProtections" id="generated-link-id53">25</a></sup> and accepting that 
+this was the price we must pay for safety against terrorism.<sup id="fnref-FearTerrorism"><a class="footnote-ref" href="#fn-FearTerrorism" id="generated-link-id54">26</a></sup></p>
 <p>In truth, these were rationalizations for inconvenient and uncomfortable 
-facts<sup id="fnref:Rationalization"><a class="footnote-ref" href="#fn:Rationalization" id="generated-link-id55" rel="footnote">27</a></sup>… rationalizations we continue to return to after
-each successive alarm.<sup id="fnref:NothingToHide"><a class="footnote-ref" href="#fn:NothingToHide" id="generated-link-id56" rel="footnote">28</a></sup></p>
+facts<sup id="fnref-Rationalization"><a class="footnote-ref" href="#fn-Rationalization" id="generated-link-id55">27</a></sup>… rationalizations we continue to return to after
+each successive alarm.<sup id="fnref-NothingToHide"><a class="footnote-ref" href="#fn-NothingToHide" id="generated-link-id56">28</a></sup></p>
 <p>We might have all prefered a world in which we left social media en masse or
 migrated to alternative platforms, but each of us was disincentivized from 
-leaving as long as everyone else stayed put.<sup id="fnref:SocialTerms"><a class="footnote-ref" href="#fn:SocialTerms" id="generated-link-id57" rel="footnote">29</a></sup> We were dissuaded
-from adopting convictions which appeared to be dismissed by the 
-minority.<sup id="fnref:Minority"><a class="footnote-ref" href="#fn:Minority" id="generated-link-id58" rel="footnote">30</a></sup></p>
+leaving as long as everyone else stayed put.<sup id="fnref-SocialTerms"><a class="footnote-ref" href="#fn-SocialTerms" id="generated-link-id57">29</a></sup> We were dissuaded
+from adopting convictions which appeared to be in the minority.<sup id="fnref-Minority"><a class="footnote-ref" href="#fn-Minority" id="generated-link-id58">30</a></sup></p>
 <p>In part, we may be forgiven for not appreciating the full extent of what has 
 been possible with our data nor the power it implied: Certain uses for that data
 were not known to be possible until research published eight years after 
@@ -443,18 +444,18 @@ perceptions.</p>
    information (including “sexual orientation, ethnicity, religious and 
    political views, personality traits, intelligence, happiness, use of 
    addictive substances, parental separation, age, and gender”), but 
-   psychometric classification as well. <sup id="fnref:KosinskiLikes"><a class="footnote-ref" href="#fn:KosinskiLikes" id="generated-link-id61" rel="footnote">31</a></sup>,<sup id="fnref3:Vice"><a class="footnote-ref" href="#fn:Vice" id="generated-link-id62" rel="footnote">16</a></sup>,<sup id="fnref4:Guardian"><a class="footnote-ref" href="#fn:Guardian" id="generated-link-id63" rel="footnote">17</a></sup> 
+   psychometric classification as well. <sup id="fnref-KosinskiLikes"><a class="footnote-ref" href="#fn-KosinskiLikes" id="generated-link-id61">31</a></sup>,<sup id="fnref3-Vice"><a class="footnote-ref" href="#fn-Vice" id="generated-link-id62">16</a></sup>,<sup id="fnref4-Guardian"><a class="footnote-ref" href="#fn-Guardian" id="generated-link-id63">17</a></sup> 
    The data Facebook collects about its users is enough to reveal which 
    political issues are important to us, what we fear, what we crave, what we 
-   emotionally respond to, and how we are likely to behave.<sup id="fnref4:Vice"><a class="footnote-ref" href="#fn:Vice" id="generated-link-id64" rel="footnote">16</a></sup>,<sup id="fnref:Surveys"><a class="footnote-ref" href="#fn:Surveys" id="generated-link-id65" rel="footnote">32</a></sup></p>
+   emotionally respond to, and how we are likely to behave.<sup id="fnref4-Vice"><a class="footnote-ref" href="#fn-Vice" id="generated-link-id64">16</a></sup>,<sup id="fnref-Surveys"><a class="footnote-ref" href="#fn-Surveys" id="generated-link-id65">32</a></sup></p>
 </li>
 <li>
 <p>Our collected communications are not merely a record of things we have said.
    It is possible to discriminate between the possible authors of a piece of 
    text through <em>stylometry</em> – comparing the sample to the known works of each 
-   possible author to find a match.<sup id="fnref2:Stylometry"><a class="footnote-ref" href="#fn:Stylometry" id="generated-link-id66" rel="footnote">33</a></sup> Recent developments in this
+   possible author to find a match.<sup id="fnref2-Stylometry"><a class="footnote-ref" href="#fn-Stylometry" id="generated-link-id66">33</a></sup> Recent developments in this
    field include identifying the authors of computer programs through source 
-   code<sup id="fnref:SourceCode"><a class="footnote-ref" href="#fn:SourceCode" id="generated-link-id67" rel="footnote">34</a></sup> or even compiled binaries.<sup id="fnref:Binaries"><a class="footnote-ref" href="#fn:Binaries" id="generated-link-id68" rel="footnote">35</a></sup> Moreover, this same 
+   code<sup id="fnref-SourceCode"><a class="footnote-ref" href="#fn-SourceCode" id="generated-link-id67">34</a></sup> or even compiled binaries.<sup id="fnref-Binaries"><a class="footnote-ref" href="#fn-Binaries" id="generated-link-id68">35</a></sup> Moreover, this same 
    information is technically capable of being used to mimic or misattribute 
    authorship.</p>
 </li>
@@ -464,12 +465,12 @@ perceptions.</p>
    data and used to identify individuals. This includes (but is not limited to)
    the way we walk and move, our response to directed stimuli, and even the 
    pattern of hardware access or system library calls generated by our computing
-   habits.<sup id="fnref2:Behavioral"><a class="footnote-ref" href="#fn:Behavioral" id="generated-link-id69" rel="footnote">36</a></sup></p>
+   habits.<sup id="fnref2-Behavioral"><a class="footnote-ref" href="#fn-Behavioral" id="generated-link-id69">36</a></sup></p>
 </li>
 </ol>
 <p>As we continue to discover that certain sets of behaviors and attributes
-correlate,<sup id="fnref:Cars"><a class="footnote-ref" href="#fn:Cars" id="generated-link-id70" rel="footnote">37</a></sup> our personal information becomes vulnerable to sidechannel 
-attacks which were previously impossible.<sup id="fnref:SideChannel"><a class="footnote-ref" href="#fn:SideChannel" id="generated-link-id71" rel="footnote">38</a></sup> <strong>We continuously leak 
+correlate,<sup id="fnref-Cars"><a class="footnote-ref" href="#fn-Cars" id="generated-link-id70">37</a></sup> our personal information becomes vulnerable to sidechannel 
+attacks which were previously impossible.<sup id="fnref-SideChannel"><a class="footnote-ref" href="#fn-SideChannel" id="generated-link-id71">38</a></sup> <strong>We continuously leak 
 information about ourselves which we cannot control.</strong> We reveal our 
 dispositions through the proxy of our social connections and our physical 
 environment: Facebook can recognize your face in the photos of others even if 
@@ -479,21 +480,21 @@ you’ve removed yourself from the platform. Google can guess at our friendships
 with personally revealing correlations, we are introducing embedded sensors and
 smart consumer products which can record the minutiae of our lives indefinitely.
 The profit engines of data collection are already being recreated on ambitious 
-scales to handle this transformation of our material culture.<sup id="fnref:Iot"><a class="footnote-ref" href="#fn:Iot" id="generated-link-id72" rel="footnote">39</a></sup> The cloud of
+scales to handle this transformation of our material culture.<sup id="fnref-Iot"><a class="footnote-ref" href="#fn-Iot" id="generated-link-id72">39</a></sup> The cloud of
 sensors, portals, gateways, databases, and data mining services we are 
 surrounding ourselves with is already on the cusp of knowing our habits better
 than we know them ourselves.</p>
 <p>Against the technical capabilities that lie on the horizon, even the diligence 
-of Richard Stallman<sup id="fnref:Stallman"><a class="footnote-ref" href="#fn:Stallman" id="generated-link-id73" rel="footnote">40</a></sup> will be insufficient to secure our individual
+of Richard Stallman<sup id="fnref-Stallman"><a class="footnote-ref" href="#fn-Stallman" id="generated-link-id73">40</a></sup> will be insufficient to secure our individual
 freedoms. <strong><em>Personal personal privacy is evaporating in 1s and 0s</em></strong>, and even
-George Orwell<sup id="fnref:HuxleyVsOrwell"><a class="footnote-ref" href="#fn:HuxleyVsOrwell" id="generated-link-id74" rel="footnote">41</a></sup> would have been impressed. By the time we realize
+George Orwell<sup id="fnref-HuxleyVsOrwell"><a class="footnote-ref" href="#fn-HuxleyVsOrwell" id="generated-link-id74">41</a></sup> would have been impressed. By the time we realize
 the magnitude of what has happened, it may be too late to redress. </p>
 <h2 id="information-is-power-data-is-king">Information is Power &amp; Data is King<a class="headerlink" href="#information-is-power-data-is-king" id="generated-link-id75" title="Permanent link">#</a></h2>
 <p>It is difficult to adequately express or overstate just how much power is 
 conferred by access to the stupidly large datasets we are currently generating.</p>
 <blockquote>
 <p>Give me the possession of a nation’s data and I care not who makes its laws.</p>
-<p>– Personal (facetious) adaptation of a quote by Andrew Fletcher<sup id="fnref:Fletcher"><a class="footnote-ref" href="#fn:Fletcher" id="generated-link-id76" rel="footnote">42</a></sup></p>
+<p>– Personal (facetious) adaptation of a quote by Andrew Fletcher<sup id="fnref-Fletcher"><a class="footnote-ref" href="#fn-Fletcher" id="generated-link-id76">42</a></sup></p>
 </blockquote>
 <p>Access to information amounts to a more complete and detailed understanding of 
 the world. The ability to extract this information from unexpected patterns in 
@@ -503,7 +504,7 @@ automation of tasks which may have never before been possible.</p>
 <p>It is instructive to consider that (despite the buzzwords and the hype) our 
 recent visible advances in “artificial intelligence” have not been due to 
 fundamental technical breakthroughs but rather increases in computing power and
-the accumulation of <em>massive datasets</em>.<sup id="fnref:AI"><a class="footnote-ref" href="#fn:AI" id="generated-link-id77" rel="footnote">43</a></sup> To address AI: our fear of 
+the accumulation of <em>massive datasets</em>.<sup id="fnref-AI"><a class="footnote-ref" href="#fn-AI" id="generated-link-id77">43</a></sup> To address AI: our fear of 
 intelligent killing machines is misdirected in the short term; the automated 
 biasing of what we see and hear is more descriptive of our current peril. </p>
 <p><strong>The vast quantity of data we produce and its restriction to only a few
@@ -515,7 +516,7 @@ leaving it vulnerable to exploitation. </p>
 <p>If you do not respect the agency of people, anything you do after that point 
 is not conducive to democracy.</p>
 <p>– Christopher Wylie (ex-Director of Research for Cambridge Analytica turned
-   whistleblower)<sup id="fnref3:Guardian"><a class="footnote-ref" href="#fn:Guardian" id="generated-link-id78" rel="footnote">17</a></sup></p>
+   whistleblower)<sup id="fnref3-Guardian"><a class="footnote-ref" href="#fn-Guardian" id="generated-link-id78">17</a></sup></p>
 </blockquote>
 <p>The antebellum American South demonstrated the power of information asymmetry in
 its execution of plantation slavery: A slave in pre-civil war Louisiana might 
@@ -525,7 +526,7 @@ verses selectively read to them to provide a metaphysical justification for
 worldly labor and suffering. Of course, history is rife with such examples. Our
 entire reality is defined by our access to information.</p>
 <p>This is not just an American problem, though America has been targetted 
-specifically<sup id="fnref:Leaks"><a class="footnote-ref" href="#fn:Leaks" id="generated-link-id79" rel="footnote">46</a></sup>.</p>
+specifically<sup id="fnref-Leaks"><a class="footnote-ref" href="#fn-Leaks" id="generated-link-id79">46</a></sup>.</p>
 <h2 id="the-balkanization-of-the-internet">The Balkanization of the Internet<a class="headerlink" href="#the-balkanization-of-the-internet" id="generated-link-id80" title="Permanent link">#</a></h2>
 <p>Facebook’s true geopolitical weight is felt abroad; it has aggressively 
 targeted underdeveloped countries for market expansion.</p>
@@ -535,32 +536,32 @@ wrestle with the company for sovereignty over information channels, the
 bargaining chips are censorship, surveillance, anti-competitive practices, and 
 the benefits of having a connected populace. Varying degrees of capitulation in
 each case - especially over censorship - have driven the splintering of the 
-internet itself into disjoint spheres of content and services.<sup id="fnref:NYTimes"><a class="footnote-ref" href="#fn:NYTimes" id="generated-link-id81" rel="footnote">44</a></sup></p>
+internet itself into disjoint spheres of content and services.<sup id="fnref-NYTimes"><a class="footnote-ref" href="#fn-NYTimes" id="generated-link-id81">44</a></sup></p>
 <p>Facebook has had notable success in Africa. In the legitimate name of improving
 people’s lives through internet access, the company has been investing in
 infrastructure including unmanned solar aircraft and laser communications to
-reach remote places.<sup id="fnref:ConnectivityLabs"><a class="footnote-ref" href="#fn:ConnectivityLabs" id="generated-link-id82" rel="footnote">45</a></sup> This effort has notably been assisted by
+reach remote places.<sup id="fnref-ConnectivityLabs"><a class="footnote-ref" href="#fn-ConnectivityLabs" id="generated-link-id82">45</a></sup> This effort has notably been assisted by
 the use of image recognition algorithms and satellite photography to make some 
-of the most detailed maps of human settlements ever produced.<sup id="fnref:AfricaMaps"><a class="footnote-ref" href="#fn:AfricaMaps" id="generated-link-id83" rel="footnote">47</a></sup> These
+of the most detailed maps of human settlements ever produced.<sup id="fnref-AfricaMaps"><a class="footnote-ref" href="#fn-AfricaMaps" id="generated-link-id83">47</a></sup> These
 are genuinely noble goals which are easy to market.</p>
 <p>In practice, the “Free Basics” program which is bundled with the expanding 
 network - a small set of selected services such as Facebook which are offered
 for free - has the side-effect of making most of the newly connected population
 dependent on Facebook for their news, business, and 
-communications.<sup id="fnref:GuardianAfrica"><a class="footnote-ref" href="#fn:GuardianAfrica" id="generated-link-id84" rel="footnote">48</a></sup> It is a power grab.</p>
+communications.<sup id="fnref-GuardianAfrica"><a class="footnote-ref" href="#fn-GuardianAfrica" id="generated-link-id84">48</a></sup> It is a power grab.</p>
 <h2 id="predictive-policing">Predictive Policing<a class="headerlink" href="#predictive-policing" id="generated-link-id85" title="Permanent link">#</a></h2>
 <p>Our information is not merely at the disposal of tech companies and the federal
 government: local law enforcement in the USA has become increasingly dependent
 on companies which aggregate our personal data with interagency records. ECM 
-Universe<sup id="fnref:ECMUniverse"><a class="footnote-ref" href="#fn:ECMUniverse" id="generated-link-id86" rel="footnote">49</a></sup> for example explicitly solicits law enforcement with the
+Universe<sup id="fnref-ECMUniverse"><a class="footnote-ref" href="#fn-ECMUniverse" id="generated-link-id86">49</a></sup> for example explicitly solicits law enforcement with the
 ability to scrape social media for posts which indicate a risk of illegal 
-behavior.<sup id="fnref:PredictivePolicing"><a class="footnote-ref" href="#fn:PredictivePolicing" id="generated-link-id87" rel="footnote">50</a></sup></p>
+behavior.<sup id="fnref-PredictivePolicing"><a class="footnote-ref" href="#fn-PredictivePolicing" id="generated-link-id87">50</a></sup></p>
 <p>Companies like Palantir and PredPol use this data in combination with 
 statistical models to predict the identities, locations, and behavioral patterns
-of suspected criminals and targets.<sup id="fnref:Palantir"><a class="footnote-ref" href="#fn:Palantir" id="generated-link-id88" rel="footnote">51</a></sup> In addition to these techniques,
+of suspected criminals and targets.<sup id="fnref-Palantir"><a class="footnote-ref" href="#fn-Palantir" id="generated-link-id88">51</a></sup> In addition to these techniques,
 some police departments have adopted the use of drone surveillance and cellular
 interceptions without public disclosure and without revealing these methods to
-the courts.<sup id="fnref:Drones"><a class="footnote-ref" href="#fn:Drones" id="generated-link-id89" rel="footnote">52</a></sup>,<sup id="fnref:Stingray"><a class="footnote-ref" href="#fn:Stingray" id="generated-link-id90" rel="footnote">53</a></sup></p>
+the courts.<sup id="fnref-Drones"><a class="footnote-ref" href="#fn-Drones" id="generated-link-id89">52</a></sup>,<sup id="fnref-Stingray"><a class="footnote-ref" href="#fn-Stingray" id="generated-link-id90">53</a></sup></p>
 <h1 id="our-current-status">Our Current Status<a class="headerlink" href="#our-current-status" id="generated-link-id91" title="Permanent link">#</a></h1>
 <h2 id="political-divisions">Political Divisions<a class="headerlink" href="#political-divisions" id="generated-link-id92" title="Permanent link">#</a></h2>
 <p>Anyone who has not connected the dots between the rise of a surveillance / 
@@ -577,18 +578,18 @@ understanding of current events. <strong><em>It has become a scientific exercise
 manipulate popular opinion without anyone realizing that it is happening.</em></strong></p>
 <p>To illustrate this capability, we need not only harp on Facebook and our 
 growing realization of the role that it played with Cambridge Analytica in
-propelling Brexit and Trump’s election<sup id="fnref2:Vice"><a class="footnote-ref" href="#fn:Vice" id="generated-link-id93" rel="footnote">16</a></sup>,<sup id="fnref2:Guardian"><a class="footnote-ref" href="#fn:Guardian" id="generated-link-id94" rel="footnote">17</a></sup> (though we 
+propelling Brexit and Trump’s election<sup id="fnref2-Vice"><a class="footnote-ref" href="#fn-Vice" id="generated-link-id93">16</a></sup>,<sup id="fnref2-Guardian"><a class="footnote-ref" href="#fn-Guardian" id="generated-link-id94">17</a></sup> (though we 
 <em>absolutely</em> should).</p>
 <h2 id="google">Google<a class="headerlink" href="#google" id="generated-link-id95" title="Permanent link">#</a></h2>
 <p>Google has even more leverage than Facebook over much of society. It is the 
 world’s largest advertising platform, its largest search engine, its largest 
-email provider, the publisher of its largest mobile operating system<sup id="fnref:Phone"><a class="footnote-ref" href="#fn:Phone" id="generated-link-id96" rel="footnote">54</a></sup>, 
+email provider, the publisher of its largest mobile operating system<sup id="fnref-Phone"><a class="footnote-ref" href="#fn-Phone" id="generated-link-id96">54</a></sup>, 
 the provider for its most popular web browser, a producer of global street-level
 imagery, a repository for searchable public datasets, and an endpoint for 
 satellite imagery. Even in the domain of social networking, Google+ is the most 
 commonly recognized alternative to Facebook. Without hyperbole, Google knows
 things about us we’ve never told another living soul - or might not consciously 
-admit to ourselves.<sup id="fnref:EverybodyLies"><a class="footnote-ref" href="#fn:EverybodyLies" id="generated-link-id97" rel="footnote">55</a></sup></p>
+admit to ourselves.<sup id="fnref-EverybodyLies"><a class="footnote-ref" href="#fn-EverybodyLies" id="generated-link-id97">55</a></sup></p>
 <p>In 2013, Robert Epstein started raising concerns over Google’s ability to sway 
 elections by manipulating the order of returned search results. Epstein and
 Robertson were able to demonstrate the effectiveness of this technique by 
@@ -596,10 +597,10 @@ biasing search results in experiments while evading the awareness of their test
 subjects - and swaying opinions about candidates. By extending this technique to
 specific, undecided voters in key electoral blocks, they suggested that it was
 possible for Google to influence the outcome of an election while avoiding
-public awareness.<sup id="fnref:Google"><a class="footnote-ref" href="#fn:Google" id="generated-link-id98" rel="footnote">56</a></sup> </p>
-<p>Even if <s>Google’s</s> Alphabet’s motto <s>“Don’t be Evil”</s><sup id="fnref:Motto"><a class="footnote-ref" href="#fn:Motto" id="generated-link-id99" rel="footnote">57</a></sup> “Do the
+public awareness.<sup id="fnref-Google"><a class="footnote-ref" href="#fn-Google" id="generated-link-id98">56</a></sup> </p>
+<p>Even if <s>Google’s</s> Alphabet’s motto <s>“Don’t be Evil”</s><sup id="fnref-Motto"><a class="footnote-ref" href="#fn-Motto" id="generated-link-id99">57</a></sup> “Do the
 Right Thing” is taken at face value, this amount of concentrated power is an
-inherent threat to any concept of democratic liberties.<sup id="fnref:Evil"><a class="footnote-ref" href="#fn:Evil" id="generated-link-id100" rel="footnote">58</a></sup> While Epstein
+inherent threat to any concept of democratic liberties.<sup id="fnref-Evil"><a class="footnote-ref" href="#fn-Evil" id="generated-link-id100">58</a></sup> While Epstein
 worried that this capability would be weaponized to usher in Hillary Clinton’s
 presidency, we demonstrably witnessed this same process - selectively adjusting
 key voter’s informational diets - successfully employed to elect her opponent in
@@ -607,34 +608,34 @@ key voter’s informational diets - successfully employed to elect her opponent 
 <p><strong><em>Our democratic process itself faces an existential threat.</em></strong></p>
 <h2 id="russia-and-china">Russia and China<a class="headerlink" href="#russia-and-china" id="generated-link-id101" title="Permanent link">#</a></h2>
 <p>Some of the dystopian trends which threaten the United States if power were to 
-be consolidated have already been realized in Russia and China.<sup id="fnref2:Snowden"><a class="footnote-ref" href="#fn:Snowden" id="generated-link-id102" rel="footnote">23</a></sup></p>
+be consolidated have already been realized in Russia and China.<sup id="fnref2-Snowden"><a class="footnote-ref" href="#fn-Snowden" id="generated-link-id102">23</a></sup></p>
 <p>Putin’s Russia exemplifies the precipitous slide of a surveillance state. On the
 heels of the Arab Spring (noted for the organizational role which social media 
 played), protests in 2011 and 2012 in Moscow caused the FSB to identify the 
 internet and social media as vectors for instability. Further compelled by 
 information provided by Edward Snowden, Russia moved aggressively to assert its
 control over these channels, which it accused the United States of 
-manipulating.<sup id="fnref:WorldPolicy"><a class="footnote-ref" href="#fn:WorldPolicy" id="generated-link-id103" rel="footnote">59</a></sup>,<sup id="fnref:PutinsRevenge"><a class="footnote-ref" href="#fn:PutinsRevenge" id="generated-link-id104" rel="footnote">60</a></sup></p>
+manipulating.<sup id="fnref-WorldPolicy"><a class="footnote-ref" href="#fn-WorldPolicy" id="generated-link-id103">59</a></sup>,<sup id="fnref-PutinsRevenge"><a class="footnote-ref" href="#fn-PutinsRevenge" id="generated-link-id104">60</a></sup></p>
 <blockquote>
 <p>Over the last two years, the Kremlin has transformed Russia into a 
 surveillance state - at a level that would have made the Soviet KGB (Committee
 for State Security) envious.</p>
-<p>– Andrei Soldatov and Irina Borogan (of Agentura.ru) in 2013<sup id="fnref2:WorldPolicy"><a class="footnote-ref" href="#fn:WorldPolicy" id="generated-link-id105" rel="footnote">59</a></sup></p>
+<p>– Andrei Soldatov and Irina Borogan (of Agentura.ru) in 2013<sup id="fnref2-WorldPolicy"><a class="footnote-ref" href="#fn-WorldPolicy" id="generated-link-id105">59</a></sup></p>
 </blockquote>
 <p>Since 2012, Russia has cracked down on protests, enacted comprehensive digital
-censorship and surveillance measures<sup id="fnref:SORM"><a class="footnote-ref" href="#fn:SORM" id="generated-link-id106" rel="footnote">61</a></sup>, and successfully mounted an 
+censorship and surveillance measures<sup id="fnref-SORM"><a class="footnote-ref" href="#fn-SORM" id="generated-link-id106">61</a></sup>, and successfully mounted an 
 offensive against America’s political process using these same tools.</p>
 <p>The situation in China is comparable.</p>
 <p>In the face of demographic imbalance and a slowing economy, the CCP under 
-Xi Jinping has bolstered its ubiquitous censorship<sup id="fnref:GreatFirewall"><a class="footnote-ref" href="#fn:GreatFirewall" id="generated-link-id107" rel="footnote">63</a></sup> and 
-unified its authoritarian state media.<sup id="fnref:VoiceOfChina"><a class="footnote-ref" href="#fn:VoiceOfChina" id="generated-link-id108" rel="footnote">64</a></sup> Meanwhile, a national 
+Xi Jinping has bolstered its ubiquitous censorship<sup id="fnref-GreatFirewall"><a class="footnote-ref" href="#fn-GreatFirewall" id="generated-link-id107">63</a></sup> and 
+unified its authoritarian state media.<sup id="fnref-VoiceOfChina"><a class="footnote-ref" href="#fn-VoiceOfChina" id="generated-link-id108">64</a></sup> Meanwhile, a national 
 network of closed-circuit television cameras is being augmented with facial 
-recognition,<sup id="fnref:ChinaFacial"><a class="footnote-ref" href="#fn:ChinaFacial" id="generated-link-id109" rel="footnote">62</a></sup> the country is adopting the social media platform 
-WeChat as a means official government identificaion,<sup id="fnref:WeChat"><a class="footnote-ref" href="#fn:WeChat" id="generated-link-id110" rel="footnote">65</a></sup> and it is testing
+recognition,<sup id="fnref-ChinaFacial"><a class="footnote-ref" href="#fn-ChinaFacial" id="generated-link-id109">62</a></sup> the country is adopting the social media platform 
+WeChat as a means official government identificaion,<sup id="fnref-WeChat"><a class="footnote-ref" href="#fn-WeChat" id="generated-link-id110">65</a></sup> and it is testing
 plans for a social credit system: one which ranks individuals based on a 
 comprehensive set of data used to restrict access to 
-services.<sup id="fnref:SocialRating"><a class="footnote-ref" href="#fn:SocialRating" id="generated-link-id111" rel="footnote">66</a></sup> Moreover, not all of this data is
-secure.<sup id="fnref:ChinaSellData"><a class="footnote-ref" href="#fn:ChinaSellData" id="generated-link-id112" rel="footnote">67</a></sup></p>
+services.<sup id="fnref-SocialRating"><a class="footnote-ref" href="#fn-SocialRating" id="generated-link-id111">66</a></sup> Moreover, not all of this data is
+secure.<sup id="fnref-ChinaSellData"><a class="footnote-ref" href="#fn-ChinaSellData" id="generated-link-id112">67</a></sup></p>
 <p>An uncertain future and unstable climate do not bode well for defending against
 “turnkey totalitarianism”.</p>
 <h1 id="the-future">The Future<a class="headerlink" href="#the-future" id="generated-link-id113" title="Permanent link">#</a></h1>
@@ -649,7 +650,7 @@ against a foreign and carefully represented “other”.</p>
 <p>Which news stories we learn of, how they are portrayed, the apparent consensus 
 of our peers, the bounds of socially appropriate discourse and debate, how long 
 a news story stays in focus … all are already biased by our media, as famously
-noted by Noam Chomsky.<sup id="fnref:ManufacturingConsent"><a class="footnote-ref" href="#fn:ManufacturingConsent" id="generated-link-id115" rel="footnote">68</a></sup> These same filters and lenses risk
+noted by Noam Chomsky.<sup id="fnref-ManufacturingConsent"><a class="footnote-ref" href="#fn-ManufacturingConsent" id="generated-link-id115">68</a></sup> These same filters and lenses risk
 becoming even more pervasive; understanding a shared reality will become ever 
 more difficult.</p>
 <p>We face the rise of a growing omniscient, omnipresent, and omnipotent apparatus
@@ -661,11 +662,11 @@ masses will be left blind, dependent, and permanently plugged in to the matrix
 – living in local realities which secure the status quo.</p>
 <h2 id="higher-order-structure">Higher-Order Structure<a class="headerlink" href="#higher-order-structure" id="generated-link-id116" title="Permanent link">#</a></h2>
 <p>In an abstract sense, we are observing a familiar phenomenon. The brave new 
-world of surveillance capitalism<sup id="fnref:SurveillanceCapitalism"><a class="footnote-ref" href="#fn:SurveillanceCapitalism" id="generated-link-id117" rel="footnote">69</a></sup> reflects just the 
+world of surveillance capitalism<sup id="fnref-SurveillanceCapitalism"><a class="footnote-ref" href="#fn-SurveillanceCapitalism" id="generated-link-id117">69</a></sup> reflects just the 
 latest iteration of an ancient and natural pattern:</p>
 <p>The evolution of the first eukaryotic cells, the proliferation of symbiotes and
 multicellular organisms, the rise of social structure among animals, the advent 
-of intergenerational culture through memetic<sup id="fnref2:Memes"><a class="footnote-ref" href="#fn:Memes" id="generated-link-id118" rel="footnote">13</a></sup> exchange - slave states, 
+of intergenerational culture through memetic<sup id="fnref2-Memes"><a class="footnote-ref" href="#fn-Memes" id="generated-link-id118">13</a></sup> exchange - slave states, 
 religious empires, hegemons and superpowers … all of it fits a pattern: 
 Autonomous units are organized into higher-order functional structures which 
 prove stable over time and successful at ensuring their continued existence.
@@ -674,13 +675,13 @@ For the individual units involved, dependence replaces autonomy.</p>
 parts, nor do they need to be consciously or intentionally constructed. While 
 stability tends to imply stratification, neurons did not knowingly enslave our 
 muscle cells any more than you chose where you were born. Where moral 
-justification is required for inequality, it will be found.<sup id="fnref:GenealogyOfMorals"><a class="footnote-ref" href="#fn:GenealogyOfMorals" id="generated-link-id119" rel="footnote">70</a></sup></p>
+justification is required for inequality, it will be found.<sup id="fnref-GenealogyOfMorals"><a class="footnote-ref" href="#fn-GenealogyOfMorals" id="generated-link-id119">70</a></sup></p>
 <blockquote>
 <p>Do not attribute to malice that which is sufficiently explained by ignorance.</p>
-<p>– A re-expression of Hanlon’s Razor<sup id="fnref:HanlonsRazor"><a class="footnote-ref" href="#fn:HanlonsRazor" id="generated-link-id120" rel="footnote">71</a></sup></p>
+<p>– A re-expression of Hanlon’s Razor<sup id="fnref-HanlonsRazor"><a class="footnote-ref" href="#fn-HanlonsRazor" id="generated-link-id120">71</a></sup></p>
 </blockquote>
 <p>Although some people are in positions to entrench personal power by seeking the
-future we foresee here,<sup id="fnref:Names"><a class="footnote-ref" href="#fn:Names" id="generated-link-id121" rel="footnote">72</a></sup> I believe that ignorance, rather than complicit 
+future we foresee here,<sup id="fnref-Names"><a class="footnote-ref" href="#fn-Names" id="generated-link-id121">72</a></sup> I believe that ignorance, rather than complicit 
 self-interest, is a sufficient explanation for our general complacency. Each of
 us is the hero of our own narrative, and cognitive dissonance tends to be 
 ephemeral.</p>
@@ -688,16 +689,16 @@ ephemeral.</p>
 <h2 id="the-struggle">The Struggle<a class="headerlink" href="#the-struggle" id="generated-link-id123" title="Permanent link">#</a></h2>
 <p>We can still save ourselves, but it will not be easy.</p>
 <p>We must first prepare ourselves mentally for the long, difficult road of 
-addressing an unhealthy dependence and addiction.<sup id="fnref:Addiction"><a class="footnote-ref" href="#fn:Addiction" id="generated-link-id124" rel="footnote">73</a></sup> <strong><em>We face the
+addressing an unhealthy dependence and addiction.<sup id="fnref-Addiction"><a class="footnote-ref" href="#fn-Addiction" id="generated-link-id124">73</a></sup> <strong><em>We face the
 struggle of a generation, and it will require a resolve only periodically 
 demanded by history.</em></strong></p>
 <p>Let us recognize that the overwhelming majority of people everywhere adhere to
 a value system rooted in cooperation, empathy, respect, and compassion. 
 The exploitation of tribalism and fear are the greatest threats to our liberty
-and our shared humanity.<sup id="fnref:USIC"><a class="footnote-ref" href="#fn:USIC" id="generated-link-id125" rel="footnote">74</a></sup> </p>
+and our shared humanity.<sup id="fnref-USIC"><a class="footnote-ref" href="#fn-USIC" id="generated-link-id125">74</a></sup> </p>
 <p>Liberty requires the active management of an unstable system. Monopolies must be
 broken, and our laws must reflect both socially desirable outcomes and the
-practical realities of our circumstance.<sup id="fnref:Regulations"><a class="footnote-ref" href="#fn:Regulations" id="generated-link-id126" rel="footnote">4</a></sup> </p>
+practical realities of our circumstance.<sup id="fnref-Regulations"><a class="footnote-ref" href="#fn-Regulations" id="generated-link-id126">4</a></sup> </p>
 <p>It is critical that we rebuild trust in our civic institutions. This task 
 demands more transparent oversight, faith in our electoral system, and an 
 electorate that is informed and engaged. If you are reading this, please spread 
@@ -763,7 +764,7 @@ Propaganda <em>propagates</em> if you unwittingly spread it.</li>
 <p>Engage in <em>peaceful</em> political organization. Do not lose to fear and hatred.</p>
 <ul>
 <li><strong>Perhaps nothing may be as important as taking corporate money out of 
-  politics</strong>.<sup id="fnref2:Regulations"><a class="footnote-ref" href="#fn:Regulations" id="generated-link-id136" rel="footnote">4</a></sup></li>
+  politics</strong>.<sup id="fnref2-Regulations"><a class="footnote-ref" href="#fn-Regulations" id="generated-link-id136">4</a></sup></li>
 </ul>
 </li>
 </ol>
@@ -782,22 +783,22 @@ believe in.</p>
 <div class="footnote">
 <hr/>
 <ol>
-<li id="fn:Psyops">
+<li id="fn-Psyops">
 <p>State intelligence agencies actively participate in the covert 
 manipulation of public sentiments through “psychological warfare”
-«<a href="https://en.wikipedia.org/wiki/Psychological_warfare" id="generated-link-id139">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Psychological_warfare" href="https://en.wikipedia.org/wiki/Psychological_warfare" id="generated-link-id139">wikipedia.org</a>»
 Social media is merely the latest battlefield for our minds, where individual
 companies have significant influence
-«<a href="https://www.theguardian.com/technology/2011/mar/17/us-spy-operation-social-networks" id="generated-link-id140">theguardian.com</a>» <a class="footnote-backref" href="#fnref:Psyops" id="generated-link-id141" rev="footnote" title="Television attack ads «» have been a feature of our political discourse in the United States since the mid 20th century, while television itself formed a battlefield for domestic perception of the Vietnam War">↩</a><a class="footnote-backref" href="#fnref2:Psyops" id="generated-link-id142" rev="footnote" title="Meanwhile, we lack confidence in our political leaders to challenge existing power or to restrain government use of this apparatus">↩</a><a class="footnote-backref" href="#fnref3:Psyops" id="generated-link-id143" rev="footnote" title="The free online tools we rely on are being used to divide and conquer our sources of information and our understanding of current events via methods once considered the purview of military psychological operations">↩</a></p>
+«<a href="https://www.theguardian.com/technology/2011/mar/17/us-spy-operation-social-networks" id="generated-link-id140">theguardian.com</a>» <a class="footnote-backref" href="#fnref-Psyops" id="generated-link-id141" title="Television attack ads «» have been a feature of our political discourse in the United States since the mid 20th century, while television itself formed a battlefield for domestic perception of the Vietnam War">↩</a><a class="footnote-backref" href="#fnref2-Psyops" id="generated-link-id142" title="Meanwhile, we lack confidence in our political leaders to challenge existing power or to restrain government use of this apparatus">↩</a><a class="footnote-backref" href="#fnref3-Psyops" id="generated-link-id143" title="The free online tools we rely on are being used to divide and conquer our sources of information and our understanding of current events via methods once considered the purview of military psychological operations">↩</a></p>
 </li>
-<li id="fn:Contagion">
+<li id="fn-Contagion">
 <p>Research coordinated with Facebook on “emotional contagion”
 involved manipulating users’ emotional states by altering their news feeds
 without their awareness
 «<a href="https://www.forbes.com/sites/gregorymcneal/2014/06/28/facebook-manipulated-user-news-feeds-to-create-emotional-contagion/" id="generated-link-id144">forbes.com</a>»,
-«<a href="http://www.pnas.org/content/111/24/8788" id="generated-link-id145">pnas.org</a>» <a class="footnote-backref" href="#fnref:Contagion" id="generated-link-id146" rev="footnote" title="What we buy, what we share online, what we think about, how we feel">↩</a></p>
+«<a href="http://www.pnas.org/content/111/24/8788" id="generated-link-id145">pnas.org</a>» <a class="footnote-backref" href="#fnref-Contagion" id="generated-link-id146" title="What we buy, what we share online, what we think about, how we feel">↩</a></p>
 </li>
-<li id="fn:Attention">
+<li id="fn-Attention">
 <p>People before me have identified the fact that we are now living 
 in an “attention economy”. At various times in history, we have lived in a world
 constrained by access to land, labor, capital, expertise, and/or information. 
@@ -806,55 +807,55 @@ valuable. To credit those whom I have learned from, I reference:
 Mark Manson 
 «<a href="https://markmanson.net/attention" id="generated-link-id147">markmanson.net</a>» and
 Michael Goldhaber
-«<a href="https://www.wired.com/1997/12/es-attention/" id="generated-link-id148">wired.com</a>» <a class="footnote-backref" href="#fnref:Attention" id="generated-link-id149" rev="footnote" title="Our attention has become a precious and rationed commodity">↩</a></p>
+«<a href="https://www.wired.com/1997/12/es-attention/" id="generated-link-id148">wired.com</a>» <a class="footnote-backref" href="#fnref-Attention" id="generated-link-id149" title="Our attention has become a precious and rationed commodity">↩</a></p>
 </li>
-<li id="fn:Regulations">
+<li id="fn-Regulations">
 <p>The political and regulatory system of the USA has been captured
 by corporations, and Citizens United has not helped 
 «<a href="https://corpgov.law.harvard.edu/2012/01/05/the-corporate-capture-of-the-united-states/" id="generated-link-id150">law.harvard.com</a>»
-Votes should not be counted in dollars. <a class="footnote-backref" href="#fnref:Regulations" id="generated-link-id151" rev="footnote" title="Monopolies must be broken, and our laws must reflect both socially desirable outcomes and the practical realities of our circumstance">↩</a><a class="footnote-backref" href="#fnref2:Regulations" id="generated-link-id152" rev="footnote" title="Perhaps nothing may be as important as taking corporate money out of politics">↩</a><a class="footnote-backref" href="#fnref3:Regulations" id="generated-link-id153" rev="footnote" title="The government agencies we depend on to reconcile corporate incentives with our social values have been captured by corporations">↩</a></p>
+Votes should not be counted in dollars. <a class="footnote-backref" href="#fnref-Regulations" id="generated-link-id151" title="Monopolies must be broken, and our laws must reflect both socially desirable outcomes and the practical realities of our circumstance">↩</a><a class="footnote-backref" href="#fnref2-Regulations" id="generated-link-id152" title="Perhaps nothing may be as important as taking corporate money out of politics">↩</a><a class="footnote-backref" href="#fnref3-Regulations" id="generated-link-id153" title="The government agencies we depend on to reconcile corporate incentives with our social values have been captured by corporations">↩</a></p>
 </li>
-<li id="fn:Palihapitiy">
+<li id="fn-Palihapitiy">
 <p>Chamath Palihapitiy’s talk at the Stanford Business School in 
 November 2017 
-«<a href="https://www.youtube.com/watch?v=PMotykw0SIk&amp;feature=youtu.be&amp;t=21m21s" id="generated-link-id154">Youtube</a>» <a class="footnote-backref" href="#fnref:Palihapitiy" id="generated-link-id155" rev="footnote" title="– Chamath Palihapitiy (Former Executive of Facebook)">↩</a><a class="footnote-backref" href="#fnref2:Palihapitiy" id="generated-link-id156" rev="footnote" title="– Chamath Palihapitiy (Facebook Former Executive)">↩</a></p>
+«<a href="https://www.youtube.com/watch?v=PMotykw0SIk&amp;feature=youtu.be&amp;t=21m21s" id="generated-link-id154">Youtube</a>» <a class="footnote-backref" href="#fnref-Palihapitiy" id="generated-link-id155" title="– Chamath Palihapitiy (Former Executive of Facebook)">↩</a><a class="footnote-backref" href="#fnref2-Palihapitiy" id="generated-link-id156" title="– Chamath Palihapitiy (Facebook Former Executive)">↩</a></p>
 </li>
-<li id="fn:Predictions">
+<li id="fn-Predictions">
 <p>As often happens, when I finally approach a ground-breaking
 understanding of a topic, I realize I’ve merely re-discovered or latched on to
 ideas that have been floating around for a long time. “Original ideas” are not
 as original as we often romanticize. See: 
 Sigler’s law of Eponymy 
-«<a href="https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy" id="generated-link-id157">wikipedia.org</a>» and
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Stigler%27s_law_of_eponymy" href="https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy" id="generated-link-id157">wikipedia.org</a>» and
 “Everything is a Remix” 
 «<a href="https://vimeo.com/139094998" id="generated-link-id158">vimeo.com</a>». 
 There is a wealth of literature which explores the topic which this web page has
-attempted to illuminate. I merely lend my meager weight. <a class="footnote-backref" href="#fnref:Predictions" id="generated-link-id159" rev="footnote" title="In many ways, these developments have long been predicted">↩</a></p>
+attempted to illuminate. I merely lend my meager weight. <a class="footnote-backref" href="#fnref-Predictions" id="generated-link-id159" title="In many ways, these developments have long been predicted">↩</a></p>
 </li>
-<li id="fn:FacebookAds">
+<li id="fn-FacebookAds">
 <p>About Facebook Ads 
-«<a href="https://www.facebook.com/ads/about" id="generated-link-id160">facebook.com</a>» <a class="footnote-backref" href="#fnref:FacebookAds" id="generated-link-id161" rev="footnote" title="This is nothing new, nor is it secret">↩</a></p>
+«<a href="https://www.facebook.com/ads/about" id="generated-link-id160">facebook.com</a>» <a class="footnote-backref" href="#fnref-FacebookAds" id="generated-link-id161" title="This is nothing new, nor is it secret">↩</a></p>
 </li>
-<li id="fn:Dumbfucks">
+<li id="fn-Dumbfucks">
 <p>Zuckerberg’s “Dumb fucks” comment 
-«<a href="http://www.businessinsider.com/well-these-new-zuckerberg-ims-wont-help-facebooks-privacy-problems-2010-5" id="generated-link-id162">buisnessinsider.com</a>» <a class="footnote-backref" href="#fnref:Dumbfucks" id="generated-link-id163" rev="footnote" title="– IM exchange between Zuckerberg at age 19 and an unknown friend">↩</a></p>
+«<a href="http://www.businessinsider.com/well-these-new-zuckerberg-ims-wont-help-facebooks-privacy-problems-2010-5" id="generated-link-id162">buisnessinsider.com</a>» <a class="footnote-backref" href="#fnref-Dumbfucks" id="generated-link-id163" title="– IM exchange between Zuckerberg at age 19 and an unknown friend">↩</a></p>
 </li>
-<li id="fn:PBS">
+<li id="fn-PBS">
 <p>Interview with Roger McNamee 
-«<a href="https://www.pbs.org/newshour/show/investor-says-he-tried-to-warn-facebook-about-bad-actors-harming-innocent-people" id="generated-link-id164">pbs.org</a>» <a class="footnote-backref" href="#fnref:PBS" id="generated-link-id165" rev="footnote" title="– Roger McNamee (one of Facebook’s original investors)">↩</a></p>
+«<a href="https://www.pbs.org/newshour/show/investor-says-he-tried-to-warn-facebook-about-bad-actors-harming-innocent-people" id="generated-link-id164">pbs.org</a>» <a class="footnote-backref" href="#fnref-PBS" id="generated-link-id165" title="– Roger McNamee (one of Facebook’s original investors)">↩</a></p>
 </li>
-<li id="fn:Axios">
+<li id="fn-Axios">
 <p>Interview with Sean Parker 
-«<a href="https://www.axios.com/sean-parker-facebook-was-designed-to-exploit-human-vulnerability-1513306782-6d18fa32-5438-4e60-af71-13d126b58e41.html" id="generated-link-id166">axios.com</a>» <a class="footnote-backref" href="#fnref:Axios" id="generated-link-id167" rev="footnote" title="– Sean Parker (First President of Facebook)">↩</a></p>
+«<a href="https://www.axios.com/sean-parker-facebook-was-designed-to-exploit-human-vulnerability-1513306782-6d18fa32-5438-4e60-af71-13d126b58e41.html" id="generated-link-id166">axios.com</a>» <a class="footnote-backref" href="#fnref-Axios" id="generated-link-id167" title="– Sean Parker (First President of Facebook)">↩</a></p>
 </li>
-<li id="fn:Selection">
+<li id="fn-Selection">
 <p>The environment in which content replicates itself online is not
 wholly determined by emotional reactions. The process is highly complicated due 
 to the amplifying effect of actors who game the algorithms of a platform to 
-increase their visibility and value.<sup id="fnref:KarmaWhore"><a class="footnote-ref" href="#fn:KarmaWhore" id="generated-link-id168" rel="footnote">12</a></sup> The resulting comparisons of 
-a “meme economy” to securities trading is not technically without merit. <a class="footnote-backref" href="#fnref:Selection" id="generated-link-id169" rev="footnote" title="The content and memes that go viral - reproducing through our shares, upvotes, and reposts - are reflections of the selective pressures our emotional reactions exert on content">↩</a></p>
+increase their visibility and value.<sup id="fnref-KarmaWhore"><a class="footnote-ref" href="#fn-KarmaWhore" id="generated-link-id168">12</a></sup> The resulting comparisons of 
+a “meme economy” to securities trading is not technically without merit. <a class="footnote-backref" href="#fnref-Selection" id="generated-link-id169" title="The content and memes that go viral - reproducing through our shares, upvotes, and reposts - are reflections of the selective pressures our emotional reactions exert on content">↩</a></p>
 </li>
-<li id="fn:KarmaWhore">
+<li id="fn-KarmaWhore">
 <p>This phenomenon and associated subcultures (often satirical in 
 nature) are well recognized on Reddit, where “karma whore” has entered into the 
 local lexicon. A market exists for highly visible accounts
@@ -863,191 +864,191 @@ It is also not unique to Reddit that corporate agents are known to masquerade as
 normal users on the platform to covertly promote a product or special interest
 «<a href="https://np.reddit.com/r/shills/comments/4kdq7n/astroturfing_information_megathread_revision_8/?st=iwlbcoon&amp;sh=9e44591e" id="generated-link-id171">reddit.com</a>»
 Finally, like many social media platforms, paid services exist for promoting 
-content while attempting to hide the process as organic user interaction. <a class="footnote-backref" href="#fnref:KarmaWhore" id="generated-link-id172" rev="footnote" title="The process is highly complicated due to the amplifying effect of actors who game the algorithms of a platform to increase their visibility and value">↩</a></p>
+content while attempting to hide the process as organic user interaction. <a class="footnote-backref" href="#fnref-KarmaWhore" id="generated-link-id172" title="The process is highly complicated due to the amplifying effect of actors who game the algorithms of a platform to increase their visibility and value">↩</a></p>
 </li>
-<li id="fn:Memes">
+<li id="fn-Memes">
 <p>A “meme” is information-theoretic analogy to a gene introduced by 
 Richard Dawkins’ 1976 book, “The Selfish Gene”. The important thing is that it 
-refers to a pattern which is capable of self-replication in its environment. <a class="footnote-backref" href="#fnref:Memes" id="generated-link-id173" rev="footnote" title="The analogy to genetic evolution is deep and well-established">↩</a><a class="footnote-backref" href="#fnref2:Memes" id="generated-link-id174" rev="footnote" title="The evolution of the first eukaryotic cells, the proliferation of symbiotes and multicellular organisms, the rise of social structure among animals, the advent of intergenerational culture through memetic">↩</a><a class="footnote-backref" href="#fnref3:Memes" id="generated-link-id175" rev="footnote" title="Nietzsche very nearly identified the fact that we construct our moral systems in response to our circumstances (and our power in relation to others) - not the other way around «» This is an example of both rationalization and memetic evolution">↩</a></p>
+refers to a pattern which is capable of self-replication in its environment. <a class="footnote-backref" href="#fnref-Memes" id="generated-link-id173" title="The analogy to genetic evolution is deep and well-established">↩</a><a class="footnote-backref" href="#fnref2-Memes" id="generated-link-id174" title="The evolution of the first eukaryotic cells, the proliferation of symbiotes and multicellular organisms, the rise of social structure among animals, the advent of intergenerational culture through memetic">↩</a><a class="footnote-backref" href="#fnref3-Memes" id="generated-link-id175" title="Nietzsche very nearly identified the fact that we construct our moral systems in response to our circumstances (and our power in relation to others) - not the other way around «» This is an example of both rationalization and memetic evolution">↩</a></p>
 </li>
-<li id="fn:Elsagate">
+<li id="fn-Elsagate">
 <p>A popular essay
 «<a href="https://medium.com/@jamesbridle/something-is-wrong-on-the-internet-c39c471271d2" id="generated-link-id176">medium.com</a>»
 published in late 2017 identified disturbing trends in videos targeting young
 children on Youtube which prompted alarm. The phenomenon captured the 
 imagination of a wider community and gained attention under the name “Elsagate”
-«<a href="https://en.wikipedia.org/wiki/Elsagate" id="generated-link-id177">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:Elsagate" id="generated-link-id178" rev="footnote" title="As a consequence, when the feedback mechanism goes awry - such as allowing young children to repeatedly select Youtube views - so too does the content">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Elsagate" href="https://en.wikipedia.org/wiki/Elsagate" id="generated-link-id177">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-Elsagate" id="generated-link-id178" title="As a consequence, when the feedback mechanism goes awry - such as allowing young children to repeatedly select Youtube views - so too does the content">↩</a></p>
 </li>
-<li id="fn:Dogs">
+<li id="fn-Dogs">
 <p>“Artificial selection” for genetic traits can also cause interesting
 or unintended consequences. This may be noted in domestic animals such as dogs, 
 pigeons, and goldfish. It is also notable in certain species which develop odd
-physical attributes due to sexual selection. <a class="footnote-backref" href="#fnref:Dogs" id="generated-link-id179" rev="footnote" title=",">↩</a></p>
+physical attributes due to sexual selection. <a class="footnote-backref" href="#fnref-Dogs" id="generated-link-id179" title=",">↩</a></p>
 </li>
-<li id="fn:Vice">
+<li id="fn-Vice">
 <p>An important article for this essay regarding Kosinski’s research, 
 Facebook, Cambridge Analytica, Brexit, and Trump 
-«<a href="https://motherboard.vice.com/en_us/article/mg9vvn/how-our-likes-helped-trump-win" id="generated-link-id180">motherboard.vice.com</a>» <a class="footnote-backref" href="#fnref:Vice" id="generated-link-id181" rev="footnote" title="For political ends, the most effective content plays to our fears and outrage">↩</a><a class="footnote-backref" href="#fnref2:Vice" id="generated-link-id182" rev="footnote" title="To illustrate this capability, we need not only harp on Facebook and our growing realization of the role that it played with Cambridge Analytica in propelling Brexit and Trump’s election">↩</a><a class="footnote-backref" href="#fnref3:Vice" id="generated-link-id183" rev="footnote" title=",">↩</a><a class="footnote-backref" href="#fnref4:Vice" id="generated-link-id184" rev="footnote" title=",, The data Facebook collects about its users is enough to reveal which political issues are important to us, what we fear, what we crave, what we emotionally respond to, and how we are likely to behave">↩</a></p>
+«<a href="https://motherboard.vice.com/en_us/article/mg9vvn/how-our-likes-helped-trump-win" id="generated-link-id180">motherboard.vice.com</a>» <a class="footnote-backref" href="#fnref-Vice" id="generated-link-id181" title="For political ends, the most effective content plays to our fears and outrage">↩</a><a class="footnote-backref" href="#fnref2-Vice" id="generated-link-id182" title="To illustrate this capability, we need not only harp on Facebook and our growing realization of the role that it played with Cambridge Analytica in propelling Brexit and Trump’s election">↩</a><a class="footnote-backref" href="#fnref3-Vice" id="generated-link-id183" title=",">↩</a><a class="footnote-backref" href="#fnref4-Vice" id="generated-link-id184" title=",, The data Facebook collects about its users is enough to reveal which political issues are important to us, what we fear, what we crave, what we emotionally respond to, and how we are likely to behave">↩</a></p>
 </li>
-<li id="fn:Guardian">
+<li id="fn-Guardian">
 <p>More damning evidence of illegal activity between Robert Mercer, 
 Steve Bannon, Cambridge Analytica, and Facebook, as well as illuminating details
 about our very recent political history.
-«<a href="https://www.theguardian.com/news/2018/mar/17/data-war-whistleblower-christopher-wylie-faceook-nix-bannon-trump?CMP=share_btn_tw" id="generated-link-id185">theguardian.com</a>» <a class="footnote-backref" href="#fnref:Guardian" id="generated-link-id186" rev="footnote" title=",">↩</a><a class="footnote-backref" href="#fnref2:Guardian" id="generated-link-id187" rev="footnote" title="To illustrate this capability, we need not only harp on Facebook and our growing realization of the role that it played with Cambridge Analytica in propelling Brexit and Trump’s election,">↩</a><a class="footnote-backref" href="#fnref3:Guardian" id="generated-link-id188" rev="footnote" title="– Christopher Wylie (ex-Director of Research for Cambridge Analytica turned whistleblower)">↩</a><a class="footnote-backref" href="#fnref4:Guardian" id="generated-link-id189" rev="footnote" title=",,">↩</a></p>
+«<a href="https://www.theguardian.com/news/2018/mar/17/data-war-whistleblower-christopher-wylie-faceook-nix-bannon-trump?CMP=share_btn_tw" id="generated-link-id185">theguardian.com</a>» <a class="footnote-backref" href="#fnref-Guardian" id="generated-link-id186" title=",">↩</a><a class="footnote-backref" href="#fnref2-Guardian" id="generated-link-id187" title="To illustrate this capability, we need not only harp on Facebook and our growing realization of the role that it played with Cambridge Analytica in propelling Brexit and Trump’s election,">↩</a><a class="footnote-backref" href="#fnref3-Guardian" id="generated-link-id188" title="– Christopher Wylie (ex-Director of Research for Cambridge Analytica turned whistleblower)">↩</a><a class="footnote-backref" href="#fnref4-Guardian" id="generated-link-id189" title=",,">↩</a></p>
 </li>
-<li id="fn:GetMeRogerStone">
+<li id="fn-GetMeRogerStone">
 <p>It does not do justice to Roger Stone to label him as merely
 a political consultant, nor a lobbyist, nor to define him by his role in the 
 Trump Campaign. “Get Me Roger Stone” is a highly revealing documentary 
-«<a href="https://www.netflix.com/title/80114666" id="generated-link-id190">netflix.com</a>» <a class="footnote-backref" href="#fnref:GetMeRogerStone" id="generated-link-id191" rev="footnote" title=", This is not, as Roger Stone would explain it, because “Hate is a stronger motivator than love”">↩</a></p>
+«<a href="https://www.netflix.com/title/80114666" id="generated-link-id190">netflix.com</a>» <a class="footnote-backref" href="#fnref-GetMeRogerStone" id="generated-link-id191" title=", This is not, as Roger Stone would explain it, because “Hate is a stronger motivator than love”">↩</a></p>
 </li>
-<li id="fn:Newspaper">
+<li id="fn-Newspaper">
 <p>The years following the American Revolution are characterized
 by competing circulating newspapers with particular vitriol. Another example is
 provided by a period of “Yellow Journalism” - purposely inflammatory and 
 factually loose reporting characteristic of the period of domestic power 
 struggle between newspaper tycoons William Randolph Hearst and Joseph Pulitzer 
-«<a href="https://en.wikipedia.org/wiki/Yellow_journalism" id="generated-link-id192">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:Newspaper" id="generated-link-id193" rev="footnote" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers,">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Yellow_journalism" href="https://en.wikipedia.org/wiki/Yellow_journalism" id="generated-link-id192">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-Newspaper" id="generated-link-id193" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers,">↩</a></p>
 </li>
-<li id="fn:Radio">
+<li id="fn-Radio">
 <p>An interesting perspective into the world of American political radio
 with David Foster Wallace 
-«<a href="https://www.theatlantic.com/magazine/archive/2005/04/host/303812/" id="generated-link-id194">theatlantic.com</a>» <a class="footnote-backref" href="#fnref:Radio" id="generated-link-id195" rev="footnote" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers, radio,">↩</a></p>
+«<a href="https://www.theatlantic.com/magazine/archive/2005/04/host/303812/" id="generated-link-id194">theatlantic.com</a>» <a class="footnote-backref" href="#fnref-Radio" id="generated-link-id195" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers, radio,">↩</a></p>
 </li>
-<li id="fn:Television">
+<li id="fn-Television">
 <p>Television attack ads 
-«<a href="https://en.wikipedia.org/wiki/Attack_ad" id="generated-link-id196">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Attack_ad" href="https://en.wikipedia.org/wiki/Attack_ad" id="generated-link-id196">wikipedia.org</a>»
 have been a feature of our political discourse in the United States since the 
 mid 20th century, while television itself formed a battlefield for domestic 
-perception of the Vietnam War.<sup id="fnref:Psyops"><a class="footnote-ref" href="#fn:Psyops" id="generated-link-id197" rel="footnote">1</a></sup> <a class="footnote-backref" href="#fnref:Television" id="generated-link-id198" rev="footnote" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers, radio, and television">↩</a></p>
+perception of the Vietnam War.<sup id="fnref-Psyops"><a class="footnote-ref" href="#fn-Psyops" id="generated-link-id197">1</a></sup> <a class="footnote-backref" href="#fnref-Television" id="generated-link-id198" title="The nature of propaganda in virtually every war reflects this, as do historical political pamphlets, newspapers, radio, and television">↩</a></p>
 </li>
-<li id="fn:PRISM">
+<li id="fn-PRISM">
 <p>The original articles exposing PRISM 
 «<a href="https://www.theguardian.com/world/2013/jun/06/us-tech-giants-nsa-data" id="generated-link-id199">theguardian.com</a>»,
-«<a href="https://www.washingtonpost.com/investigations/us-intelligence-mining-data-from-nine-us-internet-companies-in-broad-secret-program/2013/06/06/3a0c0da8-cebf-11e2-8845-d970ccb04497_story.html?utm_term=.c1ab905204fe" id="generated-link-id200">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref:PRISM" id="generated-link-id201" rev="footnote" title="In 2013, Facebook was revealed as a participant in the PRISM government surveillance program through documents leaked by Edward Snowden">↩</a></p>
+«<a href="https://www.washingtonpost.com/investigations/us-intelligence-mining-data-from-nine-us-internet-companies-in-broad-secret-program/2013/06/06/3a0c0da8-cebf-11e2-8845-d970ccb04497_story.html?utm_term=.c1ab905204fe" id="generated-link-id200">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref-PRISM" id="generated-link-id201" title="In 2013, Facebook was revealed as a participant in the PRISM government surveillance program through documents leaked by Edward Snowden">↩</a></p>
 </li>
-<li id="fn:Snowden">
+<li id="fn-Snowden">
 <p>Snowden provided a service to the nation and the world by publicly
 revealing an existential threat to liberty. He has also caused enormous damage 
 to the intelligence operations of the United States - specifically to the 
 advantage of Russia and China. It is up to us to decide which of these facts
 will hold greater weight in the history books that follow us. We now have a 
-battlefield. <a class="footnote-backref" href="#fnref:Snowden" id="generated-link-id202" rev="footnote" title=",">↩</a><a class="footnote-backref" href="#fnref2:Snowden" id="generated-link-id203" rev="footnote" title="Some of the dystopian trends which threaten the United States if power were to be consolidated have already been realized in Russia and China">↩</a><a class="footnote-backref" href="#fnref3:Snowden" id="generated-link-id204" rev="footnote" title="– Edward Snowden">↩</a></p>
+battlefield. <a class="footnote-backref" href="#fnref-Snowden" id="generated-link-id202" title=",">↩</a><a class="footnote-backref" href="#fnref2-Snowden" id="generated-link-id203" title="Some of the dystopian trends which threaten the United States if power were to be consolidated have already been realized in Russia and China">↩</a><a class="footnote-backref" href="#fnref3-Snowden" id="generated-link-id204" title="– Edward Snowden">↩</a></p>
 </li>
-<li id="fn:TrueScotsman">
+<li id="fn-TrueScotsman">
 <p>This “True Scotsman” assertion is dangerous in the context of
 personal liberties 
-«<a href="https://en.wikipedia.org/wiki/No_true_Scotsman" id="generated-link-id205">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:TrueScotsman" id="generated-link-id206" rev="footnote" title="We convinced ourselves that no True American">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/No_true_Scotsman" href="https://en.wikipedia.org/wiki/No_true_Scotsman" id="generated-link-id205">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-TrueScotsman" id="generated-link-id206" title="We convinced ourselves that no True American">↩</a></p>
 </li>
-<li id="fn:LegalProtections">
+<li id="fn-LegalProtections">
 <p>Legal protections from domestic surveillance in America 
 have been an ongoing struggle 
 «<a href="https://tcf.org/content/report/surveillance-without-borders-the-traffic-shaping-loophole-and-why-it-matters/" id="generated-link-id207">tcf.org</a>»
 Meanwhile, the EU is leading the demand for new privacy laws 
-«<a href="https://www.welivesecurity.com/2017/03/24/gdpr-an-explainer/" id="generated-link-id208">welivesecurity.com</a>» <a class="footnote-backref" href="#fnref:LegalProtections" id="generated-link-id209" rev="footnote" title="We convinced ourselves that no True American need fear, putting our faith in the legal protections extended to our information">↩</a></p>
+«<a href="https://www.welivesecurity.com/2017/03/24/gdpr-an-explainer/" id="generated-link-id208">welivesecurity.com</a>» <a class="footnote-backref" href="#fnref-LegalProtections" id="generated-link-id209" title="We convinced ourselves that no True American need fear, putting our faith in the legal protections extended to our information">↩</a></p>
 </li>
-<li id="fn:FearTerrorism">
+<li id="fn-FearTerrorism">
 <p>Fear of terrorism is the primary social justification for our 
 surveillance apparatus. It is worth considering that one consequence of this
 fact is that the self-interest of this apparatus includes maintaining that 
 fear. 
 «<a href="https://www.motherjones.com/politics/2013/01/terror-factory-fbi-trevor-aaronson-book/" id="generated-link-id210">motherjones.com</a>»
 The war on drugs is similarly used to justify the militarization of local law
-enforcement. <a class="footnote-backref" href="#fnref:FearTerrorism" id="generated-link-id211" rev="footnote" title="We convinced ourselves that no True American need fear, putting our faith in the legal protections extended to our information and accepting that this was the price we must pay for safety against terrorism">↩</a></p>
+enforcement. <a class="footnote-backref" href="#fnref-FearTerrorism" id="generated-link-id211" title="We convinced ourselves that no True American need fear, putting our faith in the legal protections extended to our information and accepting that this was the price we must pay for safety against terrorism">↩</a></p>
 </li>
-<li id="fn:Rationalization">
+<li id="fn-Rationalization">
 <p>A growing body of evidence indicates that we tend to 
 construct logical rationalizations around emotional decisions, desires, and 
 choices. That is, we justify them after the fact. This has moral 
-implications.<sup id="fnref2:GenealogyOfMorals"><a class="footnote-ref" href="#fn:GenealogyOfMorals" id="generated-link-id212" rel="footnote">70</a></sup> <a class="footnote-backref" href="#fnref:Rationalization" id="generated-link-id213" rev="footnote" title="In truth, these were rationalizations for inconvenient and uncomfortable facts">↩</a><a class="footnote-backref" href="#fnref2:Rationalization" id="generated-link-id214" rev="footnote" title="Nietzsche very nearly identified the fact that we construct our moral systems in response to our circumstances (and our power in relation to others) - not the other way around «» This is an example of both rationalization">↩</a></p>
+implications.<sup id="fnref2-GenealogyOfMorals"><a class="footnote-ref" href="#fn-GenealogyOfMorals" id="generated-link-id212">70</a></sup> <a class="footnote-backref" href="#fnref-Rationalization" id="generated-link-id213" title="In truth, these were rationalizations for inconvenient and uncomfortable facts">↩</a><a class="footnote-backref" href="#fnref2-Rationalization" id="generated-link-id214" title="Nietzsche very nearly identified the fact that we construct our moral systems in response to our circumstances (and our power in relation to others) - not the other way around «» This is an example of both rationalization">↩</a></p>
 </li>
-<li id="fn:NothingToHide">
+<li id="fn-NothingToHide">
 <p>The “Nothing to Hide” argument for surveillance 
-«<a href="https://en.wikipedia.org/wiki/Nothing_to_hide_argument" id="generated-link-id215">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:NothingToHide" id="generated-link-id216" rev="footnote" title="In truth, these were rationalizations for inconvenient and uncomfortable facts… rationalizations we continue to return to after each successive alarm">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Nothing_to_hide_argument" href="https://en.wikipedia.org/wiki/Nothing_to_hide_argument" id="generated-link-id215">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-NothingToHide" id="generated-link-id216" title="In truth, these were rationalizations for inconvenient and uncomfortable facts… rationalizations we continue to return to after each successive alarm">↩</a></p>
 </li>
-<li id="fn:SocialTerms">
+<li id="fn-SocialTerms">
 <p>Our failure to act more decisively following the Snowden 
 revelations is explained by 
 Nash equilibrium 
-«<a href="https://en.wikipedia.org/wiki/Nash_equilibrium" id="generated-link-id217">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Nash_equilibrium" href="https://en.wikipedia.org/wiki/Nash_equilibrium" id="generated-link-id217">wikipedia.org</a>»
 and the network effect
-«<a href="https://en.wikipedia.org/wiki/Network_effect" id="generated-link-id218">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Network_effect" href="https://en.wikipedia.org/wiki/Network_effect" id="generated-link-id218">wikipedia.org</a>»
 of Facebook’s value to us. The end result was a societal escalation of 
 commitment
-«<a href="https://en.wikipedia.org/wiki/Escalation_of_commitment" id="generated-link-id219">wikipedia.org</a>». <a class="footnote-backref" href="#fnref:SocialTerms" id="generated-link-id220" rev="footnote" title="We might have all prefered a world in which we left social media en masse or migrated to alternative platforms, but each of us was disincentivized from leaving as long as everyone else stayed put">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Escalation_of_commitment" href="https://en.wikipedia.org/wiki/Escalation_of_commitment" id="generated-link-id219">wikipedia.org</a>». <a class="footnote-backref" href="#fnref-SocialTerms" id="generated-link-id220" title="We might have all prefered a world in which we left social media en masse or migrated to alternative platforms, but each of us was disincentivized from leaving as long as everyone else stayed put">↩</a></p>
 </li>
-<li id="fn:Minority">
+<li id="fn-Minority">
 <p>It should be observed that one of the chief means of biasing our
 opinions through media is by underrepresenting popular opinions and 
 overrepresenting the views of a selected minority. Censorship and state media do
-not need to be absolute to be effective. <a class="footnote-backref" href="#fnref:Minority" id="generated-link-id221" rev="footnote" title="We were dissuaded from adopting convictions which appeared to be dismissed by the minority">↩</a></p>
+not need to be absolute to be effective. <a class="footnote-backref" href="#fnref-Minority" id="generated-link-id221" title="We were dissuaded from adopting convictions which appeared to be in the minority">↩</a></p>
 </li>
-<li id="fn:KosinskiLikes">
+<li id="fn-KosinskiLikes">
 <p>Kosinski’s research on what can be learned just from Facebook 
 likes (2013) 
-«<a href="https://www.pnas.org/content/110/15/5802.full" id="generated-link-id222">pnas.org</a>» <a class="footnote-backref" href="#fnref:KosinskiLikes" id="generated-link-id223" rev="footnote" title="">↩</a></p>
+«<a href="https://www.pnas.org/content/110/15/5802.full" id="generated-link-id222">pnas.org</a>» <a class="footnote-backref" href="#fnref-KosinskiLikes" id="generated-link-id223" title="Jump back to footnote 31 in the text">↩</a></p>
 </li>
-<li id="fn:Surveys">
+<li id="fn-Surveys">
 <p>Of course, if you want to know what makes people tick, you can also 
 just ask them to take your survey, “Which Disney Princess are You?”! That data 
-is collected and used to construct a psychological profile for each account. <a class="footnote-backref" href="#fnref:Surveys" id="generated-link-id224" rev="footnote" title=",">↩</a></p>
+is collected and used to construct a psychological profile for each account. <a class="footnote-backref" href="#fnref-Surveys" id="generated-link-id224" title=",">↩</a></p>
 </li>
-<li id="fn:Stylometry">
+<li id="fn-Stylometry">
 <p>Stylometry 
-«<a href="https://en.wikipedia.org/wiki/Stylometry" id="generated-link-id225">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Stylometry" href="https://en.wikipedia.org/wiki/Stylometry" id="generated-link-id225">wikipedia.org</a>»
 has traditionally been applied to writing style, but 
 the technical method is applicable to a much broader set of 
-behavioral<sup id="fnref:Behavioral"><a class="footnote-ref" href="#fn:Behavioral" id="generated-link-id226" rel="footnote">36</a></sup> productions including music, art and speaking style.
-«<a href="https://en.wikipedia.org/wiki/Stylometry" id="generated-link-id227">wikipedia.org</a>». <a class="footnote-backref" href="#fnref:Stylometry" id="generated-link-id228" rev="footnote" title="The identification of individuals by behavioral patterns is not mutually exclusive with stylometry">↩</a><a class="footnote-backref" href="#fnref2:Stylometry" id="generated-link-id229" rev="footnote" title="It is possible to discriminate between the possible authors of a piece of text through stylometry – comparing the sample to the known works of each possible author to find a match">↩</a></p>
+behavioral<sup id="fnref-Behavioral"><a class="footnote-ref" href="#fn-Behavioral" id="generated-link-id226">36</a></sup> productions including music, art and speaking style.
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Stylometry" href="https://en.wikipedia.org/wiki/Stylometry" id="generated-link-id227">wikipedia.org</a>». <a class="footnote-backref" href="#fnref-Stylometry" id="generated-link-id228" title="The identification of individuals by behavioral patterns is not mutually exclusive with stylometry">↩</a><a class="footnote-backref" href="#fnref2-Stylometry" id="generated-link-id229" title="It is possible to discriminate between the possible authors of a piece of text through stylometry – comparing the sample to the known works of each possible author to find a match">↩</a></p>
 </li>
-<li id="fn:SourceCode">
+<li id="fn-SourceCode">
 <p>Identifying the authors of source code
-«<a href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-caliskan-islam.pdf" id="generated-link-id230">usenix.org</a>» <a class="footnote-backref" href="#fnref:SourceCode" id="generated-link-id231" rev="footnote" title="Recent developments in this field include identifying the authors of computer programs through source code">↩</a></p>
+«<a href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-caliskan-islam.pdf" id="generated-link-id230">usenix.org</a>» <a class="footnote-backref" href="#fnref-SourceCode" id="generated-link-id231" title="Recent developments in this field include identifying the authors of computer programs through source code">↩</a></p>
 </li>
-<li id="fn:Binaries">
+<li id="fn-Binaries">
 <p>Identifying the authors of compiled programs
-«<a href="https://www.princeton.edu/~aylinc/papers/caliskan-islam_when.pdf" id="generated-link-id232">princeton.edu</a>». <a class="footnote-backref" href="#fnref:Binaries" id="generated-link-id233" rev="footnote" title="Recent developments in this field include identifying the authors of computer programs through source code or even compiled binaries">↩</a></p>
+«<a href="https://www.princeton.edu/~aylinc/papers/caliskan-islam_when.pdf" id="generated-link-id232">princeton.edu</a>». <a class="footnote-backref" href="#fnref-Binaries" id="generated-link-id233" title="Recent developments in this field include identifying the authors of computer programs through source code or even compiled binaries">↩</a></p>
 </li>
-<li id="fn:Behavioral">
+<li id="fn-Behavioral">
 <p>The identification of individuals by behavioral patterns is not
-mutually exclusive with stylometry<sup id="fnref:Stylometry"><a class="footnote-ref" href="#fn:Stylometry" id="generated-link-id234" rel="footnote">33</a></sup> or even biometrics 
-«<a href="https://en.wikipedia.org/wiki/Biometrics" id="generated-link-id235">wikipedia.org</a>». An overview of 
+mutually exclusive with stylometry<sup id="fnref-Stylometry"><a class="footnote-ref" href="#fn-Stylometry" id="generated-link-id234">33</a></sup> or even biometrics 
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Biometrics" href="https://en.wikipedia.org/wiki/Biometrics" id="generated-link-id235">wikipedia.org</a>». An overview of 
 several methods of behavioral identification may be found at
 «<a href="http://cecs.louisville.edu/ry/Behavioral.pdf" id="generated-link-id236">cecs.louisville.edu</a>».
 I would speculate our unconscious responses to certain stimuli are also 
 sufficiently unique to identify us (to extrapolate from “game strategy” as
 detailed above). Finally, it may be noted that IBM has patented the means to 
-authenticate users based on website interaction <sup id="fnref:IBM"><a class="footnote-ref" href="#fn:IBM" id="generated-link-id237" rel="footnote">75</a></sup> <a class="footnote-backref" href="#fnref:Behavioral" id="generated-link-id238" rev="footnote" title="Stylometry «» has traditionally been applied to writing style, but the technical method is applicable to a much broader set of behavioral">↩</a><a class="footnote-backref" href="#fnref2:Behavioral" id="generated-link-id239" rev="footnote" title="This includes (but is not limited to) the way we walk and move, our response to directed stimuli, and even the pattern of hardware access or system library calls generated by our computing habits">↩</a></p>
+authenticate users based on website interaction <sup id="fnref-IBM"><a class="footnote-ref" href="#fn-IBM" id="generated-link-id237">75</a></sup> <a class="footnote-backref" href="#fnref-Behavioral" id="generated-link-id238" title="Stylometry «» has traditionally been applied to writing style, but the technical method is applicable to a much broader set of behavioral">↩</a><a class="footnote-backref" href="#fnref2-Behavioral" id="generated-link-id239" title="This includes (but is not limited to) the way we walk and move, our response to directed stimuli, and even the pattern of hardware access or system library calls generated by our computing habits">↩</a></p>
 </li>
-<li id="fn:Cars">
+<li id="fn-Cars">
 <p>The distribution of cars in a neighborhood can predict several demographic
 variables 
-«<a href="http://www.pnas.org/content/early/2017/11/27/1700035114" id="generated-link-id240">pnas.org</a>» <a class="footnote-backref" href="#fnref:Cars" id="generated-link-id241" rev="footnote" title="As we continue to discover that certain sets of behaviors and attributes correlate,">↩</a></p>
+«<a href="http://www.pnas.org/content/early/2017/11/27/1700035114" id="generated-link-id240">pnas.org</a>» <a class="footnote-backref" href="#fnref-Cars" id="generated-link-id241" title="As we continue to discover that certain sets of behaviors and attributes correlate,">↩</a></p>
 </li>
-<li id="fn:SideChannel">
+<li id="fn-SideChannel">
 <p>A sidechannel attack
-«<a href="https://en.wikipedia.org/wiki/Side-channel_attack" id="generated-link-id242">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Side-channel_attack" href="https://en.wikipedia.org/wiki/Side-channel_attack" id="generated-link-id242">wikipedia.org</a>»
 is one which which circumvents theoretically secure protocols by capturing 
 information from the environment which is correlated with the nominally secured
 information. A fascinating and terrifying set of examples relating to air-gapped
 (non network-connected) computers may be found online
-«<a href="https://hackaday.com/2017/02/02/hacking-the-aether/" id="generated-link-id243">hackaday.com</a>» <a class="footnote-backref" href="#fnref:SideChannel" id="generated-link-id244" rev="footnote" title="As we continue to discover that certain sets of behaviors and attributes correlate, our personal information becomes vulnerable to sidechannel attacks which were previously impossible">↩</a></p>
+«<a href="https://hackaday.com/2017/02/02/hacking-the-aether/" id="generated-link-id243">hackaday.com</a>» <a class="footnote-backref" href="#fnref-SideChannel" id="generated-link-id244" title="As we continue to discover that certain sets of behaviors and attributes correlate, our personal information becomes vulnerable to sidechannel attacks which were previously impossible">↩</a></p>
 </li>
-<li id="fn:Iot">
+<li id="fn-Iot">
 <p>Some predictions forecast the “Internet of Things” to grow exponentially
 over the next decade as measured by the number of internet-connected devices, 
 the amount of data generated, and the industry’s revenue / investment. With a 
-few assumptions, this does not seem unreasonable. <a class="footnote-backref" href="#fnref:Iot" id="generated-link-id245" rev="footnote" title="The profit engines of data collection are already being recreated on ambitious scales to handle this transformation of our material culture">↩</a></p>
+few assumptions, this does not seem unreasonable. <a class="footnote-backref" href="#fnref-Iot" id="generated-link-id245" title="The profit engines of data collection are already being recreated on ambitious scales to handle this transformation of our material culture">↩</a></p>
 </li>
-<li id="fn:Stallman">
+<li id="fn-Stallman">
 <p>Stallman
-«<a href="https://en.wikipedia.org/wiki/Richard_Stallman" id="generated-link-id246">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Richard_Stallman" href="https://en.wikipedia.org/wiki/Richard_Stallman" id="generated-link-id246">wikipedia.org</a>»
 (of GNU
-«<a href="https://en.wikipedia.org/wiki/GNU" id="generated-link-id247">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/GNU" href="https://en.wikipedia.org/wiki/GNU" id="generated-link-id247">wikipedia.org</a>»
 fame) pays only in cash, uses only free and open source software, refuses to 
 give out information online, and uses a program like <code>wget</code> from a remote server
 or tor
-«<a href="https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29" id="generated-link-id248">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Tor_%28anonymity_network%29" href="https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29" id="generated-link-id248">wikipedia.org</a>»
 to browse the web
 «<a href="https://stallman.org/stallman-computing.html" id="generated-link-id249">stallman.org</a>».
 He has his own prescient understanding
@@ -1056,86 +1057,86 @@ of Facebook (and a large number of other companies in this space), fears for the
 future
 «<a href="http://www.gnu.org/philosophy/right-to-read.html" id="generated-link-id251">gnu.org</a>»,
 and extreme methods (mentioned above) to try to avoid contributing to the 
-problem. Even people like him are vulnerable. <a class="footnote-backref" href="#fnref:Stallman" id="generated-link-id252" rev="footnote" title="Against the technical capabilities that lie on the horizon, even the diligence of Richard Stallman">↩</a></p>
+problem. Even people like him are vulnerable. <a class="footnote-backref" href="#fnref-Stallman" id="generated-link-id252" title="Against the technical capabilities that lie on the horizon, even the diligence of Richard Stallman">↩</a></p>
 </li>
-<li id="fn:HuxleyVsOrwell">
+<li id="fn-HuxleyVsOrwell">
 <p>Elements of our society have long been noted to exhibit 
 attributes of both Huxely’s “Brave New World” 
-«<a href="https://en.wikipedia.org/wiki/Brave_New_World" id="generated-link-id253">wikipedia.org</a>»
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Brave_New_World" href="https://en.wikipedia.org/wiki/Brave_New_World" id="generated-link-id253">wikipedia.org</a>»
 and Orwell’s “Nineteen Eighty-Four”
-«<a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" id="generated-link-id254">wikipedia.org</a>» -
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Nineteen_Eighty-Four" href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" id="generated-link-id254">wikipedia.org</a>» -
 books from the first half of the 1900’s which both predicted the rise of a 
 global order maintained through the manipulative use of information and a total
 lack of individual privacy. Orwell concentrated on the use of censorship, 
 fear, hatred, and threat of torture; Huxley noted the utility of apathy, 
 anesthesia, and distractive pleasure
-«<a href="https://en.wikipedia.org/wiki/Brave_New_World#Comparisons_with_George_Orwell's_Nineteen_Eighty-Four" id="generated-link-id255">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:HuxleyVsOrwell" id="generated-link-id256" rev="footnote" title="Personal personal privacy is evaporating in 1s and 0s, and even George Orwell">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Brave_New_World#Comparisons_with_George_Orwell's_Nineteen_Eighty-Four" href="https://en.wikipedia.org/wiki/Brave_New_World#Comparisons_with_George_Orwell's_Nineteen_Eighty-Four" id="generated-link-id255">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-HuxleyVsOrwell" id="generated-link-id256" title="Personal personal privacy is evaporating in 1s and 0s, and even George Orwell">↩</a></p>
 </li>
-<li id="fn:Fletcher">
+<li id="fn-Fletcher">
 <p>Quote by Andrew Fletcher 
-«<a href="https://en.wikiquote.org/wiki/Andrew_Fletcher" id="generated-link-id257">wikiquote.org</a>» <a class="footnote-backref" href="#fnref:Fletcher" id="generated-link-id258" rev="footnote" title="– Personal (facetious) adaptation of a quote by Andrew Fletcher">↩</a></p>
+«<a href="https://en.wikiquote.org/wiki/Andrew_Fletcher" id="generated-link-id257">wikiquote.org</a>» <a class="footnote-backref" href="#fnref-Fletcher" id="generated-link-id258" title="– Personal (facetious) adaptation of a quote by Andrew Fletcher">↩</a></p>
 </li>
-<li id="fn:AI">
+<li id="fn-AI">
 <p>Artificial Intelligence as a field has gone through multiple cycles of 
 interest and funding driven by largely by hype 
-«<a href="https://en.wikipedia.org/wiki/AI_winter" id="generated-link-id259">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:AI" id="generated-link-id260" rev="footnote" title="It is instructive to consider that (despite the buzzwords and the hype) our recent visible advances in “artificial intelligence” have not been due to fundamental technical breakthroughs but rather increases in computing power and the accumulation of massive datasets">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/AI_winter" href="https://en.wikipedia.org/wiki/AI_winter" id="generated-link-id259">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-AI" id="generated-link-id260" title="It is instructive to consider that (despite the buzzwords and the hype) our recent visible advances in “artificial intelligence” have not been due to fundamental technical breakthroughs but rather increases in computing power and the accumulation of massive datasets">↩</a></p>
 </li>
-<li id="fn:NYTimes">
+<li id="fn-NYTimes">
 <p>Facebook’s power struggles with various countries 
-«<a href="https://www.nytimes.com/2017/09/17/technology/facebook-government-regulations.html" id="generated-link-id261">nytimes.com</a>» <a class="footnote-backref" href="#fnref:NYTimes" id="generated-link-id262" rev="footnote" title="Varying degrees of capitulation in each case - especially over censorship - have driven the splintering of the internet itself into disjoint spheres of content and services">↩</a></p>
+«<a href="https://www.nytimes.com/2017/09/17/technology/facebook-government-regulations.html" id="generated-link-id261">nytimes.com</a>» <a class="footnote-backref" href="#fnref-NYTimes" id="generated-link-id262" title="Varying degrees of capitulation in each case - especially over censorship - have driven the splintering of the internet itself into disjoint spheres of content and services">↩</a></p>
 </li>
-<li id="fn:ConnectivityLabs">
+<li id="fn-ConnectivityLabs">
 <p>Facebook’s Free Basics
-«<a href="https://info.internet.org/en/story/free-basics-from-internet-org/" id="generated-link-id263">info.internet.org</a>» <a class="footnote-backref" href="#fnref:ConnectivityLabs" id="generated-link-id264" rev="footnote" title="In the legitimate name of improving people’s lives through internet access, the company has been investing in infrastructure including unmanned solar aircraft and laser communications to reach remote places">↩</a></p>
+«<a href="https://info.internet.org/en/story/free-basics-from-internet-org/" id="generated-link-id263">info.internet.org</a>» <a class="footnote-backref" href="#fnref-ConnectivityLabs" id="generated-link-id264" title="In the legitimate name of improving people’s lives through internet access, the company has been investing in infrastructure including unmanned solar aircraft and laser communications to reach remote places">↩</a></p>
 </li>
-<li id="fn:Leaks">
+<li id="fn-Leaks">
 <p>Leaks from Equifax, and 
 <a href="https://www.wired.com/story/exactis-database-leak-340-million-records/" id="generated-link-id265">Exactis</a>,
 combined with the sale of American’s Facebook data to numerous entities (as 
 first became publically apparent with revelations over Cambridge Analytica, 
 though the scope of those with access to the data keeps increasing) are 
 publically known. The true extent of the role such data played in the 2016 
-election is finally, though slowly, entering the public consciouness. <a class="footnote-backref" href="#fnref:Leaks" id="generated-link-id266" rev="footnote" title="This is not just an American problem, though America has been targetted specifically">↩</a></p>
+election is finally, though slowly, entering the public consciouness. <a class="footnote-backref" href="#fnref-Leaks" id="generated-link-id266" title="This is not just an American problem, though America has been targetted specifically">↩</a></p>
 </li>
-<li id="fn:AfricaMaps">
+<li id="fn-AfricaMaps">
 <p>Facebook’s high resolution population settlement maps to target
 users previously unconnected to the internet
-«<a href="https://ciesin.columbia.edu/data/hrsl/" id="generated-link-id267">columbia.edu</a>» <a class="footnote-backref" href="#fnref:AfricaMaps" id="generated-link-id268" rev="footnote" title="This effort has notably been assisted by the use of image recognition algorithms and satellite photography to make some of the most detailed maps of human settlements ever produced">↩</a></p>
+«<a href="https://ciesin.columbia.edu/data/hrsl/" id="generated-link-id267">columbia.edu</a>» <a class="footnote-backref" href="#fnref-AfricaMaps" id="generated-link-id268" title="This effort has notably been assisted by the use of image recognition algorithms and satellite photography to make some of the most detailed maps of human settlements ever produced">↩</a></p>
 </li>
-<li id="fn:GuardianAfrica">
+<li id="fn-GuardianAfrica">
 <p>Facebook’s expansion in Africa with “Free Basics”
-«<a href="https://www.theguardian.com/world/2016/aug/01/facebook-free-basics-internet-africa-mark-zuckerberg" id="generated-link-id269">theguardian.com</a>» <a class="footnote-backref" href="#fnref:GuardianAfrica" id="generated-link-id270" rev="footnote" title="In practice, the “Free Basics” program which is bundled with the expanding network - a small set of selected services such as Facebook which are offered for free - has the side-effect of making most of the newly connected population dependent on Facebook for their news, business, and communications">↩</a></p>
+«<a href="https://www.theguardian.com/world/2016/aug/01/facebook-free-basics-internet-africa-mark-zuckerberg" id="generated-link-id269">theguardian.com</a>» <a class="footnote-backref" href="#fnref-GuardianAfrica" id="generated-link-id270" title="In practice, the “Free Basics” program which is bundled with the expanding network - a small set of selected services such as Facebook which are offered for free - has the side-effect of making most of the newly connected population dependent on Facebook for their news, business, and communications">↩</a></p>
 </li>
-<li id="fn:ECMUniverse">
+<li id="fn-ECMUniverse">
 <p>ECM Universe 
-«<a href="http://ecmuniverse.com/our-work.html" id="generated-link-id271">escmuniverse.com</a>» <a class="footnote-backref" href="#fnref:ECMUniverse" id="generated-link-id272" rev="footnote" title="ECM Universe">↩</a></p>
+«<a href="http://ecmuniverse.com/our-work.html" id="generated-link-id271">escmuniverse.com</a>» <a class="footnote-backref" href="#fnref-ECMUniverse" id="generated-link-id272" title="ECM Universe">↩</a></p>
 </li>
-<li id="fn:PredictivePolicing">
+<li id="fn-PredictivePolicing">
 <p>PredPol
-«<a href="https://www.economist.com/news/briefing/21582042-it-getting-easier-foresee-wrongdoing-and-spot-likely-wrongdoers-dont-even-think-about-it" id="generated-link-id273">economist.com</a>» <a class="footnote-backref" href="#fnref:PredictivePolicing" id="generated-link-id274" rev="footnote" title="ECM Universe for example explicitly solicits law enforcement with the ability to scrape social media for posts which indicate a risk of illegal behavior">↩</a></p>
+«<a href="https://www.economist.com/news/briefing/21582042-it-getting-easier-foresee-wrongdoing-and-spot-likely-wrongdoers-dont-even-think-about-it" id="generated-link-id273">economist.com</a>» <a class="footnote-backref" href="#fnref-PredictivePolicing" id="generated-link-id274" title="ECM Universe for example explicitly solicits law enforcement with the ability to scrape social media for posts which indicate a risk of illegal behavior">↩</a></p>
 </li>
-<li id="fn:Palantir">
+<li id="fn-Palantir">
 <p>Most commonly associated with its co-founder Peter Thiel, Palantir
 Technologies provides data-management to law enforcement agencies, the US 
 Intelligence Community, and the Department of Defence. Palantir’s dominance
 in this space carries a wide range of consequences - both for us and for 
 law-enforcement
-«<a href="https://www.wired.com/story/how-peter-thiels-secretive-data-company-pushed-into-policing/" id="generated-link-id275">wired.com</a>» <a class="footnote-backref" href="#fnref:Palantir" id="generated-link-id276" rev="footnote" title="Companies like Palantir and PredPol use this data in combination with statistical models to predict the identities, locations, and behavioral patterns of suspected criminals and targets">↩</a></p>
+«<a href="https://www.wired.com/story/how-peter-thiels-secretive-data-company-pushed-into-policing/" id="generated-link-id275">wired.com</a>» <a class="footnote-backref" href="#fnref-Palantir" id="generated-link-id276" title="Companies like Palantir and PredPol use this data in combination with statistical models to predict the identities, locations, and behavioral patterns of suspected criminals and targets">↩</a></p>
 </li>
-<li id="fn:Drones">
+<li id="fn-Drones">
 <p>An article detailing the use of drones to surveil the people of
 Baltimore without their knowledge
-«<a href="https://www.bloomberg.com/features/2016-baltimore-secret-surveillance/" id="generated-link-id277">bloomberg.com</a>» <a class="footnote-backref" href="#fnref:Drones" id="generated-link-id278" rev="footnote" title="In addition to these techniques, some police departments have adopted the use of drone surveillance and cellular interceptions without public disclosure and without revealing these methods to the courts">↩</a></p>
+«<a href="https://www.bloomberg.com/features/2016-baltimore-secret-surveillance/" id="generated-link-id277">bloomberg.com</a>» <a class="footnote-backref" href="#fnref-Drones" id="generated-link-id278" title="In addition to these techniques, some police departments have adopted the use of drone surveillance and cellular interceptions without public disclosure and without revealing these methods to the courts">↩</a></p>
 </li>
-<li id="fn:Stingray">
+<li id="fn-Stingray">
 <p>Local police have been documented secretly using “stingrays” (which
 mimic cellular towers to identify and track mobile phones - and which may be
 augmented to intercept communications) in coordination with the FBI and US 
 Marshals Service while deceiving courts of this practice
 «<a href="https://www.wired.com/2015/04/ny-cops-used-stingray-spy-tool-46-times-without-warrant/" id="generated-link-id279">wired.com</a>»,
-«<a href="https://www.wired.com/2014/06/feds-told-cops-to-deceive-courts-about-stingray/" id="generated-link-id280">wired.com</a>» <a class="footnote-backref" href="#fnref:Stingray" id="generated-link-id281" rev="footnote" title=",">↩</a></p>
+«<a href="https://www.wired.com/2014/06/feds-told-cops-to-deceive-courts-about-stingray/" id="generated-link-id280">wired.com</a>» <a class="footnote-backref" href="#fnref-Stingray" id="generated-link-id281" title=",">↩</a></p>
 </li>
-<li id="fn:Phone">
+<li id="fn-Phone">
 <p>It merits singling out the fact that Google manages much the data 
 produced by the worlds most popular mobile operating system. Our phones are 
 tracking devices nonpareil
@@ -1145,93 +1146,93 @@ constantly report data. Tracking does not mean just GPS data - though knowing
 where everybody is every three seconds reveals an enormous amount of information
 about our daily habits and meetings. Our dependence on our phones - through 
 carefully controlled interfaces - permits a level of data collection which is 
-capable of revealing our moods and thoughts throughout the day. <a class="footnote-backref" href="#fnref:Phone" id="generated-link-id283" rev="footnote" title="It is the world’s largest advertising platform, its largest search engine, its largest email provider, the publisher of its largest mobile operating system">↩</a></p>
+capable of revealing our moods and thoughts throughout the day. <a class="footnote-backref" href="#fnref-Phone" id="generated-link-id283" title="It is the world’s largest advertising platform, its largest search engine, its largest email provider, the publisher of its largest mobile operating system">↩</a></p>
 </li>
-<li id="fn:EverybodyLies">
+<li id="fn-EverybodyLies">
 <p>Seth Stephens-Davidowitz has written about the extent to which
 Google knows things we tend to conceal
-«<a href="https://www.vox.com/conversations/2017/6/13/15768622/facebook-social-media-seth-stephens-davidowitz-everybody-lies" id="generated-link-id284">vox.com</a>» <a class="footnote-backref" href="#fnref:EverybodyLies" id="generated-link-id285" rev="footnote" title="Without hyperbole, Google knows things about us we’ve never told another living soul - or might not consciously admit to ourselves">↩</a></p>
+«<a href="https://www.vox.com/conversations/2017/6/13/15768622/facebook-social-media-seth-stephens-davidowitz-everybody-lies" id="generated-link-id284">vox.com</a>» <a class="footnote-backref" href="#fnref-EverybodyLies" id="generated-link-id285" title="Without hyperbole, Google knows things about us we’ve never told another living soul - or might not consciously admit to ourselves">↩</a></p>
 </li>
-<li id="fn:Google">
+<li id="fn-Google">
 <p>Epstein and Robertson’s 2013 research about electoral manipulation 
 via search rankings
-«<a href="http://aibrt.org/downloads/EPSTEIN_and_Robertson_2013-Democracy_at_Risk-APS-summary-5-13.pdf" id="generated-link-id286">aibrt.org</a>» <a class="footnote-backref" href="#fnref:Google" id="generated-link-id287" rev="footnote" title="By extending this technique to specific, undecided voters in key electoral blocks, they suggested that it was possible for Google to influence the outcome of an election while avoiding public awareness">↩</a></p>
+«<a href="http://aibrt.org/downloads/EPSTEIN_and_Robertson_2013-Democracy_at_Risk-APS-summary-5-13.pdf" id="generated-link-id286">aibrt.org</a>» <a class="footnote-backref" href="#fnref-Google" id="generated-link-id287" title="By extending this technique to specific, undecided voters in key electoral blocks, they suggested that it was possible for Google to influence the outcome of an election while avoiding public awareness">↩</a></p>
 </li>
-<li id="fn:Motto">
+<li id="fn-Motto">
 <p>While Google’s parent company, Alphabet, has taken “Do the right 
 thing” as motto for the company, Google retains “Do the Right Thing” in its code
 of conduct 
-«<a href="https://en.wikipedia.org/wiki/Don't_be_evil" id="generated-link-id288">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:Motto" id="generated-link-id289" rev="footnote" title="Even if Google’s Alphabet’s motto “Don’t be Evil”">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Don't_be_evil" href="https://en.wikipedia.org/wiki/Don't_be_evil" id="generated-link-id288">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-Motto" id="generated-link-id289" title="Even if Google’s Alphabet’s motto “Don’t be Evil”">↩</a></p>
 </li>
-<li id="fn:Evil">
+<li id="fn-Evil">
 <p>Neither Facebook nor Google need to be evil to be used by malevolent or
 self-interested actors. Even if we trust these companies, it is a foolish 
 strategy to leave ourselves vulnerable to the corrupting and dissociative 
-influence of power. <a class="footnote-backref" href="#fnref:Evil" id="generated-link-id290" rev="footnote" title="Even if Google’s Alphabet’s motto “Don’t be Evil” “Do the Right Thing” is taken at face value, this amount of concentrated power is an inherent threat to any concept of democratic liberties">↩</a></p>
+influence of power. <a class="footnote-backref" href="#fnref-Evil" id="generated-link-id290" title="Even if Google’s Alphabet’s motto “Don’t be Evil” “Do the Right Thing” is taken at face value, this amount of concentrated power is an inherent threat to any concept of democratic liberties">↩</a></p>
 </li>
-<li id="fn:WorldPolicy">
+<li id="fn-WorldPolicy">
 <p>An outline of Russia’s slide to a surveillance state
-«<a href="https://worldpolicy.org/2013/09/12/russias-surveillance-state/" id="generated-link-id291">WorldPolicy.org</a>» <a class="footnote-backref" href="#fnref:WorldPolicy" id="generated-link-id292" rev="footnote" title="Further compelled by information provided by Edward Snowden, Russia moved aggressively to assert its control over these channels, which it accused the United States of manipulating">↩</a><a class="footnote-backref" href="#fnref2:WorldPolicy" id="generated-link-id293" rev="footnote" title="ru) in 2013">↩</a></p>
+«<a href="https://worldpolicy.org/2013/09/12/russias-surveillance-state/" id="generated-link-id291">WorldPolicy.org</a>» <a class="footnote-backref" href="#fnref-WorldPolicy" id="generated-link-id292" title="Further compelled by information provided by Edward Snowden, Russia moved aggressively to assert its control over these channels, which it accused the United States of manipulating">↩</a><a class="footnote-backref" href="#fnref2-WorldPolicy" id="generated-link-id293" title="ru) in 2013">↩</a></p>
 </li>
-<li id="fn:PutinsRevenge">
+<li id="fn-PutinsRevenge">
 <p>A PBS documentary exploring Putin’s motivations for 
 influencing the American electoral process
-«<a href="http://www.pbs.org/video/putins-revenge-mzz1lp/" id="generated-link-id294">pbs.org</a>» <a class="footnote-backref" href="#fnref:PutinsRevenge" id="generated-link-id295" rev="footnote" title=",">↩</a></p>
+«<a href="http://www.pbs.org/video/putins-revenge-mzz1lp/" id="generated-link-id294">pbs.org</a>» <a class="footnote-backref" href="#fnref-PutinsRevenge" id="generated-link-id295" title=",">↩</a></p>
 </li>
-<li id="fn:SORM">
+<li id="fn-SORM">
 <p>Russia’s System for Operative Investigative Activities (SORM)
-«<a href="https://en.wikipedia.org/wiki/SORM" id="generated-link-id296">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:SORM" id="generated-link-id297" rev="footnote" title="Since 2012, Russia has cracked down on protests, enacted comprehensive digital censorship and surveillance measures">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/SORM" href="https://en.wikipedia.org/wiki/SORM" id="generated-link-id296">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-SORM" id="generated-link-id297" title="Since 2012, Russia has cracked down on protests, enacted comprehensive digital censorship and surveillance measures">↩</a></p>
 </li>
-<li id="fn:ChinaFacial">
+<li id="fn-ChinaFacial">
 <p>An article and associated video regarding China’s use of facial
 recognition to augment its camera network.
-«<a href="https://www.washingtonpost.com/news/world/wp/2018/01/07/feature/in-china-facial-recognition-is-sharp-end-of-a-drive-for-total-surveillance/?utm_term=.334e1115dc36" id="generated-link-id298">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref:ChinaFacial" id="generated-link-id299" rev="footnote" title="Meanwhile, a national network of closed-circuit television cameras is being augmented with facial recognition,">↩</a></p>
+«<a href="https://www.washingtonpost.com/news/world/wp/2018/01/07/feature/in-china-facial-recognition-is-sharp-end-of-a-drive-for-total-surveillance/?utm_term=.334e1115dc36" id="generated-link-id298">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref-ChinaFacial" id="generated-link-id299" title="Meanwhile, a national network of closed-circuit television cameras is being augmented with facial recognition,">↩</a></p>
 </li>
-<li id="fn:GreatFirewall">
+<li id="fn-GreatFirewall">
 <p>An article detailing China’s effort to crack down on VPNs,
 force ISPs to log real names, and rate social interactions online
-«<a href="https://www.washingtonpost.com/world/asia_pacific/the-walls-are-closing-in-chinafinds-new-ways-to-tighten-internet-controls/2017/09/26/2e0d3562-9ee6-11e7-b2a7-bc70b6f98089_story.html?utm_term=.d3cbf665f966" id="generated-link-id300">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref:GreatFirewall" id="generated-link-id301" rev="footnote" title="In the face of demographic imbalance and a slowing economy, the CCP under Xi Jinping has bolstered its ubiquitous censorship">↩</a></p>
+«<a href="https://www.washingtonpost.com/world/asia_pacific/the-walls-are-closing-in-chinafinds-new-ways-to-tighten-internet-controls/2017/09/26/2e0d3562-9ee6-11e7-b2a7-bc70b6f98089_story.html?utm_term=.d3cbf665f966" id="generated-link-id300">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref-GreatFirewall" id="generated-link-id301" title="In the face of demographic imbalance and a slowing economy, the CCP under Xi Jinping has bolstered its ubiquitous censorship">↩</a></p>
 </li>
-<li id="fn:VoiceOfChina">
+<li id="fn-VoiceOfChina">
 <p>Voice of China unified state media 
-«<a href="https://www.theguardian.com/world/2018/mar/21/china-state-media-merger-to-create-propaganda-giant" id="generated-link-id302">theguardian.com</a>» <a class="footnote-backref" href="#fnref:VoiceOfChina" id="generated-link-id303" rev="footnote" title="In the face of demographic imbalance and a slowing economy, the CCP under Xi Jinping has bolstered its ubiquitous censorship and unified its authoritarian state media">↩</a></p>
+«<a href="https://www.theguardian.com/world/2018/mar/21/china-state-media-merger-to-create-propaganda-giant" id="generated-link-id302">theguardian.com</a>» <a class="footnote-backref" href="#fnref-VoiceOfChina" id="generated-link-id303" title="In the face of demographic imbalance and a slowing economy, the CCP under Xi Jinping has bolstered its ubiquitous censorship and unified its authoritarian state media">↩</a></p>
 </li>
-<li id="fn:WeChat">
+<li id="fn-WeChat">
 <p>WeChat becomes official ID
 «<a href="https://www.theverge.com/2018/2/1/16721230/wechat-china-app-mini-programs-messaging-electronic-id-system" id="generated-link-id304">theverge.com</a>»,
-«<a href="https://www.rt.com/news/414397-wechat-china-digital-ld/" id="generated-link-id305">rt.com</a>» <a class="footnote-backref" href="#fnref:WeChat" id="generated-link-id306" rev="footnote" title="Meanwhile, a national network of closed-circuit television cameras is being augmented with facial recognition, the country is adopting the social media platform WeChat as a means official government identificaion,">↩</a></p>
+«<a href="https://www.rt.com/news/414397-wechat-china-digital-ld/" id="generated-link-id305">rt.com</a>» <a class="footnote-backref" href="#fnref-WeChat" id="generated-link-id306" title="Meanwhile, a national network of closed-circuit television cameras is being augmented with facial recognition, the country is adopting the social media platform WeChat as a means official government identificaion,">↩</a></p>
 </li>
-<li id="fn:SocialRating">
+<li id="fn-SocialRating">
 <p>China’s plans to use a social credit system tied to data about
 each individual
 «<a href="http://www.bbc.com/news/world-asia-china-34592186" id="generated-link-id307">bbc.com</a>»,
-«<a href="https://www.washingtonpost.com/world/asia_pacific/chinas-plan-to-organize-its-whole-society-around-big-data-a-rating-for-everyone/2016/10/20/1cd0dd9c-9516-11e6-ae9d-0030ac1899cd_story.html" id="generated-link-id308">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref:SocialRating" id="generated-link-id309" rev="footnote" title="one which ranks individuals based on a comprehensive set of data used to restrict access to services">↩</a></p>
+«<a href="https://www.washingtonpost.com/world/asia_pacific/chinas-plan-to-organize-its-whole-society-around-big-data-a-rating-for-everyone/2016/10/20/1cd0dd9c-9516-11e6-ae9d-0030ac1899cd_story.html" id="generated-link-id308">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref-SocialRating" id="generated-link-id309" title="one which ranks individuals based on a comprehensive set of data used to restrict access to services">↩</a></p>
 </li>
-<li id="fn:ChinaSellData">
+<li id="fn-ChinaSellData">
 <p>The ability to buy personal information in China
-«<a href="https://www.washingtonpost.com/news/worldviews/wp/2017/01/04/in-china-big-brother-isnt-just-watching-your-every-move-he-may-be-selling-your-personal-data/?utm_term=.42edecb07d92" id="generated-link-id310">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref:ChinaSellData" id="generated-link-id311" rev="footnote" title="Moreover, not all of this data is secure">↩</a></p>
+«<a href="https://www.washingtonpost.com/news/worldviews/wp/2017/01/04/in-china-big-brother-isnt-just-watching-your-every-move-he-may-be-selling-your-personal-data/?utm_term=.42edecb07d92" id="generated-link-id310">washingtonpost.com</a>» <a class="footnote-backref" href="#fnref-ChinaSellData" id="generated-link-id311" title="Moreover, not all of this data is secure">↩</a></p>
 </li>
-<li id="fn:ManufacturingConsent">
+<li id="fn-ManufacturingConsent">
 <p>Chomsky’s Manufacturing Consent 
-«<a href="https://en.wikipedia.org/wiki/Manufacturing_Consent" id="generated-link-id312">wikipedia</a>» <a class="footnote-backref" href="#fnref:ManufacturingConsent" id="generated-link-id313" rev="footnote" title="Which news stories we learn of, how they are portrayed, the apparent consensus of our peers, the bounds of socially appropriate discourse and debate, how long a news story stays in focus … all are already biased by our media, as famously noted by Noam Chomsky">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Manufacturing_Consent" href="https://en.wikipedia.org/wiki/Manufacturing_Consent" id="generated-link-id312">wikipedia</a>» <a class="footnote-backref" href="#fnref-ManufacturingConsent" id="generated-link-id313" title="Which news stories we learn of, how they are portrayed, the apparent consensus of our peers, the bounds of socially appropriate discourse and debate, how long a news story stays in focus … all are already biased by our media, as famously noted by Noam Chomsky">↩</a></p>
 </li>
-<li id="fn:SurveillanceCapitalism">
+<li id="fn-SurveillanceCapitalism">
 <p>Surveillance Capitalism 
-«<a href="https://en.wikipedia.org/wiki/Surveillance_capitalism" id="generated-link-id314">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:SurveillanceCapitalism" id="generated-link-id315" rev="footnote" title="The brave new world of surveillance capitalism">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Surveillance_capitalism" href="https://en.wikipedia.org/wiki/Surveillance_capitalism" id="generated-link-id314">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-SurveillanceCapitalism" id="generated-link-id315" title="The brave new world of surveillance capitalism">↩</a></p>
 </li>
-<li id="fn:GenealogyOfMorals">
+<li id="fn-GenealogyOfMorals">
 <p>Nietzsche very nearly identified the fact that we
 construct our moral systems in response to our circumstances (and our power in 
 relation to others) - not the other way around 
 «<a href="https://archive.org/details/genealogyofmoral00nietuoft" id="generated-link-id316">archive.org</a>»
-This is an example of both rationalization<sup id="fnref2:Rationalization"><a class="footnote-ref" href="#fn:Rationalization" id="generated-link-id317" rel="footnote">27</a></sup> and memetic 
-evolution.<sup id="fnref3:Memes"><a class="footnote-ref" href="#fn:Memes" id="generated-link-id318" rel="footnote">13</a></sup> <a class="footnote-backref" href="#fnref:GenealogyOfMorals" id="generated-link-id319" rev="footnote" title="Where moral justification is required for inequality, it will be found">↩</a><a class="footnote-backref" href="#fnref2:GenealogyOfMorals" id="generated-link-id320" rev="footnote" title="This has moral implications">↩</a></p>
+This is an example of both rationalization<sup id="fnref2-Rationalization"><a class="footnote-ref" href="#fn-Rationalization" id="generated-link-id317">27</a></sup> and memetic 
+evolution.<sup id="fnref3-Memes"><a class="footnote-ref" href="#fn-Memes" id="generated-link-id318">13</a></sup> <a class="footnote-backref" href="#fnref-GenealogyOfMorals" id="generated-link-id319" title="Where moral justification is required for inequality, it will be found">↩</a><a class="footnote-backref" href="#fnref2-GenealogyOfMorals" id="generated-link-id320" title="This has moral implications">↩</a></p>
 </li>
-<li id="fn:HanlonsRazor">
+<li id="fn-HanlonsRazor">
 <p>Hanlon’s Razor 
-«<a href="https://en.wikipedia.org/wiki/Hanlon's_razor" id="generated-link-id321">wikipedia.org</a>» <a class="footnote-backref" href="#fnref:HanlonsRazor" id="generated-link-id322" rev="footnote" title="– A re-expression of Hanlon’s Razor">↩</a></p>
+«<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Hanlon's_razor" href="https://en.wikipedia.org/wiki/Hanlon's_razor" id="generated-link-id321">wikipedia.org</a>» <a class="footnote-backref" href="#fnref-HanlonsRazor" id="generated-link-id322" title="– A re-expression of Hanlon’s Razor">↩</a></p>
 </li>
-<li id="fn:Names">
+<li id="fn-Names">
 <p>Robert Mercer and Peter Theil are in such positions, though I’m sure 
 they don’t see it as evil - merely a reality of the world which they would be a 
 fool to deny… In 8th grade, my class was asked to think about how we’d design
@@ -1242,33 +1243,33 @@ the rise of automation and a slowdown in traditional labor, power and stability
 will come from the control of our information. Whomever controls that 
 information is in a position to reshape society towards whatever image they 
 identify as right and ideal. This is not democratic - but would you wield that
-power? <a class="footnote-backref" href="#fnref:Names" id="generated-link-id323" rev="footnote" title="Although some people are in positions to entrench personal power by seeking the future we foresee here,">↩</a></p>
+power? <a class="footnote-backref" href="#fnref-Names" id="generated-link-id323" title="Although some people are in positions to entrench personal power by seeking the future we foresee here,">↩</a></p>
 </li>
-<li id="fn:Addiction">
+<li id="fn-Addiction">
 <p>Not only is this an individual addiction like smoking cigarettes,
 (as explained by the section titled ‘Addiction’), but it is an addiction like
-our societal dependence on fossil fuels. <a class="footnote-backref" href="#fnref:Addiction" id="generated-link-id324" rev="footnote" title="We must first prepare ourselves mentally for the long, difficult road of addressing an unhealthy dependence and addiction">↩</a></p>
+our societal dependence on fossil fuels. <a class="footnote-backref" href="#fnref-Addiction" id="generated-link-id324" title="We must first prepare ourselves mentally for the long, difficult road of addressing an unhealthy dependence and addiction">↩</a></p>
 </li>
-<li id="fn:USIC">
+<li id="fn-USIC">
 <p>This observation extends to our intelligence community and our law
-enforcement: An “us against them” mentality is bad for everyone. <a class="footnote-backref" href="#fnref:USIC" id="generated-link-id325" rev="footnote" title="The exploitation of tribalism and fear are the greatest threats to our liberty and our shared humanity">↩</a></p>
+enforcement: An “us against them” mentality is bad for everyone. <a class="footnote-backref" href="#fnref-USIC" id="generated-link-id325" title="The exploitation of tribalism and fear are the greatest threats to our liberty and our shared humanity">↩</a></p>
 </li>
-<li id="fn:IBM">
+<li id="fn-IBM">
 <p>IBM’s press release for behavioral identification
 «<a href="https://www-03.ibm.com/press/us/en/pressrelease/44056.wss" id="generated-link-id326">ibm.com</a>»
 which details methods for identifying users online by methods which include 
 “clicking certain areas more often than others; using the up and down arrow keys
 on the keyboard to navigate; relying solely on the mouse; or tapping or swiping 
-the screen of a tablet or smartphone in a distinct manner”. <a class="footnote-backref" href="#fnref:IBM" id="generated-link-id327" rev="footnote" title="Finally, it may be noted that IBM has patented the means to authenticate users based on website interaction">↩</a></p>
+the screen of a tablet or smartphone in a distinct manner”. <a class="footnote-backref" href="#fnref-IBM" id="generated-link-id327" title="Finally, it may be noted that IBM has patented the means to authenticate users based on website interaction">↩</a></p>
 </li>
 </ol>
 </div>
 </article>
     </main>
 
-
-
-
+    <script type="text/javascript">
+     engage();
+    </script>
   </body>
 
 </html>

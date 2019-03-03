@@ -18,19 +18,19 @@
         <div id="board" style="width: 100%;"></div>
         <br>
         <div style="text-align:center;">
-          <input type="button" class="button" id="startBtn" value="<<" />
-          <input type="button" class="button" id="prevBtn" value="<" />
-          <input type="button" class="button" id="resetBtn" value="Init" />
-          <input type="button" class="button" id="nextBtn" value=">" />
-          <input type="button" class="button" id="lastBtn" value=">>" />
-          <input type="button" class="button" id="flipBtn" value="Flip" />
+          <input type="button" id="startBtn" value="<<" />
+          <input type="button" id="prevBtn" value="<" />
+          <input type="button" id="resetBtn" value="Init" />
+          <input type="button" id="nextBtn" value=">" />
+          <input type="button" id="lastBtn" value=">>" />
+          <input type="button" id="flipBtn" value="Flip" />
         </div>
         <hr>
         <div style="text-align:center;">
-            <input type="button" class="button" id="linkBtn" value="Link" />
-            <input type="button" class="button" id="fenBtn" value="FEN" />
-            <input type="button" class="button" id="pgnBtn" value="PGN"/>
-            <input type="button" class="button" id="loadBtn" value="Load"/>
+            <input type="button" id="linkBtn" value="Link" />
+            <input type="button" id="fenBtn" value="FEN" />
+            <input type="button" id="pgnBtn" value="PGN"/>
+            <input type="button" id="loadBtn" value="Load"/>
         </div>
         <br>
         <textarea id="field" style="width: 100%; height: 400px;"></textarea>
@@ -42,6 +42,11 @@
         <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
 
 <script type="text/javascript">
+
+ function copyField() {
+     document.getElementById("field").select();
+     document.execCommand("copy");
+ }
 
  // url is simply PGN sequence. Cross-compatible with Apronus
  function parse_url() {
@@ -246,15 +251,16 @@
  $('#flipBtn').on('click', board.flip);
  $('#linkBtn').on('click', function() {
      fieldEl.val(generate_url());
-     fieldEl.select();
+     copyField();
  });
  $('#fenBtn').on('click', function() {
      fieldEl.val(game.fen());
-     fieldEl.select();
+     copyField();
+
  });
  $('#pgnBtn').on('click', function() {
      fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
-     fieldEl.select();
+     copyField();
  });
  $('#loadBtn').on('click', function() {
      if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {

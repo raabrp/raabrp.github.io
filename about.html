@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
     <title>
 About    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
 
     <!-- CSS for Layout -->
     <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
@@ -17,21 +19,20 @@ About    </title>
 
     <!-- CSS for Colors -->
     <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/color-light-rotated.css">
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
     <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/color-light-default.css">
+          class="color-css" href="theme/css/colors/color-light-default.css">
     <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/color-dark-rotated.css">
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
     <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/color-dark-default.css">
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
 
-    <!--
-    The google fonts API nominally minimizes data collection
-    https://developers.google.com/fonts/faq
-    #what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
-    -->
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Raleway:600i|Roboto">
+          href="theme/css/fonts.css">
 
     <!-- JS for Color Theming -->
     <script type="text/javascript">
@@ -52,7 +53,7 @@ About    </title>
          for (var i=0; i < color_links.length; i++) {
              var link = color_links[i];
              if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/color-' + val + '.css';
+                 link.href = 'theme/css/colors/color-' + val + '.css';
              } else {
                  link.removeAttribute('href');
              }
@@ -150,64 +151,53 @@ About    </title>
         </nav>
       </menu>
 
+      <div id="top-spacer"></div>
 
 <header>
-    <h1>
+    <h1 id="title-header">
         About
     </h1>
 </header>
 <article>
-    <h1 id="me">Me<a class="headerlink" href="#me" id="generated-link-id0" title="Permanent link">#</a></h1>
+    <h1 id="about-me">About me<a class="headerlink" href="#about-me" id="generated-link-id0" title="Permanent link">#</a></h1>
 <p>Hi! My name is Reilly.</p>
-<p>I’m originally from the foothills of northern California, and I studied physics
-(BSc) at 
-<a href="https://ccs.ucsb.edu/" id="generated-link-id1">UC Santa Barbara’s College of Creative Studies</a> 
-(my undergraduate thesis<sup id="fnref:Thesis"><a class="footnote-ref" href="#fn:Thesis" id="generated-link-id2" rel="footnote">1</a></sup> addressed errors in high-frequency, analog
-signal processing used for controlling a superconducting quantum computer).</p>
-<p>I’ve spent the last few years travelling (Eastern Asia, Eastern Australia, and
-North America) while reading extensively, pursuing a few personal projects, and
-working in software.</p>
-<h2 id="online-presence">Online Presence<a class="headerlink" href="#online-presence" id="generated-link-id3" title="Permanent link">#</a></h2>
-<p>Is currently minimal, having shunned social media. </p>
-<p>I have a <a href="https://github.com/raabrp" id="generated-link-id4">github</a>, though it represents a small slice
-of my private codebase, much like this site in relation to my essays.</p>
-<h1 id="this-site">This Site<a class="headerlink" href="#this-site" id="generated-link-id5" title="Permanent link">#</a></h1>
-<h2 id="non-technical">Non-Technical<a class="headerlink" href="#non-technical" id="generated-link-id6" title="Permanent link">#</a></h2>
-<p>This is mostly a space for me share my fascination with various subjects, to 
-publish personal essays and to communicate about projects or developments which
-are important to me. I have over 45000 words spread over various essays sitting
-in my drafts folder as of Nov 2018… I’ll put more of them up here soon enough,
-I promise.</p>
-<h2 id="technical">Technical<a class="headerlink" href="#technical" id="generated-link-id7" title="Permanent link">#</a></h2>
-<p>I’m using <a href="https://blog.getpelican.com" id="generated-link-id8">pelican</a> to render this site from
-<a href="/test.html" id="generated-link-id9">markdown</a> and hosting the result via 
-<a href="https://pages.github.com/" id="generated-link-id10">github pages</a>.</p>
-<p>My domain is registered with <a href="https://www.namecheap.com/" id="generated-link-id11">Namecheap</a>, which 
-points to <a href="https://www.cloudflare.com/" id="generated-link-id12">cloudflare</a>‘s nameservers, which have
-DNS <code>A</code> records pointing to the IP address for the github pages servers.</p>
-<p>At the end of the day, I write in Markdown with a few custom extensions, use a 
-script that builds and previews the site locally, (with python and node.js), and
-I publish my changes by pushing to the hosted git repo.</p>
-<p>The relevant <a href="https://github.com/raabrp/rraabblog" id="generated-link-id13">code</a> is hosted
-publically on github for anyone to use, under the MIT license. It is not 
-perfect, but seeks to avoid as much bloat as possible while doing what I want 
-it to. Please, use and <a href="https://en.wikipedia.org/wiki/Hacker_culture" id="generated-link-id14">hack</a> it
-to your heart’s content.</p>
+<p>I’m originally from the foothills of northern California.</p>
+<p>I studied physics (BSc) at UC Santa Barbara’s
+<a href="https://ccs.ucsb.edu/" id="generated-link-id1">College of Creative Studies</a>.<sup id="fnref-Thesis"><a class="footnote-ref" href="#fn-Thesis" id="generated-link-id2">1</a></sup></p>
+<p>After graduation, I spent a few years traveling (Eastern Asia, Eastern
+Australia, and North America) while reading extensively, pursuing a few personal
+projects, and working in software development.</p>
+<p>In 2019, I’ll be starting graduate study in Computer Science.</p>
+<h1 id="about-this-site">About this site<a class="headerlink" href="#about-this-site" id="generated-link-id3" title="Permanent link">#</a></h1>
+<p>This a space for me share my fascination with various subjects, to publish
+personal essays, and to communicate about projects or developments which
+are important to me.</p>
+<p>This site is generated using a combination of Javascript and Python. I write
+content in Markdown<sup id="fnref-Demo"><a class="footnote-ref" href="#fn-Demo" id="generated-link-id4">2</a></sup> and publish my changes using
+git (<a href="https://github.com/raabrp/raabrp.github.io" id="generated-link-id5">github</a>). The 
+<a href="https://github.com/raabrp/rraabblog" id="generated-link-id6">code</a> I’ve written for this purpose is
+published under the MIT license. It is not perfect, but seeks to avoid as much
+bloat as possible while doing what I want it to. Please, use and
+<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Hacker_culture" href="https://en.wikipedia.org/wiki/Hacker_culture" id="generated-link-id7">hack</a> it to your heart’s content.</p>
 <div class="footnote">
 <hr/>
 <ol>
-<li id="fn:Thesis">
-<p>Undergrad thesis: 
-«<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf" id="generated-link-id15">web.physics.ucsb.edu</a>» <a class="footnote-backref" href="#fnref:Thesis" id="generated-link-id16" rev="footnote" title="I’m originally from the foothills of northern California, and I studied physics (BSc) at UC Santa Barbara’s College of Creative Studies (my undergraduate thesis">↩</a></p>
+<li id="fn-Thesis">
+<p>My undergraduate thesis addresses errors in superconducting qubit
+control caused by signal-processing hardware imperfections:
+«<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf" id="generated-link-id8">web.physics.ucsb.edu</a>» <a class="footnote-backref" href="#fnref-Thesis" id="generated-link-id9" title="I studied physics (BSc) at UC Santa Barbara’s College of Creative Studies">↩</a></p>
+</li>
+<li id="fn-Demo">
+<p>See <a href="/demo.html" id="generated-link-id10">this demo</a> <a class="footnote-backref" href="#fnref-Demo" id="generated-link-id11" title="I write content in Markdown">↩</a></p>
 </li>
 </ol>
 </div>
 </article>
     </main>
 
-
-
-
+    <script type="text/javascript">
+     engage();
+    </script>
   </body>
 
 </html>
