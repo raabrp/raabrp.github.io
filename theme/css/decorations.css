@@ -5,6 +5,7 @@
 main {
     /* For PurpleHack, line-length is ~80ch*/
     max-width: 55ch;
+    min-width: 40ch;
 }
 
 body {
@@ -76,24 +77,6 @@ td.linenos {
     width: 2ch;
 }
 
-/*
- * Desktop ( > 1200 px width)
- *
- */
-@media (min-width: 1200px) {
-    header > h1 {
-        font-size: 450%;
-    }
-
-    h1 {
-        font-size: 205%;
-    }
-
-    h2 {
-        font-size: 160%;
-    }
-}
-
 /* Forms, Input */
 
 input[type=checkbox] {
@@ -118,4 +101,23 @@ input[type=button], button {
 .codehilite .k,  /* keyword */
 .codehilite .nf { /* function name */
     font-weight: bold;
+}
+
+
+/*
+ * Desktop ( > 1200 px width)
+ *
+ */
+@media (min-width: 190ch) {
+    header > h1 {
+        font-size: 450%;
+    }
+
+    h1 {
+        font-size: 205%;
+    }
+
+    h2 {
+        font-size: 160%;
+    }
 }
