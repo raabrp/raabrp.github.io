@@ -576,6 +576,8 @@ Dark-Chess    </title>
  // allow full review when params.r is set
  function update() {
 
+     board.resize();
+
      // reset fog
      $(".square-55d63").removeClass("wfog");
      $(".square-55d63").removeClass("bfog");
@@ -787,12 +789,8 @@ Dark-Chess    </title>
      }
  });
 
- window.onresize = board.resize;
+ window.onresize = update;
  update();
-
- // inelegant
- board.resize();
- setTimeout(board.resize, 1000);
 
  })();
 </script>

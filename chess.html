@@ -281,6 +281,7 @@ Chess    </title>
 
  // repaint to allow previous states of play to be examined
  function update() {
+     board.resize();
      board.position(game.fen());
      updateStatus();
  }
@@ -424,12 +425,8 @@ Chess    </title>
      }
  });
 
- window.onresize = board.resize;
+ window.onresize = update;
  update();
-
- // inelegant
- board.resize();
- setTimeout(board.resize, 1000);
 
 </script>
 
