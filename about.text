@@ -46,13 +46,15 @@ I store no information about you whatsoever. A single entry in your browser's
 `localstorage` is requested to let your browser remember whether you've
 selected an alternate color scheme for the site, and that's it.
 
-All network resources (javascript, css, fonts, etc.), including library code,
-are hosted by reillyraab.com itself.
+All network resources 
+([javascript](https://en.wikipedia.org/wiki/JavaScript), 
+[css](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), fonts, etc.),
+including library code, are hosted by reillyraab.com itself.
 
-### Third-Party Privacy
+## Third-Party Privacy
 
 By using this site, you are an end user of
-[Cloudflare](https://en.wikipedia.org/wiki/Cloudflare)'s services.
+[Cloudflare's](https://en.wikipedia.org/wiki/Cloudflare) services.
 
 Cloudflare acts as a reverse proxy for reillyraab.com and handles HTTPS
 encryption / decryption. For all intents and purposes, when your browser
@@ -71,4 +73,4 @@ this does not hinder Cloudflare from seeing your specific network requests.
 > Users, including the Log Data described above... Non-personally identifiable,
 > aggregated data may be shared with third parties.
 >
-> -- Cloudflare's [privacypolicy](https://www.cloudflare.com/privacypolicy/)
+> -- Cloudflare's [privacy policy](https://www.cloudflare.com/privacypolicy/)
