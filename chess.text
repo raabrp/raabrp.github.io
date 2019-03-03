@@ -5,9 +5,10 @@
         <meta name="slug" content="chess" />
     </head>
     <body>
+        <style type="text/css"> main { max-width: 50ch; } </style>
         <h2>For Correspondence Play</h2>
         <link rel="stylesheet" type="text/css" href="/css/chess.css">
-        <script src="/js/lib/jquery.js"></script>
+        <script src="/theme/js/lib/jquery.js"></script>
         <script src="/js/chessboard.js"></script>
         <script src="/js/chess.js"></script>
 
@@ -270,8 +271,12 @@
      }
  });
 
-
+ window.onresize = board.resize;
  update();
+
+ // inelegant
+ board.resize();
+ setTimeout(board.resize, 1000);
 
 </script>
 
