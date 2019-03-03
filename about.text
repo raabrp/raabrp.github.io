@@ -31,10 +31,44 @@ are important to me.
 
 This site is generated using a combination of Javascript and Python. I write
 content in Markdown[^Demo] and publish my changes using
-git ([github](https://github.com/raabrp/raabrp.github.io)). The 
-[code](https://github.com/raabrp/rraabblog) I've written for this purpose is
-published under the MIT license. It is not perfect, but seeks to avoid as much
-bloat as possible while doing what I want it to. Please, use and
-[hack](https://en.wikipedia.org/wiki/Hacker_culture) it to your heart's content.
+git ([github](https://github.com/raabrp/raabrp.github.io)).
 
 [^Demo]: See [this demo](/demo.html)
+
+The [code](https://github.com/raabrp/rraabblog) I've written for this purpose
+is published under the MIT license. It is not perfect, but seeks to avoid as
+much bloat as possible while doing what I want it to. Please, use and
+[hack](https://en.wikipedia.org/wiki/Hacker_culture) it to your heart's content.
+
+## Privacy
+
+I store no information about you whatsoever. A single entry in your browser's
+`localstorage` is requested to let your browser remember whether you've
+selected an alternate color scheme for the site, and that's it.
+
+All network resources (javascript, css, fonts, etc.), including library code,
+are hosted by reillyraab.com itself.
+
+### Third-Party Privacy
+
+By using this site, you are an end user of
+[Cloudflare](https://en.wikipedia.org/wiki/Cloudflare)'s services.
+
+Cloudflare acts as a reverse proxy for reillyraab.com and handles HTTPS
+encryption / decryption. For all intents and purposes, when your browser
+is communicating with this site, it's communicating with Cloudflare. While HTTPS
+might hide which specific content you're viewing on this site from your ISP,
+this does not hinder Cloudflare from seeing your specific network requests.
+
+> We collect End Users’ information when they use our Customers’ websites, web
+> applications, and APIs. This information may include but is not limited to IP
+> addresses, system configuration information, and other information about
+> traffic to and from Customers’ websites (collectively, “Log Data”).
+>
+> ...
+>
+> Cloudflare may aggregate data we acquire about our Customers and their End
+> Users, including the Log Data described above... Non-personally identifiable,
+> aggregated data may be shared with third parties.
+>
+> -- Cloudflare's [privacypolicy](https://www.cloudflare.com/privacypolicy/)
