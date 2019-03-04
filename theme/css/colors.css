@@ -131,7 +131,7 @@ input[type=button], button {
 /* pygments */
 
 .codehilite .hll   { background-color: var(--hlhll); }
-.codehilite        { background: var(--hlbg);
+.codehilite, .codehilite pre, .linenos pre { background: var(--hlbg);
                      color: var(--hlcl);   }
 .codehilite .c     { color: var(--hlc);    }  /* Comment */
 .codehilite .k     { color: var(--hlk);    }  /* Keyword */
