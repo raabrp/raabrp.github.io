@@ -128,6 +128,9 @@ onReady(function() {
             var window_bottom = scrollY + window.innerHeight;
             if (target.getBoundingClientRect().y > window_bottom) {
                 target.classList.add('active-ref');
+                target.style.maxWidth = window.getComputedStyle(
+                    document.getElementsByTagName('main')[0]
+                ).maxWidth;
             }
 
         };
