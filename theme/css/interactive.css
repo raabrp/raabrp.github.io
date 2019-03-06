@@ -163,7 +163,6 @@ menu input:checked ~ label > div > :nth-child(3) {
         bottom: 1em;
         padding: 2ch;
         list-style-position: inside;
-        width: 55ch;
         pointer-events: none;
     }
 }

@@ -325,7 +325,8 @@ onReady(function() {
 onReady(function() {
 
     var links = document.getElementsByClassName('wikipedia_link');
-    var mouse_over = [];
+
+    var active_ids = [];
 
     for (var i=0; i < links.length; i++) {
 
@@ -334,7 +335,7 @@ onReady(function() {
 
         x.onmouseover = function() {
 
-            mouse_over[i] = true;
+            active_ids.push(xid);
 
             var z = document.getElementById(xid + "-extract");
 
@@ -349,31 +350,43 @@ onReady(function() {
                         y.innerHTML = json_response.extract +
                             "<br><br><b>(Wikipedia Extract)</b>";
                         y.setAttribute("id", xid + "-extract");
+
                         document.getElementsByTagName('article')[0].appendChild(y);
 
-                        if (mouse_over[i]) {
+                        if (active_ids.includes(xid)) { // mouse still over link
                             y.setAttribute("class", "active-ref wiki-extract");
-                        } else {
+                        } else { // network may be slow
                             y.setAttribute("class", "hidden wiki-extract");
                         }
-
+                        y.style.maxWidth = window.getComputedStyle(
+                            document.getElementsByTagName('main')[0]
+                        ).maxWidth;
                     });
+
             } else {
                 z.classList.remove('hidden');
                 z.classList.add('active-ref');
+                z.style.maxWidth = window.getComputedStyle(
+                    document.getElementsByTagName('main')[0]
+                ).maxWidth;
             }
 
         };
 
         x.onmouseout = function() {
 
-            mouse_over[i] = false;
+            for (var j = 0; j < active_ids.length; j++) {
 
-            var z = document.getElementById(xid + "-extract");
-            if (z != null) {
-                z.classList.remove('active-ref');
-                z.classList.add('hidden');
+                var active_id = active_ids[j];
+
+                var z = document.getElementById(active_id + "-extract");
+
+                if (z != null) {
+                    z.classList.remove('active-ref');
+                    z.classList.add('hidden');
+                }
             }
+            active_ids = [];
         };
 
     }
