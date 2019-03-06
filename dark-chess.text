@@ -5,7 +5,10 @@
         <meta name="slug" content="dark-chess" />
     </head>
     <body>
-        <style type="text/css"> main { max-width: 50ch; } </style>
+        <style type="text/css">
+         main { max-width: 50ch; }
+         .wiki-extract { max-width: 50ch;}
+        </style>
         <h2>For Correspondence Play</h2>
         <link rel="stylesheet" type="text/css" href="/css/chess.css">
         <script src="/theme/js/lib/jquery.js"></script>
