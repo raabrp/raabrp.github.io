@@ -117,7 +117,7 @@ Chess    </title>
                 </li>
                 <li>
                   <a href="reading-list.html">
-                    Favorite Readings
+                    Memetic Collections
                   </a>
                 </li>
               </ul>
@@ -426,7 +426,16 @@ Chess    </title>
  });
 
  window.onresize = update;
- update();
+
+ function wait_update() {
+     if (!($.isReady)) {
+         setTimeout(wait_update, 100);
+     } else {
+         update();
+     }
+ }
+ wait_update();
+
 
 </script>
 

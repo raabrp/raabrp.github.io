@@ -4,7 +4,7 @@
  */
 
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 /* global links */

@@ -273,7 +273,16 @@
  });
 
  window.onresize = update;
- update();
+
+ function wait_update() {
+     if (!($.isReady)) {
+         setTimeout(wait_update, 100);
+     } else {
+         update();
+     }
+ }
+ wait_update();
+
 
 </script>
 
