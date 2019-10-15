@@ -15,7 +15,6 @@ strong > em {
 }
 
 /* links */
-
 a {
     color: var(--s2);
 }
@@ -25,7 +24,7 @@ a {
 #hamburger > :nth-child(1),
 #hamburger > :nth-child(2),
 #hamburger > :nth-child(3) {
-    background: var(--w0);
+    background: var(--h2);
 }
 
 /* headers */

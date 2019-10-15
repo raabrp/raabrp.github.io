@@ -7,13 +7,17 @@
     display: none;
 }
 
-/* global links */
+/* links */
 a {
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
 }
+.theme-selector {
+    cursor: pointer;
+}
+
 /* listed links */
 .toc li > a:only-child,
 .index li > a:only-child,
@@ -102,7 +106,6 @@ menu nav > :first-child::before {
     top: 23px;
     width: 32px;
     height: 4px;
-    opacity: 0.3;
     border-radius: 3px;
     transition: 0.2s ease-in-out;
 }
