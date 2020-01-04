@@ -18,7 +18,7 @@ Original markdown source for this page hosted [here](/demo.text) for inspection.
 
 The top of this file includes
 
-```
+```md
 ---
 title: Markdown Demo
 slug: demo
@@ -46,7 +46,7 @@ date: 2018-01-01
 #### Header 4
 
 
-```
+```md
 # Header 1
 
 ## Header 2
@@ -107,7 +107,7 @@ decorations**, and standard HTML<sup>when&nbsp;necessary<sub>.
 >
 > -- Joseph Heller, Catch-22 (1961)
 
-```md
+```text
 > There was only one catch and that was Catch-22, which specified that a concern
 > for one's own safety in the face of dangers that were real and immediate was 
 > the process of a rational mind. Orr was crazy and could be grounded. All he 

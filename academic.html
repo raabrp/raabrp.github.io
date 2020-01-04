@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Academics    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/colors/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
+
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
+    <link rel="stylesheet"
+          href="theme/css/fonts.css">
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/colors/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="academic.html">
+                    Academics
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Info
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Contenu de Qualité
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+      <div id="top-spacer"></div>
+
+<header>
+    <h1 id="title-header">
+        Academics
+    </h1>
+</header>
+<article>
+    <p>I work in the
+department of <a href="https://www.soe.ucsc.edu/departments/computer-science-and-engineering" id="generated-link-id0">Computer Science and
+Engineering</a>
+at <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/University_of_California,_Santa_Cruz" href="https://en.wikipedia.org/wiki/University_of_California,_Santa_Cruz" id="generated-link-id1">UC Santa
+Cruz</a>,
+advised by
+<a href="http://www.yliuu.com/" id="generated-link-id2">Yang Liu</a>. </p>
+<p><a href="/hosted/resume.pdf" id="generated-link-id3">Resume [PDF]</a></p>
+<h2 id="research-interests">Research interests<a class="headerlink" href="#research-interests" id="generated-link-id4" title="Permanent link">#</a></h2>
+<ul>
+<li>Information elicitation and aggregation without verification</li>
+<li>Algorithmic game theory</li>
+<li>Information theoretical basis of learning</li>
+<li>Physical theory of computation</li>
+</ul>
+<h1 id="publications">Publications<a class="headerlink" href="#publications" id="generated-link-id5" title="Permanent link">#</a></h1>
+<h4>2015</h4>
+<p><a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf" id="generated-link-id6">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ
+Mixing</a>
+<br/><strong><em>Reilly Raab</em></strong>
+<br/>Undergrad Thesis</p>
+<h4>2014</h4>
+<p><a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c" id="generated-link-id7">Systematic study of exciton diffusion length in organic semiconductors by six
+experimental
+methods</a>
+<br/>Jason D. A. Lin et. al.
+<br/>Materials Horizons</p>
+</article>
+    </main>
+
+    <script type="text/javascript">
+     engage();
+    </script>
+  </body>
+
+</html>
