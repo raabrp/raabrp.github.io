@@ -43,10 +43,6 @@ f(x) = \int_{-\infty}^\infty
           let box = svg.viewBox.baseVal;
           let w = box.width;
           let h = box.height;
-
-          // have constant ratio at least...
-          console.log(svg.height.baseVal.value, h, h / svg.height.baseVal.value);
-          console.log(svg)
           
           let s = Math.min(Math.max(scale.value, min_scale), max_scale);
 
