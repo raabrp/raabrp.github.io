@@ -1,0 +1,865 @@
+<html>
+    <head>
+        <title>Greyline Map</title>
+        <meta name="date" content="2020-10-15" />
+        <meta name="slug" content="greyline" />
+    </head>
+    <body>
+      <canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%" />
+      <img id="pst_month" style="display: none;" src="" />
+      <img id="ftr_month" style="display: none;" src="" />
+      <img id="night" style="display: none;" src="/images/greyline/night.jpg"/>
+      <img id="moon1" style="display: none;" src="" />
+
+<script type="text/javascript">
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing
+
+    let pi = Math.PI, cos = Math.cos, sin = Math.sin, tan = Math.tan;
+    let asin = Math.asin, sign = Math.sign, atan2 = Math.atan2;
+    let max = Math.max, min = Math.min, floor = Math.floor, abs = Math.abs;
+    
+    function run(now) { 
+        now = now || new Date();
+
+        let month = now.getUTCMonth();
+        let day = now.getUTCDate();
+
+        // load images
+        let pst_month = document.getElementById("pst_month");
+        let ftr_month = document.getElementById("ftr_month");
+        let pst_month_src = (((month + (day >= 15))) % 12) + 1;
+        let ftr_month_src = (((month + (day >= 15)) + 1) % 12) + 1;
+        pst_month_src = pst_month_src.toString();
+        ftr_month_src = ftr_month_src.toString();
+        pst_month.src = "/images/greyline/" + ("0" + pst_month_src).slice(-2) + ".jpg";
+        ftr_month.src = "/images/greyline/" + ("0" + ftr_month_src).slice(-2) + ".jpg";
+        let night = document.getElementById("night");       
+
+        // finish time-dependent setup
+        let year = now.getYear();
+        let hour = now.getUTCHours();
+        let minutes = now.getUTCMinutes();
+
+        // mon
+        let monthAlpha; // weigth of pst month
+        if (day >= 15) {
+            monthAlpha = 0.5 * (1 + (31 - day) / 16); // [1, 0.5]
+        } else {
+            monthAlpha = 0.5 * (16 - day) / 15;
+        }        
+ 
+        // Get delta longitude vs mean solar time and latitude of sun based on time.
+        // Get same for moon
+        // Get phase of moon
+
+        // generate analemma
+        let sun_iter = 1000;
+        let phi_sun = [];
+        let tha_sun = [];
+
+        let ms = 1000 * 60 * 60 * 24 * 365;
+        for (let i = 0; i < sun_iter; i += 1) {
+            let [alpha, dec, etime] = get_sun_pos(now);
+
+            if (i == 0){
+                let h = ((alpha * 12 / pi) + 24) % 24;
+                let m = 60 * (h % 1); h = h - (m / 60);
+                let s = 60 * (m % 1); m = m - (s / 60);
+                console.log(h, m, s);
+                let dg = sign(dec);
+                let dh = abs(dec * 180 / pi);
+                let dm = 60 * (dh % 1); dh = dh - (dm / 60);
+                let ds = 60 * (dm % 1); dm = dm - (ds / 60);
+                console.log(dg * dh, dm, ds);
+            }
+            
+            phi_sun[i] = (12 - (hour + (minutes / 60))) * (pi / 12) + etime; // [-pi, pi]; 0 is noon UTC
+            tha_sun[i] = (pi / 2) - dec; // radians from north pole
+
+            now.setTime(now.getTime() - (ms / sun_iter));
+        }
+        now.setTime(now.getTime() + ms);
+        
+        let phi_moon = 270 * pi / 180;
+        let tha_moon = 120 * pi / 180;
+        // Get images of phases of moon
+
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext('2d');
+        let dpi = window.devicePixelRatio;
+
+        let style_width = Number(getComputedStyle(canvas).getPropertyValue("width").slice(0, -2));
+        let style_height = Number(getComputedStyle(canvas).getPropertyValue("height").slice(0, -2));
+
+        canvas.setAttribute('height', style_height * dpi);
+        canvas.setAttribute('width', style_width * dpi);    
+
+        let w = canvas.width;
+        let h = canvas.height;
+
+        // light level proportional to (when positive)
+
+        let mask = ctx.createImageData(w, h);
+        let sunset = ctx.createImageData(w, h);
+
+        // account for atmospheric refraction
+        // which is ~ 35 arc minutes
+        let astro_twilight = pi * 18 / 180;
+        let golden_hour = pi * 11 / 180;
+        let sunset_refrac = pi * (35 / 60) / 180;
+        let max_red = 250;
+        let max_green = 30;
+        
+        let lat, lng;
+        for (let i = 0; i < mask.data.length / 4; i += 1) {
+            let xpx = i % w;
+            let ypx = floor(i / w);
+
+            let phi = pi * (2 * xpx / w - 1); // [-pi, pi]
+            let tha = pi * (ypx / h); // [0, pi]
+
+            // dot product in spherical polar, but theta is inverted
+            // cos(tha) -> sin(tha) and vice-versa
+            let dot = sin(tha_sun[0]) * sin(tha) * cos(phi_sun[0] - phi) + cos(tha) * cos(tha_sun[0]);
+                
+            let dark = floor((1 - min(max(
+                // pixel is fully day when line below is 1, and night when it is 0
+                // sign(dot), // without refraction
+                ((dot + astro_twilight) / (astro_twilight)),
+                0), 1) ** 4) * 256);
+            
+            let red = floor(min(max(
+                (-(dot) * (dot - sunset_refrac)) /
+                    (sunset_refrac / 2) ** 2,
+                0), 1) * max_red);
+            
+            let green = floor((1 - sin( pi/2 * min(max(
+                // 0 is start of sunset greens; 1 is end. (symmetric)
+                (dot + sunset_refrac),
+                0), 1)) ** 2) * max_green);
+
+            mask.data[4 * i + 0] = 0;
+            mask.data[4 * i + 1] = 0;
+            mask.data[4 * i + 2] = 0;
+            mask.data[4 * i + 3] = dark;
+
+            // 250, 30 to 202, 14
+            sunset.data[4 * i + 0] = red;  
+            sunset.data[4 * i + 1] = green;
+            sunset.data[4 * i + 2] = 0; 
+            sunset.data[4 * i + 3] = max(red, green);   
+        }
+        let sunset_bitmap;
+        Promise.all([
+            createImageBitmap(sunset)
+        ]).then(function(bitmap) {
+            sunset_bitmap = bitmap[0];
+            day_ready += 1;
+            attempt_draw();
+        });
+        
+        // Get x,y of sun
+        let x_sun = [];
+        let y_sun = [];
+        for (let i = 0; i < sun_iter; i += 1) {
+            x_sun[i] = (w / 2) * (1 + (phi_sun[i] / pi));
+            y_sun[i] = h * tha_sun[i] / pi;
+        }
+        let sun_r = 8;
+        let analemma_r = 3
+
+        // Get x,y of moon
+
+
+        // Draw black region where night will go, fading into transparency at edges        
+        ctx.putImageData(mask, 0, 0);
+
+        ctx.globalCompositeOperation = "source-in";
+
+        // replace all black pixels with night-time image
+        ctx.drawImage(night, 0, 0, w, h);
+
+        function attempt_draw() {
+            if (day_ready == 3) {
+            
+                ctx.globalCompositeOperation = "destination-over";
+
+                // draw sunset behind night-time image with appropriate transparency
+                ctx.globalAlpha = 0.5;
+                ctx.drawImage(sunset_bitmap, 0, 0, w, h);
+                
+                ctx.globalAlpha = monthAlpha;
+
+                // draw day image from past month with appropriate transparency behind night and sunset
+                ctx.drawImage(pst_month, 0, 0, w, h);
+
+                ctx.globalAlpha = 1.0;
+
+                // draw day image from next month with no transparency behind everything
+                ctx.drawImage(ftr_month, 0, 0, w, h);
+
+                ctx.globalCompositeOperation = "source-over";
+
+                // draw sun and analemma on top of everything else
+                ctx.fillStyle = "#FFFFFF77";
+                ctx.strokeStyle = "#FFFFFF77";
+                for (let i = -1; i < 2; i += 1){
+                    
+                    // draw sun
+                    ctx.beginPath();
+                    ctx.arc(x_sun[0] + (w * i), y_sun[0], sun_r, 0, 2 * pi);
+                    ctx.fill();
+
+                    // draw analemma
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(x_sun[0] + (w * i), y_sun[0]);
+                    for (let ii = 1; ii < sun_iter; ii += 1) {
+                        ctx.lineTo(x_sun[ii] + (w * i), y_sun[ii]);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();    
+                }
+            }
+
+        };
+        
+        // delay for correct day images to load
+        let day_ready = 0; 
+        pst_month.onload = function () {
+            day_ready += 1;
+            attempt_draw();
+        };
+        ftr_month.onload = function () {
+            day_ready += 1;
+            attempt_draw();
+        };
+
+    }
+ 
+    ////////////////////////////////////////////////////////////////////////////
+    //     _    ____ _____ ____   ___  _   _  ___  __  ____   __
+    //    / \  / ___|_   _|  _ \ / _ \| \ | |/ _ \|  \/  \ \ / /
+    //   / _ \ \___ \ | | | |_) | | | |  \| | | | | |\/| |\ V /
+    //  / ___ \ ___) || | |  _ <| |_| | |\  | |_| | |  | | | |
+    // /_/   \_\____/ |_| |_| \_\\___/|_| \_|\___/|_|  |_| |_|
+    //
+    //
+    //  .    _     *       \|/   .       .      -*-              +
+    //    .' \\`.     +    -*-     *   .         '       .   *
+    // .  |__''_|  .       /|\ +         .    +       .           |
+    //    |     | .                                        .     -*-
+    //    |     |           `  .    '             . *   .    +    '
+    //  _.'-----'-._     *                  .
+    // /            \__.__.--._______________
+    ////////////////////////////////////////////////////////////////////////////
+    
+    // The high-precision method theoretically allows 0.0003 degree accuracy
+    // for the next 6000 years BUT we can't rely on knowing the divergence of
+    // solar and atomic time 6000 years from now, and our clock doesn't record
+    // the use of leap-seconds. This means we could be up to an hour off 
+    // when predicting the rotation angle of the earth in 6000 years, as the
+    // Earth is ever-so-slowly decreasing it's rate of rotation due to 
+    // geological proceses which are difficult to predict.
+    //
+    // For now, we use a linear approximation.
+ 
+    
+    USE_STUPID_HIGH_PRECISION = false;
+    function get_sun_pos(jsdate) {
+        // Julian Date
+        // Tracks number of mean solar days since a standard epoch
+        //
+        // jsdate.getTime() yields POSIX time.
+        //
+        // POSIX time encodes UTC with ambiguity/invalidity only *during*
+        // leap seconds, otherwise providing a 1-1 mapping.
+        //
+        // For long intervals during which leap-seconds have occurred,
+        // POSIX time measures mean-solar-milliseconds since the POSIX Epoch.
+        // The POSIX epoch has a Julian date of 2440587.5
+        //
+        // For short intervals without leap seconds, unix-time nominally 
+        // increments with SI seconds on the Earth's geoid (TT) as measured
+        // by TAI / GPS and synchronized using NTP.
+        //
+        // In general, UTC is kept within 0.9 seconds of UT1 by the coordinated
+        // use of leap-seconds. While we can thus track UT1 (and JD) using UTC,
+        // by losing track of how many leap seconds have been used, we suffer
+        // from cumulative drift relative to TAI / GPS / TT and cannot 
+        // reconstruct precicely how many SI seconds (vs mean-solar seconds)
+        // have passed since a given epoch.
+        //
+        // There are 86400000.0 milliseconds per day
+        let JD = (jsdate.getTime() / 86400000.0 ) + 2440587.5;
+
+        // HERE
+        // // want TT
+        //
+        // 
+        // let JDE = (jsdate.getTime() / )
+        // let TAI = 10 + 0.53 * (jsdate.getTime() / (86400000.0 * 365.25));
+        // let TT = TAI + 32.184;
+        
+        // The cumulative addition of leap seconds is expected to increase
+        // with time due to tidal friction and even more once the poles stop
+        // melting. In general this quantity is difficult to predict 
+        // TT - UT = Delta_T
+        //
+        // https://en.wikipedia.org/wiki/%CE%94T_(timekeeping)
+        //
+        let delta_t = 0;
+        let JDE = JD + (delta_t / 86400);
+    
+        // Julian Centuries since J2000.0 Epoch
+        let JCE = (JDE - 2451545.0) / 36525.0;
+        
+        let [alpha, dec, etime] = get_RA_DEC(JCE);
+        // let [alpha2, dec2, etime2] = get_high_precision_RA_DEC(JCE);
+
+        // console.log( (alpha - alpha2) / alpha, (dec - dec2) / dec, (etime - etime2) / etime);
+        // console.log(alpha, alpha2);
+        // console.log(alpha, alpha2);
+        // console.log(alpha, alpha2);
+
+        return [alpha, dec, etime];
+        ////////////////////////////////////////////////////////////////////////
+        
+    }
+
+    // Convert degree angle to radians
+    function degToRad(angleDeg) 
+    {
+        return (pi * (angleDeg % 360) / 180.0);
+    }
+
+
+    function get_RA_DEC(t){
+        /*
+         * Adapted from https://www.esrl.noaa.gov/gmd/grad/solcalc/main.js
+         */
+        
+        // Mean Longitude of Sun in degrees to second order approximation
+        let l0 = 280.46646 + t * (36000.76983 + t * (0.0003032));
+
+        // Mean Anomaly of Sun in radians to second order approximation
+        let m = degToRad(357.52911 + t * (35999.05029 - 0.0001537 * t));
+
+        // Sun's Equation of the Center in degrees
+        // is approximation for orbits with small eccentricity
+        // as opposed to solving Kepler's equation
+        let c =
+            sin(m) * (1.914602 - t * (0.004817 + 0.000014 * t)) +
+            sin(m+m) * (0.019993 - 0.000101 * t) +
+            sin(m+m+m) * 0.000289;
+
+        // True Longitude of Sun in degrees
+        let ltrue = l0 + c
+
+        // correction for nutation and aberration in radians
+        let omega = degToRad(125.04 - 1934.136 * t);
+
+        // Apparent Longitude of Sun in radians
+        let lambda = degToRad(ltrue - 0.00569 - 0.00478 * sin(omega));
+
+        // Mean Obliquity of Ecliptic in degrees
+        // to third order approximation
+        let seconds = 21.448 - t*(46.8150 + t*(0.00059 - t*(0.001813)));
+        let e0 = 23.0 + (26.0 + (seconds / 60.0)) / 60.0;
+
+        // True obliquity in radians corrected for parallax
+        let epsilon = degToRad(e0 + 0.00256 * cos(omega));
+
+        // Right Ascension in radians
+        let atan_num = cos(epsilon) * sin(lambda);
+        let atan_denom = cos(lambda);
+        let alpha = atan2(atan_num, atan_denom);
+        
+        // Declination in radians
+        let sindec = sin(epsilon) * sin(lambda);
+        let dec = asin(sindec);
+ 
+        // Equation of Time
+
+        let y = tan(epsilon/2.0);
+        y *= y;
+
+        let l0r = degToRad(l0);
+        let sin2l0 = sin(2.0 * l0r);
+        let sinm   = sin(m);
+        let cos2l0 = cos(2.0 * l0r);
+        let sin4l0 = sin(4.0 * l0r);
+        let sin2m  = sin(2.0 * m);
+
+        // eccentricity of Earth's orbit
+        let e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t);
+
+        let etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
+                - 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
+
+        return [alpha, dec, etime];
+    }
+
+    function get_high_precision_RA_DEC(JCE) {
+        /*
+         * A Solar Position Algorithm to calculate the solar zenith and azimuth
+         * angle with uncertainties equal to ±0.0003 degrees in the period from
+         * the year -2000 to 6000... The procedure is adopted from The
+         * Astronomical Algorithms by Meeus*, which is based on the Variations
+         * Sèculaires des Orbites Planètaires Theory (VSOP87) that was developed
+         * by P. Bretagnon in 1982 then modified in 1987 by Bretagnon and Francou.
+         *
+         * -- Solar Position Algorithm for Solar Radiation Applications
+         * by Ibrahim Reda and Afshin Andreas
+         * (NREL/TP-560-34302) Revised January 2008
+         * 
+         * Meeus, J. “Astronomical Algorithms”. Second edition 1998,
+         * Willmann-Bell, Inc.,Richmond, Virginia, USA
+         */
+ 
+        // Julian Millenia since J2000.0
+        let JME = JCE / 10; 
+        let U = JME / 10;
+
+        // Earth's heliocentric longitude in radians 
+        let L = get_L(JME);
+        // Earth's heliocentric latitude in radians
+        let B = get_R(JME);
+        // Earth's distance from sun in AU
+        let R = get_R(JME);
+
+        // Geocentric longitude of sun in degrees
+        let theta = (180 + L * 180 / pi) % 360;
+        // Geocentric latitude of sun in radians
+        let beta = -B;
+        console.log(beta);
+
+        let [delta_psi, delta_varepsilon] = get_nutation(JCE);
+        
+        // mean obliquity of the ecliptic in arc seconds
+        let varepsilon0 = 84381448 - 4680.93 * U - 1.55 * (U ** 2) +
+            1999.25 * (U ** 3) - 51.38 * (U ** 4) - 249.67 * (U ** 5) -
+            39.05 * (U ** 6) + 7.12 * (U ** 7) + 27.87 * (U ** 8) +
+            5.79 * (U ** 9) + 2.54 * (U ** 10);
+
+        // aberration correction
+        let delta_tau = -20.4898 / (3600 * R);
+
+        // aparent sun longitude in radians
+        let lambda = ((theta + delta_psi + delta_tau) % 360) * (pi / 180);
+
+        // true obliquity of the ecliptic in radians
+        let varepsilon = ((varepsilon0 / 3600) + delta_varepsilon) * (pi / 180);
+        
+        // Right Ascension in radians
+        let atan_num = cos(varepsilon) * sin(lambda) - tan(beta) * sin(varepsilon);
+        let atan_denom = cos(lambda);
+        let alpha = atan2(atan_num, atan_denom);
+        
+        // Declination in radians
+        let sindec = cos(beta) * sin(varepsilon) * sin(lambda) + sin(beta) * cos(varepsilon);
+        let dec = asin(sindec); 
+        
+        // mean sidereal time at Greenwich in degrees
+        let nu0 = 280.46061837 + 360.98564736629 * (JCE * 365.25) +
+            0.000387933 * (JCE ** 2) - (JCE ** 3) / 38710000;
+
+        // apparent sidereal time at Greenwhich in degrees
+        let nu = nu0 + delta_psi * cos(varepsilon);
+
+        // equation of time in radians
+        let etime = (nu % 360) * (pi / 180) - alpha;
+        
+        return [alpha, dec, etime];
+    }
+
+    function get_L(JME){ // in radians
+
+        let T = [
+            [ // L0
+                [175347046, 0, 0],
+                [3341656, 4.6692568, 6283.07585],
+                [34894, 4.6261, 12566.1517],
+                [3497, 2.7441, 5753.3849],
+                [3418, 2.8289, 3.5231],
+                [3136, 3.6277, 77713.7715],
+                [2676, 4.4181, 7860.4194],
+                [2343, 6.1352, 3930.2097],
+                [1324, 0.7425, 11506.7698],
+                [1273, 2.0371, 529.691],
+                [1199, 1.1096, 1577.3435],
+                [990, 5.233, 5884.927],
+                [902, 2.045, 26.298],
+                [857, 3.508, 398.149],
+                [780, 1.179, 5223.694],
+                [753, 2.533, 5507.553],
+                [505, 4.583, 18849.228],
+                [492, 4.205, 775.523],
+                [357, 2.92, 0.067],
+                [317, 5.849, 11790.629],
+                [284, 1.899, 796.298],
+                [271, 0.315, 10977.079],
+                [243, 0.345, 5486.778],
+                [206, 4.806, 2544.314],
+                [205, 1.869, 5573.143],
+                [202, 2.458, 6069.777],
+                [156, 0.833, 213.299],
+                [132, 3.411, 2942.463],
+                [126, 1.083, 20.775],
+                [115, 0.645, 0.98],
+                [103, 0.636, 4694.003],
+                [102, 0.976, 15720.839],
+                [102, 4.267, 7.114],
+                [99, 6.21, 2146.17],
+                [98, 0.68, 155.42],
+                [86, 5.98, 161000.69],
+                [85, 1.3, 6275.96],
+                [85, 3.67, 71430.7],
+                [80, 1.81, 17260.15],
+                [79, 3.04, 12036.46],
+                [75, 1.76, 5088.63],
+                [74, 3.5, 3154.69],
+                [74, 4.68, 801.82],
+                [70, 0.83, 9437.76],
+                [62, 3.98, 8827.39],
+                [61, 1.82, 7084.9],
+                [57, 2.78, 6286.6],
+                [56, 4.39, 14143.5],
+                [56, 3.47, 6279.55],
+                [52, 0.19, 12139.55],
+                [52, 1.33, 1748.02],
+                [51, 0.28, 5856.48],
+                [49, 0.49, 1194.45],
+                [41, 5.37, 8429.24],
+                [41, 2.4, 19651.05],
+                [39, 6.17, 10447.39],
+                [37, 6.04, 10213.29],
+                [37, 2.57, 1059.38],
+                [36, 1.71, 2352.87],
+                [36, 1.78, 6812.77],
+                [33, 0.59, 17789.85],
+                [30, 0.44, 83996.85],
+                [30, 2.74, 1349.87],
+                [25, 3.16, 4690.48]
+            ],
+            [ // L1
+                [628331966747, 0, 0],
+                [206059, 2.678235, 6283.07585],
+                [4303, 2.6351, 12566.1517],
+                [425, 1.59, 3.523],
+                [119, 5.796, 26.298],
+                [109, 2.966, 1577.344],
+                [93, 2.59, 18849.23],
+                [72, 1.14, 529.69],
+                [68, 1.87, 398.15],
+                [67, 4.41, 5507.55],
+                [59, 2.89, 5223.69],
+                [56, 2.17, 155.42],
+                [45, 0.4, 796.3],
+                [36, 0.47, 775.52],
+                [29, 2.65, 7.11],
+                [21, 5.34, 0.98],
+                [19, 1.85, 5486.78],
+                [19, 4.97, 213.3],
+                [17, 2.99, 6275.96],
+                [16, 0.03, 2544.31],
+                [16, 1.43, 2146.17],
+                [15, 1.21, 10977.08],
+                [12, 2.83, 1748.02],
+                [12, 3.26, 5088.63],
+                [12, 5.27, 1194.45],
+                [12, 2.08, 4694],
+                [11, 0.77, 553.57],
+                [10, 1.3, 6286.6],
+                [10, 4.24, 1349.87],
+                [9, 2.7, 242.73],
+                [9, 5.64, 951.72],
+                [8, 5.3, 2352.87],
+                [6, 2.65, 9437.76],
+                [6, 4.67, 4690.48]
+            ],
+            [ // L2
+                [52919, 0, 0],
+                [8720, 1.0721, 6283.0758],
+                [309, 0.867, 12566.152],
+                [27, 0.05, 3.52],
+                [16, 5.19, 26.3],
+                [16, 3.68, 155.42],
+                [10, 0.76, 18849.23],
+                [9, 2.06, 77713.77],
+                [7, 0.83, 775.52],
+                [5, 4.66, 1577.34],
+                [4, 1.03, 7.11],
+                [4, 3.44, 5573.14],
+                [3, 5.14, 796.3],
+                [3, 6.05, 5507.55],
+                [3, 1.19, 242.73],
+                [3, 6.12, 529.69],
+                [3, 0.31, 398.15],
+                [3, 2.28, 553.57],
+                [2, 4.38, 5223.69],
+                [2, 3.75, 0.98]
+            ],
+            [ // L3
+                [289, 5.844, 6283.076],
+                [35, 0, 0],
+                [17, 5.49, 12566.15],
+                [3, 5.2, 155.42],
+                [1, 4.72, 3.52],
+                [1, 5.3, 18849.23],
+                [1, 5.97, 242.73],
+            ],
+            [ // L4
+                [114, 3.142, 0],
+                [8, 4.13, 6283.08],
+                [1, 3.84, 12566.15]
+            ],
+            [ // L5
+                [1, 3.14, 0]
+            ]
+        ]; 
+        
+        let L = 0;
+        for (let i = 0; i < T.length; i ++){
+            let Li = 0;
+            for (let j = 0; j < T[i].length; j++){
+                Li += T[i][j][0] * cos(T[i][j][1] + T[i][j][2] * JME);
+            }
+            L += Li * (JME ** i);
+        }
+
+        return L / (10 ** 8);
+    }
+
+    function get_B(JME){ // in radians
+
+        let T = [
+            [ // B0 
+                [280, 3.199, 84334.662],
+                [102, 5.422, 5507.553],
+                [80, 3.88, 5223.69],
+                [44, 3.7, 2352.87],
+                [32, 4, 1577.34]
+            ],
+            [ // B1
+                [9, 3.9, 5507.55],
+                [6, 1.73, 5223.69]
+            ]
+        ]; 
+        
+        let B = 0;
+        for (let i = 0; i < T.length; i ++){
+            let Bi = 0;
+            for (let j = 0; j < T[i].length; j++){
+                Bi += T[i][j][0] * cos(T[i][j][1] + T[i][j][2] * JME);
+            }
+            B += Bi * (JME ** i);
+        }
+
+        return B / (10 ** 8);
+    }
+    
+    function get_R(JME){ // in radians
+
+        let T = [
+            [ // R0 
+                [100013989, 0, 0],
+                [1670700, 3.0984635, 6283.07585],
+                [13956, 3.05525, 12566.1517],
+                [3084, 5.1985, 77713.7715],
+                [1628, 1.1739, 5753.3849],
+                [1576, 2.8469, 7860.4194],
+                [925, 5.453, 11506.77],
+                [542, 4.564, 3930.21],
+                [472, 3.661, 5884.927],
+                [346, 0.964, 5507.553],
+                [329, 5.9, 5223.694],
+                [307, 0.299, 5573.143],
+                [243, 4.273, 11790.629],
+                [212, 5.847, 1577.344],
+                [186, 5.022, 10977.079],
+                [175, 3.012, 18849.228],
+                [110, 5.055, 5486.778],
+                [98, 0.89, 6069.78],
+                [86, 5.69, 15720.84],
+                [86, 1.27, 161000.69],
+                [65, 0.27, 17260.15],
+                [63, 0.92, 529.69],
+                [57, 2.01, 83996.85],
+                [56, 5.24, 71430.7],
+                [49, 3.25, 2544.31],
+                [47, 2.58, 775.52],
+                [45, 5.54, 9437.76],
+                [43, 6.01, 6275.96],
+                [39, 5.36, 4694],
+                [38, 2.39, 8827.39],
+                [37, 0.83, 19651.05],
+                [37, 4.9, 12139.55],
+                [36, 1.67, 12036.46],
+                [35, 1.84, 2942.46],
+                [33, 0.24, 7084.9],
+                [32, 0.18, 5088.63],
+                [32, 1.78, 398.15],
+                [28, 1.21, 6286.6],
+                [28, 1.9, 6279.55],
+                [26, 4.59, 10447.39]
+            ],
+            [ // R1
+                [103019, 1.10749, 6283.07585],
+                [1721, 1.0644, 12566.1517],
+                [702, 3.142, 0],
+                [32, 1.02, 18849.23],
+                [31, 2.84, 5507.55],
+                [25, 1.32, 5223.69],
+                [18, 1.42, 1577.34],
+                [10, 5.91, 10977.08],
+                [9, 1.42, 6275.96],
+                [9, 0.27, 5486.78]
+            ],
+            [ // R2
+                [4359, 5.7846, 6283.0758],
+                [124, 5.579, 12566.152],
+                [12, 3.14, 0],
+                [9, 3.63, 77713.77],
+                [6, 1.87, 5573.14],
+                [3, 5.47, 18849.23]
+            ],
+            [ // R3
+                [145, 4.273, 6283.076],
+                [7, 3.92, 12566.15]
+            ],
+            [ // R4
+                [4, 2.56, 6283.08]
+            ],
+        ];
+
+        let R = 0;
+        for (let i = 0; i < T.length; i ++){
+            let Ri = 0;
+            for (let j = 0; j < T[i].length; j++){
+                Ri += T[i][j][0] * cos(T[i][j][1] + T[i][j][2] * JME);
+            }
+            R += Ri * (JME ** i);
+        }
+
+        return R / (10 ** 8);
+    }
+    
+    // (a + b * JCE) * sin( sum_j of X_j * Y_i,j )
+    function get_nutation(JCE){
+
+        // mean elongation of the moon from sun in degrees
+        let X0 = 297.85036 + 445267.111480 * JCE -
+            0.0019142 * (JCE ** 2) + (JCE ** 3) / 189474;
+
+        // mean anomaly of the sun (Earth) in degrees
+        let X1 = 357.527772 + 35999.050340 * JCE -
+            0.0001603 * (JCE ** 2) - (JCE ** 3) / 300000;
+
+        // mean aomaly of the moon in degrees
+        let X2 = 134.96298 + 477198.867398 * JCE +
+            0.0086972 * (JCE ** 2) - (JCE ** 3) / 56250;
+
+        // moon's argument of latitude in degrees
+        let X3 = 93.27191 + 483202.017538 * JCE -
+            0.0036825 * (JCE ** 2) + (JCE ** 3) / 327270;
+
+        // longitude of ascending node of moon's mean orbit on ecliptic
+        // measured from mean equinox of the date (in degrees)
+        let X4 = 125.04452 - 1934.136261 * JCE +
+            0.0020708 * (JCE ** 2) + (JCE ** 3) / 450000;
+
+        // coefficients for trig terms  for delta psi    for delta varepsilon
+        // Y0, Y1, Y2, Y3, Y4           a b              c d
+        let T = [
+            [0, 0, 0, 0, 1, -171996, -174.2, 92025, 8.9],
+            [-2, 0, 0, 2, 2, -13187, -1.6, 5736, -3.1],
+            [0, 0, 0, 2, 2, -2274, -0.2, 977, -0.5],
+            [0, 0, 0, 0, 2, 2062, 0.2, -895, 0.5],
+            [0, 1, 0, 0, 0, 1426, -3.4, 54, -0.1],
+            [0, 0, 1, 0, 0, 712, 0.1, -7, 0],
+            [-2, 1, 0, 2, 2, -517, 1.2, 224, -0.6],
+            [0, 0, 0, 2, 1, -386, -0.4, 200, 0],
+            [0, 0, 1, 2, 2, -301, 0, 129, -0.1],
+            [-2, -1, 0, 2, 2, 217, -0.5, -95, 0.3],
+            [-2, 0, 1, 0, 0, -158, 0, 0, 0],
+            [-2, 0, 0, 2, 1, 129, 0.1, -70, 0],
+            [0, 0, -1, 2, 2, 123, 0, -53, 0],
+            [2, 0, 0, 0, 0, 63, 0, 0, 0],
+            [0, 0, 1, 0, 1, 63, 0.1, -33, 0],
+            [2, 0, -1, 2, 2, -59, 0, 26, 0],
+            [0, 0, -1, 0, 1, -58, -0.1, 32, 0],
+            [0, 0, 1, 2, 1, -51, 0, 27, 0],
+            [-2, 0, 2, 0, 0, 48, 0, 0, 0],
+            [0, 0, -2, 2, 1, 46, 0, -24, 0],
+            [2, 0, 0, 2, 2, -38, 0, 16, 0],
+            [0, 0, 2, 2, 2, -31, 0, 13, 0],
+            [0, 0, 2, 0, 0, 29, 0, 0, 0],
+            [-2, 0, 1, 2, 2, 29, 0, -12, 0],
+            [0, 0, 0, 2, 0, 26, 0, 0, 0],
+            [-2, 0, 0, 2, 0, -22, 0, 0, 0],
+            [0, 0, -1, 2, 1, 21, 0, -10, 0],
+            [0, 2, 0, 0, 0, 17, -0.1, 0, 0],
+            [2, 0, -1, 0, 1, 16, 0, -8, 0],
+            [-2, 2, 0, 2, 2, -16, 0.1, 7, 0],
+            [0, 1, 0, 0, 1, -15, 0, 9, 0],
+            [-2, 0, 1, 0, 1, -13, 0, 7, 0],
+            [0, -1, 0, 0, 1, -12, 0, 6, 0],
+            [0, 0, 2, -2, 0, 11, 0, 0, 0],
+            [2, 0, -1, 2, 1, -10, 0, 5, 0],
+            [2, 0, 1, 2, 2, -8, 0, 3, 0],
+            [0, 1, 0, 2, 2, 7, 0, -3, 0],
+            [-2, 1, 1, 0, 0, -7, 0, 0, 0],
+            [0, -1, 0, 2, 2, -7, 0, 3, 0],
+            [2, 0, 0, 2, 1, -7, 0, 3, 0],
+            [2, 0, 1, 0, 0, 6, 0, 0, 0],
+            [-2, 0, 2, 2, 2, 6, 0, -3, 0],
+            [-2, 0, 1, 2, 1, 6, 0, -3, 0],
+            [2, 0, -2, 0, 1, -6, 0, 3, 0],
+            [2, 0, 0, 0, 1, -6, 0, 3, 0],
+            [0, -1, 1, 0, 0, 5, 0, 0, 0],
+            [-2, -1, 0, 2, 1, -5, 0, 3, 0],
+            [-2, 0, 0, 0, 1, -5, 0, 3, 0],
+            [0, 0, 2, 2, 1, -5, 0, 3, 0],
+            [-2, 0, 2, 0, 1, 4, 0, 0, 0],
+            [-2, 1, 0, 2, 1, 4, 0, 0, 0],
+            [0, 0, 1, -2, 0, 4, 0, 0, 0],
+            [-1, 0, 1, 0, 0, -4, 0, 0, 0],
+            [-2, 1, 0, 0, 0, -4, 0, 0, 0],
+            [1, 0, 0, 0, 0, -4, 0, 0, 0],
+            [0, 0, 1, 2, 0, 3, 0, 0, 0],
+            [0, 0, -2, 2, 2, -3, 0, 0, 0],
+            [-1, -1, 1, 0, 0, -3, 0, 0, 0],
+            [0, 1, 1, 0, 0, -3, 0, 0, 0],
+            [0, -1, 1, 2, 2, -3, 0, 0, 0],
+            [2, -1, -1, 2, 2, -3, 0, 0, 0],
+            [0, 0, 3, 2, 2, -3, 0, 0, 0],
+            [2, -1, 0, 2, 2, -3, 0, 0, 0]
+        ];
+
+        delta_psi = 0;
+        delta_varepsilon = 0;
+        
+        for (let i = 0; i < T.length; i++) {
+            let XY = (X0 * T[i][0]) + (X1 * T[i][1]) +
+                     (X2 * T[i][2]) + (X3 * T[i][3]) +
+                     (X4 * T[i][4]);
+
+            delta_psi += (T[i][5] + T[i][6] * JCE) * sin(XY);
+            delta_varepsilon += (T[i][7] + T[i][8] * JCE) * cos(XY);
+            
+        }
+
+        return [delta_psi / 3600000, delta_varepsilon / 36000000];
+
+    }
+    
+    onReady(function(){
+        run();
+    });
+    
+</script>
+
+    </body>
+</html>

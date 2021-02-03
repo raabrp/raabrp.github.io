@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Live Tex to PNG    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/colors/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
+
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
+    <link rel="stylesheet"
+          href="theme/css/fonts.css">
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/colors/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Digital Bookshelf
+                  </a>
+                </li>
+                <li>
+                  <a href="publications.html">
+                    Publications
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+      <div id="top-spacer"></div>
+
+<header>
+    <h1 id="title-header">
+        Live Tex to PNG
+    </h1>
+</header>
+<article>
+    
+<div style="height: 400px; display: flex; justify-content: center; align-items: center;">
+<div style="background: #fff; height: auto;">
+<img id="demo-img" src="" style="max-height: 400px;" width="100%"/>
+</div>
+</div>
+<br/>
+<textarea id="demo-input" spellcheck="false" style="width: 100%; height: 100px;">
+f(x) = \int_{-\infty}^\infty
+    \hat{f}(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi
+      </textarea>
+<p><span>Size ( in [1, 1000] ): </span><input id="scale" name="scale" type="number" value="30"/></p>
+<p>Powered by <a href="https://www.mathjax.org/" id="generated-link-id0">MathJax</a></p>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script type="text/javascript">
+
+  var dimg = document.getElementById("demo-img");
+  var inpt = document.getElementById("demo-input");
+  var scale = document.getElementById("scale");
+
+  let max_scale = 1000;
+  let min_scale = 1;
+  scale.setAttribute("max", max_scale);
+  scale.setAttribute("min", min_scale);
+  
+  var paint_timeout;
+  function paint() {
+      MathJax.tex2svgPromise(inpt.value).then(function(el) {
+
+          let svg = el.children[0];
+
+          let box = svg.viewBox.baseVal;
+          let w = box.width;
+          let h = box.height;
+
+          // have constant ratio at least...
+          console.log(svg.height.baseVal.value, h, h / svg.height.baseVal.value);
+          console.log(svg)
+          
+          let s = Math.min(Math.max(scale.value, min_scale), max_scale);
+
+          let w2 = w * (s / max_scale);
+          let h2 = h * (s / max_scale);
+          
+          svg.setAttribute("width", w2.toString() + "px");
+          svg.setAttribute("height", h2.toString() + "px"); 
+          
+          var data = (new XMLSerializer()).serializeToString(svg); 
+
+          var DOMURL = window.URL || window.webkitURL || window;
+
+          var img = new Image();
+          var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+
+          var url = DOMURL.createObjectURL(svgBlob);
+
+          dimg.src = url;
+          // dimg.style["border"] = "medium solid #525";
+          // setTimeout(function(){
+          //    dimg.style["border"] = "medium solid #444";
+          // }, 100);
+          
+      });
+  }
+  
+  function doDemo() {
+      try {
+          clearTimeout(paint_timeout)
+          paint_timeout = setTimeout(paint, 500);
+          
+      } catch (err) {
+          console.log(err);
+      }
+  }
+
+  inpt.addEventListener("input", doDemo);
+  scale.addEventListener("input", doDemo);
+
+  doDemo();
+</script>
+
+</article>
+    </main>
+
+    <script type="text/javascript">
+     engage();
+    </script>
+  </body>
+
+</html>

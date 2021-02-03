@@ -1,185 +1,525 @@
----
-title: Contenu de Qualité
-slug: reading-list
-date: 2018-07-21
-last_updated: 2018-07-21
----
+<html>
+    <head>
+        <title>Digital Bookshelf</title>
+        <meta name="slug" content="reading-list" />
+        <meta name="date" content="2018-07-21" />
+        <meta name="last_updated" content="2020-06-03" />
+    </head>
+    <body>
+      <div style="width: 100%;"> 
+        <h2 style="margin: auto;">🚧 Still Under Construction 🚧</h2>
+      </div>
+<table>
+<tr>
+  <td colspan="4">
+    <h1>Nonfiction</h1>
+  </td>
+</tr>
 
-("Quality content", but in French, using Google Translate, because it amuses me)
 
-Work that is not mine, but of which I'd be proud were it so.
+<tr>
+  <td colspan="4">
+    <h2>Science and Philosophy</h2>
+  </td>
+</tr>
 
-| | | |
-|-|-|-|
-\
-| <h1>Written</h1> | | |
-| <h2>Essays</h2> | | |
-\
-| [Staying Classy](https://slatestarcodex.com/2016/01/30/staying-classy/) \
-| Scott Alexander     | 2016 |
-| [The Control Group is Out of Control](https://slatestarcodex.com/2014/04/28/the-control-group-is-out-of-control/) \
-| Scott Alexander     | 2014 |
-| [I Can Tolerate Anything Except The Outgroup](https://slatestarcodex.com/2014/09/30/i-can-tolerate-anything-except-the-outgroup/) \
-| Scott Alexander     | 2014 |
-| [7 Strange Questions That Help You Find Your Life Purpose](https://markmanson.net/life-purpose) \
-| Mark Manson         | 2014 |
-| [This World of Ours](https://www.usenix.org/system/files/1401_08-12_mickens.pdf) \
-| James Mickens       | 2014 |
-| [How Doctors Die](https://www.saturdayeveningpost.com/2013/03/how-doctors-die/2/) \
-| Ken Murray          | 2013 |
-| [How Disney Ruined Sex for Everyone](https://markmanson.net/disney) \
-| Mark Manson         | 2013 |
-| [Fuck Yes or No](https://markmanson.net/fuck-yes) \
-| Mark Manson         | 2013 |
-| [Stop Trying to be Happy](https://markmanson.net/stop-trying-to-be-happy) \
-| Mark Manson         | 2013 |
-| [Lies We Tell Kids](http://www.paulgraham.com/lies.html) \
-| Paul Graham         | 2008 |
-| [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html) \
-| Paul Graham         | 2005 |
-| [What You Can't Say](http://www.paulgraham.com/say.html) \
-| Paul Graham         | 2004 |
-\
-| <h2>Technical Posts</h2> | | |
-\
-| [Visualizing Algorithms](https://bost.ocks.org/mike/algorithms/) \
-| Mike Bostock        | 2014 |
-| [Lispy](www.example.com) \
-| sigfpe              | 2006 |
-| [Eli Bendersky](www.example.com) \
-| sigfpe              | 2006 |
-| [Other Favorite Blogs](www.example.com) \
-| sigfpe              | 2006 |
-\
-| <h2>Non-Fiction Books </h2> | | |
-\
-| [Quantum Computing Since Democritus](https://en.wikipedia.org/wiki/Quantum_Computing_Since_Democritus) \
-| Scott Aaronson      | 2013 |
-| [The Righteous Mind](https://en.wikipedia.org/wiki/The_Righteous_Mind) \
-| Jonathan Haidt      | 2012 |
-| [Debt: The First 5000 Years](https://en.wikipedia.org/wiki/Debt:_The_First_5000_Years) \
-| David Graeber       | 2011 |
-| [The Big Short](https://en.wikipedia.org/wiki/The_Big_Short) \
-| Michael Lewis       | 2010 |
-| [Guns, Germs, and Steel](https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel) \
-| Jared Diamond       | 1997 |
-| [Lies My Teacher Told Me](https://en.wikipedia.org/wiki/Lies_My_Teacher_Told_Me) \
-| James Loewen        | 1995 |
-| [Surely You're Joking, Mr. Feynman](https://en.wikipedia.org/wiki/Surely_You're_Joking%2C_Mr._Feynman!) \
-| Richard Feynman     | 1985 |
-| [Class: A Guide Through the American Status System](https://www.nytimes.com/2017/07/27/books/paul-fussell-class-in-america.html) \
-| Paul Fussell        | 1983 |
-| [Gödel, Escher, Bach](https://en.wikipedia.org/wiki/G%C3%B6del%2C_Escher%2C_Bach) \
-| Douglas Hofstadter  | 1979 |
-| [On the Genealogy of Morality](https://en.wikipedia.org/wiki/On_the_Genealogy_of_Morality) \
-| Friedrich Nietzsche | 1887 |
-| [The Communist Manifesto](https://en.wikipedia.org/wiki/The_Communist_Manifesto) \
-| Karl Marx           | 1848 |
-\
-| <h2>Academic Papers</h2> | | |
-\
-| [Additively manufacturable micromechanical logic gates](https://www.nature.com/articles/s41467-019-08678-0) \
-| UCLA, LLNL          | 2016 |
-| [Mastering the Game of Go with Deep Neural Networks and Tree Search](https://ai.google/research/pubs/pub44806) \
-| Google DeepMind     | 2016 |
-| [The Mathematical Universe](https://arxiv.org/pdf/0704.0646.pdf) \
-| Max Tegmark         | 2007 |
-| [Parsing Expression Grammars](https://pdos.csail.mit.edu/papers/parsing:popl04.pdf) \
-| Brian Ford          | 2004 |
-| [Can A Biologist Fix a Radio?](https://www.cmu.edu/biolphys/deserno/pdf/can_a_biologist_fix_a_radio.pdf) \
-| Yuri Lazebnik       | 2002 |
-| [Decoherence, Einselection, and the Quantum Origins of the Classical](https://arxiv.org/abs/quant-ph/0105127) \
-| Wojciech Zurek      | 2001 |
-| [Co-Evolving Parasites Improve Simulated Evolution as an Optimization Procedure](https://www.cse.unr.edu/~sushil/class/gas/papers/DannyHillisCoevolution.pdf) \
-| Danny Hillis        | 1990 |
-| [Reflections on Trusting Trust](https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf) \
-| Ken Thompson        | 1984 |
-| [The Market for Lemons](http://www-bcf.usc.edu/~shaddin/cs590fa13/papers/AkerlofMarketforLemons.pdf) \
-| George Akerlof      | 1970 |
-\
-| <h2>Short Fiction</h2> | | |
-\
-| [I'm Harvesting Credit Card Numbers and Passwords From Your Site. Here's How.](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5) \
-| David Gilbretson    | 2017 |
-| [Coding Machines](https://www.teamten.com/lawrence/writings/coding-machines/) \
-| Lawrence Kesteloot  | 2009 |
-| [The Right to Read](https://www.gnu.org/philosophy/right-to-read.html) \
-| Richard Stallman    | 1997 |
-\
-| <h2>Fiction Books</h2> | | |
-\
-| [Quicksilver](https://en.wikipedia.org/wiki/Quicksilver_(novel)) \
-| Neal Stephenson     | 2003 |
-| [A Fire Upon the Deep](https://en.wikipedia.org/wiki/A_Fire_Upon_the_Deep) \
-| Vernor Vinge        | 1992 |
-| [Dune](https://en.wikipedia.org/wiki/Dune_%28novel%29) \
-| Frank Herbert       | 1965 |
-| [Catch-22](https://en.wikipedia.org/wiki/Catch-22) \
-| Joseph Heller       | 1961 |
-| [Nineteen Eighty-Four](https://en.wikipedia.org/wiki/Nineteen_Eighty-Four) \
-| George Orwell       | 1949 |
-| [Brave New World](https://en.wikipedia.org/wiki/Brave_New_World) \
-| Aldous Huxley       | 1931 |
-\
-| <h1>Video</h1> | | |
-| <h2>Talks</h2> | | |
-\
-| [Four Solutions to a Trivial Problem](https://www.youtube.com/watch?v=ftcIcn8AmSY) \
-| Guy Steele          | 2016 |
-| [The Humane Representation of Thought](https://www.youtube.com/watch?v=agOdP2Bmieg) \
-| Bret Victor         | 2015 |
-| [The Mess We're In](https://www.youtube.com/watch?v=lKXe3HUG2l4) \
-| Joe Armstrong       | 2014 |
-| [Python 3 Metaprogramming](https://www.youtube.com/watch?v=sPiWg5jSoZI) \
-| David Beazley       | 2013 |
-| [How the Economic Machine Works](https://www.youtube.com/watch?v=PHe0bXAIuk0) \
-| Ray Dalio           | 2013 |
-| [Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) \
-| Bret Victor         | 2012 |
-| [Simple Made Easy](https://www.youtube.com/watch?v=34_L7t7fD_U) \
-| Rich Hickey         | 2012 |
-| [Growing a Language](https://www.youtube.com/watch?v=_ahvzDzKdB0) \
-| Guy Steele          | 1998 |
-\ 
-| <h2>Youtube</h2> | | |
-\
-| [Beau of the Fifth Column](https://www.youtube.com/channel/UC0YvoAYGgdOfySQSLcxtu1w) \
-| | |
-| [Crash Course](https://www.youtube.com/user/crashcourse) \
-| | |
-| [ContraPoints](https://www.youtube.com/user/ContraPoints) \
-| | |
-| [Extra History](https://www.youtube.com/playlist?list=PLhyKYa0YJ_5Aq7g4bil7bnGi0A8gTsawu) \
-| | |
-| [Historia Civilis](https://www.youtube.com/channel/UCv_vLHiWVBh_FR9vbeuiY-A) \
-| | |
-| [The Alt-Right Playbook](https://www.youtube.com/playlist?list=PLJA_jUddXvY7v0VkYRbANnTnzkA_HMFtQ) \
-| Innuendo Studios    |      |
-\
-| <h2>Documentaries</h2> | | |
-\
-| [Operation Infecktion](https://www.nytimes.com/2018/11/12/opinion/russia-meddling-disinformation-fake-news-elections.html) \
-| The New York Times  | 2018 |
-| [Active Measures](https://en.wikipedia.org/wiki/Active_Measures_(film)) \
-| Jack Bryan          | 2018 |
-| [Trump's Takeover](https://www.pbs.org/video/trumps-takeover-purccz/) \
-| PBS Frontline       | 2018 |
-| [Trump's Showdown](https://www.pbs.org/wgbh/frontline/film/trumps-showdown/) \
-| PBS Frontline       | 2018 |
-| [Get Me Roger Stone](https://en.wikipedia.org/wiki/Get_Me_Roger_Stone) \
-| Netflix             | 2017 |
-| [The Oligarchs](https://www.youtube.com/watch?v=ughFLQDcI_Q) \
-| Al Jazeera          | 2018 |
-| [The Red Pill](https://www.youtube.com/watch?v=DXP705ezCM4) \
-| Cassie Jaye         | 2016 |
-| <h1>Interactive</h1> | | |
-| [Science Isn't Broken](https://fivethirtyeight.com/features/science-isnt-broken/) \
-| fivethirtyeight.com |      |
-| [The Wisdom/Madness of Crowds](https://ncase.me/crowds/) \
-| ncase.me            |      |
-| [Parable of the Polygons](https://ncase.me/polygons/) \
-| ncase.me            |      |
-| [The Evolution of Trust](http://ncase.me/trust/) \
-| ncase.me            |      |
-| [Tensor Flow Playground](http://playground.tensorflow.org) \
-| tensorflow.org      |      |
+<tr>
+  <td> Interview </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=E1AxVXt2Gv4">Marcus Hutter</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/Lex_Fridman">Lex Fridman</a></td>
+  <td>2020</td>
+</tr>
+<tr>
+  <td> Interview </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=DKyzcbNr8WE">John Hopfield</a>
+  <td><a href="https://en.wikipedia.org/wiki/Lex_Fridman">Lex Fridman</a></td>
+  </td>
+  <td>2020</td>
+</tr>
+
+<tr>
+  <td> Interview </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=3FIo6evmweo">Juergen Schmidhuber</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/Lex_Fridman">Lex Fridman</a></td>
+  <td>2018</td>
+</tr>
+<tr>
+  <td> Interview </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=Gi8LUnhP5yU">Max Tegmark</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/Lex_Fridman">Lex Fridman</a></td>
+  <td>2018</td>
+</tr>
+
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Quantum_Computing_Since_Democritus">Quantum Computing Since Democritus</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Scott_Aaronson">Scott Aaronson</a></td>
+  <td> 2013 </td>
+</tr>
+
+<tr>
+  <td> Paper </td>
+  <td> <a href="https://arxiv.org/pdf/0704.0646.pdf">The Mathematical Universe</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Max_Tegmark">Max Tegmark </a></td>
+  <td> 2007 </td>
+</tr>
+<tr>
+  <td> Paper </td>
+  <td> <a href="https://www.cmu.edu/biolphys/deserno/pdf/can_a_biologist_fix_a_radio.pdf">Can a Biologist Fix a Radio?</a></td>
+  <td> Yuri Lazenbnik </td>
+  <td> 2002 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Surely_You're_Joking%2C_Mr._Feynman!">Surely You're Joking, Mr. Feynman!</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman </a></td>
+  <td> 1985 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/G%C3%B6del%2C_Escher%2C_Bach">Gödel, Escher, Bach</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Douglas_Hofstadter">Douglas Hofstadter</a> </td>
+  <td> 1979 </td>
+</tr>
+<tr>
+  <td> Lecture Audio </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=uY-u1qyRM5w">Los Alamos from Below</a>
+  </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman </a></td>
+  <td>1975</td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2> Computers and Security </h2>
+  </td>
+</tr>
+
+<tr>
+  <td> Satire </td>
+  <td> <a href="https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5">I'm Harvesting Credit Card Numbers ... From Your Site</a></td>
+  <td> David Gilbertson </td>
+  <td> 2017 </td>
+</tr>
+<tr>
+  <td> Satire </td>
+  <td> <a href="https://www.usenix.org/system/files/1401_08-12_mickens.pdf">This World of Ours</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/James_Mickens">James Mickens </a></td>
+  <td> 2014 </td>
+</tr>
+<tr>
+  <td> Short Fiction </td>
+  <td> <a href="https://www.gnu.org/philosophy/right-to-read.html">The Right to Read</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman </a></td>
+  <td> 1997 </td>
+</tr>
+<tr>
+  <td> Published Lecture </td>
+  <td> <a href="https://www.archive.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf">Reflections on Trusting Trust</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Ken Thompson
+  <td> 1984 </td>
+</tr>
+
+
+<tr>
+  <td colspan="4">
+    <h2>Big History</h2>
+  </td>
+</tr>
+
+<tr>
+  <td> Book </td>
+  <td> <a href="http://www.daviddfriedman.com/Legal%20Systems/LegalSystemsContents.htm">Legal Systems Very Different From Ours</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/David_D._Friedman">David Friedman</td>
+  <td> 2019 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Debt:_The_First_5000_Years">Debt: The First 5000 Years</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/David_Graeber">David Graeber</td>
+  <td> 2011 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Guns%2C_Germs%2C_and_Steel">Guns, Germs, and Steel</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Jared_Diamond">Jared Diamond </td>
+  <td> 1997 </td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2>History</h2>
+  </td>
+</tr>
+
+<tr>
+  <td> Video Series </td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=aq4G-7v-_xI&list=PLODnBH8kenOp7y_w1CWTtSLxGgAU6BR8M">Historia Civilis</a> </td>
+  <td>Historia Civilis</td>
+  <td>...</td>
+</tr>
+
+<tr>
+  <td> Lecture Series </td>
+  <td>
+    <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNjasccl-WajpONGX3zoY4M">Crash Course World History II</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/Crash_Course_(YouTube)">Crash Course</a></td>
+  <td>2018</td>
+</tr>
+
+<tr>
+  <td> Lecture Series </td>
+  <td>
+    <a href="https://www.youtube.com/playlist?list=PLBDA2E52FB1EF80C9">Crash Course World History</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/Crash_Course_(YouTube)">Crash Course</a></td>
+  <td>2012</td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2>Geopolitics</h2>
+  </td>
+</tr>
+
+<tr>
+  <td>Article</td>
+  <td>
+    <a href="https://prospect.org/economy/the-china-hack-and-how-to-reverse-it/">The China Hack and How to Reverse it</a>
+  </td>
+  <td><a href="https://en.wikipedia.org/wiki/The_American_Prospect">The American Prospect</a></td>
+  <td>2020</td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2>Economics and Finance</h2>
+  </td>
+</tr>
+
+<tr>
+  <td> Book </td>
+  <td> <a href="https://www.nytimes.com/2015/03/22/books/review/bill-browders-red-notice.html">Red Notice</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Bill_Browder"> Bill Browder </a></td>
+  <td> 2015 </td>
+</tr>
+<tr>
+  <td> Video </td>
+  <td> <a href="https://www.youtube.com/watch?v=PHe0bXAIuk0">How the Economic Machine Works</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Ray_Dalio"> Ray Dalio </a> </td>
+  <td> 2013 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/The_Big_Short">The Big Short</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Michael_Lewis">Michael Lewis</a></td>
+  <td> 2010 </td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2>(American) Class & Culture</h2>
+  </td>
+</tr>
+
+<tr>
+  <td> The Atlantic </td>
+  <td> <a href="https://www.theatlantic.com/ideas/archive/2020/02/how-mckinsey-destroyed-middle-class/605878/">How McKinsey Destroyed the Middle Class</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Daniel_Markovits">Daniel Markovits</a></td>
+  <td> 2020 </td>
+</tr>
+<tr>
+  <td> The Atlantic </td>
+  <td> <a href="https://www.theatlantic.com/magazine/archive/2018/06/the-birth-of-a-new-american-aristocracy/559130/">The 9.9 Percent is the New American Aristocracy</a></td>
+  <td> Matthew Stewart </td>
+  <td> 2018 </td>
+</tr>
+<tr>
+  <td> Documentary </td>
+  <td> <a href="https://www.youtube.com/watch?v=DXP705ezCM4">The Red Pill</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Cassie_Jaye">Cassie Jaye</a></td>
+  <td> 2016 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://en.wikipedia.org/wiki/The_Righteous_Mind">The Righteous Mind</a></td>
+  <td><a href="https://en.wikipedia.org/wiki/Jonathan_Haidt">Jonathan Haidt</a></td>
+  <td> 2012 </td>
+</tr>
+<tr>
+  <td> Web Essay </td>
+  <td> <a href="http://www.paulgraham.com/lies.html">Lies We Tell Kids</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Paul_Graham_(programmer)">Paul Graham</a> </td>
+  <td> 2008 </td>
+</tr>
+<tr>
+  <td> Web Essay </td>
+  <td> <a href="http://www.paulgraham.com/say.html">What You Can't Say</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Paul_Graham_(programmer)">Paul Graham</a> </td>
+  <td> 2004 </td>
+</tr>
+<tr>
+  <td> Book </td>
+  <td> <a href="https://www.nytimes.com/2017/07/27/books/paul-fussell-class-in-america.html">Class: A Guide Through the American Status System</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Paul_Fussell">Paul Fussell</a></td>
+  <td> 1983 </td>
+</tr>
+
+<tr>
+  <td colspan="4">
+    <h2>Introspection</h2>
+  </td>
+</tr>
+
+<tr>
+  <td> Blog Post </td>
+  <td> <a href="https://markmanson.net/life-purpose">7 Strange Questions That Help You Find Your Life Purpose</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Mark_Manson">Mark Manson</a> </td>
+  <td> 2014 </td>
+</tr>
+<tr>
+  <td> Sat. Evening Post </td>
+  <td> <a href="https://www.saturdayeveningpost.com/2013/03/how-doctors-die/2/">How Doctors Die</a></td>
+  <td> Ken Murray </td>
+  <td> 2013 </td>
+</tr>
+<tr>
+  <td> Blog Post </td>
+  <td> <a href="https://markmanson.net/disney">How Disney Ruined Sex for Everyone</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Mark_Manson">Mark Manson</a> </td>
+  <td> 2013 </td>
+</tr>
+<tr>
+  <td> Blog Post </td>
+  <td> <a href="https://markmanson.net/fuck-yes">Fuck Yes or No</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Mark_Manson">Mark Manson</a> </td>
+  <td> 2013 </td>
+</tr>
+<tr>
+  <td> Blog Post </td>
+  <td> <a href="https://markmanson.net/stop-trying-to-be-happy">Stop Trying to be Happy</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Mark_Manson">Mark Manson </a></td>
+  <td> 2013 </td>
+</tr>
+<tr>
+  <td> Essay </td>
+  <td> <a href="http://www.paulgraham.com/hs.html">What You'll Wish You'd Known</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Paul_Graham_(programmer)">Paul Graham</a> </td>
+  <td> 2005 </td>
+</tr>
+
+
+<tr>
+  <td colspan="4">
+    <h1>Videos</h1>
+  </td>
+</tr>
+
+
+
+
+<tr>
+  <td>David Foster Wallace</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=PhhC_N6Bm_s">This is Water</a>
+  </td>
+</tr>
+<tr>
+  <td>Naftali Tishby</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=utvIaZ6wYuw">The Information Bottleneck</a>
+  </td>
+</tr>
+<tr>
+  <td>Naftali Tishby</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=XL07WEc2TRI"></a>
+  </td>
+</tr>
+
+<tr>
+  <td>Innuendo Studios</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=4xGawJIseNY&list=PLJA_jUddXvY7v0VkYRbANnTnzkA_HMFtQ&index=1">The Alt-Right Playbook</a>
+  </td>
+</tr>
+<tr>
+  <td>Prof V. Balakrishnan</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=Q6Gw08pwhws&list=PL5E4E56893588CBA8">Classical Physics</a>
+  </td>
+</tr>
+
+<tr>
+  <td>MIT</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=UHBmv7qCey4">Boosting Lecture</a>
+  </td>
+</tr>
+<tr>
+  <td>Socratica</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=IP7nW_hKB7I&list=PLi01XoE8jYoi3SgnnGorR_XOW3IcK-TP6">Abstract Algebra</a>
+  </td>
+</tr>
+<tr>
+  <td>Lenny Suskind</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=JqNg819PiZY">Demystifying the Higgs Boson</a>
+  </td>
+</tr>
+<tr>
+  <td>Lenny Suskind</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=jhnKBKZvb_U">Why is Time a One-Way Street</a>
+</td></tr>
+
+<tr>
+  <td>Ian Shapiro</td>
+  <td>
+    <a href="https://www.youtube.com/watch?v=BDqvzFY72mg&list=PLh9mgdi4rNeyViG2ar68jkgEi4y6doNZy">Power and Politics in Today’s World</a>
+  </td>
+</tr>
+<tr>
+  <td>Quanta</td>
+  <td>
+    <a href="https://www.quantamagazine.org/the-black-hole-information-paradox-comes-to-an-end-20201029/">Black Hole Information Paradox</a>
+  </td>
+</tr>
+
+<tr><td></td><td><a href="https://www.youtube.com/playlist?list=PLE18841CABEA24090">SICP</a></td></tr>
+<tr><td>Lex Fridman</td><td><a href="https://www.youtube.com/watch?v=RL4j4KPwNGM">Max Tegmark #2</a></td></tr>
+
+
+</table>
+<h2>Documentaries</h2>
+<table>
+
+<tr>
+  <td> <a href="https://www.nytimes.com/2018/11/12/opinion/russia-meddling-disinformation-fake-news-elections.html">Operation Infektion</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/The_New_York_Times">The New York Times</a> </td>
+  <td> 2018 </td>
+</tr>
+<tr>
+  <td> <a href="https://en.wikipedia.org/wiki/Active_Measures_(film)">Active Measures</a></td>
+  <td> Jack Bryan </td>
+  <td> 2018 </td>
+</tr>
+<tr>
+  <td> <a href="https://en.wikipedia.org/wiki/Get_Me_Roger_Stone">Get Me Roger Stone</a></td>
+  <td> Bank, <a href="https://en.wikipedia.org/wiki/Daniel_DiMauro">DiMauro</a>, <a href="https://en.wikipedia.org/wiki/Morgan_Pehme">Pehme</a>, et. al. </td>
+  <td> 2017 </td>
+</tr>
+<tr>
+  <td> <a href="https://www.youtube.com/watch?v=ughFLQDcI_Q">The Oligarchs</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Al_Jazeera">Al Jazeera </a></td>
+  <td> 2017 </td>
+</tr>
+<tr>
+  <td> <a href="https://www.youtube.com/watch?v=5Q-zTGASnRA">Putin's Revenge</a></td>
+  <td> <a href="https://en.wikipedia.org/wiki/Frontline_(American_TV_program)">PBS Frontline</a></td>
+  <td> 2017 </td>
+</tr>
+<a href="https://www.nytimes.com/2018/11/12/opinion/russia-meddling-disinformation-fake-news-elections.html">
+
+
+<tr>
+  <td colspan="4">
+    <h1>Fiction</h1>
+  </td>
+</tr>
+
+<tr>
+  <td> Historical Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Quicksilver_(novel)">Quicksilver</a></td>
+  <td> Neal Stephenson </td>
+  <td> 2003 </td>
+</tr>
+<tr>
+  <td> Science Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/A_Fire_Upon_the_Deep">A Fire Upon the Deep</a></td>
+  <td> Vernor Vinge </td>
+  <td> 1992 </td>
+</tr>
+<tr>
+  <td> Science Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/A_Deepness_in_the_Sky">A Deepness in the Sky</a></td>
+  <td> Vernor Vinge </td>
+  <td> 1999 </td>
+</tr>
+<tr>
+  <td> Science Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Dune_%28novel%29">Dune</a></td>
+  <td> Frank Herbert </td>
+  <td> 1965 </td>
+</tr>
+<tr>
+  <td> Satirical Novel </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Catch-22">Catch-22</a></td>
+  <td> Joseph Heller </td>
+  <td> 1961 </td>
+</tr>
+<tr>
+  <td> Science Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four">Nineteen Eighty-Four</a></td>
+  <td> George Orwell </td>
+  <td> 1949 </td>
+</tr>
+<tr>
+  <td> Science Fiction </td>
+  <td> <a href="https://en.wikipedia.org/wiki/Brave_New_World">A Brave New World</a></td>
+  <td> Alduous Huxely </td>
+  <td> 1931 </td>
+</tr>
+
+
+<tr><td colspan="4">Assorted</td></tr>
+
+<tr>
+<td>
+<a href= "https://slatestarcodex.com/2013/03/03/reactionary-philosophy-in-an-enormous-planet-sized-nutshell">Reactionary Philosophy ...</a>
+</td>
+<td>Scott Alexander</td>
+</tr>
+
+  <tr>
+  <td> Youtube Channel </td>
+  <td colspan="3">
+    <a href="https://www.youtube.com/user/CaspianReport">Caspian Report</a>
+  </td>
+</tr>
+
+<tr>
+  <td> Youtube Channel </td>
+  <td colspan="3">
+    <a href="https://www.youtube.com/channel/UCr_Q-bPpcw5fJ-Oow1BW1NQ">Kraut</a>
+  </td>
+</tr>
+
+
+  <td>Interactive</td>
+  <td><a href="https://fivethirtyeight.com/features/science-isnt-broken/">Science Isn't Broken</a></td>
+  <td><a href="https://en.wikipedia.org/wiki/FiveThirtyEight">FiveThirtyEight</a></td>
+</tr>
+
+</table>
+
+    </body>
+</html>
+
+<!-- Chomsky Requiem for the American Dream https://www.youtube.com/watch?v=hZnuc-Fv_Tc -->
+<!-- https://www.youtube.com/watch?v=NSVmOC_5zrE&list=PLKI1h_nAkaQoDzI4xDIXzx6U2ergFmedo -->
+
+<!-- Staying Classy 	Scott Alexander 	2016 -->
+<!-- The Control Group is Out of Control 	Scott Alexander 	2014 -->
+<!-- I Can Tolerate Anything Except The Outgroup 	Scott Alexander 	2014 -->
