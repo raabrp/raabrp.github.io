@@ -244,8 +244,6 @@ Dark-Chess    </title>
  hist = game.history();
  move_num = hist.length;
 
-
-
  // for review (showing fog for both players)
  // `update()` will not allow players to fish for information with prospective
  // moves
@@ -721,6 +719,10 @@ Dark-Chess    </title>
      onDrop: onDrop,
      onSnapEnd: onSnapEnd
  });
+
+ if (move_num % 2) {
+     board.flip()
+ }
 
  //////////////////////////////////////////////////////////////////////////////
  // Buttons and fields

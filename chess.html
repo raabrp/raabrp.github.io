@@ -376,6 +376,10 @@ Chess    </title>
      onSnapEnd: onSnapEnd
  });
 
+ if (move_num % 2) {
+     board.flip()
+ }
+
  //////////////////////////////////////////////////////////////////////////////
  // Buttons and fields
  //
