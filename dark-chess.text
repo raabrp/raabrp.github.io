@@ -23,7 +23,7 @@
         <div style="text-align:center;">
           <input type="button" id="startBtn" value="<<" />
           <input type="button" id="prevBtn" value="<" />
-          <input type="button" id="resetBtn" value="Init" />
+          <input type="button" id="resetBtn" value="Linked State" />
           <input type="button" id="nextBtn" value=">" />
           <input type="button" id="lastBtn" value=">>" />
           <input type="button" id="flipBtn" value="Flip" />
@@ -36,6 +36,12 @@
             <input type="button" id="fenBtn" value="FEN" />
             <input type="button" id="pgnBtn" value="PGN"/>
             <input type="button" id="loadBtn" value="Load"/>
+            <select name="promote" id="promoteDD">
+              <option value="q">Promote: q</option>
+              <option value="b">Promote: b</option>
+              <option value="n">Promote: n</option>
+              <option value="r">Promote: r</option>
+            </select>
         </div>
         <br />
         </div>
@@ -43,7 +49,7 @@
         <hr>
         Game Options: <br><i>must be set at beginning of game</i> <br><br>
         <input type="checkbox" id="scouting" />
-        Vision updates on half turn (vs full turn) <br>
+        Allow attribution of state change to opponent's turn <br>
         <input type="checkbox" id="overrun" />
         Capturing pieces are revealed to opponent <br>
         <input type="checkbox" id="warn" />
@@ -61,6 +67,7 @@
 
         See Also:<br>
         <a href="/chess.html">Normal Chess</a><br>
+        <a href="/fischer-random.html">Fischer Random Chess</a><br>
         <a href="https://en.wikipedia.org/wiki/Dark_chess">Dark Chess (Wikipedia)</a><br>
         <a href="http://chessboardjs.com/">chessboard.js</a><br>
         <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
@@ -327,7 +334,7 @@
          return "Request originated from invalid URL String."
      }
      if (move_num == 0) {
-         return window.location.hostname + '/dark-chess';
+         return window.location.host + '/dark-chess';
      }
      else if (move_num != (max_move_num + 1) && !is_over()) {
          update();
@@ -349,7 +356,7 @@
                   .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
                   .substr(1)
      }));
-     return window.location.hostname + '/dark-chess?' + payload;
+     return window.location.host + '/dark-chess?' + payload;
  }
 
  // game options
@@ -534,7 +541,7 @@
    var move = domove({
      from: source,
      to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
+     promotion: document.getElementById('promoteDD').value
    });
 
    // illegal move

@@ -23,23 +23,32 @@
         <div style="text-align:center;">
           <input type="button" id="startBtn" value="<<" />
           <input type="button" id="prevBtn" value="<" />
-          <input type="button" id="resetBtn" value="Init" />
+          <input type="button" id="resetBtn" value="Linked State" />
           <input type="button" id="nextBtn" value=">" />
           <input type="button" id="lastBtn" value=">>" />
           <input type="button" id="flipBtn" value="Flip" />
         </div>
         <hr>
         <div style="text-align:center;">
+            <input type="button" value="New"
+                   onclick="window.location.href='/chess'"/>
             <input type="button" id="linkBtn" value="Link" />
             <input type="button" id="fenBtn" value="FEN" />
             <input type="button" id="pgnBtn" value="PGN"/>
             <input type="button" id="loadBtn" value="Load"/>
+            <select name="promote" id="promoteDD">
+              <option value="q">Promote: q</option>
+              <option value="b">Promote: b</option>
+              <option value="n">Promote: n</option>
+              <option value="r">Promote: r</option>
+            </select>
         </div>
         <br>
         <textarea id="field" style="width: 100%; height: 400px;"></textarea>
         <hr>
         See Also:<br>
         <a href="/dark-chess.html">Dark-Chess Variant</a><br>
+        <a href="/fischer-random.html">Fischer Random Chess</a><br>
         <a href="https://www.apronus.com/chess/pgnviewer/">Apronus chess viewer</a><br>
         <a href="http://chessboardjs.com/">chessboard.js</a><br>
         <a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
@@ -78,14 +87,14 @@
  // generate link for opponent
  function generate_url() {
      if (move_num == 0) {
-         return window.location.hostname + window.location.pathname;
+         return window.location.host + window.location.pathname;
      }
 
      payload = game.pgn()
                    .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
                    .replace(/ /g, '_')
                    .substr(1);
-     return window.location.hostname + window.location.pathname + '?' + payload;
+     return window.location.host + window.location.pathname + '?' + payload;
  }
 
  var board,                   // Chessboard
@@ -94,7 +103,7 @@
      move_num,                // current move number
      statusEl = $('#status'), // status field
      fieldEl = $('#field'),   // text box
-     pgn = pgn = parse_url(); // PGN of game
+     pgn = parse_url();       // PGN of game
 
  game.load_pgn(pgn);
 
@@ -189,7 +198,7 @@
    var move = domove({
      from: source,
      to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
+     promotion: document.getElementById('promoteDD').value
    });
 
    // illegal move

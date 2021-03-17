@@ -182,7 +182,7 @@ Dark-Chess    </title>
 <div style="text-align:center;">
 <input id="startBtn" type="button" value="&lt;&lt;"/>
 <input id="prevBtn" type="button" value="&lt;"/>
-<input id="resetBtn" type="button" value="Init"/>
+<input id="resetBtn" type="button" value="Linked State"/>
 <input id="nextBtn" type="button" value="&gt;"/>
 <input id="lastBtn" type="button" value="&gt;&gt;"/>
 <input id="flipBtn" type="button" value="Flip"/>
@@ -194,6 +194,12 @@ Dark-Chess    </title>
 <input id="fenBtn" type="button" value="FEN"/>
 <input id="pgnBtn" type="button" value="PGN"/>
 <input id="loadBtn" type="button" value="Load"/>
+<select id="promoteDD" name="promote">
+<option value="q">Promote: q</option>
+<option value="b">Promote: b</option>
+<option value="n">Promote: n</option>
+<option value="r">Promote: r</option>
+</select>
 </div>
 <br>
 
@@ -201,7 +207,7 @@ Dark-Chess    </title>
 <hr/>
         Game Options: <br/><i>must be set at beginning of game</i> <br/><br/>
 <input id="scouting" type="checkbox"/>
-        Vision updates on half turn (vs full turn) <br/>
+        Allow attribution of state change to opponent's turn <br/>
 <input id="overrun" type="checkbox"/>
         Capturing pieces are revealed to opponent <br/>
 <input id="warn" type="checkbox"/>
@@ -219,9 +225,10 @@ Dark-Chess    </title>
 
         See Also:<br/>
 <a href="/chess.html" id="generated-link-id0">Normal Chess</a><br/>
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Dark_chess" href="https://en.wikipedia.org/wiki/Dark_chess" id="generated-link-id1">Dark Chess (Wikipedia)</a><br/>
-<a href="http://chessboardjs.com/" id="generated-link-id2">chessboard.js</a><br/>
-<a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
+<a href="/fischer-random.html" id="generated-link-id1">Fischer Random Chess</a><br/>
+<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Dark_chess" href="https://en.wikipedia.org/wiki/Dark_chess" id="generated-link-id2">Dark Chess (Wikipedia)</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
 <script type="text/javascript">
 
  function copyField() {
@@ -484,7 +491,7 @@ Dark-Chess    </title>
          return "Request originated from invalid URL String."
      }
      if (move_num == 0) {
-         return window.location.hostname + '/dark-chess';
+         return window.location.host + '/dark-chess';
      }
      else if (move_num != (max_move_num + 1) && !is_over()) {
          update();
@@ -506,7 +513,7 @@ Dark-Chess    </title>
                   .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
                   .substr(1)
      }));
-     return window.location.hostname + '/dark-chess?' + payload;
+     return window.location.host + '/dark-chess?' + payload;
  }
 
  // game options
@@ -691,7 +698,7 @@ Dark-Chess    </title>
    var move = domove({
      from: source,
      to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
+     promotion: document.getElementById('promoteDD').value
    });
 
    // illegal move

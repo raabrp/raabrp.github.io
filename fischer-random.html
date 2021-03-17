@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <title>
+Fischer Random Chess    </title>
+
+    <link rel="shortcut icon" href="static/favicon.png">
+
+    <!-- CSS for Layout -->
+    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
+
+    <!-- CSS for Colors -->
+    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-light-rotated.css">
+    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
+          class="color-css" href="theme/css/colors/color-light-default.css">
+    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-rotated.css">
+    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
+          class="color-css" href="theme/css/colors/color-dark-default.css">
+    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
+
+    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
+
+
+    <link rel="stylesheet"
+          href="theme/css/fonts.css">
+
+    <!-- JS for Color Theming -->
+    <script type="text/javascript">
+     /*
+      * Run this early, since it will create an undesiresable flash of color
+      * if delayed. It seems that the fastest way to get the correct colors
+      * is by including a <link> for each theme, causing them to be loaded in
+      * parallel, with marginal increased delay until script execution.
+      *
+      * The alternative is waiting to load the correct colors until after
+      * script execution -- which is delayed by loading the initial
+      * links anyway -- then *also* waiting for the new resource to load
+      * *after* script execution, resulting in almost twice the delay.
+      */
+
+     function set_theme(val) {
+         var color_links = document.getElementsByClassName('color-css');
+         for (var i=0; i < color_links.length; i++) {
+             var link = color_links[i];
+             if (link.attributes['id'].value == (val + '-theme-css')) {
+                 link.href = 'theme/css/colors/color-' + val + '.css';
+             } else {
+                 link.removeAttribute('href');
+             }
+         }
+         try {
+             localStorage['theme'] = val;
+         } catch (e) {
+             ;
+         }
+     }
+     try {
+         var stored = localStorage['theme'];
+         if (stored && (stored != 'undefined'))  {
+             set_theme(stored);
+         }
+     } catch (e) {
+         ;
+     }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="theme/css/page.css">
+
+    <!-- Pelican variable injection -->
+    <script type="text/javascript">var pelican = {};</script>
+
+    <!-- Main JavaScript functions -->
+    <script src="theme/js/main.js"></script>
+
+  </head>
+
+  <body>
+    <main>
+      <menu>
+        <!-- The checkbox hack -->
+        <input type="checkbox" id="hamburger-checkbox">
+        <label for="hamburger-checkbox">
+          <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>MENU</span>
+          </div>
+        </label>
+        <nav>
+          <ul>
+            <li>
+              <p>Links</p>
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="reading-list.html">
+                    Digital Bookshelf
+                  </a>
+                </li>
+                <li>
+                  <a href="publications.html">
+                    Publications
+                  </a>
+                </li>
+              </ul>
+            <!-- Unhidden if JavaScript enabled -->
+            <li id="theme-select" style="display: none;">
+              <p>Select Colors</p>
+              <ul>
+                <li>
+                  <a class="theme-selector" value="dark-default">
+                    Dark default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="dark-rotated">
+                    Dark rotated
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-default">
+                    Light default
+                  </a>
+                </li>
+                <li>
+                  <a class="theme-selector" value="light-rotated">
+                    Light rotated
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </menu>
+
+      <div id="top-spacer"></div>
+
+<header>
+    <h1 id="title-header">
+        Fischer Random Chess
+    </h1>
+</header>
+<article>
+    
+<style type="text/css">
+          main { max-width: 60ch; }
+          .wiki-extract { max-width: 50ch; }
+          #title-header{ display: none; }
+          #top-spacer { display: none; }
+        </style>
+<h2>Chess960 For Correspondence Play</h2>
+<link href="/css/chess.css" rel="stylesheet" type="text/css"/>
+<script src="/theme/js/lib/jquery.js"></script>
+<script src="/js/chessboard.js"></script>
+<script src="/js/chess.js"></script>
+<p><span id="status"></span></p>
+<div id="board" style="width: 100%;"></div>
+<br/>
+<div style="text-align:center;">
+<input id="startBtn" type="button" value="&lt;&lt;"/>
+<input id="prevBtn" type="button" value="&lt;"/>
+<input id="resetBtn" type="button" value="Linked State"/>
+<input id="nextBtn" type="button" value="&gt;"/>
+<input id="lastBtn" type="button" value="&gt;&gt;"/>
+<input id="flipBtn" type="button" value="Flip"/>
+</div>
+<hr/>
+<div style="text-align:center;">
+<input onclick="window.location.href='/fischer-random'" type="button" value="New"/>
+<input id="linkBtn" type="button" value="Link"/>
+<input id="fenBtn" type="button" value="FEN"/>
+<input id="pgnBtn" type="button" value="PGN"/>
+<input id="loadBtn" type="button" value="Load"/>
+<select id="promoteDD" name="promote">
+<option value="q">Promote: q</option>
+<option value="b">Promote: b</option>
+<option value="n">Promote: n</option>
+<option value="r">Promote: r</option>
+</select>
+</div>
+<br/>
+<textarea id="field" style="width: 100%; height: 400px;"></textarea>
+<hr/>
+        See Also:<br/>
+<a href="/chess.html" id="generated-link-id0">Chess</a><br/>
+<a href="/dark-chess.html" id="generated-link-id1">Dark-Chess Variant</a><br/>
+<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id2">Apronus chess viewer</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
+<script type="text/javascript">
+
+function copyField() {
+    document.getElementById("field").select();
+    document.execCommand("copy");
+}
+
+ function parse_url() {
+
+    var chess = new Chess(); // for validation only
+
+    var start = '';
+
+    if (window.location.search) {
+        try {
+            payload = window.location.search.substr(1).replace(/_/g, ' ');
+            sep = payload.indexOf(' ');
+            start = payload.slice(0, sep);
+            moves = payload.slice(sep + 1)
+
+            pgn = '[SetUp "1"]\n[FEN "' + start +
+                '/pppppppp/8/8/8/8/PPPPPPPP/' + start.toUpperCase() +
+                ' w KQkq - 0 1"]\n\n' + moves;
+
+            if (!chess.load_pgn(pgn)) {
+                throw "Invalid URL String";
+            } else {
+                return pgn;
+            }
+        } catch (e) {
+            fieldEl.val("Invalid URL String");
+            return start;
+        }
+    } else {
+        return start;
+    }
+}
+
+// generate link for opponent
+function generate_url() {
+    if (move_num == 0) {
+        return window.location.host + window.location.pathname;
+    }
+
+    let pgn = game.pgn()
+    let start = pgn.slice(18,26)
+    let moves = pgn.slice(78)
+    let payload = start + '_' + moves
+                  .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
+                  .replace(/ /g, '_')
+                  .substr(1);
+    return window.location.host + window.location.pathname + '?' + payload;
+}
+
+function rand(x) { // 0, 1, 2, ..., x - 1
+    return Math.floor(Math.random() * x)
+}
+
+function fen_960() {
+
+    let lower;
+
+    s = [0, 1, 2, 3, 4, 5, 6, 7];
+    lower = '01234567';
+
+    // first bishop
+    i = [0, 2, 4, 6][rand(4)];
+    lower = lower.replace(i.toString(), 'b');
+    s.splice(s.indexOf(i), 1)
+    
+    // second bishop
+    i = [1, 3, 5, 7][rand(4)];
+    lower = lower.replace(i.toString(), 'b');
+    s.splice(s.indexOf(i), 1)
+
+    // queen
+    i = s[rand(6)];
+    lower = lower.replace(i.toString(), 'q');
+    s.splice(s.indexOf(i), 1)
+
+    // knight
+    i = s[rand(5)];
+    lower = lower.replace(i.toString(), 'n');
+    s.splice(s.indexOf(i), 1)
+
+    // knight
+    i = s[rand(4)];
+    lower = lower.replace(i.toString(), 'n');
+    s.splice(s.indexOf(i), 1)
+
+    // king
+    i = s[1];
+    lower = lower.replace(i.toString(), 'k');
+    s.splice(s.indexOf(i), 1)
+
+    // rook 1
+    i = s[0];
+    lower = lower.replace(i.toString(), 'r');
+    s.splice(s.indexOf(i), 1)
+
+    // rook 2
+    i = s[0];
+    lower = lower.replace(i.toString(), 'r');
+
+    return lower + '/pppppppp/8/8/8/8/PPPPPPPP/' + lower.toUpperCase() + ' w KQkq - 0 1';
+
+}
+
+
+var board,                   // Chessboard
+    game = new Chess(),      // Chess
+    hist,                    // history of moves
+    move_num,                // current move number
+    statusEl = $('#status'), // status field
+    fieldEl = $('#field'),   // text box
+    pgn = parse_url();       // PGN of game
+
+game.load_pgn(pgn);
+
+if(pgn){  
+    game.load_pgn(pgn);
+} else {
+    console.log(fen_960());
+    game.load(fen_960());
+    console.log(game.fen());
+}
+
+hist = game.history();
+move_num = hist.length;
+
+// intercept movement to check against history
+function domove(m) {
+
+
+    var current_fen = game.fen();
+    var is_valid = game.move(m);
+
+    if (is_valid) {
+
+        if (hist.length > game.history().length) {
+
+            // compare against known history
+            eq_test = new Chess(current_fen);
+            eq_test.move(hist[move_num]);
+
+            // new branch of history
+            if (!(eq_test.fen() == game.fen())) {
+                hist = game.history();
+            }
+
+        } else {
+            hist = game.history();
+        }
+
+        move_num += 1;
+    }
+
+    return is_valid;
+}
+
+// repaint to allow previous states of play to be examined
+function update() {
+    board.resize();
+    board.position(game.fen());
+    updateStatus();
+}
+
+// update status element
+function updateStatus() {
+    var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
+
+    var movecolor = 'White';
+    if (game.turn() === 'b') {
+        movecolor = 'Black';
+    }
+
+    // checkmate?
+    if (game.in_checkmate() === true) {
+        status = 'Game over, ' + movecolor + ' is in checkmate.';
+    }
+
+    // draw?
+    else if (game.in_draw() === true) {
+        status = 'Game over, drawn position';
+    }
+
+    // game still on
+    else {
+        status += movecolor + ' to move';
+
+        // check?
+        if (game.in_check() === true) {
+            status += '; ' + movecolor + ' is in check';
+        }
+    }
+
+    statusEl.html(status);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// CHESSBOARD HOOKS
+// see chessboard.js example 5000
+
+// do not pick up pieces if the game is over
+// only pick up pieces for the side to move
+var onDragStart = function(source, piece, position, orientation) {
+    if (game.game_over() === true || // game is over
+      (game.turn() === 'w' && piece.search(/^b/) !== -1) || // not our piece
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
+    return false;
+  }
+};
+
+var onDrop = function(source, target) {
+  // see if the move is legal and update game if so
+  var move = domove({
+    from: source,
+    to: target,
+    promotion: document.getElementById('promoteDD').value
+  });
+
+  // illegal move
+  if (move === null) return 'snapback';
+
+  // board has already updated its position
+  // do not update again and tear animations
+  updateStatus();
+};
+
+// update the board position after the piece snap
+// for castling, en passant, pawn promotion
+var onSnapEnd = function() {
+    board.position(game.fen());
+};
+
+board = ChessBoard('board', {
+    draggable: true,
+    position: '8/8/8/8/8/8/8/8',
+    pieceTheme: '/images/chesspieces/{piece}.png',
+    moveSpeed: 50,
+    snapbackSpeed: 50,
+    snapSpeed: 50,
+    onDragStart: onDragStart,
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd
+});
+
+if (move_num % 2) {
+    board.flip()
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Buttons and fields
+//
+
+$('#startBtn').on('click', function(){
+    game.reset();
+    move_num = 0;
+    update();
+});
+$('#prevBtn').on('click', function(){
+    if (move_num > 0) {
+        game.undo();
+        move_num -= 1;
+        update();
+    }
+});
+$('#resetBtn').on('click', function(){
+    game.load_pgn(pgn);
+    hist = game.history();
+    move_num = game.history().length;
+    update();
+});
+$('#nextBtn').on('click', function(){
+    if (move_num < hist.length) {
+        domove(hist[move_num]);
+        update();
+    }
+});
+$('#lastBtn').on('click', function(){
+    while (move_num < hist.length) {
+        domove(hist[move_num]);
+    }
+    update();
+});
+$('#flipBtn').on('click', board.flip);
+$('#linkBtn').on('click', function() {
+    fieldEl.val(generate_url());
+    copyField();
+});
+$('#fenBtn').on('click', function() {
+    fieldEl.val(game.fen());
+    copyField();
+
+});
+$('#pgnBtn').on('click', function() {
+    fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+    copyField();
+});
+$('#loadBtn').on('click', function() {
+    if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
+        update();
+        hist = game.history();
+        move_num = hist.length;
+        // window.history.pushState({}, '', generate_url());
+    } else {
+        fieldEl.val('Could not load input');
+    }
+});
+
+window.onresize = update;
+
+function wait_update() {
+    if (!($.isReady)) {
+        setTimeout(wait_update, 100);
+    } else {
+        update();
+    }
+}
+wait_update();
+
+
+</script>
+
+</article>
+    </main>
+
+    <script type="text/javascript">
+     engage();
+    </script>
+  </body>
+
+</html>

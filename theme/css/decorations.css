@@ -91,6 +91,13 @@ input[type=button], button {
     border: 1px solid;
 }
 
+select {
+    padding: 0.8ch 2ch;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid;
+}
 
 /* Pygments */
 

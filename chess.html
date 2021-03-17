@@ -182,26 +182,34 @@ Chess    </title>
 <div style="text-align:center;">
 <input id="startBtn" type="button" value="&lt;&lt;"/>
 <input id="prevBtn" type="button" value="&lt;"/>
-<input id="resetBtn" type="button" value="Init"/>
+<input id="resetBtn" type="button" value="Linked State"/>
 <input id="nextBtn" type="button" value="&gt;"/>
 <input id="lastBtn" type="button" value="&gt;&gt;"/>
 <input id="flipBtn" type="button" value="Flip"/>
 </div>
 <hr/>
 <div style="text-align:center;">
+<input onclick="window.location.href='/chess'" type="button" value="New"/>
 <input id="linkBtn" type="button" value="Link"/>
 <input id="fenBtn" type="button" value="FEN"/>
 <input id="pgnBtn" type="button" value="PGN"/>
 <input id="loadBtn" type="button" value="Load"/>
+<select id="promoteDD" name="promote">
+<option value="q">Promote: q</option>
+<option value="b">Promote: b</option>
+<option value="n">Promote: n</option>
+<option value="r">Promote: r</option>
+</select>
 </div>
 <br/>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
 <hr/>
         See Also:<br/>
 <a href="/dark-chess.html" id="generated-link-id0">Dark-Chess Variant</a><br/>
-<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id1">Apronus chess viewer</a><br/>
-<a href="http://chessboardjs.com/" id="generated-link-id2">chessboard.js</a><br/>
-<a href="https://github.com/jhlywa/chess.js" id="generated-link-id3">chess.js</a><br/>
+<a href="/fischer-random.html" id="generated-link-id1">Fischer Random Chess</a><br/>
+<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id2">Apronus chess viewer</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
 <script type="text/javascript">
 
  function copyField() {
@@ -236,14 +244,14 @@ Chess    </title>
  // generate link for opponent
  function generate_url() {
      if (move_num == 0) {
-         return window.location.hostname + window.location.pathname;
+         return window.location.host + window.location.pathname;
      }
 
      payload = game.pgn()
                    .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
                    .replace(/ /g, '_')
                    .substr(1);
-     return window.location.hostname + window.location.pathname + '?' + payload;
+     return window.location.host + window.location.pathname + '?' + payload;
  }
 
  var board,                   // Chessboard
@@ -252,7 +260,7 @@ Chess    </title>
      move_num,                // current move number
      statusEl = $('#status'), // status field
      fieldEl = $('#field'),   // text box
-     pgn = pgn = parse_url(); // PGN of game
+     pgn = parse_url();       // PGN of game
 
  game.load_pgn(pgn);
 
@@ -347,7 +355,7 @@ Chess    </title>
    var move = domove({
      from: source,
      to: target,
-     promotion: 'q' // note: always promote to a queen for example simplicity
+     promotion: document.getElementById('promoteDD').value
    });
 
    // illegal move
