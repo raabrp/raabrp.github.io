@@ -212,251 +212,250 @@ Chess    </title>
 <a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
 <script type="text/javascript">
 
- function copyField() {
-     document.getElementById("field").select();
-     document.execCommand("copy");
- }
+function copyField() {
+    document.getElementById("field").select();
+    document.execCommand("copy");
+}
 
- // url is simply PGN sequence. Cross-compatible with Apronus
- function parse_url() {
+// url is simply PGN sequence. Cross-compatible with Apronus
+function parse_url() {
 
-     var chess = new Chess(); // for validation only
+    var chess = new Chess(); // for validation only
 
-     var start = '';
+    var start = '';
 
-     if (window.location.search) {
-         try {
-             pgn = window.location.search.substr(1).replace(/_/g, ' ');
-             if (!chess.load_pgn(pgn)) {
-                 throw "Invalid URL String";
-             } else {
-                 return pgn;
-             }
-         } catch (e) {
-             fieldEl.val("Invalid URL String");
-             return start;
-         }
-     } else {
-         return start;
-     }
- }
+    if (window.location.search) {
+        try {
+            pgn = window.location.search.substr(1).replace(/_/g, ' ');
+            if (!chess.load_pgn(pgn)) {
+                throw "Invalid URL String";
+            } else {
+                return pgn;
+            }
+        } catch (e) {
+            fieldEl.val("Invalid URL String");
+            return start;
+        }
+    } else {
+        return start;
+    }
+}
 
- // generate link for opponent
- function generate_url() {
-     if (move_num == 0) {
-         return window.location.host + window.location.pathname;
-     }
+// generate link for opponent
+function generate_url() {
+    if (move_num == 0) {
+        return window.location.host + window.location.pathname;
+    }
 
-     payload = game.pgn()
-                   .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
-                   .replace(/ /g, '_')
-                   .substr(1);
-     return window.location.host + window.location.pathname + '?' + payload;
- }
+    payload = game.pgn()
+                  .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
+                  .replace(/ /g, '_')
+                  .substr(1);
+    return window.location.host + window.location.pathname + '?' + payload;
+}
 
- var board,                   // Chessboard
-     game = new Chess(),      // Chess
-     hist,                    // history of moves
-     move_num,                // current move number
-     statusEl = $('#status'), // status field
-     fieldEl = $('#field'),   // text box
-     pgn = parse_url();       // PGN of game
+var board,                   // Chessboard
+    game = new Chess(),      // Chess
+    hist,                    // history of moves
+    move_num,                // current move number
+    statusEl = $('#status'), // status field
+    fieldEl = $('#field'),   // text box
+    pgn = parse_url();       // PGN of game
 
- game.load_pgn(pgn);
+game.load_pgn(pgn);
 
- hist = game.history();
- move_num = hist.length;
+hist = game.history();
+move_num = hist.length;
 
- // intercept movement to check against history
- function domove(m) {
+// intercept movement to check against history
+function domove(m) {
 
+    var current_fen = game.fen();
+    var is_valid = game.move(m);
+    
+    if (is_valid) {
 
-     var current_fen = game.fen();
-     var is_valid = game.move(m);
+        if (hist.length > game.history().length) {
 
-     if (is_valid) {
+            // compare against known history
+            eq_test = new Chess(current_fen);
+            eq_test.move(hist[move_num]);
 
-         if (hist.length > game.history().length) {
+            // new branch of history
+            if (!(eq_test.fen() == game.fen())) {
+                hist = game.history();
+            }
 
-             // compare against known history
-             eq_test = new Chess(current_fen);
-             eq_test.move(hist[move_num]);
+        } else {
+            hist = game.history();
+        }
 
-             // new branch of history
-             if (!(eq_test.fen() == game.fen())) {
-                 hist = game.history();
-             }
+        move_num += 1;
+    }
 
-         } else {
-             hist = game.history();
-         }
+    return is_valid;
+}
 
-         move_num += 1;
-     }
+// repaint to allow previous states of play to be examined
+function update() {
+    board.resize();
+    board.position(game.fen());
+    updateStatus();
+}
 
-     return is_valid;
- }
+// update status element
+function updateStatus() {
+    var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
 
- // repaint to allow previous states of play to be examined
- function update() {
-     board.resize();
-     board.position(game.fen());
-     updateStatus();
- }
+    var movecolor = 'White';
+    if (game.turn() === 'b') {
+        movecolor = 'Black';
+    }
 
- // update status element
- function updateStatus() {
-     var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
+    // checkmate?
+    if (game.in_checkmate() === true) {
+        status = 'Game over, ' + movecolor + ' is in checkmate.';
+    }
 
-     var movecolor = 'White';
-     if (game.turn() === 'b') {
-         movecolor = 'Black';
-     }
+    // draw?
+    else if (game.in_draw() === true) {
+        status = 'Game over, drawn position';
+    }
 
-     // checkmate?
-     if (game.in_checkmate() === true) {
-         status = 'Game over, ' + movecolor + ' is in checkmate.';
-     }
+    // game still on
+    else {
+        status += movecolor + ' to move';
 
-     // draw?
-     else if (game.in_draw() === true) {
-         status = 'Game over, drawn position';
-     }
+        // check?
+        if (game.in_check() === true) {
+            status += '; ' + movecolor + ' is in check';
+        }
+    }
 
-     // game still on
-     else {
-         status += movecolor + ' to move';
+    statusEl.html(status);
+};
 
-         // check?
-         if (game.in_check() === true) {
-             status += '; ' + movecolor + ' is in check';
-         }
-     }
+///////////////////////////////////////////////////////////////////////////////
+// CHESSBOARD HOOKS
+// see chessboard.js example 5000
 
-     statusEl.html(status);
- };
+// do not pick up pieces if the game is over
+// only pick up pieces for the side to move
+var onDragStart = function(source, piece, position, orientation) {
+    if (game.game_over() === true || // game is over
+      (game.turn() === 'w' && piece.search(/^b/) !== -1) || // not our piece
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
+    return false;
+  }
+};
 
- ///////////////////////////////////////////////////////////////////////////////
- // CHESSBOARD HOOKS
- // see chessboard.js example 5000
+var onDrop = function(source, target) {
+  // see if the move is legal and update game if so
+  var move = domove({
+    from: source,
+    to: target,
+    promotion: document.getElementById('promoteDD').value
+  });
 
- // do not pick up pieces if the game is over
- // only pick up pieces for the side to move
- var onDragStart = function(source, piece, position, orientation) {
-     if (game.game_over() === true || // game is over
-       (game.turn() === 'w' && piece.search(/^b/) !== -1) || // not our piece
-       (game.turn() === 'b' && piece.search(/^w/) !== -1)) { // not our piece
-     return false;
-   }
- };
+  // illegal move
+  if (move === null) return 'snapback';
 
- var onDrop = function(source, target) {
-   // see if the move is legal and update game if so
-   var move = domove({
-     from: source,
-     to: target,
-     promotion: document.getElementById('promoteDD').value
-   });
+  // board has already updated its position
+  // do not update again and tear animations
+  updateStatus();
+};
 
-   // illegal move
-   if (move === null) return 'snapback';
+// update the board position after the piece snap
+// for castling, en passant, pawn promotion
+var onSnapEnd = function() {
+    board.position(game.fen());
+};
 
-   // board has already updated its position
-   // do not update again and tear animations
-   updateStatus();
- };
+board = ChessBoard('board', {
+    draggable: true,
+    position: '8/8/8/8/8/8/8/8',
+    pieceTheme: '/images/chesspieces/{piece}.png',
+    moveSpeed: 50,
+    snapbackSpeed: 50,
+    snapSpeed: 50,
+    onDragStart: onDragStart,
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd
+});
 
- // update the board position after the piece snap
- // for castling, en passant, pawn promotion
- var onSnapEnd = function() {
-     board.position(game.fen());
- };
+if (move_num % 2) {
+    board.flip()
+}
 
- board = ChessBoard('board', {
-     draggable: true,
-     position: '8/8/8/8/8/8/8/8',
-     pieceTheme: '/images/chesspieces/{piece}.png',
-     moveSpeed: 50,
-     snapbackSpeed: 50,
-     snapSpeed: 50,
-     onDragStart: onDragStart,
-     onDrop: onDrop,
-     onSnapEnd: onSnapEnd
- });
+//////////////////////////////////////////////////////////////////////////////
+// Buttons and fields
+//
 
- if (move_num % 2) {
-     board.flip()
- }
+$('#startBtn').on('click', function(){
+    game.reset();
+    move_num = 0;
+    update();
+});
+$('#prevBtn').on('click', function(){
+    if (move_num > 0) {
+        game.undo();
+        move_num -= 1;
+        update();
+    }
+});
+$('#resetBtn').on('click', function(){
+    game.load_pgn(pgn);
+    hist = game.history();
+    move_num = game.history().length;
+    update();
+});
+$('#nextBtn').on('click', function(){
+    if (move_num < hist.length) {
+        domove(hist[move_num]);
+        update();
+    }
+});
+$('#lastBtn').on('click', function(){
+    while (move_num < hist.length) {
+        domove(hist[move_num]);
+    }
+    update();
+});
+$('#flipBtn').on('click', board.flip);
+$('#linkBtn').on('click', function() {
+    fieldEl.val(generate_url());
+    copyField();
+});
+$('#fenBtn').on('click', function() {
+    fieldEl.val(game.fen());
+    copyField();
 
- //////////////////////////////////////////////////////////////////////////////
- // Buttons and fields
- //
+});
+$('#pgnBtn').on('click', function() {
+    fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+    copyField();
+});
+$('#loadBtn').on('click', function() {
+    if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
+        update();
+        hist = game.history();
+        move_num = hist.length;
+        // window.history.pushState({}, '', generate_url());
+    } else {
+        fieldEl.val('Could not load input');
+    }
+});
 
- $('#startBtn').on('click', function(){
-     game.reset();
-     move_num = 0;
-     update();
- });
- $('#prevBtn').on('click', function(){
-     if (move_num > 0) {
-         game.undo();
-         move_num -= 1;
-         update();
-     }
- });
- $('#resetBtn').on('click', function(){
-     game.load_pgn(pgn);
-     hist = game.history();
-     move_num = game.history().length;
-     update();
- });
- $('#nextBtn').on('click', function(){
-     if (move_num < hist.length) {
-         domove(hist[move_num]);
-         update();
-     }
- });
- $('#lastBtn').on('click', function(){
-     while (move_num < hist.length) {
-         domove(hist[move_num]);
-     }
-     update();
- });
- $('#flipBtn').on('click', board.flip);
- $('#linkBtn').on('click', function() {
-     fieldEl.val(generate_url());
-     copyField();
- });
- $('#fenBtn').on('click', function() {
-     fieldEl.val(game.fen());
-     copyField();
+window.onresize = update;
 
- });
- $('#pgnBtn').on('click', function() {
-     fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
-     copyField();
- });
- $('#loadBtn').on('click', function() {
-     if (game.load(fieldEl.val()) || game.load_pgn(fieldEl.val())) {
-         update();
-         hist = game.history();
-         move_num = hist.length;
-         window.history.pushState({}, '', generate_url());
-     } else {
-         fieldEl.val('Could not load input');
-     }
- });
-
- window.onresize = update;
-
- function wait_update() {
-     if (!($.isReady)) {
-         setTimeout(wait_update, 100);
-     } else {
-         update();
-     }
- }
- wait_update();
+function wait_update() {
+    if (!($.isReady)) {
+        setTimeout(wait_update, 100);
+    } else {
+        update();
+    }
+}
+wait_update();
 
 
 </script>

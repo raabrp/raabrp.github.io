@@ -55,6 +55,8 @@ var Chess = function(fen, dark_chess) {
   var DEFAULT_POSITION =
     'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
+  var RESET_POSITION = DEFAULT_POSITION;
+
   var POSSIBLE_RESULTS = ['1-0', '0-1', '1/2-1/2', '*'];
 
   var PAWN_OFFSETS = {
@@ -116,8 +118,8 @@ var Chess = function(fen, dark_chess) {
     BIG_PAWN: 'b',
     EP_CAPTURE: 'e',
     PROMOTION: 'p',
-    KSIDE_CASTLE: 'k',
-    QSIDE_CASTLE: 'q'
+    HSIDE_CASTLE: 'k',
+    ASIDE_CASTLE: 'q'
   };
 
   var BITS = {
@@ -126,8 +128,8 @@ var Chess = function(fen, dark_chess) {
     BIG_PAWN: 4,
     EP_CAPTURE: 8,
     PROMOTION: 16,
-    KSIDE_CASTLE: 32,
-    QSIDE_CASTLE: 64
+    HSIDE_CASTLE: 32,
+    ASIDE_CASTLE: 64
   };
 
   var RANK_1 = 7;
@@ -151,21 +153,27 @@ var Chess = function(fen, dark_chess) {
     a1: 112, b1: 113, c1: 114, d1: 115, e1: 116, f1: 117, g1: 118, h1: 119
   };
 
+  // only used for castling
   var ROOKS = {
     w: [
-      { square: SQUARES.a1, flag: BITS.QSIDE_CASTLE },
-      { square: SQUARES.h1, flag: BITS.KSIDE_CASTLE }
+      { square: SQUARES.a1, flag: BITS.ASIDE_CASTLE },
+      { square: SQUARES.h1, flag: BITS.HSIDE_CASTLE }
     ],
     b: [
-      { square: SQUARES.a8, flag: BITS.QSIDE_CASTLE },
-      { square: SQUARES.h8, flag: BITS.KSIDE_CASTLE }
+      { square: SQUARES.a8, flag: BITS.ASIDE_CASTLE },
+      { square: SQUARES.h8, flag: BITS.HSIDE_CASTLE }
     ]
   };
+  // only used for castling. Is starting square.
+  var KINGSTART = {
+    w: SQUARES.e1,
+    b: SQUARES.e8
+  }
 
   var board = new Array(128);
   var kings = { w: EMPTY, b: EMPTY };
   var turn = WHITE;
-  var castling = { w: 0, b: 0 };
+  var castling = { w: 0, b: 0 }; // whether castling is available
   var ep_square = EMPTY;
   var half_moves = 0;
   var move_number = 1;
@@ -199,7 +207,7 @@ var Chess = function(fen, dark_chess) {
   }
 
   function reset() {
-    load(DEFAULT_POSITION);
+    load(RESET_POSITION);
   }
 
   function load(fen, keep_headers) {
@@ -211,7 +219,10 @@ var Chess = function(fen, dark_chess) {
     var position = tokens[0];
     var square = 0;
 
-    if (!validate_fen(fen).valid) {
+    var validation = validate_fen(fen);
+    if (!validation.valid) {
+      console.log(fen)
+      console.log(validation.error)
       return false;
     }
 
@@ -225,6 +236,11 @@ var Chess = function(fen, dark_chess) {
       } else if (is_digit(piece)) {
         square += parseInt(piece, 10);
       } else {
+        if (piece === 'k') {
+          KINGSTART['b'] = square;
+        } else if (piece === 'K') {
+          KINGSTART['w'] = square;
+        }
         var color = piece < 'a' ? WHITE : BLACK;
         put({ type: piece.toLowerCase(), color: color }, algebraic(square));
         square++;
@@ -233,24 +249,53 @@ var Chess = function(fen, dark_chess) {
 
     turn = tokens[1];
 
-    if (tokens[2].indexOf('K') > -1) {
-      castling.w |= BITS.KSIDE_CASTLE;
+    var files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+    tokens[2] = tokens[2]
+      .replace('Q', 'A')
+      .replace('K', 'H')
+      .replace('q', 'a')
+      .replace('k', 'h');
+
+    // alphabetize
+    var arr = tokens[2].split('');
+    var sorted = arr.sort();
+    tokens[2] = sorted.join('');
+
+    // load rooks' positions to castle from
+    var b_rook_files = tokens[2].match(/[a-h]/g) || [];
+    var w_rook_files = tokens[2].match(/[A-H]/g) || [];
+
+    for (var i = 0; i < b_rook_files.length; i++) {
+      let sq = files.indexOf(b_rook_files[i]);
+      if (sq < KINGSTART.b) {
+        castling.b |= BITS.ASIDE_CASTLE;
+        (ROOKS.b)[0].square = sq;
+        (ROOKS.b)[0].al = algebraic(sq);
+      } else {
+        castling.b |= BITS.HSIDE_CASTLE;
+        (ROOKS.b)[1].square = sq;
+        (ROOKS.b)[1].al = algebraic(sq);
+      }
     }
-    if (tokens[2].indexOf('Q') > -1) {
-      castling.w |= BITS.QSIDE_CASTLE;
-    }
-    if (tokens[2].indexOf('k') > -1) {
-      castling.b |= BITS.KSIDE_CASTLE;
-    }
-    if (tokens[2].indexOf('q') > -1) {
-      castling.b |= BITS.QSIDE_CASTLE;
+    for (var i = 0; i < w_rook_files.length; i++) {
+      let sq = files.indexOf(w_rook_files[i].toLowerCase()) + 112;
+      if (sq < KINGSTART.w) {
+        castling.w |= BITS.ASIDE_CASTLE;
+        (ROOKS.w)[0].square = sq;
+        (ROOKS.w)[0].al = algebraic(sq);
+      } else {
+        castling.w |= BITS.HSIDE_CASTLE;
+        (ROOKS.w)[1].square = sq;
+        (ROOKS.w)[1].al = algebraic(sq);
+      }
     }
 
     ep_square = tokens[3] === '-' ? EMPTY : SQUARES[tokens[3]];
     half_moves = parseInt(tokens[4], 10);
     move_number = parseInt(tokens[5], 10);
 
-    update_setup(generate_fen());
+    update_setup(fen);
 
     return true;
   }
@@ -279,37 +324,52 @@ var Chess = function(fen, dark_chess) {
     /* 1st criterion: 6 space-seperated fields? */
     var tokens = fen.split(/\s+/);
     if (tokens.length !== 6) {
+      console.log(tokens);
       return { valid: false, error_number: 1, error: errors[1] };
     }
 
     /* 2nd criterion: move number field is a integer value > 0? */
     if (isNaN(tokens[5]) || parseInt(tokens[5], 10) <= 0) {
+      console.log(tokens[5]);
       return { valid: false, error_number: 2, error: errors[2] };
     }
 
     /* 3rd criterion: half move counter is an integer >= 0? */
     if (isNaN(tokens[4]) || parseInt(tokens[4], 10) < 0) {
+      console.log(tokens[4]);
       return { valid: false, error_number: 3, error: errors[3] };
     }
 
     /* 4th criterion: 4th field is a valid e.p.-string? */
     if (!/^(-|[abcdefgh][36])$/.test(tokens[3])) {
+      console.log(tokens[3]);
       return { valid: false, error_number: 4, error: errors[4] };
     }
 
+    tokens[2] = tokens[2]
+      .replace('Q', 'A')
+      .replace('K', 'H')
+      .replace('q', 'a')
+      .replace('k', 'h');
+
     /* 5th criterion: 3th field is a valid castle-string? */
     if (!/^(KQ?k?q?|Qk?q?|kq?|q|-)$/.test(tokens[2])) {
-      return { valid: false, error_number: 5, error: errors[5] };
+      if (!/(?=[a-hA-H]{0,4})(^[A-H]{0,2}[a-h]{0,2}$)/.test(tokens[2])) {
+        console.log(tokens[2])
+        return { valid: false, error_number: 5, error: errors[5] };
+      }
     }
 
     /* 6th criterion: 2nd field is "w" (white) or "b" (black)? */
     if (!/^(w|b)$/.test(tokens[1])) {
+      console.log(tokens[1]);
       return { valid: false, error_number: 6, error: errors[6] };
     }
 
     /* 7th criterion: 1st field contains 8 rows? */
     var rows = tokens[0].split('/');
     if (rows.length !== 8) {
+      console.log(tokens);
       return { valid: false, error_number: 7, error: errors[7] };
     }
 
@@ -383,18 +443,33 @@ var Chess = function(fen, dark_chess) {
     }
 
     var cflags = '';
-    if (castling[WHITE] & BITS.KSIDE_CASTLE) {
-      cflags += 'K';
+    var files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+
+    if (castling[WHITE] & BITS.ASIDE_CASTLE) {
+      cflags += (ROOKS.w)[0].al[0].toUpperCase();
     }
-    if (castling[WHITE] & BITS.QSIDE_CASTLE) {
-      cflags += 'Q';
+    if (castling[WHITE] & BITS.HSIDE_CASTLE) {
+      cflags += (ROOKS.w)[1].al[0].toUpperCase();
     }
-    if (castling[BLACK] & BITS.KSIDE_CASTLE) {
-      cflags += 'k';
+    if (castling[BLACK] & BITS.ASIDE_CASTLE) {
+      cflags += (ROOKS.b)[0].al[0];
     }
-    if (castling[BLACK] & BITS.QSIDE_CASTLE) {
-      cflags += 'q';
+    if (castling[BLACK] & BITS.HSIDE_CASTLE) {
+      cflags += (ROOKS.b)[1].al[0];
     }
+
+    // hybrid
+    cflags = cflags
+      .replace('A', 'Q')
+      .replace('H', 'K')
+      .replace('a', 'q')
+      .replace('h', 'k');
+
+    // alphabetize
+    var arr = cflags.split('');
+    var sorted = arr.sort();
+    cflags = sorted.join('');
 
     /* do we have an empty castling flag? */
     cflags = cflags || '-';
@@ -508,6 +583,10 @@ var Chess = function(fen, dark_chess) {
   function generate_moves(options) {
     function add_move(board, moves, from, to, flags) {
       /* if pawn promotion */
+      if (board[from] == null) {
+        // console.log(kings[us], castling[us], legal, from, to, flags);
+        return;
+      }
       if (
         board[from].type === PAWN &&
         (rank(to) === RANK_8 || rank(to) === RANK_1)
@@ -617,43 +696,136 @@ var Chess = function(fen, dark_chess) {
     /* check for castling if: a) we're generating all moves, or b) we're doing
      * single square move generation on the king's square
      */
+
+    var files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
     if (!single_square || last_sq === kings[us]) {
-      /* king-side castling */
-      if (castling[us] & BITS.KSIDE_CASTLE) {
-        var castling_from = kings[us];
-        var castling_to = castling_from + 2;
 
-        if (
-          board[castling_from + 1] == null &&
-          board[castling_to] == null &&
-          (!legal || ( // raabrp
-          !attacked(them, kings[us]) &&
-          !attacked(them, castling_from + 1) &&
-          !attacked(them, castling_to)
-          ))
-        ) {
-          add_move(board, moves, kings[us], castling_to, BITS.KSIDE_CASTLE);
-        }
-      }
+      if (
+        ROOKS.w[0].square == SQUARES.a1 &&
+        ROOKS.w[1].square == SQUARES.h1 &&
+        ROOKS.b[0].square == SQUARES.a8 &&
+        ROOKS.b[1].square == SQUARES.h8 &&
+        KINGSTART.w == SQUARES.e1 &&
+        KINGSTART.b == SQUARES.e8
+      ) {
 
-      /* queen-side castling */
-      if (castling[us] & BITS.QSIDE_CASTLE) {
-        var castling_from = kings[us];
-        var castling_to = castling_from - 2;
+        // Standard Castle
+        /* king-side castling */
+        if (castling[us] & BITS.HSIDE_CASTLE) {
+          var castling_from = kings[us];
+          var castling_to = castling_from + 2;
 
-        if (
-          board[castling_from - 1] == null &&
-          board[castling_from - 2] == null &&
-          board[castling_from - 3] == null &&
-          (!legal || ( // raabrp
-          !attacked(them, kings[us]) &&
-          !attacked(them, castling_from - 1) &&
-          !attacked(them, castling_to)
-          ))
-        ) {
+          if (
+            board[castling_from + 1] == null &&
+            board[castling_to] == null &&
+            (!legal || ( // raabrp
+            !attacked(them, kings[us]) &&
+            !attacked(them, castling_from + 1) &&
+            !attacked(them, castling_to)
+            ))
+          ) {
             if (kings[us] >= 0) { // raabrp: king may not exist.
-                add_move(board, moves, kings[us], castling_to, BITS.QSIDE_CASTLE);
+              add_move(board, moves, kings[us], castling_to, BITS.HSIDE_CASTLE);
             }
+          }
+        }
+
+        // Standard Castle
+        /* queen-side castling */
+        if (castling[us] & BITS.ASIDE_CASTLE) {
+          var castling_from = kings[us];
+          var castling_to = castling_from - 2;
+
+          if (
+            board[castling_from - 1] == null &&
+            board[castling_from - 2] == null &&
+            board[castling_from - 3] == null &&
+            (!legal || ( // raabrp
+            !attacked(them, kings[us]) &&
+            !attacked(them, castling_from - 1) &&
+            !attacked(them, castling_to)
+            ))
+          ) {
+              if (kings[us] >= 0) { // raabrp: king may not exist.
+                add_move(board, moves, kings[us], castling_to, BITS.ASIDE_CASTLE);
+              }
+          }
+        }
+      } else {
+
+        // H side Fischer Random Castle
+        if (castling[us] & BITS.HSIDE_CASTLE) { // castle not disqualified
+
+          var king_from = kings[us];
+          var rook_from = ROOKS[us][1].square;
+          if (us == 'w') {
+            var king_to = SQUARES.g1; // 118
+            var rook_to = SQUARES.f1; // 117
+          } else {
+            var king_to = SQUARES.g8; // 6
+            var rook_to = SQUARES.f8; // 5
+          }
+
+          var clear = true;
+
+          // king path clear
+          for (var sq = king_from + 1; sq <= king_to; sq++) {
+            if (attacked(them, sq)) { clear = false; break; }
+            if (sq != rook_from && board[sq] != null) {
+              clear = false; break;
+            }
+          }
+
+          // rook path clear
+          if (clear) {
+            for (var sq = rook_from - 1; sq >= rook_to; sq--) {
+              if (sq != king_from && board[sq] != null) {
+                clear = false; break;
+              }
+            }
+          }
+
+          if (clear) {
+            add_move(board, moves, king_from, rook_from, BITS.HSIDE_CASTLE);
+          }
+        }
+
+        // A side Fischer Random Castle
+        if (castling[us] & BITS.ASIDE_CASTLE) { // castle not disqualified
+
+          var king_from = kings[us];
+          var rook_from = ROOKS[us][0].square;
+          if (us == 'w') {
+            var king_to = SQUARES.c1; // 114
+            var rook_to = SQUARES.d1; // 115
+          } else {
+            var king_to = SQUARES.c8; // 2
+            var rook_to = SQUARES.d8; // 3
+          }
+
+          var clear = true;
+
+          // king path clear
+          for (var sq = king_from - 1; sq >= king_to; sq--) {
+            // if (attacked(them, sq)) { clear = false; break; }
+            if (sq != rook_from && board[sq] != null) {
+              clear = false; break;
+            }
+          }
+
+          // rook path clear
+          if (clear) {
+            for (var sq = rook_from + 1; sq <= rook_to; sq++) {
+              if (sq != king_from && board[sq] != null) {
+                clear = false; break;
+              }
+            }
+          }
+
+          if (clear) {
+            add_move(board, moves, king_from, rook_from, BITS.ASIDE_CASTLE);
+          }
         }
       }
     }
@@ -668,6 +840,9 @@ var Chess = function(fen, dark_chess) {
     /* filter out illegal moves */
     var legal_moves = [];
     for (var i = 0, len = moves.length; i < len; i++) {
+      if (moves[i].from == null) {
+        console.log(moves[i])
+      }
       make_move(moves[i]);
       if (!king_attacked(us)) {
         legal_moves.push(moves[i]);
@@ -691,9 +866,9 @@ var Chess = function(fen, dark_chess) {
   function move_to_san(move, sloppy) {
     var output = '';
 
-    if (move.flags & BITS.KSIDE_CASTLE) {
+    if (move.flags & BITS.HSIDE_CASTLE) {
       output = 'O-O';
-    } else if (move.flags & BITS.QSIDE_CASTLE) {
+    } else if (move.flags & BITS.ASIDE_CASTLE) {
       output = 'O-O-O';
     } else {
       var disambiguator = get_disambiguator(move, sloppy);
@@ -900,8 +1075,53 @@ var Chess = function(fen, dark_chess) {
     var them = swap_color(us);
     push(move);
 
-    board[move.to] = board[move.from];
-    board[move.from] = null;
+    /* if we moved the king */
+    if (board[move.from].type === KING) {
+
+      /* disable future castling for us */
+      castling[us] = '';
+
+      /* when castling, move.from is king */
+      if (move.flags & BITS.HSIDE_CASTLE) {        // HSIDE castle
+
+        board[KINGSTART[us]] = null;
+        board[ROOKS[us][1].square] = null;
+
+        if (us == 'w') {
+          kings[us] = SQUARES.g1;
+          board[SQUARES.g1] = {type: 'k', color: us};
+          board[SQUARES.f1] = {type: 'r', color: us};
+        } else {
+          kings[us] = SQUARES.g8;
+          board[SQUARES.g8] = {type: 'k', color: us};
+          board[SQUARES.f8] = {type: 'r', color: us};
+        }
+
+      } else if (move.flags & BITS.ASIDE_CASTLE) { // ASIDE castle
+
+        board[KINGSTART[us]] = null;
+        board[ROOKS[us][0].square] = null;
+
+        if (us == 'w') {
+          kings[us] = SQUARES.c1;
+          board[SQUARES.c1] = {type: 'k', color: us};
+          board[SQUARES.d1] = {type: 'r', color: us};
+        } else {
+          kings[us] = SQUARES.c8;
+          board[SQUARES.c8] = {type: 'k', color: us};
+          board[SQUARES.d8] = {type: 'r', color: us};
+        }
+
+      } else {                                     // no castling
+        kings[us] = move.to;
+        board[move.to] = board[move.from];
+        board[move.from] = null;
+      }
+
+    } else {
+      board[move.to] = board[move.from];
+      board[move.from] = null;
+    }
 
     /* if ep capture, remove the captured pawn */
     if (move.flags & BITS.EP_CAPTURE) {
@@ -915,27 +1135,6 @@ var Chess = function(fen, dark_chess) {
     /* if pawn promotion, replace with new piece */
     if (move.flags & BITS.PROMOTION) {
       board[move.to] = { type: move.promotion, color: us };
-    }
-
-    /* if we moved the king */
-    if (board[move.to].type === KING) {
-      kings[board[move.to].color] = move.to;
-
-      /* if we castled, move the rook next to the king */
-      if (move.flags & BITS.KSIDE_CASTLE) {
-        var castling_to = move.to - 1;
-        var castling_from = move.to + 1;
-        board[castling_to] = board[castling_from];
-        board[castling_from] = null;
-      } else if (move.flags & BITS.QSIDE_CASTLE) {
-        var castling_to = move.to + 1;
-        var castling_from = move.to - 2;
-        board[castling_to] = board[castling_from];
-        board[castling_from] = null;
-      }
-
-      /* turn off castling */
-      castling[us] = '';
     }
 
     /* turn off castling if we move a rook */
@@ -1007,6 +1206,78 @@ var Chess = function(fen, dark_chess) {
     var us = turn;
     var them = swap_color(turn);
 
+    if (move.flags & (BITS.HSIDE_CASTLE | BITS.ASIDE_CASTLE)) {
+
+      if (
+        ROOKS.w[0].square == SQUARES.a1 &&
+        ROOKS.w[1].square == SQUARES.h1 &&
+        ROOKS.b[0].square == SQUARES.a8 &&
+        ROOKS.b[1].square == SQUARES.h8 &&
+        KINGSTART.w == SQUARES.e1 &&
+        KINGSTART.b == SQUARES.e8
+      ) {
+
+        if (move.to == SQUARES.g1) {
+
+          kings[us] = SQUARES.e1;
+          board[SQUARES.e1] = {type: 'k', color: us};
+          board[SQUARES.f1] = null;
+          board[SQUARES.g1] = null;
+          board[SQUARES.h1] = {type: 'r', color: us};
+
+        } else if (move.to == SQUARES.g8) {
+
+          kings[us] = SQUARES.e8;
+          board[SQUARES.e8] = {type: 'k', color: us};
+          board[SQUARES.f8] = null;
+          board[SQUARES.g8] = null;
+          board[SQUARES.h8] = {type: 'r', color: us};
+
+        } else if (move.to == SQUARES.c1) {
+
+          kings[us] = SQUARES.e1;
+          board[SQUARES.e1] = {type: 'k', color: us};
+          board[SQUARES.d1] = null;
+          board[SQUARES.c1] = null;
+          board[SQUARES.a1] = {type: 'r', color: us};
+
+        } else if (move.to == SQUARES.c8) {
+
+          kings[us] = SQUARES.e8;
+          board[SQUARES.e8] = {type: 'k', color: us};
+          board[SQUARES.d8] = null;
+          board[SQUARES.c8] = null;
+          board[SQUARES.a8] = {type: 'r', color: us};
+
+        }
+      } else {
+
+        if (move.to == ROOKS.w[0].square) { // white aside
+          board[SQUARES.c1] = null;
+          board[SQUARES.d1] = null;
+          board[ROOKS.w[0].square] = {type: 'r', color: us};
+        } else if (move.to == ROOKS.w[1].square) { // white hside
+          board[SQUARES.f1] = null;
+          board[SQUARES.g1] = null;
+          board[ROOKS.w[1].square] = {type: 'r', color: us};
+        } else if (move.to == ROOKS.b[0].square) { // black aside
+          board[SQUARES.c8] = null;
+          board[SQUARES.d8] = null;
+          board[ROOKS.b[0].square] = {type: 'r', color: us};
+        } else if (move.to == ROOKS.b[1].square) { // black hside
+          board[SQUARES.f8] = null;
+          board[SQUARES.g8] = null;
+          board[ROOKS.b[1].square] = {type: 'r', color: us};
+        }
+        kings[us] = KINGSTART[us];
+        board[KINGSTART[us]] = {type: 'k', color: us};
+      }
+
+      return move;
+    }
+
+    // not castling
+
     board[move.from] = board[move.to];
     board[move.from].type = move.piece; // to undo any promotions
     board[move.to] = null;
@@ -1021,20 +1292,6 @@ var Chess = function(fen, dark_chess) {
         index = move.to + 16;
       }
       board[index] = { type: PAWN, color: them };
-    }
-
-    if (move.flags & (BITS.KSIDE_CASTLE | BITS.QSIDE_CASTLE)) {
-      var castling_to, castling_from;
-      if (move.flags & BITS.KSIDE_CASTLE) {
-        castling_to = move.to + 1;
-        castling_from = move.to - 1;
-      } else if (move.flags & BITS.QSIDE_CASTLE) {
-        castling_to = move.to - 2;
-        castling_from = move.to + 1;
-      }
-
-      board[castling_to] = board[castling_from];
-      board[castling_from] = null;
     }
 
     return move;
@@ -1566,6 +1823,8 @@ var Chess = function(fen, dark_chess) {
           return false;
         }
       }
+
+      RESET_POSITION = (headers['FEN'] || DEFAULT_POSITION);
 
       /* delete header to get the moves */
       var ms = pgn

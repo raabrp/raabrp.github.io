@@ -172,7 +172,6 @@ Fischer Random Chess    </title>
           #top-spacer { display: none; }
         </style>
 <h2>Chess960 For Correspondence Play</h2>
-<h3>Without castling working yet</h3>
 <link href="/css/chess.css" rel="stylesheet" type="text/css"/>
 <script src="/theme/js/lib/jquery.js"></script>
 <script src="/js/chessboard.js"></script>
@@ -205,12 +204,18 @@ Fischer Random Chess    </title>
 <br/>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
 <hr/>
+        Castling is performed by dropping your king on top of a rook. The ending positions
+        of the castle are exactly the same as in standard chess, with the same rules
+        prohibiting "moving through check" and requiring empty spaces between initial
+        and final positions of the king and the rook independently (not counting each other).
+        <hr/>
         See Also:<br/>
-<a href="/chess.html" id="generated-link-id0">Chess</a><br/>
-<a href="/dark-chess.html" id="generated-link-id1">Dark-Chess Variant</a><br/>
-<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id2">Apronus chess viewer</a><br/>
-<a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
-<a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
+<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Fischer_random_chess" href="https://en.wikipedia.org/wiki/Fischer_random_chess" id="generated-link-id0">Wikipedia Description</a><br/>
+<a href="/chess.html" id="generated-link-id1">Chess</a><br/>
+<a href="/dark-chess.html" id="generated-link-id2">Dark-Chess Variant</a><br/>
+<a href="https://www.apronus.com/chess/pgnviewer/" id="generated-link-id3">Apronus chess viewer</a><br/>
+<a href="http://chessboardjs.com/" id="generated-link-id4">chessboard.js</a><br/>
+<a href="https://github.com/jhlywa/chess.js" id="generated-link-id5">chess.js</a><br/>
 <script type="text/javascript">
 
 function copyField() {
@@ -218,7 +223,7 @@ function copyField() {
     document.execCommand("copy");
 }
 
- function parse_url() {
+function parse_url() {
 
     var chess = new Chess(); // for validation only
 
@@ -226,14 +231,20 @@ function copyField() {
 
     if (window.location.search) {
         try {
-            payload = window.location.search.substr(1).replace(/_/g, ' ');
-            sep = payload.indexOf(' ');
-            start = payload.slice(0, sep);
-            moves = payload.slice(sep + 1)
+            let payload = window.location.search.substr(1).replace(/_/g, ' ');
+            let sep = payload.indexOf(' ');
+            let start = payload.slice(0, sep);
+            let moves = payload.slice(sep + 1)
 
-            pgn = '[SetUp "1"]\n[FEN "' + start +
+            let files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+            let r1_idx = start.indexOf('r', 0);
+            let r1 = files[r1_idx];
+            let r2 = files[start.indexOf('r', r1_idx+1)];
+            let rs = (r1 + r2);
+ 
+            let pgn = '[SetUp "1"]\n[FEN "' + start +
                 '/pppppppp/8/8/8/8/PPPPPPPP/' + start.toUpperCase() +
-                ' w KQkq - 0 1"]\n\n' + moves;
+                ' w ' + rs.toUpperCase() + rs + ' - 0 1"]\n\n' + moves;
 
             if (!chess.load_pgn(pgn)) {
                 throw "Invalid URL String";
@@ -315,7 +326,15 @@ function fen_960() {
     i = s[0];
     lower = lower.replace(i.toString(), 'r');
 
-    return lower + '/pppppppp/8/8/8/8/PPPPPPPP/' + lower.toUpperCase() + ' w KQkq - 0 1';
+    let files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    let r1_idx = lower.indexOf('r', 0);
+    let r1 = files[r1_idx];
+    let r2 = files[lower.indexOf('r', r1_idx+1)];
+    let rs = (r1 + r2);
+    
+    return lower + '/pppppppp/8/8/8/8/PPPPPPPP/' + lower.toUpperCase() + ' w ' +
+        rs.toUpperCase() + rs +
+        ' - 0 1';
 
 }
 
@@ -328,14 +347,10 @@ var board,                   // Chessboard
     fieldEl = $('#field'),   // text box
     pgn = parse_url();       // PGN of game
 
-game.load_pgn(pgn);
-
-if(pgn){  
+if(pgn){
     game.load_pgn(pgn);
 } else {
-    console.log(fen_960());
     game.load(fen_960());
-    console.log(game.fen());
 }
 
 hist = game.history();
@@ -344,10 +359,9 @@ move_num = hist.length;
 // intercept movement to check against history
 function domove(m) {
 
-
     var current_fen = game.fen();
     var is_valid = game.move(m);
-
+ 
     if (is_valid) {
 
         if (hist.length > game.history().length) {
@@ -386,7 +400,7 @@ function updateStatus() {
     if (game.turn() === 'b') {
         movecolor = 'Black';
     }
-
+   
     // checkmate?
     if (game.in_checkmate() === true) {
         status = 'Game over, ' + movecolor + ' is in checkmate.';
@@ -408,6 +422,7 @@ function updateStatus() {
     }
 
     statusEl.html(status);
+    
 };
 
 ///////////////////////////////////////////////////////////////////////////////
