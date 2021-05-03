@@ -3,6 +3,7 @@
         <title>Dark-Chess</title>
         <meta name="date" content="2018-12-04" />
         <meta name="slug" content="dark-chess" />
+        <meta name="summary" content="Free Online Dark-Chess for Correspondence Play. Send links encoding state to opponent.">
     </head>
     <body>
         <style type="text/css">
@@ -11,7 +12,7 @@
           #title-header{ display: none; }
           #top-spacer { display: none; }
         </style>
-        <h2>Dark-Chess For Correspondence Play</h2>
+        <h3>Dark-Chess For Correspondence Play</h3>
         <link rel="stylesheet" type="text/css" href="/css/chess.css">
         <script src="/theme/js/lib/jquery.js"></script>
         <script src="/js/chessboard.js"></script>

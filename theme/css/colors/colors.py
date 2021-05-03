@@ -199,11 +199,11 @@ variables = {
     # primary color sequence
     "h1": "#4f97d7",  # h1 (blue)
     "h2": "#2d9574",  # h2 (blue-green)
-    "h3": "#67b11d",  # h3 (yellow)
-    "h4": "#b1951d",  # h4 (orange)
+    "h3": "#a67d42",  # h3 (orangish)
+    "h4": "#bb6a94",  # h4 (pink)
 
     # loud colors
-    "e1": "#df5e8c",  # emphasis (pink)
+    "e1": "#348edd",  # blue
     "e2": "#bc6ec5",  # purple
     "e3": "#eead0e",  # yellow
 

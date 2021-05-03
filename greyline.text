@@ -3,24 +3,29 @@
         <title>Greyline Map</title>
         <meta name="date" content="2020-10-15" />
         <meta name="slug" content="greyline" />
+        <meta name="summary" content="Greyline Map with Seasonal Snowcover and Analemma.">
     </head>
     <body>
       <canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%" />
       <img id="pst_month" style="display: none;" src="" />
       <img id="ftr_month" style="display: none;" src="" />
       <img id="night" style="display: none;" src="/images/greyline/night.jpg"/>
-      <img id="moon1" style="display: none;" src="" />
 
+<script src="js/ElpMpp02C.js"></script>
+<script src="js/precession.js"></script>
 <script type="text/javascript">
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing
 
     let pi = Math.PI, cos = Math.cos, sin = Math.sin, tan = Math.tan;
-    let asin = Math.asin, sign = Math.sign, atan2 = Math.atan2;
+    let asin = Math.asin, acos = Math.acos, sign = Math.sign, atan2 = Math.atan2; 
     let max = Math.max, min = Math.min, floor = Math.floor, abs = Math.abs;
+    let exp = Math.exp, sqrt = Math.sqrt;
     
-    function run(now) { 
+    function run(now, prev_run) { 
         now = now || new Date();
+
+        console.log(now.toUTCString());
 
         let month = now.getUTCMonth();
         let day = now.getUTCDate();
@@ -48,43 +53,51 @@
         } else {
             monthAlpha = 0.5 * (16 - day) / 15;
         }        
- 
-        // Get delta longitude vs mean solar time and latitude of sun based on time.
-        // Get same for moon
-        // Get phase of moon
 
+        
         // generate analemma
-        let sun_iter = 1000;
+        let sun_iter = 100;
         let phi_sun = [];
         let tha_sun = [];
 
+        // generate lunar analemma
+
+        let moon_iter = 100;
+        let phi_moon = [];
+        let tha_moon = [];
+
+        
+        // solar positions
         let ms = 1000 * 60 * 60 * 24 * 365;
         for (let i = 0; i < sun_iter; i += 1) {
-            let [alpha, dec, etime] = get_sun_pos(now);
 
-            if (i == 0){
-                let h = ((alpha * 12 / pi) + 24) % 24;
-                let m = 60 * (h % 1); h = h - (m / 60);
-                let s = 60 * (m % 1); m = m - (s / 60);
-                console.log(h, m, s);
-                let dg = sign(dec);
-                let dh = abs(dec * 180 / pi);
-                let dm = 60 * (dh % 1); dh = dh - (dm / 60);
-                let ds = 60 * (dm % 1); dm = dm - (ds / 60);
-                console.log(dg * dh, dm, ds);
-            }
+            let jce = get_jce(now)
+            let [alpha, dec, etime] = get_sun_pos(jce);
             
             phi_sun[i] = (12 - (hour + (minutes / 60))) * (pi / 12) + etime; // [-pi, pi]; 0 is noon UTC
             tha_sun[i] = (pi / 2) - dec; // radians from north pole
-
+            
             now.setTime(now.getTime() - (ms / sun_iter));
         }
         now.setTime(now.getTime() + ms);
-        
-        let phi_moon = 270 * pi / 180;
-        let tha_moon = 120 * pi / 180;
-        // Get images of phases of moon
 
+        // lunar positions
+        ms = 1000 * 60 * 60 * 24 * 28;
+        for (let i = 0; i < moon_iter; i += 1) {
+
+            let jce = get_jce(now)
+
+            let [alpha, dec, etime] = get_sun_pos(jce); 
+            let [t_moon, p_moon]= get_moon_pos(jce);
+            
+            tha_moon[i] = t_moon;
+            phi_moon[i] = p_moon + (12 - (hour + (minutes / 60))) * (pi / 12) + etime;
+
+            now.setTime(now.getTime() - (ms / moon_iter));
+        }
+        now.setTime(now.getTime() + ms);
+
+        
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
         let dpi = window.devicePixelRatio;
@@ -101,63 +114,95 @@
         // light level proportional to (when positive)
 
         let mask = ctx.createImageData(w, h);
-        let sunset = ctx.createImageData(w, h);
+        // let underlay = ctx.createImageData(w, h);
 
         // account for atmospheric refraction
         // which is ~ 35 arc minutes
-        let astro_twilight = pi * 18 / 180;
-        let golden_hour = pi * 11 / 180;
         let sunset_refrac = pi * (35 / 60) / 180;
-        let max_red = 250;
-        let max_green = 30;
-        
-        let lat, lng;
-        for (let i = 0; i < mask.data.length / 4; i += 1) {
-            let xpx = i % w;
-            let ypx = floor(i / w);
+        let sun_d = pi * 0.5 / 180 // angular diameter of sun
 
-            let phi = pi * (2 * xpx / w - 1); // [-pi, pi]
-            let tha = pi * (ypx / h); // [0, pi]
+        // pretty fade
+
+        let max_twilight = 0.5; // as bright as it gets after sunset
+        let twilight_slope = 9 / pi; // rate of brightness fade in twilight 
+
+        let min_daylight = 0.6; // as dim as it gets while sun is visible
+        let daylight_slope = 12 / pi; // rate of brightness fade in daylight
+
+        let light; // lol @ biblical pun
+        let lat, lng, xpx, ypx, phi, tha, dot, ang, x, area_sun, dark;
+
+        let moon_sun_dot = sin(tha_sun[0]) * sin(tha_moon[0]) * cos(phi_sun[0] - phi_moon[0]) + cos(tha_moon[0]) * cos(tha_sun[0]);
+        let moon_illum = ((1 - moon_sun_dot) / 2) ** 2;
+        
+        for (let i = 0; i < mask.data.length / 4; i += 1) {
+            xpx = i % w;
+            ypx = floor(i / w);
+            phi = pi * (2 * xpx / w - 1); // [-pi, pi]
+            tha = pi * (ypx / h); // [0, pi]
 
             // dot product in spherical polar, but theta is inverted
             // cos(tha) -> sin(tha) and vice-versa
-            let dot = sin(tha_sun[0]) * sin(tha) * cos(phi_sun[0] - phi) + cos(tha) * cos(tha_sun[0]);
-                
-            let dark = floor((1 - min(max(
-                // pixel is fully day when line below is 1, and night when it is 0
-                // sign(dot), // without refraction
-                ((dot + astro_twilight) / (astro_twilight)),
-                0), 1) ** 4) * 256);
+            dot = sin(tha_sun[0]) * sin(tha) * cos(phi_sun[0] - phi) + cos(tha) * cos(tha_sun[0]);
+            moon_dot = sin(tha_moon[0]) * sin(tha) * cos(phi_moon[0] - phi) + cos(tha) * cos(tha_moon[0]);
             
-            let red = floor(min(max(
-                (-(dot) * (dot - sunset_refrac)) /
-                    (sunset_refrac / 2) ** 2,
-                0), 1) * max_red);
+            // angle that sun appears above horizon
+            // (for values near zero)
+            ang = asin(dot) + sunset_refrac;
+
+            // vertical coordinate of sun's center relative to horizon in solar radii
+            x = min(max((ang - sun_d) / sun_d, -1), 1)
             
-            let green = floor((1 - sin( pi/2 * min(max(
-                // 0 is start of sunset greens; 1 is end. (symmetric)
-                (dot + sunset_refrac),
-                0), 1)) ** 2) * max_green);
+            // fraction of sun's area we can see from here
+            area_sun = x * sqrt(1 - x ** 2) + asin(x) + (pi / 2)
+
+            // discontinuous, piece-wise linear fade for sun
+            if (area_sun > 0.99) {
+                light = min_daylight + ang * daylight_slope;
+            } else if (area_sun < 0.01) {
+                light = max_twilight + dot * twilight_slope;
+            } else {
+                light = max_twilight + area_sun * (min_daylight - max_twilight);
+            }
+
+            // clamp values
+            light = max(0, min(1, light));
+            
+            // account for moon
+            if (moon_dot > 0) { // moon is visible
+                light = light + moon_illum * moon_dot ** 2 * 0.5;
+            }
+
+            // clamp values again
+            light = max(0, min(1, light));
+            
+            dark = (1 - light) * 255; 
 
             mask.data[4 * i + 0] = 0;
             mask.data[4 * i + 1] = 0;
             mask.data[4 * i + 2] = 0;
             mask.data[4 * i + 3] = dark;
 
-            // 250, 30 to 202, 14
-            sunset.data[4 * i + 0] = red;  
-            sunset.data[4 * i + 1] = green;
-            sunset.data[4 * i + 2] = 0; 
-            sunset.data[4 * i + 3] = max(red, green);   
+            // gets drawn behind night, in front of day
+            // underlay.data[4 * i + 0] = 0;  
+            // underlay.data[4 * i + 1] = 0;
+            // underlay.data[4 * i + 2] = 0; 
+            // underlay.data[4 * i + 3] = 0;
+            
         }
-        let sunset_bitmap;
-        Promise.all([
-            createImageBitmap(sunset)
-        ]).then(function(bitmap) {
-            sunset_bitmap = bitmap[0];
-            day_ready += 1;
-            attempt_draw();
-        });
+        
+        let day_ready = 0; 
+        // let underlay_bitmap;
+        // Promise.all([
+        //     createImageBitmap(underlay)
+        // ]).then(function(bitmap) {
+        //     underlay_bitmap = bitmap[0];
+        //     day_ready += 1;
+        //     attempt_draw();
+        // });
+
+        // x in [-0.5, 0.5]
+        // y in [0, 1] (top, bottom)
         
         // Get x,y of sun
         let x_sun = [];
@@ -166,12 +211,17 @@
             x_sun[i] = (w / 2) * (1 + (phi_sun[i] / pi));
             y_sun[i] = h * tha_sun[i] / pi;
         }
-        let sun_r = 8;
-        let analemma_r = 3
+        let sun_r = (w / (2 * pi)) * (sun_d / 2);
 
-        // Get x,y of moon
-
-
+        // Get x,y of sun
+        let x_moon = [];
+        let y_moon = [];
+        for (let i = 0; i < moon_iter; i += 1) {
+            x_moon[i] = (w / 2) * (1 + (phi_moon[i] / pi));
+            y_moon[i] = h * tha_moon[i] / pi;
+        }
+        let moon_r = sun_r;
+        
         // Draw black region where night will go, fading into transparency at edges        
         ctx.putImageData(mask, 0, 0);
 
@@ -179,19 +229,19 @@
 
         // replace all black pixels with night-time image
         ctx.drawImage(night, 0, 0, w, h);
-
+        
         function attempt_draw() {
-            if (day_ready == 3) {
+            if (day_ready == 2) {
             
                 ctx.globalCompositeOperation = "destination-over";
 
-                // draw sunset behind night-time image with appropriate transparency
-                ctx.globalAlpha = 0.5;
-                ctx.drawImage(sunset_bitmap, 0, 0, w, h);
+                // draw underlay behind night-time image with appropriate transparency
+                // ctx.globalAlpha = 0.5;
+                // ctx.drawImage(underlay_bitmap, 0, 0, w, h);
                 
                 ctx.globalAlpha = monthAlpha;
 
-                // draw day image from past month with appropriate transparency behind night and sunset
+                // draw day image from past month with appropriate transparency behind night and underlay
                 ctx.drawImage(pst_month, 0, 0, w, h);
 
                 ctx.globalAlpha = 1.0;
@@ -201,41 +251,82 @@
 
                 ctx.globalCompositeOperation = "source-over";
 
-                // draw sun and analemma on top of everything else
-                ctx.fillStyle = "#FFFFFF77";
-                ctx.strokeStyle = "#FFFFFF77";
+                // draw moon, sun, and analemma on top of everything else
+
+                // allow to wrap horizontally
                 for (let i = -1; i < 2; i += 1){
-                    
+
+                    // reset parameters
+                    ctx.fillStyle = "#FFFFFFFF";
+                    ctx.strokeStyle = "#FFFFFFFF";
+                    ctx.lineWidth = 1;
+
                     // draw sun
                     ctx.beginPath();
                     ctx.arc(x_sun[0] + (w * i), y_sun[0], sun_r, 0, 2 * pi);
                     ctx.fill();
-
+                    // ctx.arc(x_sun[0] + (w * i), y_sun[0], sun_r + (ctx.lineWidth / 2), 0, 2 * pi);
+                    // ctx.stroke();
+                    
                     // draw analemma
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(x_sun[0] + (w * i), y_sun[0]);
                     for (let ii = 1; ii < sun_iter; ii += 1) {
+                        ctx.strokeStyle = 'rgba(255, 255, 255, ' + (1 - ii / sun_iter) * 0.7 + ')';
+                        ctx.beginPath();
+                        ctx.moveTo(x_sun[ii - 1] + (w * i), y_sun[ii - 1]);
                         ctx.lineTo(x_sun[ii] + (w * i), y_sun[ii]);
+                        ctx.stroke();    
                     }
-                    ctx.closePath();
-                    ctx.stroke();    
+
+                    ctx.fillStyle = "#AAAAAAFF";
+                    ctx.strokeStyle = "#AAAAAAFF";
+                    ctx.lineWidth = 0.5;
+
+                    // draw moon
+                    ctx.beginPath();
+                    ctx.arc(x_moon[0] + (w * i), y_moon[0], moon_r, 0, 2 * pi);
+                    ctx.fill();
+                    
+                    // draw lunar analemma
+                    for (let ii = 1; ii < moon_iter; ii += 1) {
+                        ctx.strokeStyle = 'rgba(170, 170, 170, ' + (1 - ii / moon_iter) * 0.7 + ')';
+                        ctx.beginPath();
+                        let start_x = x_moon[ii - 1] + (w * i);
+                        let stop_x = x_moon[ii] + (w * i);
+                        if ((stop_x - start_x) > w / 2) {
+                            stop_x -= w;
+                        }
+                        ctx.moveTo(start_x, y_moon[ii - 1]);
+                        ctx.lineTo(stop_x, y_moon[ii]);
+                        ctx.stroke();    
+                    }
+                    
                 }
             }
 
         };
-        
-        // delay for correct day images to load
-        let day_ready = 0; 
-        pst_month.onload = function () {
-            day_ready += 1;
-            attempt_draw();
-        };
-        ftr_month.onload = function () {
-            day_ready += 1;
-            attempt_draw();
-        };
 
+        if (prev_run == undefined || (prev_run.month != now.month)) {
+        // delay for correct day images to load
+            pst_month.onload = function () {
+                day_ready += 1;
+                attempt_draw();
+            };
+            ftr_month.onload = function () {
+                day_ready += 1;
+                attempt_draw();
+            };
+        } else {
+            day_ready += 2;
+            attempt_draw();
+        }
+        
+        // animate
+        window.setTimeout(function() {
+            d = new Date();
+            // d = new Date(now.getTime() + 1000 * 60 * 5); // 5 minutes
+            run(d, now);
+        }, 1000 * 60 * 5) // 5 minutes
+        
     }
  
     ////////////////////////////////////////////////////////////////////////////
@@ -254,7 +345,13 @@
     //  _.'-----'-._     *                  .
     // /            \__.__.--._______________
     ////////////////////////////////////////////////////////////////////////////
-    
+
+
+    // I implemented the Sun calculations here, but used externally generated
+    // code from https://github.com/ytliu0/ElpMpp02 to calculate the moon's
+    // position (truncated LLR fit of the semi-analytical ELP/MPP02 method of
+    // J. Chapront and G. Francou (2002) )
+    // 
     // The high-precision method theoretically allows 0.0003 degree accuracy
     // for the next 6000 years BUT we can't rely on knowing the divergence of
     // solar and atomic time 6000 years from now, and our clock doesn't record
@@ -262,12 +359,11 @@
     // when predicting the rotation angle of the earth in 6000 years, as the
     // Earth is ever-so-slowly decreasing it's rate of rotation due to 
     // geological proceses which are difficult to predict.
-    //
-    // For now, we use a linear approximation.
- 
-    
-    USE_STUPID_HIGH_PRECISION = false;
-    function get_sun_pos(jsdate) {
+    // 
+
+    USE_STUPID_HIGH_PRECISION = true;
+
+    function get_jce(jsdate) {
         // Julian Date
         // Tracks number of mean solar days since a standard epoch
         //
@@ -294,14 +390,6 @@
         // There are 86400000.0 milliseconds per day
         let JD = (jsdate.getTime() / 86400000.0 ) + 2440587.5;
 
-        // HERE
-        // // want TT
-        //
-        // 
-        // let JDE = (jsdate.getTime() / )
-        // let TAI = 10 + 0.53 * (jsdate.getTime() / (86400000.0 * 365.25));
-        // let TT = TAI + 32.184;
-        
         // The cumulative addition of leap seconds is expected to increase
         // with time due to tidal friction and even more once the poles stop
         // melting. In general this quantity is difficult to predict 
@@ -309,25 +397,55 @@
         //
         // https://en.wikipedia.org/wiki/%CE%94T_(timekeeping)
         //
-        let delta_t = 0;
+        let delta_t = 70; // seconds
         let JDE = JD + (delta_t / 86400);
     
         // Julian Centuries since J2000.0 Epoch
         let JCE = (JDE - 2451545.0) / 36525.0;
-        
-        let [alpha, dec, etime] = get_RA_DEC(JCE);
-        // let [alpha2, dec2, etime2] = get_high_precision_RA_DEC(JCE);
 
-        // console.log( (alpha - alpha2) / alpha, (dec - dec2) / dec, (etime - etime2) / etime);
-        // console.log(alpha, alpha2);
-        // console.log(alpha, alpha2);
-        // console.log(alpha, alpha2);
+        return JCE;
+    }
+    
+    function get_sun_pos(jce) {        
+
+        let alpha, dec, etime, epsilon;
+        if (USE_STUPID_HIGH_PRECISION) {
+            [alpha, dec, etime] = get_RA_DEC(jce);
+        } else {
+            [alpha, dec, etime] = get_high_precision_RA_DEC(jce);
+        }
 
         return [alpha, dec, etime];
         ////////////////////////////////////////////////////////////////////////
         
     }
 
+    function get_moon_pos(jce) {
+        let geo = getX2000_C(jce);
+
+        let epsilon = pi * (23 + 26 / 60 +  21.406 / 3600) / 180;
+        
+        let c = cos(epsilon), s = sin(epsilon);
+
+        // convert J2000.0 ecliptic geocentric cartesian
+        // to J2000.0 equatorial geocentric cartesian
+        let x = geo.X;
+        let y = geo.Y * c - geo.Z * s;
+        let z = geo.Y * s + geo.Z * c;
+        let r = geo.rGeo;
+
+        // convert J2000.0 equatorial to current equatorial
+        let rm = ltp_PMAT(jce * 100);
+
+        xp = x * rm[0][0] + y * rm[0][1] + z * rm[0][2];
+        yp = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
+        zp = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
+        
+        let tha = acos(zp / r);
+        let phi = atan2(yp, xp)
+        return [tha, phi];
+    }
+    
     // Convert degree angle to radians
     function degToRad(angleDeg) 
     {
@@ -405,7 +523,7 @@
         /*
          * A Solar Position Algorithm to calculate the solar zenith and azimuth
          * angle with uncertainties equal to ±0.0003 degrees in the period from
-         * the year -2000 to 6000... The procedure is adopted from The
+         * the year -2000 to 6000... The procedure is adapted from The
          * Astronomical Algorithms by Meeus*, which is based on the Variations
          * Sèculaires des Orbites Planètaires Theory (VSOP87) that was developed
          * by P. Bretagnon in 1982 then modified in 1987 by Bretagnon and Francou.
@@ -433,12 +551,11 @@
         let theta = (180 + L * 180 / pi) % 360;
         // Geocentric latitude of sun in radians
         let beta = -B;
-        console.log(beta);
 
         let [delta_psi, delta_varepsilon] = get_nutation(JCE);
         
         // mean obliquity of the ecliptic in arc seconds
-        let varepsilon0 = 84381448 - 4680.93 * U - 1.55 * (U ** 2) +
+        let varepsilon0 = 84381.448 - 4680.93 * U - 1.55 * (U ** 2) +
             1999.25 * (U ** 3) - 51.38 * (U ** 4) - 249.67 * (U ** 5) -
             39.05 * (U ** 6) + 7.12 * (U ** 7) + 27.87 * (U ** 8) +
             5.79 * (U ** 9) + 2.54 * (U ** 10);
@@ -448,7 +565,7 @@
 
         // aparent sun longitude in radians
         let lambda = ((theta + delta_psi + delta_tau) % 360) * (pi / 180);
-
+        
         // true obliquity of the ecliptic in radians
         let varepsilon = ((varepsilon0 / 3600) + delta_varepsilon) * (pi / 180);
         
@@ -856,6 +973,7 @@
     }
     
     onReady(function(){
+        // date = new Date('Jan 1 6000 08:00 PST');
         run();
     });
     

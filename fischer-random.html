@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Free Online Random Fischer Chess (Chess960) for Correspondence Play. Send links encoding state to opponent."/>
 
     <title>
 Fischer Random Chess    </title>
@@ -116,13 +117,8 @@ Fischer Random Chess    </title>
                   </a>
                 </li>
                 <li>
-                  <a href="reading-list.html">
-                    Digital Bookshelf
-                  </a>
-                </li>
-                <li>
-                  <a href="publications.html">
-                    Publications
+                  <a href="site-info.html">
+                    Site Info
                   </a>
                 </li>
               </ul>
@@ -171,7 +167,7 @@ Fischer Random Chess    </title>
           #title-header{ display: none; }
           #top-spacer { display: none; }
         </style>
-<h2>Chess960 For Correspondence Play</h2>
+<h3>Chess960 For Correspondence Play</h3>
 <link href="/css/chess.css" rel="stylesheet" type="text/css"/>
 <script src="/theme/js/lib/jquery.js"></script>
 <script src="/js/chessboard.js"></script>
@@ -482,9 +478,11 @@ if (move_num % 2) {
 //
 
 $('#startBtn').on('click', function(){
-    game.reset();
-    move_num = 0;
-    update();
+    while (move_num > 0) {
+        game.undo();
+        move_num -= 1;
+        update();        
+    }
 });
 $('#prevBtn').on('click', function(){
     if (move_num > 0) {

@@ -1,118 +1,136 @@
 ---
-title: About
+title: About 
+title_header: Reilly Raab
 slug: about
 date: 2018-04-04
+summary: testing
 ---
 
-# Reilly Raab
-
-<img src="/images/2015.jpg" width="70%"></img>
-
-Hello world! My name is Reilly Raab.
-
-I am a PhD student in the [Department of Computer Science and
-Engineering](https://www.soe.ucsc.edu/departments/computer-science-and-engineering) 
-at [UC Santa
-Cruz](https://en.wikipedia.org/wiki/University_of_California,_Santa_Cruz),
-advised by
-[Yang Liu](http://www.yliuu.com/).
+<table><tr><td width="300px"><center>
+<img src="/images/2015.jpg" width="250px"></img></center>
+</td><td>
+<p>
+    Ph.D. Student <br>
+    <a href="https://www.soe.ucsc.edu/departments/computer-science-and-engineering">Department of Computer Science and Engineering</a> at
+    <a href="https://en.wikipedia.org/wiki/University_of_California,_Santa_Cruz">UC Santa Cruz</a> <br>
+    Advised by <a href="http://www.yliuu.com/">Yang Liu</a>
+</p>
+<p>
+    <a href="/hosted/resume.pdf">Resume</a><br>
+    Email: rraab [at] ucsc (dot) edu <br>
+</p>
+<h2>
+    External Links
+</h2>
+<ul>
+    <li>
+        <a href="https://github.com/raabrp">Github</a>
+    </li>
+</ul>
+</td></tr></table>
 
 ## Research Interests
 
-* Information elicitation and aggregation without verification
 * Algorithmic game theory
 * Information theoretical basis of learning
 * Open questions in computation and its physical underpinnings
 
-## Background
+## Education
 
-I completed my undergrad (BSc) in physics at UC Santa Barbara's
-[College of Creative
-Studies](https://en.wikipedia.org/wiki/College_of_Creative_Studies) in 2015[^Thesis],
-then spent a few years traveling while reading, pursuing personal projects, and
-working in software development.
+### University of California, Santa Cruz
+Santa Cruz, CA <br>
+PhD in Computer Science and Engineering (Ongoing) <br>
+UC Regent's Fellowship (2019) <br>
+Dean's Fellowship (2019) <br>
 
-[^Thesis]: My undergraduate thesis with the Martinis Group (now Google Quantum
-AI) addresses errors in superconducting qubit control caused by
-signal-processing hardware imperfections:
-<<[web.physics.ucsb.edu](http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf)>>
+### University of California, Santa Barbara: College of Creative Studies 
+Santa Barbara, CA <br>
+BSc in Physics (Spring 2015) <br>
+Thesis: "Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ
+Mixing" <br>
+High Honors <br>
+Distinction in the Major <br>
 
-<img src="/images/Travel2019.jpg" width="70%"></img>
+UC Education Abroad Program: University of Edinburgh (Fall 2013) <br>
+: UCEAP Scholarship <br>
+: UCSB EAP Scholarship
 
-* [Resume (PDF)](/hosted/resume.pdf)
+## Publications
 
-## External Links
+### 2015
 
-* [Github](https://github.com/raabrp)
+<dl><dt>
+<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">
+Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing
+</a></dt><dd>
+<strong>Reilly Raab</strong>. Undergrad Thesis (non peer-reviewed)
+</dd></dl>
 
-# This Site
+### 2014
 
-This site is a space for me to
+<dl><dt>
+<a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c">
+Systematic study of exciton diffusion length in organic semiconductors by six experimental methods
+</a></dt><dd>
+Jason D. A. Lin <strong>et. al.</strong> Materials Horizons
+</dd></dl>
 
-* share my interest in various subjects
-* publish personal essays
-* communicate about projects or developments which are important to me.
+## Teaching Experience
 
-This site is generated using a combination of Javascript and Python. I write
-content in Markdown ([demo](/demo.html)) and publish my changes using
-git ([github pages](https://github.com/raabrp/raabrp.github.io)).
+Course Design Consultant
+: Machine Learning Basics: Data Analysis and Empirical Methods
+: UC Santa Cruz
+: Spring 2021
 
-The [source code](https://github.com/raabrp/rraabblog) I've written to generate
-this site is published under the MIT license. It is not perfect, but seeks to
-avoid as much bloat as possible while doing what I want it to. Please, use and
-[hack](https://en.wikipedia.org/wiki/Hacker_culture) it to your heart's content.
+<br>
+Teaching Assistant
+: Machine Learning
+: UC Santa Cruz
+: Fall 2020
 
-This site is currently accessible via the following URLs:
+<br>
+Teaching Assistant and Residential Mentor
+: The [Summer Science Program](https://summerscience.org/)
+: Astrophysics: New Mexico Tech
+: Summer 2016
 
-* [https://raabrp.github.io](https://raabrp.github.io) (resources hosted by
-  github pages with a [CNAME](https://en.wikipedia.org/wiki/CNAME_record) to reillyraab.com)
-* [https://reillyraab.com](https://reillyraab.com)
-  ([Cloudflare](https://en.wikipedia.org/wiki/Cloudflare) provides
-  [SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security), caching, and
-  DNS `A` records to github.io's IP addresses)
-* [http://users.soe.ucsc.edu/~rraab](http://users.soe.ucsc.edu/~rraab)
-  (`.htaccess` specifies a [301](https://en.wikipedia.org/wiki/HTTP_301) to reillyraab.com)
+<br>
+Teaching Assistant and Residential Mentor
+: The [Summer Science Program](https://summerscience.org/)
+: Astrophysics: CU Boulder 
+: Summer 2015
 
-## Privacy
+## Honors & Awards
 
-I store no information about you whatsoever. A single entry in your browser's
-`localstorage` is requested to let your browser remember whether you've
-selected an alternate color scheme for the site, and that's it.
+### 2019
 
-All network resources 
-([javascript](https://en.wikipedia.org/wiki/JavaScript), 
-[css](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), fonts, etc.),
-including library code, are hosted by this site itself and no content delivery
-networks are used (except possibly those used by Cloudflare).
+Dean’s Fellowship
+: University of California at Santa Cruz
+: Santa Cruz, CA
 
-## Third-Party Privacy
+<br>
+Regents’s Fellowship
+: University of California at Santa Cruz
+: Santa Cruz, CA
 
-By using this site, you are an end user of
-[Cloudflare's](https://en.wikipedia.org/wiki/Cloudflare) services.
+### 2015
 
-Cloudflare acts as a [reverse
-proxy](https://en.wikipedia.org/wiki/Reverse_proxy) for `reillyraab.com` and
-handles [HTTPS](https://en.wikipedia.org/wiki/HTTPS) encryption / decryption
-with your browser (but not with the origin server at `github.io`. The lack of
-end-to-end encryption in this configuration isn't a huge deal since Cloudflare
-performs caching and the `github.io` content is static).
+High Honors
+: University of California at Santa Barbara
+: Santa Barbara, CA
 
-For all intents and purposes, when your browser is communicating with this site,
-it's communicating with Cloudflare. While HTTPS might hide which specific
-content you're viewing on this site from your
-[ISP](https://en.wikipedia.org/wiki/Internet_service_provider), this does not
-hinder Cloudflare from seeing your specific network requests for the content of
-this site.
+<br>
+Distinction in the Major
+: University of California at Santa Barbara
+: Santa Barbara, CA
 
-> We collect End Users’ information when they use our Customers’ websites, web
-> applications, and APIs. This information may include but is not limited to IP
-> addresses, system configuration information, and other information about
-> traffic to and from Customers’ websites (collectively, “Log Data”).
->
-> ...
->
-> Cloudflare may aggregate data we acquire about our Customers and their End
-> Users, including the Log Data described above... Non-personally identifiable,
-> aggregated data may be shared with third parties.
->
-> -- Cloudflare's [privacy policy](https://www.cloudflare.com/privacypolicy/)
+### 2013
+
+UCEAP Scholarship
+: University of California at Santa Barbara
+: Santa Barbara, CA
+
+<br>
+UCSB EAP Scholarship
+: University of California at Santa Barbara
+: Santa Barbara, CA

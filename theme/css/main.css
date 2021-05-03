@@ -133,6 +133,13 @@ table {
     width: 100%;
 }
 
+/* definition
+ */
+
+dd {
+    margin-left: 2ch;
+}
+
 /* math
  */
 
@@ -183,6 +190,18 @@ main {
     h1 > a, h2 > a, h3 > a, h4 > a {
         position: absolute;
         left: -0.5ch;
+    }
+    h2 {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    h3 {
+        margin-top: 0.25em;
+        margin-bottom: 0.25em;
+    }
+    h4 {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
     }
 
 }

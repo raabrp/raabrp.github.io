@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Convert TeX to PNG of different sizes online with MathJax."/>
 
     <title>
 Live Tex to PNG    </title>
@@ -116,13 +117,8 @@ Live Tex to PNG    </title>
                   </a>
                 </li>
                 <li>
-                  <a href="reading-list.html">
-                    Digital Bookshelf
-                  </a>
-                </li>
-                <li>
-                  <a href="publications.html">
-                    Publications
+                  <a href="site-info.html">
+                    Site Info
                   </a>
                 </li>
               </ul>
@@ -171,12 +167,14 @@ Live Tex to PNG    </title>
 </div>
 </div>
 <br/>
+<p><span>Size in [1, 1000] </span><input id="scale" name="scale" size="4" type="number" value="30"/></p>
 <textarea id="demo-input" spellcheck="false" style="width: 100%; height: 100px;">
 f(x) = \int_{-\infty}^\infty
     \hat{f}(\xi)\,e^{2 \pi i \xi x}
     \,d\xi
       </textarea>
-<p><span>Size ( in [1, 1000] ): </span><input id="scale" name="scale" type="number" value="30"/></p>
+<div id="history">
+</div>
 <p>Powered by <a href="https://www.mathjax.org/" id="generated-link-id0">MathJax</a></p>
 <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <script type="text/javascript">
@@ -192,7 +190,10 @@ f(x) = \int_{-\infty}^\infty
   
   var paint_timeout;
   function paint() {
-      MathJax.tex2svgPromise(inpt.value).then(function(el) {
+      MathJax.tex2svgPromise(
+          inpt.value,
+          {} // documentation for options??
+      ).then(function(el) {
 
           let svg = el.children[0];
 

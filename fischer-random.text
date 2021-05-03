@@ -3,6 +3,7 @@
         <title>Fischer Random Chess</title>
         <meta name="date" content="2021-03-16" />
         <meta name="slug" content="fischer-random" />
+        <meta name="summary" content="Free Online Random Fischer Chess (Chess960) for Correspondence Play. Send links encoding state to opponent.">
     </head>
     <body>
         <style type="text/css">
@@ -11,7 +12,7 @@
           #title-header{ display: none; }
           #top-spacer { display: none; }
         </style>
-        <h2>Chess960 For Correspondence Play</h2>
+        <h3>Chess960 For Correspondence Play</h3>
         <link rel="stylesheet" type="text/css" href="/css/chess.css">
         <script src="/theme/js/lib/jquery.js"></script>
         <script src="/js/chessboard.js"></script>
@@ -324,9 +325,11 @@ if (move_num % 2) {
 //
 
 $('#startBtn').on('click', function(){
-    game.reset();
-    move_num = 0;
-    update();
+    while (move_num > 0) {
+        game.undo();
+        move_num -= 1;
+        update();        
+    }
 });
 $('#prevBtn').on('click', function(){
     if (move_num > 0) {

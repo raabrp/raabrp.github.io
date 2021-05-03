@@ -14,15 +14,16 @@ body {
 }
 pre {
     font-family: SourceCodePro, monospace;
-    font-size: 62%;
+    font-size: 80%;
 }
 code {
     font-size: 80%;
 }
-h1, h2, h3, h4,
-.toc, nav ul {
+h1, h2, h3, h4, nav ul {
+    font-family: PurpleHack;
+}
+nav ul {
     font-size: 80%;
-    font-family: sans-serif;
 }
 .math {
     font-size: 80%;
@@ -54,7 +55,7 @@ blockquote:before {
 
 /* lists */
 ul, ol, blockquote, .footnote, .wiki-extract {
-    font-size: 95%;
+    /* font-size: 95%; */
 }
 
 /* past second level*/

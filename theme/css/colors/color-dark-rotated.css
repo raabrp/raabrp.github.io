@@ -30,11 +30,11 @@
     /* headers and primary color sequence */
     --h1: #cf7698;
     --h2: #248cc5;
-    --h3: #00b2d0;
-    --h4: #00ac97; 
+    --h3: #2c9473;
+    --h4: #a47c42; 
 
     /* loud colors */
-    --e1: #a18832;
+    --e1: #d4658a;
     --e2: #c87648;
     --e3: #3ccea8;
 }

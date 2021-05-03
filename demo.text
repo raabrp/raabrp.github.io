@@ -3,6 +3,7 @@ title: Markdown Demo
 slug: demo
 date: 2018-01-01
 last_updated: 2019-03-02
+summary: How Markdown maps to output with this static site generator
 ---
 
 <h2>(How I write my content)</h2>
@@ -12,30 +13,6 @@ Original markdown source for this page hosted [here](/demo.text) for inspection.
 ***
 
 [TOC]
-
-
-# Article Meta
-
-The top of this file includes
-
-```md
----
-title: Markdown Demo
-slug: demo
-date: 2018-01-01
----
-
-[TOC]
-```
-
-***
-
-| Line    | Explanation                                               |
-|---------|-----------------------------------------------------------|
-| `title` | Appears at top of page and title of browser tab           |
-| `slug`  | Path of generated html file relative to website root      |
-| `date`  | Date shown at top and sorted by on index page             |
-| `[TOC]` | Generates Table of Contents (at this location for mobile) |
 
 # Header 1
 
@@ -117,6 +94,21 @@ decorations**, and standard HTML<sup>when&nbsp;necessary<sub>.
 > -- Joseph Heller, Catch-22 (1961)
 ```
 
+# Definitions
+
+Apple
+: Pomaceous fruit of plants of the genus Malus in
+  the family Rosaceae.
+
+```text
+Apple
+
+: Pomaceous fruit of plants of the genus Malus in the family Rosaceae.
+```
+
+*Note: using definitions in conjunction with other markdown syntax is still
+partially unsupported, e.g., a link in the first line*
+
 # Footnotes
 
 A provocative or dubious claim is well served by a footnote, which will be
@@ -185,50 +177,45 @@ Text below the line.
 
 # Lists and Bullets
 
-1. The first list item determines it's type (numbered or unordered)
-+ Other bullets can be numbers, `+`, `-`, or `*`
-     * Sublists may be ordered or unordered
+Lists at any level cannot use heterogeneous syntax ( [sane-lists](https://python-markdown.github.io/extensions/sane_lists/)), though
+we consider, e.g., `+`, `-`, `*` as equivalent and number can be any digits.
+We simply can't continue an ordered list with bullets, for example. The first
+digit in an ordered list determines the starting index.
 
-     <!-- two newlines and other content (e.g. a comment) divides list types -->
-     1. Ordered sub-list
+0. Numbered lists 
+    * Unordered Sublist
+    * Foo
+    * Bar
+0. Lorem
+    1. Ordered sub-list
+    2. Baz
+    3. Qux
+0. Ipsum
 
-     You can have properly indented paragraphs within list items.
-
-     Merely indent content by 4 spaces, as you do with sublists.
-     
-- Continuation of the first list
-* Last item
-   
-<!-- Comment again used to divide lists types -->
-   
-* First item determines its type (this list is unordered)
-1. Even if later items are digits
-    * Sub item
+ 
+* Unordered list
+- Even if later items are digits
+    + Sub item
         * sub-sub item
-            * sub-sub-sub item
+            + sub-sub-sub item
             
 ```md
-1. The first list item determines it's type (numbered or unordered)
-+ Other bullets can be numbers, `+`, `-`, or `*`
-     * Sublists may be ordered or unordered
+0. Numbered lists 
+    * Unordered Sublist
+    * Foo
+    * Bar
+0. Lorem
+    1. Ordered sub-list
+    2. Baz
+    3. Qux
+0. Ipsum
 
-     <!-- two newlines and other content (e.g. a comment) divides list types -->
-     1. Ordered sub-list
-
-     You can have properly indented paragraphs within list items.
-
-     Merely indent content by 4 spaces, as you do with sublists.
-     
-- Continuation of the first list
-* Last item
-   
-<!-- Comment again used to divide lists types -->
-   
-* First item determines its type (this list is unordered)
-1. Even if later items are digits
-    * Sub item
+ 
+* Unordered list
+- Even if later items are digits
+    + Sub item
         * sub-sub item
-            * sub-sub-sub item
+            + sub-sub-sub item
 ```
 
 # Tables
