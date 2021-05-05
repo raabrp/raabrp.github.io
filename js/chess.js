@@ -712,7 +712,7 @@ var Chess = function(fen, dark_chess) {
 
         // Standard Castle
         /* king-side castling */
-        if (castling[us] & BITS.HSIDE_CASTLE ) { //& !in_check()) {
+        if (castling[us] & BITS.HSIDE_CASTLE && !in_check()) {
           var castling_from = kings[us];
           var castling_to = castling_from + 2;
 
@@ -733,7 +733,7 @@ var Chess = function(fen, dark_chess) {
 
         // Standard Castle
         /* queen-side castling */
-        if (castling[us] & BITS.ASIDE_CASTLE ) { //& !in_check()) {
+        if (castling[us] & BITS.ASIDE_CASTLE && !in_check()) {
           var castling_from = kings[us];
           var castling_to = castling_from - 2;
 
@@ -755,7 +755,7 @@ var Chess = function(fen, dark_chess) {
       } else {
 
         // H side Fischer Random Castle
-        if (castling[us] & BITS.HSIDE_CASTLE ) { //& !in_check()) { // castle not disqualified
+        if (castling[us] & BITS.HSIDE_CASTLE && !in_check()) { // castle not disqualified
 
           var king_from = kings[us];
           var rook_from = ROOKS[us][1].square;
@@ -792,7 +792,7 @@ var Chess = function(fen, dark_chess) {
         }
 
         // A side Fischer Random Castle
-        if (castling[us] & BITS.ASIDE_CASTLE ) { //& !in_check()) { // castle not disqualified
+        if (castling[us] & BITS.ASIDE_CASTLE && !in_check()) { // castle not disqualified
 
           var king_from = kings[us];
           var rook_from = ROOKS[us][0].square;
