@@ -13,7 +13,7 @@
         </div>
       </div>
       <br />
-      <p><span>Size in [1, 1000] </span><input type="number" id="scale" name="scale" value="30" size="4"/></p>
+      <p><span>Font size (Pixels per <a href="https://en.wikipedia.org/wiki/Em_(typography)">em</a>) (max 1000) </span><input type="number" id="scale" name="scale" value="30" size="4"/></p>
       <textarea id="demo-input" style="width: 100%; height: 100px;" spellcheck="false">
 f(x) = \int_{-\infty}^\infty
     \hat{f}(\xi)\,e^{2 \pi i \xi x}
@@ -39,8 +39,7 @@ f(x) = \int_{-\infty}^\infty
   var paint_timeout;
   function paint() {
       MathJax.tex2svgPromise(
-          inpt.value,
-          {} // documentation for options??
+          inpt.value
       ).then(function(el) {
 
           let svg = el.children[0];
@@ -48,12 +47,14 @@ f(x) = \int_{-\infty}^\infty
           let box = svg.viewBox.baseVal;
           let w = box.width;
           let h = box.height;
+
+          // width of em dash is 1000 pixels in svg box, conveniently
           
           let s = Math.min(Math.max(scale.value, min_scale), max_scale);
 
           let w2 = w * (s / max_scale);
           let h2 = h * (s / max_scale);
-          
+
           svg.setAttribute("width", w2.toString() + "px");
           svg.setAttribute("height", h2.toString() + "px"); 
           
