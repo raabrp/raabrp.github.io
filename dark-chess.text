@@ -48,9 +48,12 @@
         </div>
         <textarea id="field" style="width: 100%; height: 400px;"></textarea>
         <hr>
+        <i>
+        The game is won by capturing your opponent's king.<br><br>
+        </i>
         Game Options: <br><i>must be set at beginning of game</i> <br><br>
         <input type="checkbox" id="scouting" />
-        Allow attribution of state change to opponent's turn <br>
+        Allow attribution of state change to opponent's turn (on replay)<br>
         <input type="checkbox" id="overrun" />
         Capturing pieces are revealed to opponent <br>
         <input type="checkbox" id="warn" />
@@ -58,9 +61,6 @@
         <input type="checkbox" id="legal" />
         Disallow movement into and through check (forces warning)<br>
         <br>
-        <i>
-        The game is won by capturing your opponent's king.<br><br>
-        </i>
         And yes, it's simple to cheat. It's not interesting:
 
         <pre>JSON.parse(atob(window.location.search.substring(1))).p</pre>

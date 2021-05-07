@@ -169,9 +169,11 @@ Live Tex to PNG    </title>
 <br/>
 <p><span>Font size (Pixels per <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Em_(typography)" href="https://en.wikipedia.org/wiki/Em_(typography)" id="generated-link-id0">em</a>) (max 1000) </span><input id="scale" name="scale" size="4" type="number" value="30"/></p>
 <textarea id="demo-input" spellcheck="false" style="width: 100%; height: 100px;">
-f(x) = \int_{-\infty}^\infty
-    \hat{f}(\xi)\,e^{2 \pi i \xi x}
-    \,d\xi
+% Your expression here
+
+\newcommand{\coloneqq}{\mathrel{\vcenter{:}}=}
+
+\Re \coloneqq \frac{z + z^\dagger}{2}
       </textarea>
 <div id="history">
 </div>
