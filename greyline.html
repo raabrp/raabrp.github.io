@@ -179,7 +179,8 @@ Greyline Map    </title>
     function run(now, prev_run) { 
         now = now || new Date();
 
-        console.log(now.toUTCString());
+        let JD = (now.getTime() / 86400000.0 ) + 2440587.5;
+        console.log(now.toUTCString(), '; JD', JD);
 
         let month = now.getUTCMonth();
         let day = now.getUTCDate();
@@ -211,25 +212,28 @@ Greyline Map    </title>
         
         // generate analemma
         let sun_iter = 100;
-        let phi_sun = [];
-        let tha_sun = [];
+        let phi_sun = []; // angle from Prime Meridian
+        let tha_sun = []; // angle from north pole
 
         // generate lunar analemma
 
         let moon_iter = 100;
-        let phi_moon = [];
-        let tha_moon = [];
+        let phi_moon = []; // angle from Prime Meridian
+        let tha_moon = []; // angle from north pole
 
         
         // solar positions
         let ms = 1000 * 60 * 60 * 24 * 365;
         for (let i = 0; i < sun_iter; i += 1) {
 
-            let jce = get_jce(now)
-            let [alpha, dec, etime] = get_sun_pos(jce);
-            
+            // current polar angle and equatorial angle from prime meridian 
+            let jce = get_jce(now);
+            let [tha, phi, etime] = get_sun_pos(jce);
+
+            // arstneio
+
             phi_sun[i] = (12 - (hour + (minutes / 60))) * (pi / 12) + etime; // [-pi, pi]; 0 is noon UTC
-            tha_sun[i] = (pi / 2) - dec; // radians from north pole
+            tha_sun[i] = tha;
             
             now.setTime(now.getTime() - (ms / sun_iter));
         }
@@ -241,16 +245,17 @@ Greyline Map    </title>
 
             let jce = get_jce(now)
 
-            let [alpha, dec, etime] = get_sun_pos(jce); 
+            // current equatorial coordinates (unit vectors)
+            // (accounting for precession / nutation)
+            let [tha, phi, etime] = get_sun_pos(jce); 
             let [t_moon, p_moon]= get_moon_pos(jce);
-            
+
             tha_moon[i] = t_moon;
-            phi_moon[i] = p_moon + (12 - (hour + (minutes / 60))) * (pi / 12) + etime;
+            phi_moon[i] = p_moon - phi + (12 - (hour + (minutes / 60))) * (pi / 12) + etime;
 
             now.setTime(now.getTime() - (ms / moon_iter));
         }
         now.setTime(now.getTime() + ms);
-
         
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
@@ -562,14 +567,16 @@ Greyline Map    </title>
     
     function get_sun_pos(jce) {        
 
-        let alpha, dec, etime, epsilon;
+        // thata is current polar angle
+        // phi is current angle from vernal equinox 
+        let x, y, z, etime;
         if (USE_STUPID_HIGH_PRECISION) {
-            [alpha, dec, etime] = get_RA_DEC(jce);
+            [theta, phi, etime] = get_solar_angles(jce);
         } else {
-            [alpha, dec, etime] = get_high_precision_RA_DEC(jce);
+            [theta, phi, etime] = get_high_precision_solar_angles(jce);
         }
 
-        return [alpha, dec, etime];
+        return [theta, phi, etime];
         ////////////////////////////////////////////////////////////////////////
         
     }
@@ -587,17 +594,19 @@ Greyline Map    </title>
         let y = geo.Y * c - geo.Z * s;
         let z = geo.Y * s + geo.Z * c;
         let r = geo.rGeo;
-
+        
         // convert J2000.0 equatorial to current equatorial
         let rm = ltp_PMAT(jce * 100);
 
-        xp = x * rm[0][0] + y * rm[0][1] + z * rm[0][2];
-        yp = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
-        zp = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
-        
-        let tha = acos(zp / r);
-        let phi = atan2(yp, xp)
+        let xc = x * rm[0][0] + y * rm[0][1] + z * rm[0][2];
+        let yc = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
+        let zc = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
+
+        let tha = acos(zc / r);       // polar angle
+        let phi = atan2(yc, xc);  // right ascension along current equator
+
         return [tha, phi];
+        
     }
     
     // Convert degree angle to radians
@@ -607,7 +616,7 @@ Greyline Map    </title>
     }
 
 
-    function get_RA_DEC(t){
+    function get_solar_angles(t){
         /*
          * Adapted from https://www.esrl.noaa.gov/gmd/grad/solcalc/main.js
          */
@@ -670,10 +679,26 @@ Greyline Map    </title>
         let etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
                 - 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
 
-        return [alpha, dec, etime];
+        // equatorial J2000.0 unit vector
+        let p = sqrt(atan_denom ** 2 + atan_num ** 2);
+        let xe = atan_denom * sindec / p;
+        let ye = atan_num * sindec / p;
+        let ze = cos(dec);
+
+        // convert J2000.0 equatorial to current equatorial
+        let rm = ltp_PMAT(t * 100);
+
+        let xc = xe * rm[0][0] + ye * rm[0][1] + ze * rm[0][2];
+        let yc = xe * rm[1][0] + ye * rm[1][1] + ze * rm[1][2];
+        let zc = xe * rm[2][0] + ye * rm[2][1] + ze * rm[2][2];
+
+        let tha = (pi / 2) - dec;       // polar angle
+        let phi = atan2(yc, xc);  // right ascension along current equator
+        return [tha, phi, etime];
+                
     }
 
-    function get_high_precision_RA_DEC(JCE) {
+    function get_high_precision_solar_angles(JCE) {
         /*
          * A Solar Position Algorithm to calculate the solar zenith and azimuth
          * angle with uncertainties equal to ±0.0003 degrees in the period from
@@ -741,8 +766,24 @@ Greyline Map    </title>
 
         // equation of time in radians
         let etime = (nu % 360) * (pi / 180) - alpha;
-        
-        return [alpha, dec, etime];
+
+        // equatorial J2000.0 unit vector
+        let p = sqrt(atan_denom ** 2 + atan_num ** 2);
+        let x = atan_denom * sindec / p;
+        let y = atan_num * sindec / p;
+        let z = cos(dec);
+
+        // convert J2000.0 equatorial to current equatorial
+        let rm = ltp_PMAT(JCE * 100);
+
+        let xc = x * rm[0][0] + y * rm[0][1] + z * rm[0][2];
+        let yc = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
+        let zc = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
+
+        let tha = (pi / 2) - dec; // polar angle
+        let phi = atan2(yc, xc);  // right ascension along current equator
+        return [tha, phi, etime];
+                
     }
 
     function get_L(JME){ // in radians
