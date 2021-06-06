@@ -21,12 +21,30 @@
     let asin = Math.asin, acos = Math.acos, sign = Math.sign, atan2 = Math.atan2; 
     let max = Math.max, min = Math.min, floor = Math.floor, abs = Math.abs;
     let exp = Math.exp, sqrt = Math.sqrt;
+
+    let timeout;
+
+    console.log("Call `run` without arguments to animate live");
+    console.log("Call `run` with `Date` object or date string for specific date");
+    console.log("Examples:");
+    console.log("    run(new Date('Apr 8 2024 6:00 am PST')) // will animate");
+    console.log("    run('Apr 8 2024 6:00 am PST') // will not animate");
+    console.log("    run('04/08/2024 14:00 GMT') // will not animate");
+    console.log("=============================================================")
     
-    function run(now, prev_run) { 
-        now = now || new Date();
+    function run(now, prev_run) {
+
+        let loop = true;
+        
+        if (now == undefined) {
+            now = new Date();
+        } else if ((typeof now) == "string") {
+            now = new Date(now);
+            loop = false;
+        }
 
         let JD = (now.getTime() / 86400000.0 ) + 2440587.5;
-        console.log(now.toUTCString(), '; JD', JD);
+        console.log('Image generated for', now.toUTCString(), '; JD', JD);
 
         let month = now.getUTCMonth();
         let day = now.getUTCDate();
@@ -76,8 +94,6 @@
             let jce = get_jce(now);
             let [tha, phi, etime] = get_sun_pos(jce);
 
-            // arstneio
-
             phi_sun[i] = (12 - (hour + (minutes / 60))) * (pi / 12) + etime; // [-pi, pi]; 0 is noon UTC
             tha_sun[i] = tha;
             
@@ -86,7 +102,7 @@
         now.setTime(now.getTime() + ms);
 
         // lunar positions
-        ms = 1000 * 60 * 60 * 24 * 28;
+        ms = 1000 * 60 * 60 * 24 * 28 * 2; // 2 months
         for (let i = 0; i < moon_iter; i += 1) {
 
             let jce = get_jce(now)
@@ -326,12 +342,13 @@
         }
         
         // animate
-        window.setTimeout(function() {
-            d = new Date();
-            // d = new Date(now.getTime() + 1000 * 60 * 5); // 5 minutes
-            run(d, now);
-        }, 1000 * 60 * 5) // 5 minutes
-        
+        if (loop) {
+            timeout = window.setTimeout(function() {
+                d = new Date();
+                // d = new Date(now.getTime() + 1000 * 60 * 5); // 5 minutes
+                run(d, now);
+            }, 1000 * 60 * 5); // 5 minutes
+        }
     }
  
     ////////////////////////////////////////////////////////////////////////////
@@ -366,7 +383,7 @@
     // geological proceses which are difficult to predict.
     // 
 
-    USE_STUPID_HIGH_PRECISION = true;
+    USE_STUPID_HIGH_PRECISION = false;
 
     function get_jce(jsdate) {
         // Julian Date
@@ -417,9 +434,9 @@
         // phi is current angle from vernal equinox 
         let x, y, z, etime;
         if (USE_STUPID_HIGH_PRECISION) {
-            [theta, phi, etime] = get_solar_angles(jce);
-        } else {
             [theta, phi, etime] = get_high_precision_solar_angles(jce);
+        } else {
+            [theta, phi, etime] = get_solar_angles(jce);
         }
 
         return [theta, phi, etime];
@@ -430,7 +447,7 @@
     function get_moon_pos(jce) {
         let geo = getX2000_C(jce);
 
-        let epsilon = pi * (23 + 26 / 60 +  21.406 / 3600) / 180;
+        let epsilon = pi * (23.44 / 180);
         
         let c = cos(epsilon), s = sin(epsilon);
 
@@ -448,8 +465,8 @@
         let yc = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
         let zc = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
 
-        let tha = acos(zc / r);       // polar angle
-        let phi = atan2(yc, xc);  // right ascension along current equator
+        let tha = acos(z / r);   // polar angle
+        let phi = atan2(y, x);  // longitude
 
         return [tha, phi];
         
@@ -506,11 +523,16 @@
         // Declination in radians
         let sindec = sin(epsilon) * sin(lambda);
         let dec = asin(sindec);
- 
+
+        // polar angle in radians
+        let tha = (pi / 2) - dec;
+        let sintha = sin(tha);
+        let costha = cos(tha);
+        
         // Equation of Time
 
-        let y = tan(epsilon/2.0);
-        y *= y;
+        let yy = tan(epsilon/2.0);
+        yy *= yy;
 
         let l0r = degToRad(l0);
         let sin2l0 = sin(2.0 * l0r);
@@ -522,24 +544,25 @@
         // eccentricity of Earth's orbit
         let e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t);
 
-        let etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
-                - 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
+        let etime = yy * sin2l0 - 2.0 * e * sinm + 4.0 * e * yy * sinm * cos2l0
+                - 0.5 * yy * yy * sin4l0 - 1.25 * e * e * sin2m;
 
         // equatorial J2000.0 unit vector
         let p = sqrt(atan_denom ** 2 + atan_num ** 2);
-        let xe = atan_denom * sindec / p;
-        let ye = atan_num * sindec / p;
-        let ze = cos(dec);
+        let x = atan_denom * sintha / p;
+        let y = atan_num * sintha / p;
+        let z = costha;
 
         // convert J2000.0 equatorial to current equatorial
         let rm = ltp_PMAT(t * 100);
 
-        let xc = xe * rm[0][0] + ye * rm[0][1] + ze * rm[0][2];
-        let yc = xe * rm[1][0] + ye * rm[1][1] + ze * rm[1][2];
-        let zc = xe * rm[2][0] + ye * rm[2][1] + ze * rm[2][2];
+        let xc = x * rm[0][0] + y * rm[0][1] + z * rm[0][2];
+        let yc = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
+        let zc = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
+        
+        tha = acos(z);           // polar angle
+        let phi = atan2(y, x);   // longitude
 
-        let tha = (pi / 2) - dec;       // polar angle
-        let phi = atan2(yc, xc);  // right ascension along current equator
         return [tha, phi, etime];
                 
     }
@@ -572,9 +595,9 @@
         // Earth's distance from sun in AU
         let R = get_R(JME);
 
-        // Geocentric longitude of sun in degrees
+        // Geocentric longitude of sun in degrees (ecliptic)
         let theta = (180 + L * 180 / pi) % 360;
-        // Geocentric latitude of sun in radians
+        // Geocentric latitude of sun in radians (ecliptic)
         let beta = -B;
 
         let [delta_psi, delta_varepsilon] = get_nutation(JCE);
@@ -601,7 +624,12 @@
         
         // Declination in radians
         let sindec = cos(beta) * sin(varepsilon) * sin(lambda) + sin(beta) * cos(varepsilon);
-        let dec = asin(sindec); 
+        let dec = asin(sindec);
+
+        // polar angle in radians
+        let tha = (pi / 2) - dec;
+        let sintha = sin(tha);
+        let costha = cos(tha);
         
         // mean sidereal time at Greenwich in degrees
         let nu0 = 280.46061837 + 360.98564736629 * (JCE * 365.25) +
@@ -615,9 +643,9 @@
 
         // equatorial J2000.0 unit vector
         let p = sqrt(atan_denom ** 2 + atan_num ** 2);
-        let x = atan_denom * sindec / p;
-        let y = atan_num * sindec / p;
-        let z = cos(dec);
+        let x = atan_denom * sintha / p;
+        let y = atan_num * sintha / p;
+        let z = costha;
 
         // convert J2000.0 equatorial to current equatorial
         let rm = ltp_PMAT(JCE * 100);
@@ -626,8 +654,8 @@
         let yc = x * rm[1][0] + y * rm[1][1] + z * rm[1][2];
         let zc = x * rm[2][0] + y * rm[2][1] + z * rm[2][2];
 
-        let tha = (pi / 2) - dec; // polar angle
-        let phi = atan2(yc, xc);  // right ascension along current equator
+        tha = acos(z);           // polar angle
+        let phi = atan2(y, x);  // longitude
         return [tha, phi, etime];
                 
     }
@@ -1014,7 +1042,7 @@
     }
     
     onReady(function(){
-        // date = new Date('Jan 1 6000 08:00 PST');
+        // run('Apr 8 2024 6:00 am PST') // will not animate
         run();
     });
     
