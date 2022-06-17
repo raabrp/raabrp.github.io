@@ -1,202 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="Free Online Chess for Correspondence Play. Send links encoding state to opponent."/>
-
-    <title>
-Chess    </title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- CSS for Layout -->
-    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
-
-    <!-- CSS for Colors -->
-    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-light-rotated.css">
-    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/colors/color-light-default.css">
-    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-rotated.css">
-    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-default.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
-
-    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
-
-
-    <link rel="stylesheet"
-          href="theme/css/fonts.css">
-
-    <!-- JS for Color Theming -->
-    <script type="text/javascript">
-     /*
-      * Run this early, since it will create an undesiresable flash of color
-      * if delayed. It seems that the fastest way to get the correct colors
-      * is by including a <link> for each theme, causing them to be loaded in
-      * parallel, with marginal increased delay until script execution.
-      *
-      * The alternative is waiting to load the correct colors until after
-      * script execution -- which is delayed by loading the initial
-      * links anyway -- then *also* waiting for the new resource to load
-      * *after* script execution, resulting in almost twice the delay.
-      */
-
-     function set_theme(val) {
-         var color_links = document.getElementsByClassName('color-css');
-         for (var i=0; i < color_links.length; i++) {
-             var link = color_links[i];
-             if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/colors/color-' + val + '.css';
-             } else {
-                 link.removeAttribute('href');
-             }
-         }
-         try {
-             localStorage['theme'] = val;
-         } catch (e) {
-             ;
-         }
-     }
-     try {
-         var stored = localStorage['theme'];
-         if (stored && (stored != 'undefined'))  {
-             set_theme(stored);
-         }
-     } catch (e) {
-         ;
-     }
-    </script>
-
-<link rel="stylesheet" type="text/css" href="theme/css/page.css">
-
-    <!-- Pelican variable injection -->
-    <script type="text/javascript">var pelican = {};</script>
-
-    <!-- Main JavaScript functions -->
-    <script src="theme/js/main.js"></script>
-
-  </head>
-
-  <body>
-    <main>
-      <menu>
-        <!-- The checkbox hack -->
-        <input type="checkbox" id="hamburger-checkbox">
-        <label for="hamburger-checkbox">
-          <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>MENU</span>
-          </div>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <p>Links</p>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="about.html">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="site-info.html">
-                    Site Info
-                  </a>
-                </li>
-              </ul>
-            <!-- Unhidden if JavaScript enabled -->
-            <li id="theme-select" style="display: none;">
-              <p>Select Colors</p>
-              <ul>
-                <li>
-                  <a class="theme-selector" value="dark-default">
-                    Dark default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="dark-rotated">
-                    Dark rotated
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-default">
-                    Light default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-rotated">
-                    Light rotated
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </menu>
-
-      <div id="top-spacer"></div>
-
+<head>
+<!-- 2022-06-10 Fri 22:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chess</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
 <header>
-    <h1 id="title-header">
-        Chess
-    </h1>
-</header>
-<article>
-    
-<style type="text/css">
+<h1 class="title">Chess</h1>
+</header><style type="text/css">
           main { max-width: 60ch; }
           .wiki-extract { max-width: 50ch; }
           #title-header{ display: none; }
           #top-spacer { display: none; }
         </style>
 <h3>Chess For Correspondence Play</h3>
-<link href="/css/chess.css" rel="stylesheet" type="text/css"/>
-<script src="/theme/js/lib/jquery.js"></script>
-<script src="/js/chessboard.js"></script>
-<script src="/js/chess.js"></script>
+<link href="/css/lib/chess.css" rel="stylesheet" type="text/css"/>
+<script src="/js/lib/jquery.js"></script>
+<script src="/js/lib/chessboard.js"></script>
+<script src="/js/lib/chess.js"></script>
 <p><span id="status"></span></p>
 <div id="board" style="width: 100%;"></div>
 <br/>
 <div style="text-align:center;">
-<input id="startBtn" type="button" value="&lt;&lt;"/>
-<input id="prevBtn" type="button" value="&lt;"/>
-<input id="resetBtn" type="button" value="Linked State"/>
-<input id="nextBtn" type="button" value="&gt;"/>
-<input id="lastBtn" type="button" value="&gt;&gt;"/>
-<input id="flipBtn" type="button" value="Flip"/>
+  <input id="startBtn" type="button" value="<<"/>
+  <input id="prevBtn" type="button" value="<"/>
+  <select name="moveSelect" id="moveSelect">
+    <option value="0" id="move_0_">1: White</option>
+  </select>
+  <input id="nextBtn" type="button" value=">"/>
+  <input id="lastBtn" type="button" value=">>"/>
+<div style="height: 0.5em;"></div>
+  <input id="flipBtn" type="button" value="Flip Board"/>
+  <select id="promoteDD" name="promote">
+    <option value="q">Promote: q</option>
+    <option value="b">Promote: b</option>
+    <option value="n">Promote: n</option>
+    <option value="r">Promote: r</option>
+  </select>
 </div>
 <hr/>
 <div style="text-align:center;">
-<input onclick="window.location.href='/chess'" type="button" value="New"/>
-<input id="linkBtn" type="button" value="Link"/>
-<input id="fenBtn" type="button" value="FEN"/>
-<input id="pgnBtn" type="button" value="PGN"/>
-<input id="loadBtn" type="button" value="Load"/>
-<select id="promoteDD" name="promote">
-<option value="q">Promote: q</option>
-<option value="b">Promote: b</option>
-<option value="n">Promote: n</option>
-<option value="r">Promote: r</option>
-</select>
-</div>
+  <input onclick="window.location.href='/chess'" type="button" value="New"/>
+  <input id="linkBtn" type="button" value="Link"/>
+  <input id="fenBtn" type="button" value="FEN"/>
+  <input id="pgnBtn" type="button" value="PGN"/>
+  <input id="loadBtn" type="button" value="Load"/>
+  </div>
 <br/>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
 <hr/>
@@ -207,6 +70,9 @@ Chess    </title>
 <a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
 <a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
 <script type="text/javascript">
+
+document.getElementsByClassName('title')[0].remove();
+global_disable_fullscreen_img_on_click = true;
 
 function copyField() {
     document.getElementById("field").select();
@@ -256,19 +122,61 @@ var board,                   // Chessboard
     move_num,                // current move number
     statusEl = $('#status'), // status field
     fieldEl = $('#field'),   // text box
-    pgn = parse_url();       // PGN of game
+    pgn = parse_url(),       // PGN of game
+    moveSelect = document.getElementById('moveSelect');
 
 game.load_pgn(pgn);
 
 hist = game.history();
 move_num = hist.length;
 
+function updatemoveSelect() { // move_num is 0 with first move
+
+    function make_entry(hist_num, move) { // hist_num is 0 when no moves yet made
+
+        let id = `move_${hist_num}_${move}`;
+
+        if (!document.getElementById(id)) {
+
+            let turn_num = Math.floor(hist_num / 2) + 1;
+            let color = (hist_num % 2) ? 'Black' : 'White';
+            let value = `${turn_num}: ${move} -> ${color}`;
+
+            if (hist_num == 0) {
+                value = `${turn_num}: ${color}`;
+            }
+
+            let option = document.createElement('option')
+            option.setAttribute('value', hist_num.toString());
+            option.setAttribute('id', id);
+            option.appendChild(document.createTextNode(value));
+
+            moveSelect.appendChild(option);
+
+        } else {
+            ;
+        }
+
+    }
+
+    while (moveSelect.children.length > hist.length) {
+        moveSelect.remove(hist.length);
+    }
+
+    make_entry(0, '')
+    for (const [index, move] of hist.entries()) {
+        make_entry(index + 1, `(${move})`)
+    }
+
+    moveSelect.value = move_num;
+}
+
 // intercept movement to check against history
 function domove(m) {
 
     var current_fen = game.fen();
     var is_valid = game.move(m);
-    
+
     if (is_valid) {
 
         if (hist.length > game.history().length) {
@@ -287,6 +195,8 @@ function domove(m) {
         }
 
         move_num += 1;
+
+        updatemoveSelect();
     }
 
     return is_valid;
@@ -297,6 +207,7 @@ function update() {
     board.resize();
     board.position(game.fen());
     updateStatus();
+    updatemoveSelect();
 }
 
 // update status element
@@ -320,7 +231,13 @@ function updateStatus() {
 
     // game still on
     else {
-        status += movecolor + ' to move';
+
+        let last_move = '';
+        if (hist[move_num - 1]) {
+            last_move = ' after (' + hist[move_num - 1] + ')';
+        }
+
+        status += movecolor + ' to move' + last_move;
 
         // check?
         if (game.in_check() === true) {
@@ -370,7 +287,7 @@ var onSnapEnd = function() {
 board = ChessBoard('board', {
     draggable: true,
     position: '8/8/8/8/8/8/8/8',
-    pieceTheme: '/images/chesspieces/{piece}.png',
+    pieceTheme: '/img/chesspieces/{piece}.png',
     moveSpeed: 50,
     snapbackSpeed: 50,
     snapSpeed: 50,
@@ -399,12 +316,12 @@ $('#prevBtn').on('click', function(){
         update();
     }
 });
-$('#resetBtn').on('click', function(){
-    game.load_pgn(pgn);
-    hist = game.history();
-    move_num = game.history().length;
-    update();
-});
+// $('#resetBtn').on('click', function(){
+//    game.load_pgn(pgn);
+//    hist = game.history();
+//    move_num = game.history().length;
+//    update();
+//});
 $('#nextBtn').on('click', function(){
     if (move_num < hist.length) {
         domove(hist[move_num]);
@@ -441,6 +358,18 @@ $('#loadBtn').on('click', function() {
         fieldEl.val('Could not load input');
     }
 });
+$('#moveSelect').on('change', function() {
+    let target = this.value;
+    while (target < move_num) {
+        game.undo();
+        move_num -= 1;
+        update();
+    }
+    while (target > move_num) {
+        domove(hist[move_num]);
+        update();
+    }
+});
 
 window.onresize = update;
 
@@ -453,15 +382,13 @@ function wait_update() {
 }
 wait_update();
 
-
+onReady(function() {
+    board.resize();
+});
 </script>
-
-</article>
-    </main>
-
-    <script type="text/javascript">
-     engage();
-    </script>
-  </body>
-
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
 </html>

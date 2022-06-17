@@ -1,828 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="Free Online Dark-Chess for Correspondence Play. Send links encoding state to opponent."/>
-
-    <title>
-Dark-Chess    </title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- CSS for Layout -->
-    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
-
-    <!-- CSS for Colors -->
-    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-light-rotated.css">
-    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/colors/color-light-default.css">
-    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-rotated.css">
-    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-default.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
-
-    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
-
-
-    <link rel="stylesheet"
-          href="theme/css/fonts.css">
-
-    <!-- JS for Color Theming -->
-    <script type="text/javascript">
-     /*
-      * Run this early, since it will create an undesiresable flash of color
-      * if delayed. It seems that the fastest way to get the correct colors
-      * is by including a <link> for each theme, causing them to be loaded in
-      * parallel, with marginal increased delay until script execution.
-      *
-      * The alternative is waiting to load the correct colors until after
-      * script execution -- which is delayed by loading the initial
-      * links anyway -- then *also* waiting for the new resource to load
-      * *after* script execution, resulting in almost twice the delay.
-      */
-
-     function set_theme(val) {
-         var color_links = document.getElementsByClassName('color-css');
-         for (var i=0; i < color_links.length; i++) {
-             var link = color_links[i];
-             if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/colors/color-' + val + '.css';
-             } else {
-                 link.removeAttribute('href');
-             }
-         }
-         try {
-             localStorage['theme'] = val;
-         } catch (e) {
-             ;
-         }
-     }
-     try {
-         var stored = localStorage['theme'];
-         if (stored && (stored != 'undefined'))  {
-             set_theme(stored);
-         }
-     } catch (e) {
-         ;
-     }
-    </script>
-
-<link rel="stylesheet" type="text/css" href="theme/css/page.css">
-
-    <!-- Pelican variable injection -->
-    <script type="text/javascript">var pelican = {};</script>
-
-    <!-- Main JavaScript functions -->
-    <script src="theme/js/main.js"></script>
-
-  </head>
-
-  <body>
-    <main>
-      <menu>
-        <!-- The checkbox hack -->
-        <input type="checkbox" id="hamburger-checkbox">
-        <label for="hamburger-checkbox">
-          <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>MENU</span>
-          </div>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <p>Links</p>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="about.html">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="site-info.html">
-                    Site Info
-                  </a>
-                </li>
-              </ul>
-            <!-- Unhidden if JavaScript enabled -->
-            <li id="theme-select" style="display: none;">
-              <p>Select Colors</p>
-              <ul>
-                <li>
-                  <a class="theme-selector" value="dark-default">
-                    Dark default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="dark-rotated">
-                    Dark rotated
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-default">
-                    Light default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-rotated">
-                    Light rotated
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </menu>
-
-      <div id="top-spacer"></div>
-
+<head>
+<!-- 2022-06-10 Fri 22:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dark Chess</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
 <header>
-    <h1 id="title-header">
-        Dark-Chess
-    </h1>
-</header>
-<article>
-    
-<style type="text/css">
-          main { max-width: 60ch; }
-          .wiki-extract { max-width: 50ch; }
-          #title-header{ display: none; }
-          #top-spacer { display: none; }
-        </style>
+<h1 class="title">Dark Chess</h1>
+</header><style type="text/css">
+  main { max-width: 60ch; }
+  .wiki-extract { max-width: 50ch; }
+  #title-header{ display: none; }
+  #top-spacer { display: none; }
+</style>
 <h3>Dark-Chess For Correspondence Play</h3>
-<link href="/css/chess.css" rel="stylesheet" type="text/css"/>
-<script src="/theme/js/lib/jquery.js"></script>
-<script src="/js/chessboard.js"></script>
-<script src="/js/chess.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/lib/chess.css">
+<script src="/js/lib/jquery.js"></script>
+<script src="/js/lib/chessboard.js"></script>
+<script src="/js/lib/chess.js"></script>
+
 <p><span id="status"></span></p>
 <div id="board" style="width: 100%;"></div>
-<br/>
-<div style="text-align:center;">
-<input id="startBtn" type="button" value="&lt;&lt;"/>
-<input id="prevBtn" type="button" value="&lt;"/>
-<input id="resetBtn" type="button" value="Linked State"/>
-<input id="nextBtn" type="button" value="&gt;"/>
-<input id="lastBtn" type="button" value="&gt;&gt;"/>
-<input id="flipBtn" type="button" value="Flip"/>
-</div>
-<hr/>
-<div style="text-align:center;">
-<input onclick="window.location.href='/dark-chess'" type="button" value="New"/>
-<input id="linkBtn" type="button" value="Link"/>
-<input id="fenBtn" type="button" value="FEN"/>
-<input id="pgnBtn" type="button" value="PGN"/>
-<input id="loadBtn" type="button" value="Load"/>
-<select id="promoteDD" name="promote">
-<option value="q">Promote: q</option>
-<option value="b">Promote: b</option>
-<option value="n">Promote: n</option>
-<option value="r">Promote: r</option>
-</select>
-</div>
 <br>
-
+<div style="text-align:center;">
+  <input type="button" id="startBtn" value="<<" />
+  <input type="button" id="prevBtn" value="<" />
+  <select name="promote" id="promoteDD">
+    <option value="q">Promote: q</option>
+    <option value="b">Promote: b</option>
+    <option value="n">Promote: n</option>
+    <option value="r">Promote: r</option>
+  </select>
+  <input type="button" id="nextBtn" value=">" />
+  <input type="button" id="lastBtn" value=">>" />
+  <input type="button" id="flipBtn" value="Flip" />
+</div>
+<hr>
+<div style="text-align:center;">
+    <input type="button" value="New"
+           onclick="window.location.href='/dark-chess'"/>
+    <input type="button" id="linkBtn" value="Link" />
+    <input type="button" id="fenBtn" value="FEN" />
+    <input type="button" id="pgnBtn" value="PGN"/>
+    <input type="button" id="loadBtn" value="Load"/>
+</div>
+<br />
+</div>
 <textarea id="field" style="width: 100%; height: 400px;"></textarea>
-<hr/>
+<hr>
+Game Options: <br><i>must be set at beginning of game</i> <br><br>
+<input type="checkbox" id="scouting" />
+Allow attribution of state change to opponent's turn (on replay)<br>
+<input type="checkbox" id="overrun" />
+Capturing pieces are revealed to opponent <br>
+<input type="checkbox" id="warn" />
+Warn opponent on check <br>
+<input type="checkbox" id="legal" />
+Disallow movement into and through check (forces warning)<br>
+<br>
 <i>
-        The game is won by capturing your opponent's king.<br/><br/>
+The game is won by capturing your opponent's king.<br><br>
 </i>
-        Game Options: <br/><i>must be set at beginning of game</i> <br/><br/>
-<input id="scouting" type="checkbox"/>
-        Allow attribution of state change to opponent's turn (on replay)<br/>
-<input id="overrun" type="checkbox"/>
-        Capturing pieces are revealed to opponent <br/>
-<input id="warn" type="checkbox"/>
-        Warn opponent on check <br/>
-<input id="legal" type="checkbox"/>
-        Disallow movement into and through check (forces warning)<br/>
-<br/>
-        And yes, it's simple to cheat. It's not interesting:
+And yes, it's simple to cheat. It's not interesting:
 
-        <pre>JSON.parse(atob(window.location.search.substring(1))).p</pre>
-<hr/>
+<pre>JSON.parse(atob(window.location.search.substring(1))).p</pre>
+<hr>
 
-        See Also:<br/>
-<a href="/chess.html" id="generated-link-id0">Normal Chess</a><br/>
-<a href="/fischer-random.html" id="generated-link-id1">Fischer Random Chess</a><br/>
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Dark_chess" href="https://en.wikipedia.org/wiki/Dark_chess" id="generated-link-id2">Dark Chess (Wikipedia)</a><br/>
-<a href="http://chessboardjs.com/" id="generated-link-id3">chessboard.js</a><br/>
-<a href="https://github.com/jhlywa/chess.js" id="generated-link-id4">chess.js</a><br/>
+See Also:<br>
+<a href="/chess.html">Normal Chess</a><br>
+<a href="/fischer-random.html">Fischer Random Chess</a><br>
+<a href="https://en.wikipedia.org/wiki/Dark_chess">Dark Chess (Wikipedia)</a><br>
+<a href="http://chessboardjs.com/">chessboard.js</a><br>
+<a href="https://github.com/jhlywa/chess.js">chess.js</a><br>
+
 <script type="text/javascript">
 
- function copyField() {
-     document.getElementById("field").select();
-     document.execCommand("copy");
- }
-
- // anonymous function to disallow trivial console inspection
- (function() {
-
- var board,                                  // Chessboard
-     hist,                                   // history of moves
-     move_num,                               // current move number
-     statusEl = $('#status'),                // status field
-     fieldEl = $('#field'),                  // text box
-     params = parse_url();
- var game = new Chess(undefined, !params.l); // Chess
- game.load_pgn(params.p);
-
- hist = game.history();
- move_num = hist.length;
-
- // for review (showing fog for both players)
- // `update()` will not allow players to fish for information with prospective
- // moves
- var max_move_num = move_num;
- var max_visible = vision(game, params.w);
-
- // given row and column numbers (starting at 0), convert to
- // square name. e.g. 0,0 -> a8
- function idx(r, c) {
-     var s = String.fromCharCode(97 + c);
-     return (s + (8 - r).toString());
- }
-
- // generate vision of a particular player at a state of the game
- function vision(game, as_w) {
-     // returns:
-     //    set of visible squares
-     // arguments:
-     //    game: state of play (Chess object from chess.js)
-     //    as_w: boolean for whether we are playing as white
-
-     // determine state of game to use for querying player's vision
-     // Chess.js has some strange side-effects when querying possible moves
-     var vis_game = new Chess(game.fen(), !params.l);
-     var prev_game;
-     if ((as_w ^ game.turn() == 'w')) { // not our turn (we just moved)
-         if (move_num == 0) {
-             // only happens for black during review
-             // (since we cannot undo when no moves have been made)
-             vis_game = new Chess(undefined, !params.l);
-             vis_game.move('b3'); // inconsequential
-         } else if (!params.s) { // pieces gain vision on full move
-             // inspect previous state of play (before the move we just made)
-             var prev_game = new Chess(undefined, !params.l);
-             prev_game.load_pgn(game.pgn());
-             prev_game.undo()
-             vis_game = prev_game;
-         }
-     }
-
-     // deal with pawns (seen squares != legal moves)
-     // and own pieces (we can see squares our pieces occupy)
-     var visible = new Set(); // set of seen squares
-     var piece;
-     for (var i = 0; i < 8; i++) {
-         for (var j = 0; j < 8; j++) {
-             sqname = idx(i, j);
-             piece = vis_game.get(sqname); // we see current piece placement
-             if (piece && piece.type == 'p') {
-                 if (piece.color == 'b' && !as_w) { // our black pawn
-                     visible.add(idx(i + 1, j));
-                     visible.add(idx(i + 1, j - 1));
-                     visible.add(idx(i + 1, j + 1));
-                     if (i == 1) { // pawn has not moved yet
-                         visible.add(idx(i + 2, j));
-                     }
-                 } else if (piece.color == 'w' && as_w) { // our white pawn
-                     visible.add(idx(i - 1, j));
-                     visible.add(idx(i - 1, j - 1));
-                     visible.add(idx(i - 1, j + 1));
-                     if (i == 6) { // pawn has not moved yet
-                         visible.add(idx(i - 2, j));
-                     }
-                 }
-             }
-             // we can see the squares of our own pieces
-             if (piece && ((piece.color == 'b') ^ as_w)) {
-                     visible.add(idx(i, j));
-             }
-         }
-     }
-
-     // generate moves, allowing moves which leave us in check
-     var moves = vis_game.moves({
-         'verbose': true,
-         'as_opponent': (as_w ^ vis_game.turn() == 'w') // not our turn in visgame
-     });
-
-     // add moves to `visible`
-     for (var i = 0; i < moves.length; i++) {
-         visible.add(moves[i].to);
-     }
-
-     if (params.o &&                // reveal capturing pieces
-         move_num > 0 &&
-         as_w ^ game.turn() == 'b'  // our turn
-     ) {
-         if (prev_game === undefined) {
-             prev_game = new Chess(undefined, !params.l);
-             prev_game.load_pgn(game.pgn());
-             prev_game.undo()
-         }
-
-         var emptysq;
-         var capturedsq = false;
-
-         // test whether our piece was just captured
-         var a, b;
-         for (var i = 0; i < 8; i++) {
-             for (var j = 0; j < 8; j++) {
-                 sqname = idx(i, j);
-                 a = prev_game.get(sqname);
-                 b = game.get(sqname);
-                 if (a && b && (a.color != b.color)) {
-                     capturedsq = sqname;
-                 } else if (a && !b) {
-                     emptysq = sqname;
-                 }
-             }
-         }
-
-         if (capturedsq) {
-             visible.add(capturedsq);
-             visible.add(emptysq);
-         }
-     }
-
-     return visible;
- }
-
- // all squares which are NOT visible
- function get_fog(visible) {
-     var fog = []; // list of unseen squares (opposite of visible)
-     // iterate over every square on the board
-     var sq;
-     for (var i = 0; i < 8; i++) {
-         for (var j = 0; j < 8; j++) {
-             sqname = idx(i, j);
-             if (!visible.has(sqname)) { // we can't see this square
-                 fog.push(sqname);
-             }
-         }
-     }
-     return fog;
- }
-
- // return subset of FEN which is visible
- function mask_fen(game, visible) {
-     //////////////////////////////////////////////////////////////
-     // generate FEN, fog
-
-     var fen = '';
-
-     // return correct capitalization for pieces based on side
-     function up(s, c){
-         if (c == 'w') {
-             return s.toUpperCase();
-         } else {
-             return s.toLowerCase();
-         }
-     }
-
-     // iterate over every square on the board
-     var sq;
-     for (var i = 0; i < 8; i++) {
-         for (var j = 0; j < 8; j++) {
-             sqname = idx(i, j);
-             piece = game.get(sqname);
-             if (piece && visible.has(sqname)) { // we can can see this piece
-                 fen += up(piece.type, piece.color);
-             } else { // we can't see this square or it is empty
-                 fen += ' ';
-             }
-         }
-         if (i < 7) { fen += '/'; }
-     }
-
-     fen = fen.replace(/        /g, '8')
-              .replace(/       /g, '7')
-              .replace(/      /g, '6')
-              .replace(/     /g, '5')
-              .replace(/    /g, '4')
-              .replace(/   /g, '3')
-              .replace(/  /g, '2')
-              .replace(/ /g, '1');
-
-    return fen
- }
-
- var invalid_url = false;
- // parse url and read state params
- // URL is base64 of stringified JSON.
- function parse_url() {
-
-     var chess = new Chess(undefined, true); // for pgn validation
-
-     var params = {
-         'w': true,       // playing as white
-         'r': false,      // game is in review
-         's': true,       // scouting
-         'o': false,      // overrun
-         'a': false,      // warn on check
-         'l': false,      // legal moves only
-         'p': '',         // pgn
-     };
-
-     if (window.location.search) {
-         try {
-             obj = JSON.parse(atob(window.location.search.substr(1)));
-             if (!((typeof(obj.p) === 'string') &&
-                   chess.load_pgn(obj.p)
-             )) {
-                 invalid_url = true;
-                 throw "Invalid URL String";
-             } else { // valid URL
-                 // new URL format
-                 if (obj.hasOwnProperty('f') && (typeof(obj.f) === 'string')) {
-                     params.w = (obj.f.search('w') >= 0);
-                     params.r = (obj.f.search('r') >= 0);
-                     params.s = (obj.f.search('s') >= 0);
-                     params.o = (obj.f.search('o') >= 0);
-                     params.a = (obj.f.search('a') >= 0);
-                     params.l = (obj.f.search('l') >= 0);
-                 } else { // backwards compatibility with old URL format
-                     obj.hasOwnProperty('w') ? params.w = obj.w : null;
-                     obj.hasOwnProperty('r') ? params.a = obj.a : null;
-                     obj.hasOwnProperty('s') ? params.s = obj.s : null;
-                     obj.hasOwnProperty('o') ? params.o = obj.o : null;
-                     obj.hasOwnProperty('a') ? params.a = obj.a : null;
-                     obj.hasOwnProperty('l') ? params.l = obj.l : null;
-                 }
-                 params.p = obj.p;
-                 return params;
-             }
-         } catch (e) {
-             fieldEl.val("Invalid URL String");
-             return params;
-         }
-     } else {
-         return params;
-     }
- }
-
- // generate link for opponent
- function generate_url() {
-
-     if (invalid_url) {
-         return "Request originated from invalid URL String."
-     }
-     if (move_num == 0) {
-         return window.location.host + '/dark-chess';
-     }
-     else if (move_num != (max_move_num + 1) && !is_over()) {
-         update();
-         return "You must first make a move."
-     }
-
-     var flags = '';
-     !params.w ? flags += 'w' : null; // change playing_as
-     is_over() ? flags += 'r' : null; // when game is over, automatically enter review
-     document.getElementById('scouting').checked ? flags += 's' : null;
-     document.getElementById('overrun').checked ? flags += 'o' : null;
-     (document.getElementById('warn').checked ||
-      document.getElementById('legal').checked) ? flags += 'a' : null;
-     document.getElementById('legal').checked ? flags += 'l' : null;
-
-     payload = btoa(JSON.stringify({
-         'f': flags,
-         'p': game.pgn()
-                  .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
-                  .substr(1)
-     }));
-     return window.location.host + '/dark-chess?' + payload;
- }
-
- // game options
- document.getElementById('scouting').checked = params.s;
- document.getElementById('overrun').checked = params.o;
- document.getElementById('warn').checked = params.a;
- document.getElementById('legal').checked = params.l;
- if (move_num > 0) {
-     document.getElementById('scouting').disabled = true;
-     document.getElementById('overrun').disabled = true;
-     document.getElementById('warn').disabled = true;
-     document.getElementById('legal').disabled = true;
- }
- document.getElementById('legal').onchange = function() {
-     if (document.getElementById('legal').checked &&
-         !(document.getElementById('legal').disabled)) {
-         document.getElementById('warn').checked = true;
-     }
- };
-
- // dark-chess allows checked positions to play unrestricted
- // and capture of kings, but check-mate is check-mate
- function is_over() {
-     return ((game.fen().split(' ')[0].search(/K/) == -1) ||
-             (game.fen().split(' ')[0].search(/k/) == -1) ||
-             (game.in_draw() === true) ||
-             (game.in_checkmate() === true));
- }
-
- // intercept movement to check against history
- function domove(m) {
-
-     var current_fen = game.fen();
-     var is_valid = game.move(m);
-
-     if (is_valid) {
-
-         if (hist.length > game.history().length) {
-
-             // compare against known history
-             eq_test = new Chess(current_fen, !params.l);
-             eq_test.move(hist[move_num]);
-
-             // new branch of history
-             if (!(eq_test.fen() == game.fen())) {
-                 hist = game.history();
-             }
-
-         } else {
-             hist = game.history();
-         }
-
-         move_num += 1;
-     }
-
-     // allow instant review on game end
-     if (is_over()) {
-         params.r = true;
-     }
-
-     return is_valid;
- }
-
- function paint(squares, cls) {
-     var el;
-     for (var i = 0; i < squares.length; i++) {
-         el = $("div[data-square='" + squares[i] + "']");
-         el.addClass(cls);
-     }
- }
-
-
- // repaint to allow previous states of play to be examined
- // allow partial review of board without revealing information
- // allow full review when params.r is set
- function update() {
-
-     board.resize();
-
-     // reset fog
-     $(".square-55d63").removeClass("wfog");
-     $(".square-55d63").removeClass("bfog");
-
-     // set classes based on who's side we are viewing
-     var fcls, opcls;
-     if (params.w) {
-         fcls = 'wfog'; opcls = 'bfog';
-     } else {
-         fcls = 'bfog'; opcls = 'wfog';
-     }
-
-     var visible;
-     if (move_num <= max_move_num) { // current or past state of play
-
-         // get mask of proper game state
-         visible = vision(game, params.w);
-
-     } else { // prospective move (link not yet sent to opponent)
-
-         // do not allow information to be revealed
-         // use mask at latest assured state of play
-         visible = max_visible;
-
-     }
-
-     paint(get_fog(visible), fcls)
-
-     if (!params.r) { // partial review
-
-         // see only our pieces
-         board.position(mask_fen(game, visible));
-     }
-     else { // full review
-
-         // see opponent's fog
-         paint(get_fog(vision(game, !params.w)), opcls);
-
-         // see all pieces
-         board.position(game.fen());
-     }
-
-     updateStatus();
- }
-
- // update status element
- function updateStatus() {
-     var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
-
-     var movecolor = 'White';
-     if (game.turn() === 'b') {
-         movecolor = 'Black';
-     }
-
-     // black victory
-     if (game.fen().split(' ')[0].search(/K/) == -1) {
-         status = "Game over: White King captured."
-     }
-
-     // white victory
-     else if (game.fen().split(' ')[0].search(/k/) == -1) {
-         status = "Game over: Black King captured."
-     }
-
-     // draw?
-     else if (game.in_draw() === true) {
-         status = 'Game over, drawn position';
-     }
-
-     // game still on
-     else {
-         status += movecolor + ' to move';
-
-         var ourturn = params.w == (game.turn() == 'w');
-
-         // check, and our turn
-         if (ourturn && params.a && game.in_check() === true) {
-             status += '; ' + movecolor + ' is in check';
-         }
-
-     }
-
-     statusEl.html(status);
- }
-
-
- ///////////////////////////////////////////////////////////////////////////////
- // CHESSBOARD HOOKS
- // see chessboard.js example 5000
-
- // do not pick up pieces if the game is over
- // only pick up pieces for the side to move
- var onDragStart = function(source, piece, position, orientation) {
-     if (is_over() || // game is over
-         (params.w ^ piece.search(/^w/) >= 0) || // not our piece
-         (params.w ^ (game.turn() === 'w'))) { // not our turn
-         return false;
-     }
- };
-
- var onDrop = function(source, target) {
-   // see if the move is legal and update game if so
-   var move = domove({
-     from: source,
-     to: target,
-     promotion: document.getElementById('promoteDD').value
-   });
-
-   // illegal move
-   if (move === null) { return 'snapback'; }
-
-   // board has already updated its position
-   // do not update again and tear animations
-     updateStatus();
- };
-
- // update the board position after the piece snap
- // for castling, en passant, pawn promotion
- var onSnapEnd = function() {
-     update();
- };
-
- board = ChessBoard('board', {
-     draggable: true,
-     position: '8/8/8/8/8/8/8/8',
-     pieceTheme: '/images/chesspieces/{piece}.png',
-     moveSpeed: 50,
-     snapbackSpeed: 50,
-     snapSpeed: 50,
-     onDragStart: onDragStart,
-     onDrop: onDrop,
-     onSnapEnd: onSnapEnd
- });
-
- if (move_num % 2) {
-     board.flip()
- }
-
- //////////////////////////////////////////////////////////////////////////////
- // Buttons and fields
- //
-
- $('#startBtn').on('click', function(){
-     game.reset();
-     move_num = 0;
-     update();
- });
- $('#prevBtn').on('click', function(){
-     if (move_num > 0) {
-         game.undo();
-         move_num -= 1;
-         update();
-     }
- });
- $('#resetBtn').on('click', function(){
-     game.load_pgn(params.p);
-     hist = game.history();
-     move_num = game.history().length;
-     update();
- });
- $('#nextBtn').on('click', function(){
-     if (move_num < hist.length) {
-         domove(hist[move_num]);
-         update();
-     }
- });
- $('#lastBtn').on('click', function(){
-     while (move_num < hist.length) {
-         if (!domove(hist[move_num])) {
-             break;
-         };
-     }
-     update();
- });
- $('#flipBtn').on('click', function() {
-     board.flip(); update();
- });
- $('#linkBtn').on('click', function() {
-     while (move_num < hist.length) {
-         if (!domove(hist[move_num])) {
-             break;
-         };
-     }
-     update();
-     fieldEl.val(generate_url());
-     copyField();
- });
- $('#fenBtn').on('click', function() {
-     if (params.r) {
-         fieldEl.val(game.fen());
-         copyField();
-     } else {
-         fieldEl.val('Review is available upon game conclusion');
-     }
- });
- $('#pgnBtn').on('click', function() {
-     if (is_over()) {
-         fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
-         copyField();
-     } else {
-         fieldEl.val('Review is available upon game conclusion');
-     }
- });
- $('#loadBtn').on('click', function() {
-     if (game.load(fieldEl.val()) ||
-         game.load_pgn(fieldEl.val())) {
-         hist = game.history();
-         move_num = hist.length;
-         max_move_num = move_num;
-         update();
-     } else {
-         fieldEl.val('Could not load input');
-     }
- });
-
- window.onresize = update;
- function wait_update() {
-     if (!($.isReady)) {
-         setTimeout(wait_update, 100);
-     } else {
-         update();
-     }
- }
+document.getElementsByClassName('title')[0].remove();
+global_disable_fullscreen_img_on_click = true;
+
+
+function copyField() {
+    document.getElementById("field").select();
+    document.execCommand("copy");
+}
+
+// anonymous function to disallow trivial console inspection
+(function() {
+
+var board,                                  // Chessboard
+    hist,                                   // history of moves
+    move_num,                               // current move number
+    statusEl = $('#status'),                // status field
+    fieldEl = $('#field'),                  // text box
+    params = parse_url();
+var game = new Chess(undefined, !params.l); // Chess
+game.load_pgn(params.p);
+
+hist = game.history();
+move_num = hist.length;
+
+// for review (showing fog for both players)
+// `update()` will not allow players to fish for information with prospective
+// moves
+var max_move_num = move_num;
+var max_visible = vision(game, params.w);
+
+// given row and column numbers (starting at 0), convert to
+// square name. e.g. 0,0 -> a8
+function idx(r, c) {
+    var s = String.fromCharCode(97 + c);
+    return (s + (8 - r).toString());
+}
+
+// generate vision of a particular player at a state of the game
+function vision(game, as_w) {
+    // returns:
+    //    set of visible squares
+    // arguments:
+    //    game: state of play (Chess object from chess.js)
+    //    as_w: boolean for whether we are playing as white
+
+    // determine state of game to use for querying player's vision
+    // Chess.js has some strange side-effects when querying possible moves
+    var vis_game = new Chess(game.fen(), !params.l);
+    var prev_game;
+    if ((as_w ^ game.turn() == 'w')) { // not our turn (we just moved)
+        if (move_num == 0) {
+            // only happens for black during review
+            // (since we cannot undo when no moves have been made)
+            vis_game = new Chess(undefined, !params.l);
+            vis_game.move('b3'); // inconsequential
+        } else if (!params.s) { // pieces gain vision on full move
+            // inspect previous state of play (before the move we just made)
+            var prev_game = new Chess(undefined, !params.l);
+            prev_game.load_pgn(game.pgn());
+            prev_game.undo()
+            vis_game = prev_game;
+        }
+    }
+
+    // deal with pawns (seen squares != legal moves)
+    // and own pieces (we can see squares our pieces occupy)
+    var visible = new Set(); // set of seen squares
+    var piece;
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            sqname = idx(i, j);
+            piece = vis_game.get(sqname); // we see current piece placement
+            if (piece && piece.type == 'p') {
+                if (piece.color == 'b' && !as_w) { // our black pawn
+                    visible.add(idx(i + 1, j));
+                    visible.add(idx(i + 1, j - 1));
+                    visible.add(idx(i + 1, j + 1));
+                    if (i == 1) { // pawn has not moved yet
+                        visible.add(idx(i + 2, j));
+                    }
+                } else if (piece.color == 'w' && as_w) { // our white pawn
+                    visible.add(idx(i - 1, j));
+                    visible.add(idx(i - 1, j - 1));
+                    visible.add(idx(i - 1, j + 1));
+                    if (i == 6) { // pawn has not moved yet
+                        visible.add(idx(i - 2, j));
+                    }
+                }
+            }
+            // we can see the squares of our own pieces
+            if (piece && ((piece.color == 'b') ^ as_w)) {
+                    visible.add(idx(i, j));
+            }
+        }
+    }
+
+    // generate moves, allowing moves which leave us in check
+    var moves = vis_game.moves({
+        'verbose': true,
+        'as_opponent': (as_w ^ vis_game.turn() == 'w') // not our turn in visgame
+    });
+
+    // add moves to `visible`
+    for (var i = 0; i < moves.length; i++) {
+        visible.add(moves[i].to);
+    }
+
+    if (params.o &&                // reveal capturing pieces
+        move_num > 0 &&
+        as_w ^ game.turn() == 'b'  // our turn
+    ) {
+        if (prev_game === undefined) {
+            prev_game = new Chess(undefined, !params.l);
+            prev_game.load_pgn(game.pgn());
+            prev_game.undo()
+        }
+
+        var emptysq;
+        var capturedsq = false;
+
+        // test whether our piece was just captured
+        var a, b;
+        for (var i = 0; i < 8; i++) {
+            for (var j = 0; j < 8; j++) {
+                sqname = idx(i, j);
+                a = prev_game.get(sqname);
+                b = game.get(sqname);
+                if (a && b && (a.color != b.color)) {
+                    capturedsq = sqname;
+                } else if (a && !b) {
+                    emptysq = sqname;
+                }
+            }
+        }
+
+        if (capturedsq) {
+            visible.add(capturedsq);
+            visible.add(emptysq);
+        }
+    }
+
+    return visible;
+}
+
+// all squares which are NOT visible
+function get_fog(visible) {
+    var fog = []; // list of unseen squares (opposite of visible)
+    // iterate over every square on the board
+    var sq;
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            sqname = idx(i, j);
+            if (!visible.has(sqname)) { // we can't see this square
+                fog.push(sqname);
+            }
+        }
+    }
+    return fog;
+}
+
+// return subset of FEN which is visible
+function mask_fen(game, visible) {
+    //////////////////////////////////////////////////////////////
+    // generate FEN, fog
+
+    var fen = '';
+
+    // return correct capitalization for pieces based on side
+    function up(s, c){
+        if (c == 'w') {
+            return s.toUpperCase();
+        } else {
+            return s.toLowerCase();
+        }
+    }
+
+    // iterate over every square on the board
+    var sq;
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            sqname = idx(i, j);
+            piece = game.get(sqname);
+            if (piece && visible.has(sqname)) { // we can can see this piece
+                fen += up(piece.type, piece.color);
+            } else { // we can't see this square or it is empty
+                fen += ' ';
+            }
+        }
+        if (i < 7) { fen += '/'; }
+    }
+
+    fen = fen.replace(/        /g, '8')
+             .replace(/       /g, '7')
+             .replace(/      /g, '6')
+             .replace(/     /g, '5')
+             .replace(/    /g, '4')
+             .replace(/   /g, '3')
+             .replace(/  /g, '2')
+             .replace(/ /g, '1');
+
+   return fen
+}
+
+var invalid_url = false;
+// parse url and read state params
+// URL is base64 of stringified JSON.
+function parse_url() {
+
+    var chess = new Chess(undefined, true); // for pgn validation
+
+    var params = {
+        'w': true,       // playing as white
+        'r': false,      // game is in review
+        's': true,       // scouting
+        'o': false,      // overrun
+        'a': false,      // warn on check
+        'l': false,      // legal moves only
+        'p': '',         // pgn
+    };
+
+    if (window.location.search) {
+        try {
+            obj = JSON.parse(atob(window.location.search.substr(1)));
+            if (!((typeof(obj.p) === 'string') &&
+                  chess.load_pgn(obj.p)
+            )) {
+                invalid_url = true;
+                throw "Invalid URL String";
+            } else { // valid URL
+                // new URL format
+                if (obj.hasOwnProperty('f') && (typeof(obj.f) === 'string')) {
+                    params.w = (obj.f.search('w') >= 0);
+                    params.r = (obj.f.search('r') >= 0);
+                    params.s = (obj.f.search('s') >= 0);
+                    params.o = (obj.f.search('o') >= 0);
+                    params.a = (obj.f.search('a') >= 0);
+                    params.l = (obj.f.search('l') >= 0);
+                } else { // backwards compatibility with old URL format
+                    obj.hasOwnProperty('w') ? params.w = obj.w : null;
+                    obj.hasOwnProperty('r') ? params.a = obj.a : null;
+                    obj.hasOwnProperty('s') ? params.s = obj.s : null;
+                    obj.hasOwnProperty('o') ? params.o = obj.o : null;
+                    obj.hasOwnProperty('a') ? params.a = obj.a : null;
+                    obj.hasOwnProperty('l') ? params.l = obj.l : null;
+                }
+                params.p = obj.p;
+                return params;
+            }
+        } catch (e) {
+            fieldEl.val("Invalid URL String");
+            return params;
+        }
+    } else {
+        return params;
+    }
+}
+
+// generate link for opponent
+function generate_url() {
+
+    if (invalid_url) {
+        return "Request originated from invalid URL String."
+    }
+    if (move_num == 0) {
+        return window.location.host + '/dark-chess';
+    }
+    else if (move_num != (max_move_num + 1) && !is_over()) {
+        update();
+        return "You must first make a move."
+    }
+
+    var flags = '';
+    !params.w ? flags += 'w' : null; // change playing_as
+    is_over() ? flags += 'r' : null; // when game is over, automatically enter review
+    document.getElementById('scouting').checked ? flags += 's' : null;
+    document.getElementById('overrun').checked ? flags += 'o' : null;
+    (document.getElementById('warn').checked ||
+     document.getElementById('legal').checked) ? flags += 'a' : null;
+    document.getElementById('legal').checked ? flags += 'l' : null;
+
+    payload = btoa(JSON.stringify({
+        'f': flags,
+        'p': game.pgn()
+                 .replace(/\s*[0-9]+\.\s+|\s+/g, ' ')
+                 .substr(1)
+    }));
+    return window.location.host + '/dark-chess?' + payload;
+}
+
+// game options
+document.getElementById('scouting').checked = params.s;
+document.getElementById('overrun').checked = params.o;
+document.getElementById('warn').checked = params.a;
+document.getElementById('legal').checked = params.l;
+if (move_num > 0) {
+    document.getElementById('scouting').disabled = true;
+    document.getElementById('overrun').disabled = true;
+    document.getElementById('warn').disabled = true;
+    document.getElementById('legal').disabled = true;
+}
+document.getElementById('legal').onchange = function() {
+    if (document.getElementById('legal').checked &&
+        !(document.getElementById('legal').disabled)) {
+        document.getElementById('warn').checked = true;
+    }
+};
+
+// dark-chess allows checked positions to play unrestricted
+// and capture of kings, but check-mate is check-mate
+function is_over() {
+    return ((game.fen().split(' ')[0].search(/K/) == -1) ||
+            (game.fen().split(' ')[0].search(/k/) == -1) ||
+            (game.in_draw() === true) ||
+            (game.in_checkmate() === true));
+}
+
+// intercept movement to check against history
+function domove(m) {
+
+    var current_fen = game.fen();
+    var is_valid = game.move(m);
+
+    if (is_valid) {
+
+        if (hist.length > game.history().length) {
+
+            // compare against known history
+            eq_test = new Chess(current_fen, !params.l);
+            eq_test.move(hist[move_num]);
+
+            // new branch of history
+            if (!(eq_test.fen() == game.fen())) {
+                hist = game.history();
+            }
+
+        } else {
+            hist = game.history();
+        }
+
+        move_num += 1;
+    }
+
+    // allow instant review on game end
+    if (is_over()) {
+        params.r = true;
+    }
+
+    return is_valid;
+}
+
+function paint(squares, cls) {
+    var el;
+    for (var i = 0; i < squares.length; i++) {
+        el = $("div[data-square='" + squares[i] + "']");
+        el.addClass(cls);
+    }
+}
+
+
+// repaint to allow previous states of play to be examined
+// allow partial review of board without revealing information
+// allow full review when params.r is set
+function update() {
+
+    board.resize();
+
+    // reset fog
+    $(".square-55d63").removeClass("wfog");
+    $(".square-55d63").removeClass("bfog");
+
+    // set classes based on who's side we are viewing
+    var fcls, opcls;
+    if (params.w) {
+        fcls = 'wfog'; opcls = 'bfog';
+    } else {
+        fcls = 'bfog'; opcls = 'wfog';
+    }
+
+    var visible;
+    if (move_num <= max_move_num) { // current or past state of play
+
+        // get mask of proper game state
+        visible = vision(game, params.w);
+
+    } else { // prospective move (link not yet sent to opponent)
+
+        // do not allow information to be revealed
+        // use mask at latest assured state of play
+        visible = max_visible;
+
+    }
+
+    paint(get_fog(visible), fcls)
+
+    if (!params.r) { // partial review
+
+        // see only our pieces
+        board.position(mask_fen(game, visible));
+    }
+    else { // full review
+
+        // see opponent's fog
+        paint(get_fog(vision(game, !params.w)), opcls);
+
+        // see all pieces
+        board.position(game.fen());
+    }
+
+    updateStatus();
+}
+
+// update status element
+function updateStatus() {
+    var status = (Math.floor(game.history().length / 2) + 1).toString() + ': ';
+
+    var movecolor = 'White';
+    if (game.turn() === 'b') {
+        movecolor = 'Black';
+    }
+
+    // black victory
+    if (game.fen().split(' ')[0].search(/K/) == -1) {
+        status = "Game over: White King captured."
+    }
+
+    // white victory
+    else if (game.fen().split(' ')[0].search(/k/) == -1) {
+        status = "Game over: Black King captured."
+    }
+
+    // draw?
+    else if (game.in_draw() === true) {
+        status = 'Game over, drawn position';
+    }
+
+    // game still on
+    else {
+        status += movecolor + ' to move';
+
+        var ourturn = params.w == (game.turn() == 'w');
+
+        // check, and our turn
+        if (ourturn && params.a && game.in_check() === true) {
+            status += '; ' + movecolor + ' is in check';
+        }
+
+    }
+
+    statusEl.html(status);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// CHESSBOARD HOOKS
+// see chessboard.js example 5000
+
+// do not pick up pieces if the game is over
+// only pick up pieces for the side to move
+var onDragStart = function(source, piece, position, orientation) {
+    if (is_over() || // game is over
+        (params.w ^ piece.search(/^w/) >= 0) || // not our piece
+        (params.w ^ (game.turn() === 'w'))) { // not our turn
+        return false;
+    }
+};
+
+var onDrop = function(source, target) {
+  // see if the move is legal and update game if so
+  var move = domove({
+    from: source,
+    to: target,
+    promotion: document.getElementById('promoteDD').value
+  });
+
+  // illegal move
+  if (move === null) { return 'snapback'; }
+
+  // board has already updated its position
+  // do not update again and tear animations
+    updateStatus();
+};
+
+// update the board position after the piece snap
+// for castling, en passant, pawn promotion
+var onSnapEnd = function() {
+    update();
+};
+
+board = ChessBoard('board', {
+    draggable: true,
+    position: '8/8/8/8/8/8/8/8',
+    pieceTheme: '/img/chesspieces/{piece}.png',
+    moveSpeed: 50,
+    snapbackSpeed: 50,
+    snapSpeed: 50,
+    onDragStart: onDragStart,
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd
+});
+
+if (move_num % 2) {
+    board.flip()
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Buttons and fields
+//
+
+$('#startBtn').on('click', function(){
+    game.reset();
+    move_num = 0;
+    update();
+});
+$('#prevBtn').on('click', function(){
+    if (move_num > 0) {
+        game.undo();
+        move_num -= 1;
+        update();
+    }
+});
+// $('#resetBtn').on('click', function(){
+//     game.load_pgn(params.p);
+//     hist = game.history();
+//     move_num = game.history().length;
+//     update();
+// });
+$('#nextBtn').on('click', function(){
+    if (move_num < hist.length) {
+        domove(hist[move_num]);
+        update();
+    }
+});
+$('#lastBtn').on('click', function(){
+    while (move_num < hist.length) {
+        if (!domove(hist[move_num])) {
+            break;
+        };
+    }
+    update();
+});
+$('#flipBtn').on('click', function() {
+    board.flip(); update();
+});
+$('#linkBtn').on('click', function() {
+    while (move_num < hist.length) {
+        if (!domove(hist[move_num])) {
+            break;
+        };
+    }
+    update();
+    fieldEl.val(generate_url());
+    copyField();
+});
+$('#fenBtn').on('click', function() {
+    if (params.r) {
+        fieldEl.val(game.fen());
+        copyField();
+    } else {
+        fieldEl.val('Review is available upon game conclusion');
+    }
+});
+$('#pgnBtn').on('click', function() {
+    if (is_over()) {
+        fieldEl.val(game.pgn({ 'max_width': 5, 'newline_char': '\n' }));
+        copyField();
+    } else {
+        fieldEl.val('Review is available upon game conclusion');
+    }
+});
+$('#loadBtn').on('click', function() {
+    if (game.load(fieldEl.val()) ||
+        game.load_pgn(fieldEl.val())) {
+        hist = game.history();
+        move_num = hist.length;
+        max_move_num = move_num;
+        update();
+    } else {
+        fieldEl.val('Could not load input');
+    }
+});
+
+window.onresize = update;
+function wait_update() {
+    if (!($.isReady)) {
+        setTimeout(wait_update, 100);
+    } else {
+        update();
+    }
+}
  wait_update();
 
- })();
+onReady(function() {
+  board.resize();
+});
+
+})();
 </script>
-</br>
-</article>
-    </main>
-
-    <script type="text/javascript">
-     engage();
-    </script>
-  </body>
-
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
 </html>

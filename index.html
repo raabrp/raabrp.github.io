@@ -1,260 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="This site is a space for me to share my interest in various subjects, publish personal essays, and communicate about projects or developments which are important to me."/>
-
-    <title>
-Reilly Raab    </title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- CSS for Layout -->
-    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
-
-    <!-- CSS for Colors -->
-    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-light-rotated.css">
-    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/colors/color-light-default.css">
-    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-rotated.css">
-    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-default.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
-
-    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
-
-
-    <link rel="stylesheet"
-          href="theme/css/fonts.css">
-
-    <!-- JS for Color Theming -->
-    <script type="text/javascript">
-     /*
-      * Run this early, since it will create an undesiresable flash of color
-      * if delayed. It seems that the fastest way to get the correct colors
-      * is by including a <link> for each theme, causing them to be loaded in
-      * parallel, with marginal increased delay until script execution.
-      *
-      * The alternative is waiting to load the correct colors until after
-      * script execution -- which is delayed by loading the initial
-      * links anyway -- then *also* waiting for the new resource to load
-      * *after* script execution, resulting in almost twice the delay.
-      */
-
-     function set_theme(val) {
-         var color_links = document.getElementsByClassName('color-css');
-         for (var i=0; i < color_links.length; i++) {
-             var link = color_links[i];
-             if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/colors/color-' + val + '.css';
-             } else {
-                 link.removeAttribute('href');
-             }
-         }
-         try {
-             localStorage['theme'] = val;
-         } catch (e) {
-             ;
-         }
-     }
-     try {
-         var stored = localStorage['theme'];
-         if (stored && (stored != 'undefined'))  {
-             set_theme(stored);
-         }
-     } catch (e) {
-         ;
-     }
-    </script>
-
-<link rel="stylesheet" type="text/css" href="theme/css/page.css">
-
-    <!-- Pelican variable injection -->
-    <script type="text/javascript">var pelican = {};</script>
-
-    <!-- Main JavaScript functions -->
-    <script src="theme/js/main.js"></script>
-
-  </head>
-
-  <body>
-    <main>
-      <menu>
-        <!-- The checkbox hack -->
-        <input type="checkbox" id="hamburger-checkbox">
-        <label for="hamburger-checkbox">
-          <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>MENU</span>
-          </div>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <p>Links</p>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="about.html">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="site-info.html">
-                    Site Info
-                  </a>
-                </li>
-              </ul>
-            <!-- Unhidden if JavaScript enabled -->
-            <li id="theme-select" style="display: none;">
-              <p>Select Colors</p>
-              <ul>
-                <li>
-                  <a class="theme-selector" value="dark-default">
-                    Dark default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="dark-rotated">
-                    Dark rotated
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-default">
-                    Light default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-rotated">
-                    Light rotated
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </menu>
-
-      <div id="top-spacer"></div>
-
+<head>
+<!-- 2022-06-17 Fri 13:50 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reilly Raab</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
 <header>
-    <h1>
-        Reilly Raab
-    </h1>
+<h1 class="title">Reilly Raab</h1>
 </header>
-<article class="index">
+<div id="outline-container-Pages" class="outline-2">
+<h2 id="Pages">Pages</h2>
+<div class="outline-text-2" id="text-org3f3a5b4">
+<p>
+<a href="./site-info.html">Technical Site Info</a> <br>
+<a href="./about.html">Curriculum Vitae</a>
+</p>
+</div>
+</div>
 
-    <h2>
-        Pages
-    </h2>
-    <ul class="toc">
-        <li>
-            <p>
-                <a href="about.html">
-                    About
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="contact.html">
-                    Contact
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="site-info.html">
-                    Site Info
-                </a>
-            </p>
-        </li>
-    </ul>
+<div id="outline-container-Notes" class="outline-2">
+<h2 id="Notes">Notes</h2>
+<div class="outline-text-2" id="text-orgafe1bc5">
+<p>
+<a href="./demo.html">HTML Demo &amp; Reference</a> <br>
+<a href="./reading-list.html">Digital Bookshelf</a> <br>
+<a href="./julia.html">Julia</a> <br>
+<a href="./euler-lagrange.html">Calculus of Variations</a>
+</p>
+</div>
+</div>
 
-    <h2>
-        Articles
-    </h2>
-    <ul class="toc">
-        <li>
-            <p>
-                <a href="reading-list.html">
-                    <code>Jul 2018</code>
-                    Digital Bookshelf
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="demo.html">
-                    <code>Jan 2018</code>
-                    Markdown Demo
-                </a>
-            </p>
-        </li>
-    </ul>
-    <h2>
-        Other
-    </h2>
-    <ul class="toc">
-        <li>
-            <p>
-                <a href="chess.html">
-                 Chess
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="dark-chess.html">
-                 Dark-Chess
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="fischer-random.html">
-                 Fischer Random Chess
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="greyline.html">
-                 Greyline Map
-                </a>
-            </p>
-        </li>
-        <li>
-            <p>
-                <a href="tex.html">
-                 Live Tex to PNG
-                </a>
-            </p>
-        </li>
-    </ul>
-</article>
-    </main>
-
-    <script type="text/javascript">
-     engage();
-    </script>
-  </body>
-
+<div id="outline-container-Projects" class="outline-2">
+<h2 id="Projects">Projects</h2>
+<div class="outline-text-2" id="text-orgade49d0">
+<p>
+<a href="./chess.html">Chess</a> <br>
+<a href="./dark-chess.html">Dark Chess</a> <br>
+<a href="./fischer-random.html">Fischer Random Chess</a> <br>
+<a href="./tex.html">Live Tex to SVG, PNG</a>
+</p>
+</div>
+</div>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
 </html>

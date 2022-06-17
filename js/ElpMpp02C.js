@@ -1,5 +1,3 @@
-//
-
 /**
  * Source of generating code:
  * https://github.com/ytliu0/ElpMpp02

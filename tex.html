@@ -1,195 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="Convert TeX to PNG of different sizes online with MathJax."/>
-
-    <title>
-Live Tex to PNG    </title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- CSS for Layout -->
-    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
-
-    <!-- CSS for Colors -->
-    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-light-rotated.css">
-    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/colors/color-light-default.css">
-    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-rotated.css">
-    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-default.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
-
-    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
-
-
-    <link rel="stylesheet"
-          href="theme/css/fonts.css">
-
-    <!-- JS for Color Theming -->
-    <script type="text/javascript">
-     /*
-      * Run this early, since it will create an undesiresable flash of color
-      * if delayed. It seems that the fastest way to get the correct colors
-      * is by including a <link> for each theme, causing them to be loaded in
-      * parallel, with marginal increased delay until script execution.
-      *
-      * The alternative is waiting to load the correct colors until after
-      * script execution -- which is delayed by loading the initial
-      * links anyway -- then *also* waiting for the new resource to load
-      * *after* script execution, resulting in almost twice the delay.
-      */
-
-     function set_theme(val) {
-         var color_links = document.getElementsByClassName('color-css');
-         for (var i=0; i < color_links.length; i++) {
-             var link = color_links[i];
-             if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/colors/color-' + val + '.css';
-             } else {
-                 link.removeAttribute('href');
-             }
-         }
-         try {
-             localStorage['theme'] = val;
-         } catch (e) {
-             ;
-         }
-     }
-     try {
-         var stored = localStorage['theme'];
-         if (stored && (stored != 'undefined'))  {
-             set_theme(stored);
-         }
-     } catch (e) {
-         ;
-     }
-    </script>
-
-<link rel="stylesheet" type="text/css" href="theme/css/page.css">
-
-    <!-- Pelican variable injection -->
-    <script type="text/javascript">var pelican = {};</script>
-
-    <!-- Main JavaScript functions -->
-    <script src="theme/js/main.js"></script>
-
-  </head>
-
-  <body>
-    <main>
-      <menu>
-        <!-- The checkbox hack -->
-        <input type="checkbox" id="hamburger-checkbox">
-        <label for="hamburger-checkbox">
-          <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>MENU</span>
-          </div>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <p>Links</p>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="about.html">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="site-info.html">
-                    Site Info
-                  </a>
-                </li>
-              </ul>
-            <!-- Unhidden if JavaScript enabled -->
-            <li id="theme-select" style="display: none;">
-              <p>Select Colors</p>
-              <ul>
-                <li>
-                  <a class="theme-selector" value="dark-default">
-                    Dark default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="dark-rotated">
-                    Dark rotated
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-default">
-                    Light default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-rotated">
-                    Light rotated
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </menu>
-
-      <div id="top-spacer"></div>
-
+<head>
+<!-- 2022-06-13 Mon 17:40 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Tex to SVG, PNG</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
 <header>
-    <h1 id="title-header">
-        Live Tex to PNG
-    </h1>
-</header>
-<article>
-    
-<div style="height: 400px; display: flex; justify-content: center; align-items: center;">
-<div style="background: #fff; height: auto;">
-<img id="demo-img" src="" style="max-height: 400px;" width="100%"/>
+<h1 class="title">Live Tex to SVG, PNG</h1>
+</header><style type='text/css'>svg { color: #000; }</style>
+<p>SVG — Scalable!</p>
+    <img id="svg-container"
+    style='background-image: repeating-conic-gradient(#fff 0deg  90deg, lightgrey 0 180deg); background-size: 20px 20px;'/>
+<p>PNG — Fixed resolution.</p>
+<div style="min-height: 100px; display: flex; justify-content: center; align-items: center;">
+  <div style='background-image: url("img/parchment.jpg"); height: auto;'>
+    <img id="demo-img"
+         style='max-height: 400px; background-image: repeating-conic-gradient(#fff 0deg  90deg, lightgrey 0 180deg); background-size: 20px 20px;'
+         src=""/>
+  </div>
 </div>
-</div>
-<br/>
-<p><span>Font size (Pixels per <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Em_(typography)" href="https://en.wikipedia.org/wiki/Em_(typography)" id="generated-link-id0">em</a>) (max 1000) </span><input id="scale" name="scale" size="4" type="number" value="30"/></p>
-<textarea id="demo-input" spellcheck="false" style="width: 100%; height: 100px;">
+<br />
+<p>
+Font size (PNG only) <!--\in [1, 1000]-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1000</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\in [1, 1000]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1000</span><span class="mclose">]</span></span></span></span>
+:
+<input type="number" id="scale" name="scale" value="100" size="4"/>.
+<span>Color: </span><input type="color" id="color" name="color" value="#000000" />.
+</p>
+
+<textarea
+  id="demo-input"
+  style='width: 100%; height: 13em;'
+  spellcheck="false">
 % Your expression here
 
 \newcommand{\coloneqq}{\mathrel{\vcenter{:}}=}
 
 \Re \coloneqq \frac{z + z^\dagger}{2}
-      </textarea>
-<div id="history">
-</div>
-<p>Powered by <a href="https://www.mathjax.org/" id="generated-link-id1">MathJax</a></p>
-<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<script type="text/javascript">
+</textarea>
 
+<p>Powered by <a href="https://www.mathjax.org/">MathJax</a></p>
+
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>-->
+<script id="MathJax-script" async src="js/lib/tex-svg.js"></script>
+
+<script type="text/javascript">
   var dimg = document.getElementById("demo-img");
   var inpt = document.getElementById("demo-input");
   var scale = document.getElementById("scale");
+  var color = document.getElementById("color");
 
   let max_scale = 1000;
   let min_scale = 1;
   scale.setAttribute("max", max_scale);
   scale.setAttribute("min", min_scale);
-  
+
+  var xml_serializer = new XMLSerializer();
+
   var paint_timeout;
   function paint() {
       MathJax.tex2svgPromise(
@@ -197,22 +78,37 @@ Live Tex to PNG    </title>
       ).then(function(el) {
 
           let svg = el.children[0];
+          let style = svg.getAttribute('style');
+          svg.setAttribute('style', style + 'color: ' + color.value + ';')
+
+          let svg_img = document.getElementById('svg-container')
+          // svg_img.replaceChildren(svg);
+          svg_img.src = (
+            "data:image/svg+xml;base64," +
+            btoa(xml_serializer.serializeToString(svg))
+          );
 
           let box = svg.viewBox.baseVal;
           let w = box.width;
           let h = box.height;
 
           // width of em dash is 1000 pixels in svg box, conveniently
-          
+
+          if (scale.value > max_scale) {
+            scale.value = max_scale;
+          }
+          if (scale.value < min_scale) {
+            scale.value = min_scale;
+          }
           let s = Math.min(Math.max(scale.value, min_scale), max_scale);
 
           let w2 = w * (s / max_scale);
           let h2 = h * (s / max_scale);
 
           svg.setAttribute("width", w2.toString() + "px");
-          svg.setAttribute("height", h2.toString() + "px"); 
-          
-          var data = (new XMLSerializer()).serializeToString(svg); 
+          svg.setAttribute("height", h2.toString() + "px");
+
+          var data = (new XMLSerializer()).serializeToString(svg);
 
           var DOMURL = window.URL || window.webkitURL || window;
 
@@ -222,36 +118,35 @@ Live Tex to PNG    </title>
           var url = DOMURL.createObjectURL(svgBlob);
 
           dimg.src = url;
-          // dimg.style["border"] = "medium solid #525";
+
+          // debug timing (flash red border on update)
+          // dimg.style["border"] = "1px solid #f00";
           // setTimeout(function(){
-          //    dimg.style["border"] = "medium solid #444";
+          //     dimg.style["border"] = "1px solid #000";
           // }, 100);
-          
+
       });
   }
-  
+
   function doDemo() {
       try {
           clearTimeout(paint_timeout)
           paint_timeout = setTimeout(paint, 500);
-          
+
       } catch (err) {
           console.log(err);
       }
   }
 
   inpt.addEventListener("input", doDemo);
+  color.addEventListener("input", doDemo);
   scale.addEventListener("input", doDemo);
 
   doDemo();
 </script>
-
-</article>
-    </main>
-
-    <script type="text/javascript">
-     engage();
-    </script>
-  </body>
-
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
 </html>

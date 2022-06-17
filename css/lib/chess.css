@@ -1,0 +1,128 @@
+/*!
+ * Copyright 2013 Chris Oakman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
+@media (min-width: 600px) {
+  main {
+    max-width: 600px;
+  }
+}
+
+/* clearfix */
+.clearfix-7da63 {
+  clear: both;
+}
+
+/* board */
+.board-b72b1 {
+  border: 2px solid #404040;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* square */
+.square-55d63 {
+  float: left;
+  position: relative;
+
+  /* disable any native browser highlighting */
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.square-55d63 > img {
+    touch-action: none;
+}
+
+/* pieces */
+img {
+  filter: brightness(0.9);
+}
+
+/* white square */
+.white-1e1d7 {
+  background-color: #888;
+  color: #000;
+  border-radius: 0px;
+}
+
+/* black square */
+.black-3c85d {
+  background-color: #444;
+  color: #fff;
+  border-radius: 0px;
+}
+
+/* highlighted square */
+.highlight1-32417, .highlight2-9c5d2 {
+  -webkit-box-shadow: inset 0 0 3px 3px var(--link-color);
+     -moz-box-shadow: inset 0 0 3px 3px var(--link-color);
+          box-shadow: inset 0 0 3px 3px var(--link-color);
+}
+
+/* notation */
+.notation-322f9 {
+  cursor: default;
+  font-size: 14px;
+  position: absolute;
+}
+.alpha-d2270 {
+  bottom: 1px;
+  right: 3px;
+}
+.numeric-fc462 {
+  top: 2px;
+  left: 2px;
+}
+
+.wfog.white-1e1d7 {
+    background-color: #4949af;
+}
+
+.wfog.black-3c85d {
+    background-color: #337
+}
+.bfog.white-1e1d7 {
+    background-color: #af4949;
+}
+
+.bfog.black-3c85d {
+    background-color: #733
+}
+.bfog.wfog.black-3c85d {
+    background-color: #424
+}
+.bfog.wfog.white-1e1d7 {
+    background-color: #c9c
+}
+
+#status {
+  font-family: "Source Code Pro", monospace;
+}
+
+#moveSelect {
+  width: 25ch;
+}

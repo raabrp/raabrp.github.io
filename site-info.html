@@ -1,230 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="description" content="A brief introduction and outline of site implementation"/>
-
-    <title>
-Site Info    </title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- CSS for Layout -->
-    <link rel="stylesheet" type="text/css" href="theme/css/katex.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/charts.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/decorations.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/interactive.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/main.css">
-
-    <!-- CSS for Colors -->
-    <link rel="stylesheet" type="text/css" id="light-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-light-rotated.css">
-    <link rel="stylesheet" type="text/css" id="light-default-theme-css"
-          class="color-css" href="theme/css/colors/color-light-default.css">
-    <link rel="stylesheet" type="text/css" id="dark-rotated-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-rotated.css">
-    <link rel="stylesheet" type="text/css" id="dark-default-theme-css"
-          class="color-css" href="theme/css/colors/color-dark-default.css">
-    <link rel="stylesheet" type="text/css" href="theme/css/colors/pygments.css">
-
-    <link rel="stylesheet" type="text/css" href="theme/css/colors.css">
-
-
-    <link rel="stylesheet"
-          href="theme/css/fonts.css">
-
-    <!-- JS for Color Theming -->
-    <script type="text/javascript">
-     /*
-      * Run this early, since it will create an undesiresable flash of color
-      * if delayed. It seems that the fastest way to get the correct colors
-      * is by including a <link> for each theme, causing them to be loaded in
-      * parallel, with marginal increased delay until script execution.
-      *
-      * The alternative is waiting to load the correct colors until after
-      * script execution -- which is delayed by loading the initial
-      * links anyway -- then *also* waiting for the new resource to load
-      * *after* script execution, resulting in almost twice the delay.
-      */
-
-     function set_theme(val) {
-         var color_links = document.getElementsByClassName('color-css');
-         for (var i=0; i < color_links.length; i++) {
-             var link = color_links[i];
-             if (link.attributes['id'].value == (val + '-theme-css')) {
-                 link.href = 'theme/css/colors/color-' + val + '.css';
-             } else {
-                 link.removeAttribute('href');
-             }
-         }
-         try {
-             localStorage['theme'] = val;
-         } catch (e) {
-             ;
-         }
-     }
-     try {
-         var stored = localStorage['theme'];
-         if (stored && (stored != 'undefined'))  {
-             set_theme(stored);
-         }
-     } catch (e) {
-         ;
-     }
-    </script>
-
-<link rel="stylesheet" type="text/css" href="theme/css/page.css">
-
-    <!-- Pelican variable injection -->
-    <script type="text/javascript">var pelican = {};</script>
-
-    <!-- Main JavaScript functions -->
-    <script src="theme/js/main.js"></script>
-
-  </head>
-
-  <body>
-    <main>
-      <menu>
-        <!-- The checkbox hack -->
-        <input type="checkbox" id="hamburger-checkbox">
-        <label for="hamburger-checkbox">
-          <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>MENU</span>
-          </div>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <p>Links</p>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="about.html">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="site-info.html">
-                    Site Info
-                  </a>
-                </li>
-              </ul>
-            <!-- Unhidden if JavaScript enabled -->
-            <li id="theme-select" style="display: none;">
-              <p>Select Colors</p>
-              <ul>
-                <li>
-                  <a class="theme-selector" value="dark-default">
-                    Dark default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="dark-rotated">
-                    Dark rotated
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-default">
-                    Light default
-                  </a>
-                </li>
-                <li>
-                  <a class="theme-selector" value="light-rotated">
-                    Light rotated
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </menu>
-
-      <div id="top-spacer"></div>
-
+<head>
+<!-- 2022-06-13 Mon 17:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Site Info</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
 <header>
-    <h1 id="title-header">
-        Site Info
-    </h1>
-</header>
-<article>
-    <p>I use this website as a vehicle to:</p>
-<ul>
-<li>share my interest in various subjects</li>
-<li>publish personal web-based projects</li>
-<li>have an online persence without social media</li>
+<h1 class="title">Site Info</h1>
+</header><p>
+This site is generated with <a href="https://en.wikipedia.org/wiki/Emacs">Emacs</a> using <a href="https://orgmode.org/manual/Publishing.html">org-mode</a>, adding my own hacks on top of
+<a href="https://github.com/yyr/org-mode/blob/master/lisp/ox-html.el">ox-html</a>. This has proven much more configurable than my previous setup (using
+<a href="https://blog.getpelican.com/">Pelican</a>). It has also finally forced me to actually learn to use the power of
+Emacs afforded by <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">lisp</a>.
+</p>
+
+<p>
+This site is currently accessible from the following URLs:
+</p>
+
+<ul class="org-ul">
+<li><p>
+<a href="https://raabrp.github.io">https://raabrp.github.io</a>
+</p>
+
+<p>
+This git repository is the source of truth for this website. It is hosted by
+<a href="https://pages.github.com/">github pages</a> with a <a href="https://en.wikipedia.org/wiki/CNAME_record">CNAME</a> file pointing to <samp>reillyraab.com</samp>.
+</p></li>
+
+<li><p>
+<a href="https://reillyraab.com">https://reillyraab.com</a>
+</p>
+
+<p>
+This domain is registered with <a href="https://www.namecheap.com/">Namecheap</a>, using to <a href="https://en.wikipedia.org/wiki/Cloudflare">Cloudflare&rsquo;s</a> nameservers.
+</p>
+
+<p>
+Cloudflare provides <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a>, caching, and <a href="https://en.wikipedia.org/wiki/Domain_Name_System">DNS</a> resolution with <samp>A</samp> records pointing
+to github.io&rsquo;s IP addresses.
+</p></li>
+
+<li><p>
+<a href="http://users.soe.ucsc.edu/~rraab">http://users.soe.ucsc.edu/~rraab</a>
+</p>
+
+<p>
+My user account has an <a href="https://en.wikipedia.org/wiki/.htaccess">.htaccess</a> file that reads
+</p>
+<pre class="example">
+  RedirectMatch 301 ^/$ https://reillyraab.com/about.html
+</pre></li>
 </ul>
-<p>This site is generated using a combination of Javascript and Python. I write
-content in Markdown (<a href="/demo.html" id="generated-link-id0">demo</a>) and publish my changes using
-git (<a href="https://github.com/raabrp/raabrp.github.io" id="generated-link-id1">github pages</a>).</p>
-<p>The <a href="https://github.com/raabrp/rraabblog" id="generated-link-id2">source code</a> I’ve written to generate
-this site is published under the MIT license. It is not perfect, but seeks to
-avoid as much bloat as possible while doing what I want it to. Please, use and
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Hacker_culture" href="https://en.wikipedia.org/wiki/Hacker_culture" id="generated-link-id3">hack</a> it to your heart’s content.</p>
-<p>This site is currently accessible via the following URLs:</p>
-<ul>
-<li><a href="https://raabrp.github.io" id="generated-link-id4">https://raabrp.github.io</a> (resources hosted by
-  github pages with a <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/CNAME_record" href="https://en.wikipedia.org/wiki/CNAME_record" id="generated-link-id5">CNAME</a> to reillyraab.com)</li>
-<li><a href="https://reillyraab.com" id="generated-link-id6">https://reillyraab.com</a>
-  (<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Cloudflare" href="https://en.wikipedia.org/wiki/Cloudflare" id="generated-link-id7">Cloudflare</a> provides
-  <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Transport_Layer_Security" href="https://en.wikipedia.org/wiki/Transport_Layer_Security" id="generated-link-id8">SSL</a>, caching, and
-  DNS <code>A</code> records to github.io’s IP addresses)</li>
-<li><a href="http://users.soe.ucsc.edu/~rraab" id="generated-link-id9">http://users.soe.ucsc.edu/~rraab</a>
-  (<code>.htaccess</code> reads <code>RedirectMatch 301 ^/$ https://reillyraab.com/about.html</code>)</li>
-</ul>
-<h2 id="privacy">Privacy<a class="headerlink" href="#privacy" id="generated-link-id10" title="Permanent link">#</a></h2>
-<p>I store no information about you whatsoever. A single entry in your browser’s
-<code>localstorage</code> is requested to let your browser remember whether you’ve
-selected an alternate color scheme for the site, and that’s it.</p>
-<p>All network resources 
-(<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/JavaScript" href="https://en.wikipedia.org/wiki/JavaScript" id="generated-link-id11">javascript</a>, 
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Cascading_Style_Sheets" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" id="generated-link-id12">css</a>, fonts, etc.),
-including library code, are hosted by this site itself and no content delivery
-networks are used (except possibly those used by Cloudflare).</p>
-<h2 id="third-party-privacy">Third-Party Privacy<a class="headerlink" href="#third-party-privacy" id="generated-link-id13" title="Permanent link">#</a></h2>
-<p>By using this site, you are an end user of
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Cloudflare" href="https://en.wikipedia.org/wiki/Cloudflare" id="generated-link-id14">Cloudflare’s</a> services.</p>
-<p>Cloudflare acts as a <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Reverse_proxy" href="https://en.wikipedia.org/wiki/Reverse_proxy" id="generated-link-id15">reverse
-proxy</a> for <code>reillyraab.com</code> and
-handles <a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/HTTPS" href="https://en.wikipedia.org/wiki/HTTPS" id="generated-link-id16">HTTPS</a> encryption / decryption
-with your browser (but not with the origin server at <code>github.io</code>. The lack of
-end-to-end encryption in this configuration isn’t a huge deal since Cloudflare
-performs caching and the <code>github.io</code> content is static).</p>
-<p>For all intents and purposes, when your browser is communicating with this site,
-it’s communicating with Cloudflare. While HTTPS might hide which specific
-content you’re viewing on this site from your
-<a class="wikipedia_link" endpoint="https://en.wikipedia.org/api/rest_v1/page/summary/Internet_service_provider" href="https://en.wikipedia.org/wiki/Internet_service_provider" id="generated-link-id17">ISP</a>, this does not
-hinder Cloudflare from seeing your specific network requests for the content of
-this site.</p>
+
+<div id="outline-container-Privacy" class="outline-2">
+<h2 id="Privacy">Privacy</h2>
+<div class="outline-text-2" id="text-org2fefc5f">
+<p>
+I store no information about you whatsoever.
+</p>
+
+<p>
+Network resources (<a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>, fonts, etc.), including library code, are
+hosted by this site itself and content delivery networks are largely avoided
+(except any those used by Cloudflare).
+</p>
+</div>
+</div>
+
+<div id="outline-container-Third-Party-Privacy-Policy" class="outline-2">
+<h2 id="Third-Party-Privacy-Policy">Third-Party Privacy Policy</h2>
+<div class="outline-text-2" id="text-org214920e">
+<p>
+By using this site, you are an end user of Coudflare&rsquo;s services.
+</p>
+
+<p>
+Cloudflare acts as a <a href="https://en.wikipedia.org/wiki/Reverse_proxy">reverse proxy</a> for <samp>reillyraab.com</samp> and handles <a href="https://en.wikipedia.org/wiki/HTTPS">HTTPS</a>
+encryption / decryption with your browser, technically acting as a
+<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle</a> for communication with the origin server at <samp>github.io</samp>. The
+lack of end-to-end encryption in this configuration isn&rsquo;t a huge deal since
+Cloudflare performs caching and the <samp>github.io</samp> content is static).
+</p>
+
+<p>
+For all intents and purposes, when your browser is communicating with this site,
+it&rsquo;s communicating with Cloudflare. While HTTPS might hide which specific
+interactions with this site from your <a href="https://en.wikipedia.org/wiki/Internet_service_provider">ISP</a>, this does not hinder Cloudflare in
+seeing your specific network requests for the content of this site).
+</p>
+
 <blockquote>
-<p>We collect End Users’ information when they use our Customers’ websites, web
+<p>
+We collect End Users’ information when they use our Customers’ websites, web
 applications, and APIs. This information may include but is not limited to IP
 addresses, system configuration information, and other information about
-traffic to and from Customers’ websites (collectively, “Log Data”).</p>
-<p>…</p>
-<p>Cloudflare may aggregate data we acquire about our Customers and their End
-Users, including the Log Data described above… Non-personally identifiable,
-aggregated data may be shared with third parties.</p>
-<p>– Cloudflare’s <a href="https://www.cloudflare.com/privacypolicy/" id="generated-link-id18">privacy policy</a></p>
+traffic to and from Customers’ websites (collectively, “Log Data”).
+</p>
+
+<p>
+&#x2026;
+</p>
+
+<p>
+Cloudflare may aggregate data we acquire about our Customers and their End
+Users, including the Log Data described above&#x2026; Non-personally identifiable,
+aggregated data may be shared with third parties.
+</p>
+
+<p>
+&#x2013; Cloudflare&rsquo;s <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>
+</p>
 </blockquote>
-</article>
-    </main>
-
-    <script type="text/javascript">
-     engage();
-    </script>
-  </body>
-
+</div>
+</div>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
 </html>
