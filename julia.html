@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-18 Sat 14:19 -->
+<!-- 2022-06-18 Sat 16:27 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Julia</title>
@@ -34,8 +34,8 @@ decomposition
 <!-- z = x + iy -->
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">z = x + iy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span></span>
 
-Specifically, the <a href="https://en.wikipedia.org/wiki/Julia_set">Julia set</a> that we visualize on this page consists of the
-points that stay close to the origin when repeatedly mapped according to
+Specifically, the <a href="https://en.wikipedia.org/wiki/Julia_set">Julia set(s)</a> that we visualize on this page are the points
+that stay close to the origin when repeatedly mapped according to
 </p>
 
 <!-- \label{eqn-1}\tag{1} z \rightarrow z^{2} + c \quad ; \quad \begin{bmatrix} x \\ y \end{bmatrix} \mapsto \begin{bmatrix} x^{2} - y^{2} + c_{x} \\ 2xy + c_{y} \end{bmatrix} -->
@@ -44,11 +44,19 @@ points that stay close to the origin when repeatedly mapped according to
 <p>
 where <!--c-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
- is determined by the coordinates of your mouse, defining a unique
-set for each mouse position. Go ahead, move your mouse over the image!
+ is a point determined by the coordinates of your mouse. Each value
+of <!--c-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
+ thus defines a unique set, which we visualize by mapping <em>how long</em> an
+initial point (a pixel in this image) stays close to the origin using color. Go
+ahead, move your mouse over the image!
 </p>
 
-<canvas id="julia_canvas"></canvas>
+<div style="position: relative;">
+<style> .julia-canvas { position: absolute; top: 0px; left: 0px; } </style>
+<canvas id="mandelbrot_canvas"></canvas>
+<canvas id="julia_canvas" class="julia-canvas"></canvas>
+</div>
 <a id="julia_fs">View fullscreen</a>
 
 <p>
@@ -60,25 +68,473 @@ combination of rotation and a scaling, while addition looks like a translation.
 <p>
 Notice that, because the points in the set must approximately stay in this set
 (lest they soon fly off to infinity), the Julia set describes fixed points and
-cycles of mapping <a href="#eqn-1">Eq. (1)</a>.
+cycles of the mapping (<a href="#eqn-1">Eq. (1)</a>).
 </p>
 
 <p>
-Also note that, if you could record all of the points for which the origin is in
-the set, you would map the <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set</a>. In fact, the Julia set(s) and the
-Mandelbrot set are two-dimensional slices of a four-dimensional object, where
-the Julia sets fix values of <!--c-->
+Also note that, if you could record all of the mouse positions for which the
+origin of the image is in the Julia set, you would map the <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set</a>! In
+fact, the Julia set(s) and the Mandelbrot set are different two-dimensional
+slices of the same four-dimensional object, where the Julia sets fix values of
+<!--c-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
  and the Mandelbrot set fixes <!--x = 0-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>
-.
+. We can visualize the Mandelbrot
+set in the background of the set above. Pay attention to the origin, noting that
+the origin is in the Julia set if and only if your mouse is in the Mandelbrot
+set.
 </p>
+
+<input id="mandelbrot_checkbox" name="mandelbrot_checkbox" type="checkbox" />
+Show Mandelbrot set above
+
+
+<a id="mandelbrot_fs" style="display: none;">View fullscreen</a>
+
+<script src="/js/lib/twgl.js"></script>
+<script src="/js/minshader.js"></script>
+<script id="twgl_vs" type="x-shader/x-vertex">
+ attribute vec4 position;
+
+ void main() {
+     gl_Position = position;
+}
+</script>
+<noscript>JavaScript is not Enabled</noscript>
+<script id="julia_shader" type="x-shader/x-fragment">
+
+ precision mediump float;
+
+ // default uniforms (built in)
+ uniform vec2 resolution;
+ uniform float min_dim;
+ uniform bool mouseover;
+ uniform bool mousedown;
+ uniform vec2 mouse;
+ uniform vec2 mouse_click;
+ uniform float click_elapsed;
+ uniform bool show_mandelbrot;
+
+ vec2 c = mouse;
+ float p = max(0., 1000. - click_elapsed) / 1000.;
+
+ const int iter = 130;
+ const float fiter = 130.;
+
+ /*
+  * map interval [0, 1] to RGB color
+  * use YCoCg color space for simplicity
+  * https://en.wikipedia.org/wiki/YCoCg
+  */
+ vec3 colormap(float v) {
+     float Y = pow(1. - pow(v - 1., 2.), 2.); // logistic on v [0, 1] -> [0, 1]
+     float cr = (1. - cos(6.283 * v)) / 2.;   // radius in "hue space"
+     float Cg = cr * sin(4. * Y + 3.);        // in [-1, 1]
+     float Co = cr * cos(4. * Y + 3.);        // in [-1, 1]
+     float R = Y + Co - Cg;
+     float G = Y + Cg;
+     float B = Y - Co - Cg;
+
+     return vec3(R, G, B);
+ }
+
+ /* multiply two complex numbers */
+ vec2 c_mul(vec2 x, vec2 y) {
+     vec2 z;
+
+     z.x = x.x * y.x - x.y * y.y;
+     z.y = x.x * y.y + x.y * y.x;
+
+     return z;
+ }
+
+ /* raise complex number to power e */
+ const int MAX_EXPONENT = 10;
+ vec2 c_pow(vec2 x, int e) {
+
+     vec2 y = vec2(1.0, 0.0);
+
+     for(int i=0; i < MAX_EXPONENT; i++) {
+
+         if (i >= e) { break; }
+
+         y = c_mul(y, x);
+
+     }
+
+     return y;
+
+ }
+
+ /* get magnitude-squared of 2-vector */
+ float mag2(vec2 z) {
+     return (z.x * z.x + z.y * z.y);
+ }
+
+ float iterate(vec2 z) {
+
+     /* Compute map on z and c up to max iteration */
+
+     vec2 w;
+     float v;
+     float r2;
+
+     // iterate map
+     for(int i=0; i < iter; i++) {
+
+         w = c_pow(z, 2) + c;
+
+         v = float(i);
+         r2 = mag2(w);
+
+         // bailout radius
+         if(r2 > 5.0) {
+             break;
+         }
+         z.x = w.x;
+         z.y = w.y;
+     }
+
+     // "real" iteration number using potential function
+     if (v == (fiter - 1.)) {
+         v = v / fiter;
+     } else {
+         v = (v - log2( log(r2) / log(5.))) / fiter;
+     }
+
+     return v;
+
+ }
+
+ float single_point(vec2 z) {
+
+     /*
+      * Compute value for single point, allowing
+      * for parameterization of mapping with cut
+      *
+      * Call multiple times for anti-aliasing
+      */
+
+     float r2;
+     float a;
+     float theta;
+
+     float theta2;
+     vec2 zcut;
+     float v = 0.;
+
+     float rc2 = (z.x - c.x) * (z.x - c.x) + (z.y - c.y) * (z.y - c.y);
+
+     // display c
+     if (rc2 < 0.0001) {
+         return 0.0;
+     }
+
+     // apply parameterized, partial inverse mapping
+     // so we can visualize the map
+     if (p > 0.) {
+
+         z.x = z.x + (p - 1.) * c.x;
+         z.y = z.y + (p - 1.) * c.y;
+
+         a = 1.0 - 0.5 * (1. - p);
+         r2 = z.x * z.x + z.y * z.y;
+
+         theta = a * atan(z.y, z.x);
+         z.y = pow(r2, a / 2.) * sin(theta);
+         z.x = pow(r2, a / 2.) * cos(theta);
+
+         theta2 = theta + sign(z.y) * 3.14159 * (1. - p);
+         zcut.y = pow(r2, a / 2.) * sin(theta2);
+         zcut.x = pow(r2, a / 2.) * cos(theta2);
+
+         if (sign(zcut.y) != sign(z.y)) {
+             v = iterate(zcut);
+         }
+
+     }
+
+     return max(v, iterate(z));
+
+ }
+
+ void main() {
+
+     float v = 0.;
+     float alpha = 1.0;
+
+     // 4-Rook Antialiasing
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.375)) - resolution.y) / min_dim
+         )
+     );
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim
+         )
+     );
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim
+         )
+     );
+     v += single_point(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim
+         )
+     );
+
+     if (show_mandelbrot) {
+        alpha = v / 4.0;
+     }
+     vec4 value = vec4(colormap(v / 4.0), alpha);
+
+     gl_FragColor = value;
+}
+</script>
+<script type="text/javascript">
+onReady(function() {
+    julia_obj = new shade("julia", "twgl_vs");
+});
+</script>
+<script type="text/javascript">
+onReady(function() {
+
+ var julia = shaders['julia'];
+
+ var k = 1 / 30;
+ var c0 = 2 * Math.sqrt(k); // critical damping
+ var c = c0 * 0.8 // slightly under damped
+ var qx = 0;
+ var qy = 0;
+ var px = 0;
+ var py = 0;
+
+ var mandelbrot_checkbox = document.getElementById("mandelbrot_checkbox");
+
+ var first_run = false;
+ function render(frame_number, time) {
+
+     var u = {}
+     Object.setPrototypeOf(u, julia.uniforms);
+     u.mouse = [-0.7 + (Math.random() - 0.5) * 0.1, 0.4 + (Math.random() - 0.5) * 0.1];
+
+     if (!first_run) {
+         first_run = true;
+         julia.render(u);
+     } else if (u.mouseover) {
+
+         var ax = k * (julia.uniforms.mouse[0] - qx) - c * px;
+         var ay = k * (julia.uniforms.mouse[1] - qy) - c * py;
+         qx += px;
+         qy += py;
+         px += ax;
+         py += ay;
+
+         u.mouse[0] = qx;
+         u.mouse[1] = qy;
+
+         u.show_mandelbrot = mandelbrot_checkbox.checked;
+
+         julia.render(u);
+     }
+ }
+
+ bindScrollTriggers(
+     julia.gl.canvas,
+     function(){
+         addAnimation(render);
+     },
+     function(){
+         removeAnimation(render);
+     }
+ );
+ mandelbrot_checkbox.addEventListener('change', function() {
+    var u = {}
+    Object.setPrototypeOf(u, julia.uniforms);
+    u.show_mandelbrot = mandelbrot_checkbox.checked;
+    u.mouse[0] = qx;
+    u.mouse[1] = qy;
+    julia.render(u);
+ });
+
+});
+</script>
+
+
+<script id="mandelbrot_shader" type="x-shader/x-fragment">
+
+ precision mediump float;
+
+ // default uniforms (built in)
+ uniform vec2 resolution;
+ uniform float min_dim;
+ uniform bool mouseover;
+ uniform bool mousedown;
+ uniform vec2 mouse;
+ uniform vec2 mouse_click;
+ uniform float click_elapsed;
+
+ vec2 c = mouse;
+ float p = max(0., 1000. - click_elapsed) / 1000.;
+
+ const int iter = 130;
+ const float fiter = 130.;
+
+ /*
+  * map interval [0, 1] to RGB color
+  * use YCoCg color space for simplicity
+  * https://en.wikipedia.org/wiki/YCoCg
+  */
+ vec3 colormap(float v) {
+     float Y = pow(1. - pow(v - 1., 2.), 2.); // logistic on v [0, 1] -> [0, 1]
+     float cr = (1. - cos(6.283 * v)) / 2.;   // radius in "hue space"
+     float Cg = cr * sin(4. * Y + 3.);        // in [-1, 1]
+     float Co = cr * cos(4. * Y + 3.);        // in [-1, 1]
+     float R = Y + Co - Cg;
+     float G = Y + Cg;
+     float B = Y - Co - Cg;
+
+     return vec3(R, G, B);
+ }
+
+ /* multiply two complex numbers */
+ vec2 c_mul(vec2 x, vec2 y) {
+     vec2 z;
+
+     z.x = x.x * y.x - x.y * y.y;
+     z.y = x.x * y.y + x.y * y.x;
+
+     return z;
+ }
+
+ /* raise complex number to power e */
+ const int MAX_EXPONENT = 10;
+ vec2 c_pow(vec2 x, int e) {
+
+     vec2 y = vec2(1.0, 0.0);
+
+     for(int i=0; i < MAX_EXPONENT; i++) {
+
+         if (i >= e) { break; }
+
+         y = c_mul(y, x);
+
+     }
+
+     return y;
+
+ }
+
+ /* get magnitude-squared of 2-vector */
+ float mag2(vec2 z) {
+     return (z.x * z.x + z.y * z.y);
+ }
+
+ float iterate(vec2 c) {
+
+     /* Compute map on z and c up to max iteration */
+
+     vec2 w;
+     float v;
+     float r2;
+     vec2 z = vec2(0., 0.);
+
+     float rc2 = (c.x) * (c.x) + (c.y) * (c.y);
+
+     // display c
+     if (rc2 < 0.0001) {
+         return 0.0;
+     }
+
+     // iterate map
+     for(int i=0; i < iter; i++) {
+
+         w = c_pow(z, 2) + c;
+
+         v = float(i);
+         r2 = mag2(w);
+
+         // bailout radius
+         if(r2 > 5.0) {
+             break;
+         }
+         z.x = w.x;
+         z.y = w.y;
+     }
+
+     // "real" iteration number using potential function
+     if (v == (fiter - 1.)) {
+         v = v / fiter;
+     } else {
+         v = (v - log2( log(r2) / log(5.))) / fiter;
+     }
+
+     return v;
+
+ }
+
+ void main() {
+
+     float v = 0.;
+
+     // 4-Rook Antialiasing
+     v += iterate(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.375)) - resolution.y) / min_dim
+         )
+     );
+     v += iterate(
+         vec2(
+             ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim
+         )
+     );
+     v += iterate(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim
+         )
+     );
+     v += iterate(
+         vec2(
+             ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,
+             ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim
+         )
+     );
+
+     vec4 value = vec4(colormap(v / 4.0), v / 4.0);
+
+     gl_FragColor = value;
+}
+</script>
+<script type="text/javascript">
+onReady(function() {
+    mandelbrot_obj = new shade("mandelbrot", "twgl_vs");
+});
+</script>
+<script type="text/javascript">
+onReady(function() {
+
+    let mandelbrot = shaders['mandelbrot'];
+    mandelbrot.render(mandelbrot.uniforms)
+
+});
+</script>
 
 <div id="outline-container-Fragment-Shader-" class="outline-2">
 <h2 id="Fragment-Shader-">Fragment Shader:</h2>
 <div class="outline-text-2" id="text-org3f6c88f">
 <p>
-Using <a href="https://twgljs.org">twgl.js</a> behind the scenes, here is the code to generate the above:
+Using <a href="https://twgljs.org">twgl.js</a> behind the scenes, here is the code to generate the Julia sets
+above:
 </p>
 
 <div class="org-src-container">
@@ -266,273 +722,11 @@ uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;"
         )
     );
 
-    <span style="color: #ECBE7B;">vec4</span> <span style="color: #dcaeea;">value</span> = vec4(colormap(v / <span style="color: #da8548; font-weight: bold;">4.0</span>), <span style="color: #da8548; font-weight: bold;">1.0</span>);
+    <span style="color: #ECBE7B;">vec4</span> <span style="color: #dcaeea;">value</span> = vec4(colormap(v / <span style="color: #da8548; font-weight: bold;">4.0</span>), v / <span style="color: #da8548; font-weight: bold;">4.0</span>);
 
     gl_FragColor = value;
 }
 </pre>
-</div>
-
-<script src="/js/lib/twgl.js"></script>
-<script src="/js/minshader.js"></script>
-<script id="twgl_vs" type="x-shader/x-vertex">
- attribute vec4 position;
-
- void main() {
-     gl_Position = position;
-}
-</script>
-<div>
-<div class="twgl-container" id="julia-container">
-<noscript>JavaScript is not Enabled</noscript>
-<script id="julia_shader" type="x-shader/x-fragment">
-
- precision mediump float;
-
- // default uniforms (built in)
- uniform vec2 resolution;
- uniform float min_dim;
- uniform bool mouseover;
- uniform bool mousedown;
- uniform vec2 mouse;
- uniform vec2 mouse_click;
- uniform float click_elapsed;
-
- vec2 c = mouse;
- float p = max(0., 1000. - click_elapsed) / 1000.;
-
- const int iter = 130;
- const float fiter = 130.;
-
- /*
-  * map interval [0, 1] to RGB color
-  * use YCoCg color space for simplicity
-  * https://en.wikipedia.org/wiki/YCoCg
-  */
- vec3 colormap(float v) {
-     float Y = pow(1. - pow(v - 1., 2.), 2.); // logistic on v [0, 1] -> [0, 1]
-     float cr = (1. - cos(6.283 * v)) / 2.;   // radius in "hue space"
-     float Cg = cr * sin(4. * Y + 3.);        // in [-1, 1]
-     float Co = cr * cos(4. * Y + 3.);        // in [-1, 1]
-     float R = Y + Co - Cg;
-     float G = Y + Cg;
-     float B = Y - Co - Cg;
-
-     return vec3(R, G, B);
- }
-
- /* multiply two complex numbers */
- vec2 c_mul(vec2 x, vec2 y) {
-     vec2 z;
-
-     z.x = x.x * y.x - x.y * y.y;
-     z.y = x.x * y.y + x.y * y.x;
-
-     return z;
- }
-
- /* raise complex number to power e */
- const int MAX_EXPONENT = 10;
- vec2 c_pow(vec2 x, int e) {
-
-     vec2 y = vec2(1.0, 0.0);
-
-     for(int i=0; i < MAX_EXPONENT; i++) {
-
-         if (i >= e) { break; }
-
-         y = c_mul(y, x);
-
-     }
-
-     return y;
-
- }
-
- /* get magnitude-squared of 2-vector */
- float mag2(vec2 z) {
-     return (z.x * z.x + z.y * z.y);
- }
-
- float iterate(vec2 z) {
-
-     /* Compute map on z and c up to max iteration */
-
-     vec2 w;
-     float v;
-     float r2;
-
-     // iterate map
-     for(int i=0; i < iter; i++) {
-
-         w = c_pow(z, 2) + c;
-
-         v = float(i);
-         r2 = mag2(w);
-
-         // bailout radius
-         if(r2 > 5.0) {
-             break;
-         }
-         z.x = w.x;
-         z.y = w.y;
-     }
-
-     // "real" iteration number using potential function
-     if (v == (fiter - 1.)) {
-         v = v / fiter;
-     } else {
-         v = (v - log2( log(r2) / log(5.))) / fiter;
-     }
-
-     return v;
-
- }
-
- float single_point(vec2 z) {
-
-     /*
-      * Compute value for single point, allowing
-      * for parameterization of mapping with cut
-      *
-      * Call multiple times for anti-aliasing
-      */
-
-     float r2;
-     float a;
-     float theta;
-
-     float theta2;
-     vec2 zcut;
-     float v = 0.;
-
-     float rc2 = (z.x - c.x) * (z.x - c.x) + (z.y - c.y) * (z.y - c.y);
-
-     // display c
-     if (rc2 < 0.0001) {
-         return 0.0;
-     }
-
-     // apply parameterized, partial inverse mapping
-     // so we can visualize the map
-     if (p > 0.) {
-
-         z.x = z.x + (p - 1.) * c.x;
-         z.y = z.y + (p - 1.) * c.y;
-
-         a = 1.0 - 0.5 * (1. - p);
-         r2 = z.x * z.x + z.y * z.y;
-
-         theta = a * atan(z.y, z.x);
-         z.y = pow(r2, a / 2.) * sin(theta);
-         z.x = pow(r2, a / 2.) * cos(theta);
-
-         theta2 = theta + sign(z.y) * 3.14159 * (1. - p);
-         zcut.y = pow(r2, a / 2.) * sin(theta2);
-         zcut.x = pow(r2, a / 2.) * cos(theta2);
-
-         if (sign(zcut.y) != sign(z.y)) {
-             v = iterate(zcut);
-         }
-
-     }
-
-     return max(v, iterate(z));
-
- }
-
- void main() {
-
-     float v = 0.;
-
-     // 4-Rook Antialiasing
-     v += single_point(
-         vec2(
-             ((2. * (gl_FragCoord.x + 0.125)) - resolution.x) / min_dim,
-             ((2. * (gl_FragCoord.y + 0.375)) - resolution.y) / min_dim
-         )
-     );
-     v += single_point(
-         vec2(
-             ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,
-             ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim
-         )
-     );
-     v += single_point(
-         vec2(
-             ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,
-             ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim
-         )
-     );
-     v += single_point(
-         vec2(
-             ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,
-             ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim
-         )
-     );
-
-     vec4 value = vec4(colormap(v / 4.0), 1.0);
-
-     gl_FragColor = value;
-}
-</script>
-<script type="text/javascript">
-onReady(function() {
-    julia_obj = new shade("julia", "twgl_vs");
-});
-</script>
-<script>
-onReady(function() {
-
- var julia = shaders['julia'];
-
- var k = 1 / 30;
- var c0 = 2 * Math.sqrt(k); // critical damping
- var c = c0 * 0.8 // slightly under damped
- var qx = 0;
- var qy = 0;
- var px = 0;
- var py = 0;
-
- var first_run = false;
- function render(frame_number, time) {
-
-     var u = {}
-     Object.setPrototypeOf(u, julia.uniforms);
-     u.mouse = [-0.7 + (Math.random() - 0.5) * 0.1, 0.4 + (Math.random() - 0.5) * 0.1];
-
-     if (!first_run) {
-         first_run = true;
-         julia.render(u);
-     } else if (u.mouseover) {
-
-         var ax = k * (julia.uniforms.mouse[0] - qx) - c * px;
-         var ay = k * (julia.uniforms.mouse[1] - qy) - c * py;
-         qx += px;
-         qy += py;
-         px += ax;
-         py += ay;
-
-         u.mouse[0] = qx;
-         u.mouse[1] = qy;
-
-         julia.render(u);
-     }
- }
-
- bindScrollTriggers(
-     julia.gl.canvas,
-     function(){
-         addAnimation(render);
-     },
-     function(){
-         removeAnimation(render);
-     }
- );
-
-});
-</script>
-</div>
 </div>
 </div>
 </div>
