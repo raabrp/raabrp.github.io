@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-17 Fri 13:56 -->
+<!-- 2022-06-17 Fri 21:47 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Greyline Map</title>
@@ -12,7 +12,10 @@
 <link rel="stylesheet" type="text/css" href="css/fonts.css">
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
+<script async defer src="js/main.js"></script>
+<script async defer src="js/lib/astronomy.browser.js"></script>
+<script async defer src="js/lib/gpu.js"></script>
+<script async defer src="js/greyline.js"></script>
 </head>
 <body>
 <div id="preamble" class="boilerplate">
@@ -22,26 +25,28 @@
 <header>
 <h1 class="title">Greyline Map</h1>
 </header><p>
-Currently rewriting. Actually, this page is the reason I haven&rsquo;t touched my website in so long. I put in a bunch of work for GPU rendering, corrected models, etc., then failed to backup the files on an OS update. I can&rsquo;t let this page hold me back any longer, but I do plan to come back to it. Apologies for any inconvenience.
+Currently rewriting. Actually, this page is the reason I haven’t touched my
+website in so long. I put in a bunch of work for GPU rendering, corrected
+models, etc., then failed to backup the files on an OS update. I can’t let this
+page hold me back any longer, but I do plan to come back to it. Apologies for
+any inconvenience.
 </p>
 
 <canvas id="canvas-draft" style="position: fixed; top: 0; left: 0; width: 100%"></canvas>
 <canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%"></canvas>
-<img id="month01" src="" style="display: none;" width="100%"/>
-<img id="month02" src="" style="display: none;" width="100%"/>
-<img id="month03" src="" style="display: none;" width="100%"/>
-<img id="month04" src="" style="display: none;" width="100%"/>
-<img id="month05" src="" style="display: none;" width="100%"/>
-<img id="month06" src="" style="display: none;" width="100%"/>
-<img id="month07" src="" style="display: none;" width="100%"/>
-<img id="month08" src="" style="display: none;" width="100%"/>
-<img id="month09" src="" style="display: none;" width="100%"/>
-<img id="month10" src="" style="display: none;" width="100%"/>
-<img id="month11" src="" style="display: none;" width="100%"/>
-<img id="month00" src="" style="display: none;" width="100%"/>
+<img id="month01" src="/img/greyline/01.jpg" style="display: none;" width="100%"/>
+<img id="month02" src="/img/greyline/02.jpg" style="display: none;" width="100%"/>
+<img id="month03" src="/img/greyline/03.jpg" style="display: none;" width="100%"/>
+<img id="month04" src="/img/greyline/04.jpg" style="display: none;" width="100%"/>
+<img id="month05" src="/img/greyline/05.jpg" style="display: none;" width="100%"/>
+<img id="month06" src="/img/greyline/06.jpg" style="display: none;" width="100%"/>
+<img id="month07" src="/img/greyline/07.jpg" style="display: none;" width="100%"/>
+<img id="month08" src="/img/greyline/08.jpg" style="display: none;" width="100%"/>
+<img id="month09" src="/img/greyline/09.jpg" style="display: none;" width="100%"/>
+<img id="month10" src="/img/greyline/10.jpg" style="display: none;" width="100%"/>
+<img id="month11" src="/img/greyline/11.jpg" style="display: none;" width="100%"/>
+<img id="month00" src="/img/greyline/12.jpg" style="display: none;" width="100%"/>
 <img id="night" src="/img/greyline/night.jpg" style="display: none;" width="100%"/>
-<script src="js/lib/astronomy.browser.js"></script>
-<script src="js/greyline.js"></script>
 </main>
 <footer id="postamble" class="boilerplate">
 Copyright © 2022 Reilly Raab

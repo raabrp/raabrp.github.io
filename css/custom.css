@@ -232,11 +232,11 @@ figcaption {
 /* lists
  */
 ul, ol {
-  list-style-position: inside;
   padding-top: 0;
   padding-bottom: 0;
-  padding-right: 1em;
-  padding-left: 1em;
+}
+ul ul {
+  padding-inline-start: 1em;
 }
 
 /* blockquote */
