@@ -15,6 +15,7 @@
   /* interactive accent */
   --g3: #83898d;
   --g3a: #83898dee;
+  --g3aa: #83898d77;
 
   /* light emphasis */
   --g4: #aaaaaa;
@@ -59,6 +60,7 @@ menu {
   /* take up no vertical space */
   position: relative;
   margin-bottom: calc(-1em - 1em * var(--line-height));
+  z-index: 2;
 }
 @media (min-width: 950px) {
   menu {
@@ -93,7 +95,6 @@ main {
     height: 100%;
     border-right: 1px solid;
     border-right-color: var(--g2);
-    z-index: -1; /* behind home link */
   }
   #text-table-of-contents {
     padding-right: 0.7em;
@@ -279,14 +280,14 @@ pre.src { /* src */
 pre.src::before { /* lang */
   display: none;
   position: absolute;
-  top: -8px;
-  right: 8px;
+  top: 0px;
+  right: 0px;
   padding: 0.2em 0.4em;
   color: var(--g0);
-  background-color: var(--g3a);
+  background-color: var(--g3aa);
 }
-pre.src:hover::before { display: inline; margin-top: 14px;}
-pre.src:hover::before:hover { display: inline; margin-top: 14px; content: "copy";}
+pre.src:hover::before { display: inline; }
+pre.src:hover::before:hover { display: inline; content: "copy";}
 /* Subset of Languages (refer to Org manual for more) */
 pre.src-C::before { content: 'C'; }
 pre.src-css::before { content: 'CSS'; }

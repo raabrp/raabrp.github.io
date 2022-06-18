@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-13 Mon 21:05 -->
+<!-- 2022-06-18 Sat 14:19 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Julia</title>
@@ -13,6 +13,8 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
+<link rel=“canonical” href=“https://reillyraab.com/julia" />
+<meta name="description" content="A brief explanation of the canonical Julia sets (z <- z^2 + c) with an interactive visualization." />
 </head>
 <body>
 <div id="preamble" class="boilerplate">
@@ -239,37 +241,32 @@ uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;"
     <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">v</span> = <span style="color: #da8548; font-weight: bold;">0</span>.;
 
     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">4-Rook Antialiasing</span>
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">unused for the sake of speed</span>
     v += single_point(
         vec2(
             ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x + <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.x) / min_dim,
             ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y + <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.y) / min_dim
         )
     );
-    <span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;">    v += single_point(</span>
-<span style="color: #5B6268;">        vec2(</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.y - 0.125)) - resolution.y) / min_dim</span>
-<span style="color: #5B6268;">        )</span>
-<span style="color: #5B6268;">    );</span>
-<span style="color: #5B6268;">    v += single_point(</span>
-<span style="color: #5B6268;">        vec2(</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.x - 0.125)) - resolution.x) / min_dim,</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.y - 0.375)) - resolution.y) / min_dim</span>
-<span style="color: #5B6268;">        )</span>
-<span style="color: #5B6268;">    );</span>
-<span style="color: #5B6268;">    v += single_point(</span>
-<span style="color: #5B6268;">        vec2(</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,</span>
-<span style="color: #5B6268;">            ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim</span>
-<span style="color: #5B6268;">        )</span>
-<span style="color: #5B6268;">    );</span><span style="color: #5B6268;"> */</span>
+    v += single_point(
+        vec2(
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x + <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.x) / min_dim,
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y - <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.y) / min_dim
+        )
+    );
+    v += single_point(
+        vec2(
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x - <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.x) / min_dim,
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y - <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.y) / min_dim
+        )
+    );
+    v += single_point(
+        vec2(
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x - <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.x) / min_dim,
+            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y + <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.y) / min_dim
+        )
+    );
 
-    <span style="color: #ECBE7B;">vec4</span> <span style="color: #dcaeea;">value</span> = vec4(colormap(v / <span style="color: #da8548; font-weight: bold;">1.0</span>), <span style="color: #da8548; font-weight: bold;">1.0</span>);
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">with antialiasing</span>
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">vec4 value = vec4(colormap(v / 4.0), 1.0);</span>
+    <span style="color: #ECBE7B;">vec4</span> <span style="color: #dcaeea;">value</span> = vec4(colormap(v / <span style="color: #da8548; font-weight: bold;">4.0</span>), <span style="color: #da8548; font-weight: bold;">1.0</span>);
 
     gl_FragColor = value;
 }
@@ -449,14 +446,12 @@ uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;"
      float v = 0.;
 
      // 4-Rook Antialiasing
-     // unused for the sake of speed
      v += single_point(
          vec2(
              ((2. * (gl_FragCoord.x + 0.125)) - resolution.x) / min_dim,
              ((2. * (gl_FragCoord.y + 0.375)) - resolution.y) / min_dim
          )
      );
-     /*
      v += single_point(
          vec2(
              ((2. * (gl_FragCoord.x + 0.375)) - resolution.x) / min_dim,
@@ -474,12 +469,9 @@ uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;"
              ((2. * (gl_FragCoord.x - 0.375)) - resolution.x) / min_dim,
              ((2. * (gl_FragCoord.y + 0.125)) - resolution.y) / min_dim
          )
-     ); */
+     );
 
-     vec4 value = vec4(colormap(v / 1.0), 1.0);
-
-     // with antialiasing
-     // vec4 value = vec4(colormap(v / 4.0), 1.0);
+     vec4 value = vec4(colormap(v / 4.0), 1.0);
 
      gl_FragColor = value;
 }

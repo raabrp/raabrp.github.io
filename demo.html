@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-17 Fri 13:50 -->
+<!-- 2022-06-18 Sat 14:11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -12,7 +12,9 @@
 <link rel="stylesheet" type="text/css" href="css/fonts.css">
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
+<script async defer src="js/main.js"></script>
+<link rel=“canonical” href=“https://reillyraab.com/demo" />
+<meta name="description" content="Examples of how blocks of org-mode text map to HTML, for demonstration and personal reference." />
 </head>
 <body>
 <div id="preamble" class="boilerplate">
@@ -28,12 +30,15 @@
 <li><a href="#Text-Decoration">Text Decoration</a></li>
 <li><a href="#Images">Images</a></li>
 <li><a href="#Source-Code">Source Code</a></li>
-<li><a href="#Wikipedia-Links">Wikipedia Links</a></li>
-<li><a href="#Footnote">Footnote</a></li>
 <li><a href="#Math">Math</a></li>
+<li><a href="#Internal-Links">Internal Links</a></li>
+<li><a href="#Wikipedia-Links">Wikipedia Links</a></li>
+<li><a href="#Foot-notes">Foot​notes</a></li>
 <li><a href="#Block-Quotes">Block Quotes</a></li>
-<li><a href="#Raw-HTML">Raw HTML</a></li>
 <li><a href="#Tables">Tables</a></li>
+<li><a href="#Raw-HTML">Raw HTML</a></li>
+<li><a href="#Scripts-Style-Meta">Scripts, Style, Meta</a></li>
+<li><a href="#Inline-Lisp">Inline Lisp</a></li>
 </ul>
 </div>
 </nav>
@@ -64,7 +69,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="orgef199f1">
+<figure id="orgad0222f">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
@@ -103,30 +108,6 @@ Output:
     <span style="color: #51afef;">return</span> wrapper
 </pre>
 </div>
-</div>
-</div>
-
-<div id="outline-container-Wikipedia-Links" class="outline-2">
-<h2 id="Wikipedia-Links">Wikipedia Links</h2>
-<div class="outline-text-2" id="text-org4b700b1">
-<div class="org-src-container">
-<pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will
-display summaries when hovered over.
-</pre>
-</div>
-
-<p>
-Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages will display summaries when hovered over.
-</p>
-</div>
-</div>
-
-<div id="outline-container-Footnote" class="outline-2">
-<h2 id="Footnote">Footnote</h2>
-<div class="outline-text-2" id="text-orge5a2f49">
-<p>
-Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>
-</p>
 </div>
 </div>
 
@@ -174,6 +155,71 @@ value <!--\phi-->
 </div>
 </div>
 
+<div id="outline-container-Internal-Links" class="outline-2">
+<h2 id="Internal-Links">Internal Links</h2>
+<div class="outline-text-2" id="text-org4b6671c">
+<ul class="org-ul">
+<li><p>
+Internal link to header inside this document (source document in org;
+corresponding HTML header in export)
+</p>
+<div class="org-src-container">
+<pre class="src src-org">  [&#8203;[*Internal Links]]
+</pre>
+</div>
+<p>
+<a href="#Internal-Links">Internal Links</a>
+</p></li>
+
+<li><p>
+Link to source document (in org) or HTML page (in export)
+</p>
+<div class="org-src-container">
+<pre class="src src-org">  [&#8203;[./demo.org]]
+</pre>
+</div>
+<p>
+Link to document (<em>e.g.</em>, <a href="./demo.html">./demo.html</a>)
+</p></li>
+
+<li><p>
+HTML-only link
+</p>
+<div class="org-src-container">
+<pre class="src src-org">  [&#8203;[./demo.html#Internal-Links]]
+</pre>
+</div>
+<p>
+<a href="./demo.html#Internal-Links">./demo.html#Internal-Links</a>
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-Wikipedia-Links" class="outline-2">
+<h2 id="Wikipedia-Links">Wikipedia Links</h2>
+<div class="outline-text-2" id="text-org4b700b1">
+<div class="org-src-container">
+<pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will
+display summaries when hovered over.
+</pre>
+</div>
+
+<p>
+Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages will display summaries when hovered over.
+</p>
+</div>
+</div>
+
+<div id="outline-container-Foot-notes" class="outline-2">
+<h2 id="Foot-notes">Foot​notes</h2>
+<div class="outline-text-2" id="text-orga193029">
+<p>
+Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>
+</p>
+</div>
+</div>
+
 <div id="outline-container-Block-Quotes" class="outline-2">
 <h2 id="Block-Quotes">Block Quotes</h2>
 <div class="outline-text-2" id="text-org94173dd">
@@ -206,6 +252,17 @@ would have to fly more missions.
 </div>
 </div>
 
+<div id="outline-container-Tables" class="outline-2">
+<h2 id="Tables">Tables</h2>
+<div class="outline-text-2" id="text-org2c0dfe8">
+<p>
+I don&rsquo;t use org-mode for tables. The feature-set is limited (<em>e.g.</em>, cells
+spanning multiple columns). At the moment, I write tables in <a href="#Raw-HTML">Raw HTML</a> or
+using <a href="#Inline-Lisp">Inline Lisp</a>.
+</p>
+</div>
+</div>
+
 <div id="outline-container-Raw-HTML" class="outline-2">
 <h2 id="Raw-HTML">Raw HTML</h2>
 <div class="outline-text-2" id="text-org79d16bd">
@@ -229,13 +286,68 @@ Inline <button>HTML</button> is also possible.
 </div>
 </div>
 
-<div id="outline-container-Tables" class="outline-2">
-<h2 id="Tables">Tables</h2>
-<div class="outline-text-2" id="text-org2c0dfe8">
+<div id="outline-container-Scripts-Style-Meta" class="outline-2">
+<h2 id="Scripts-Style-Meta">Scripts, Style, Meta</h2>
+<div class="outline-text-2" id="text-orgda677a4">
 <p>
-I don&rsquo;t use org-mode for tables. The feature-set is limited (<em>e.g.</em>, cells
-spanning multiple columns). At the moment, I write tables in raw HTML.
+Individual source files can provide additional material to include in the
+<samp>&lt;head&gt;</samp> of the exported HTML document. For example,
 </p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;link rel=&#8220;canonical&#8221; href=&#8220;<a href="https://reillyraab.com/page">https://reillyraab.com/page</a>" /&gt;</span>
+<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;meta name="description" content="All about this page" /&gt;</span>
+<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;script async defer src="js/some-script.js"&gt;&lt;/script&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Inline-Lisp" class="outline-2">
+<h2 id="Inline-Lisp">Inline Lisp</h2>
+<div class="outline-text-2" id="text-orgf908865">
+<p>
+We can include blocks of lisp that don&rsquo;t get rendered to HTML output (as
+syntax-highlighted source code), but instead define functions we may call while
+writing our document to produce arbitrary HTML during the export.
+</p>
+
+<p>
+For example, define the function <samp>example-func</samp>, which renders two <samp>&lt;div&gt;</samp>
+elements, one in steelblue and one in darkgoldenrod, where the contents of each div
+are passed as the arguments <samp>a</samp> and <samp>b</samp>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #83898d;">#+name: example-func</span>
+<span style="color: #5B6268; background-color: #23272e;">#+begin_src emacs-lisp :exports none :var a="a" b="b"</span>
+<span style="color: #51afef; background-color: #23272e;">(</span><span style="color: #a9a1e1; background-color: #23272e;">format</span><span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">"</span>
+<span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: steelblue;\"&gt;%s&lt;/div&gt;</span>
+<span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: darkgoldenrod;\"&gt;%s&lt;/div&gt;</span>
+<span style="color: #98be65; background-color: #23272e;">"</span><span style="background-color: #23272e;"> a b</span><span style="color: #51afef; background-color: #23272e;">)</span>
+<span style="color: #5B6268; background-color: #23272e;">#+end_src</span>
+</pre>
+</div>
+
+<p>
+We may call this function from the source file as
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #83898d;">#+call: example-func(</span>
+"This text is steelblue.",
+"This text is darkgoldenrod."
+) :results html
+</pre>
+</div>
+
+<p>
+and the output will be
+</p>
+
+
+<div style="color: steelblue;">This text is steelblue.</div>
+<div style="color: darkgoldenrod;">This text is darkgoldenrod.</div>
 </div>
 </div>
 <div id="footnote-container">
