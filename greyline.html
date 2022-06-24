@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-18 Sat 14:26 -->
+<!-- 2022-06-24 Fri 00:55 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Greyline Map</title>
@@ -14,10 +14,11 @@
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
 <link rel=“canonical” href=“https://reillyraab.com/greyline" />
-<meta name="description" content="A map of Earth showing where it's day or night." />
-<script async defer src="js/lib/astronomy.browser.js"></script>
-<script async defer src="js/lib/gpu.js"></script>
-<script async defer src="js/greyline.js"></script>
+<meta name="description" content="A combined map of Earth and astronomical clock" />
+<script defer src="js/lib/astronomy.browser.js"></script>
+<script defer src="js/lib/gpu.js"></script>
+<script defer src="js/lib/curve-calc.js"></script>
+<script defer src="js/greyline.js"></script>
 </head>
 <body>
 <div id="preamble" class="boilerplate">
@@ -26,28 +27,19 @@
 <main id="content" class="content">
 <header>
 <h1 class="title">Greyline Map</h1>
-</header><p>
-Currently rewriting. Actually, this page is the reason I haven’t touched my
-website in so long. I put in a bunch of work for GPU rendering, corrected
-models, etc., then failed to backup the files on an OS update. I can’t let this
-page hold me back any longer, but I do plan to come back to it. Apologies for
-any inconvenience.
-</p>
-
-<canvas id="canvas-draft" style="position: fixed; top: 0; left: 0; width: 100%"></canvas>
-<canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%"></canvas>
-<img id="month01" src="/img/greyline/01.jpg" style="display: none;" width="100%"/>
-<img id="month02" src="/img/greyline/02.jpg" style="display: none;" width="100%"/>
-<img id="month03" src="/img/greyline/03.jpg" style="display: none;" width="100%"/>
-<img id="month04" src="/img/greyline/04.jpg" style="display: none;" width="100%"/>
-<img id="month05" src="/img/greyline/05.jpg" style="display: none;" width="100%"/>
-<img id="month06" src="/img/greyline/06.jpg" style="display: none;" width="100%"/>
-<img id="month07" src="/img/greyline/07.jpg" style="display: none;" width="100%"/>
-<img id="month08" src="/img/greyline/08.jpg" style="display: none;" width="100%"/>
-<img id="month09" src="/img/greyline/09.jpg" style="display: none;" width="100%"/>
-<img id="month10" src="/img/greyline/10.jpg" style="display: none;" width="100%"/>
-<img id="month11" src="/img/greyline/11.jpg" style="display: none;" width="100%"/>
-<img id="month00" src="/img/greyline/12.jpg" style="display: none;" width="100%"/>
+</header><canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%"></canvas>
+<img id="month01" style="display: none;" width="100%"/>
+<img id="month02" style="display: none;" width="100%"/>
+<img id="month03" style="display: none;" width="100%"/>
+<img id="month04" style="display: none;" width="100%"/>
+<img id="month05" style="display: none;" width="100%"/>
+<img id="month06" style="display: none;" width="100%"/>
+<img id="month07" style="display: none;" width="100%"/>
+<img id="month08" style="display: none;" width="100%"/>
+<img id="month09" style="display: none;" width="100%"/>
+<img id="month10" style="display: none;" width="100%"/>
+<img id="month11" style="display: none;" width="100%"/>
+<img id="month00" style="display: none;" width="100%"/>
 <img id="night" src="/img/greyline/night.jpg" style="display: none;" width="100%"/>
 </main>
 <footer id="postamble" class="boilerplate">

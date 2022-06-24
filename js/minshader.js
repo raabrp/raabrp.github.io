@@ -11,11 +11,26 @@
 // * "click_elapsed" - time since last click on canvas (ms)
 // * "mouse_click" - where last click occured (mouse_click)
 
+const vs_id = "twgl_vs";
+
+vertex_shader = document.createElement("script");
+vertex_shader.setAttribute("id", vs_id);
+vertex_shader.setAttribute("type", "x-shader/x-vertex");
+vertex_shader.innerHTML = `
+attribute vec4 position;
+
+void main() {
+     gl_Position = position;
+}
+`;
+
+document.getElementsByTagName("body")[0].appendChild(vertex_shader);
+
 var shaders = {};
 
-function shade(shader_id, vs_id) {
+function Shader(canvas_id, shader_id, fullscreen_id=false) {
 
-    var canvas_el = document.getElementById(shader_id + "_canvas");
+    var canvas_el = document.getElementById(canvas_id);
 
     var self = this;
 
@@ -34,7 +49,7 @@ function shade(shader_id, vs_id) {
         click_elapsed: 0
     };
 
-    var programInfo = twgl.createProgramInfo(this.gl, [vs_id, shader_id + "_shader"]);
+    var programInfo = twgl.createProgramInfo(this.gl, [vs_id, shader_id]);
     var triangles = {
         // two triangles covering the unit square
         position: [-1, -1, 0,
@@ -140,7 +155,9 @@ function shade(shader_id, vs_id) {
     };
 
     // enter fullscreen on link click
-    document.getElementById(shader_id + "_fs").onclick = fullscreen;
+    if (fullscreen_id) {
+        document.getElementById(fullscreen_id).onclick = fullscreen;
+    }
 
     // toggle fullscreen on canvas double click
     canvas_el.ondblclick = function(e) {
@@ -168,6 +185,4 @@ function shade(shader_id, vs_id) {
         }
     }, true);
 
-
-    shaders[shader_id] = this;
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-06-22 Wed 22:55 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pyscript</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
+<script src="js/main.js"></script>
+<link rel="canonical" href="https://reillyraab.com/pyscript" />
+<meta name="description" content="Testing Pyscript." />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<py-env>
+- numpy
+- matplotlib
+</py-env>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
+<header>
+<h1 class="title">Pyscript</h1>
+</header><div id="py-output"></div>
+<py-script output="py-output">
+import numpy as np
+import numpy.fft as fft
+from numpy.random import default_rng
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+def fBm(rng, num_points=512, beta=2):
+    '''fractional Brownian motion'''
+
+    half_num_points = num_points // 2
+
+    # Box-Muller Transform
+    r = 1 - rng.random(size=(half_num_points,))
+    t = 2 * np.pi * rng.random(size=(half_num_points,))
+
+    # power in spectral bin
+    p = np.power((np.arange(half_num_points,) + 1) / half_num_points, -beta)
+
+    # amplitude
+    amp = np.sqrt(p * -2 * np.log(r))
+
+    f_re = np.cos(t) * amp
+    f_im = np.sin(t) * amp
+
+    f_re = np.hstack([f_re, np.flip(f_re)])
+    f_im = np.hstack([f_im, -np.flip(f_im)])
+
+    x = fft.fft(f_re + f_im * 1j)
+
+    re = np.real(x)
+    im = np.imag(x)
+
+    return re, im, amp ** 2
+
+foreground_color = 'dddddd'
+background_color = '1a1a1a'
+
+mpl.rcParams.update({
+    'pdf.fonttype': 42,
+    'ps.fonttype': 42,
+    'font.family': 'serif',
+    'font.serif': 'Nimbus Roman',
+    'mathtext.fontset': 'cm',
+    'mathtext.rm': 'serif',
+    'figure.facecolor': background_color,
+    'axes.facecolor': background_color,
+    'axes.labelcolor': foreground_color,
+    'text.color': foreground_color,
+    'axes.edgecolor': foreground_color,
+    'xtick.color': foreground_color,
+    'ytick.color': foreground_color,
+    'font.size': 16,
+})
+
+scale = 8
+fig = plt.figure(figsize=(scale, scale * 2))
+
+# add_suplot(num rows, num cols, index)
+ax = fig.add_subplot(2, 1, 1)
+log_ax = fig.add_subplot(2, 1, 2)
+
+beta = 2
+num_points = 512
+re, im, p = fBm(default_rng(), num_points=num_points, beta=beta)
+
+ax.plot(re, label="fft real")
+ax.plot(im, label="fft imag")
+ax.set_ylabel("value")
+ax.set_xlabel("time")
+ax.legend()
+
+log_ax.loglog(
+    np.arange(num_points // 2) + 1,
+    p / p[0]
+)
+log_ax.loglog(
+    [1, num_points // 2],
+    [1, (num_points // 2) ** (-beta)],
+    label=f"beta = {-beta}"
+)
+log_ax.set_ylabel("relative amplitude")
+log_ax.set_xlabel("frequency")
+log_ax.legend()
+
+fig.tight_layout()
+fig
+</py-script>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2022 Reilly Raab
+</footer>
+</body>
+</html>

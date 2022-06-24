@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-18 Sat 22:08 -->
+<!-- 2022-06-22 Wed 20:41 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
-<link rel=“canonical” href=“https://reillyraab.com/demo" />
+<link rel="canonical" href="https://reillyraab.com/demo" />
 <meta name="description" content="Examples of how blocks of org-mode text map to HTML, for demonstration and personal reference." />
 </head>
 <body>
@@ -69,7 +69,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="org0009cfc">
+<figure id="org6ad129a">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
@@ -149,7 +149,8 @@ the inline tags <samp>$... $</samp>, <samp>\( ... \)</samp> are recognized. Conv
 value <!--\phi-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span>
  with space-time coordinates indexed by <!--\mu-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span>.
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span>
+.
 </p>
 </div>
 </div>
@@ -296,7 +297,8 @@ Individual source files can provide additional material to include in the
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;link rel=&#8220;canonical&#8221; href=&#8220;<a href="https://reillyraab.com/page">https://reillyraab.com/page</a>" /&gt;</span>
 <span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;meta name="description" content="All about this page" /&gt;</span>
-<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;script async defer src="js/some-script.js"&gt;&lt;/script&gt;</span>
+<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;link rel="stylesheet" href="<a href="https://pyscript.net/alpha/pyscript.css">https://pyscript.net/alpha/pyscript.css</a>" /&gt;</span>
+<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;script defer src="<a href="https://pyscript.net/alpha/pyscript.js">https://pyscript.net/alpha/pyscript.js</a>"&gt;&lt;/script&gt;</span>
 </pre>
 </div>
 </div>
@@ -353,9 +355,9 @@ and the output will be
 <!--Footnotes-->
 <hr/>
 
-<div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><span class="footpara">
 &#x2026;but sometimes you want footnotes.
-</p></span></div>
+</span></span></div>
 
 
 </div>
