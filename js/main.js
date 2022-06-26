@@ -242,13 +242,13 @@ function bindScrollTriggers(element, over_cb, out_cb) {
  * TODO reimplement `toggleAnimation(update_func)`
  */
 
-var _animations = [];
-var _animation_frame_counts = [];
+var _animations = new Set();
+var _animation_frame_counts = {};
 var _animation_loop_running = false;
 
 function addAnimation(update_func) {
-    _animations.push(update_func);
-    _animation_frame_counts.push(0);
+    _animations.add(update_func);
+    _animation_frame_counts[update_func] = 0;
 
     if (!_animation_loop_running) {
         // start animation
@@ -257,26 +257,21 @@ function addAnimation(update_func) {
 };
 
 function removeAnimation(update_func) {
-    var i = _animations.indexOf(update_func);
-    if (i == -1) {
-        throw 'function not in _animations';
-    } else {
-        _animations.splice(i, 1);
-        _animation_frame_counts.splice(i, 1);
-    }
+    _animations.delete(update_func);
+    delete _animation_frame_counts[update_func]
 }
 
 function _doAnimation() {
     _animation_loop_running = true;
 
     var t = (new Date()).getTime();
-    for (var i=0; i < _animations.length; i++) {
-        var f = _animation_frame_counts[i];
-        _animations[i](f, t);
-        _animation_frame_counts[i] += 1;
+    for (func of _animations) {
+        var f = _animation_frame_counts[func];
+        func(f, t);
+        _animation_frame_counts[func] += 1;
     }
 
-    if (_animations) {
+    if (_animations.size) {
         window.requestAnimationFrame(_doAnimation);
     } else {
         // no active animations. Wait for one to be added.

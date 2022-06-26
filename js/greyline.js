@@ -3,14 +3,14 @@
 
 celestial_objects = {
     0: {name: 'Sun', linewidth: 3},
-    1: {name: 'Mercury', linewidth: 1},
-    2: {name: 'Venus', linewidth: 2},
+    1: {name: 'Mercury', linewidth: 0.5},
+    2: {name: 'Venus', linewidth: 2.5},
     3: {name: 'Moon', linewidth: 3},
     4: {name: 'Mars', linewidth: 2},
-    5: {name: 'Jupiter', linewidth: 2},
-    6: {name: 'Saturn', linewidth: 2},
-    7: {name: 'Uranus', linewidth: 1},
-    8: {name: 'Neptune', linewidth: 1}
+    5: {name: 'Jupiter', linewidth: 2.5},
+    6: {name: 'Saturn', linewidth: 2.5},
+    7: {name: 'Uranus', linewidth: 0.5},
+    8: {name: 'Neptune', linewidth: 0.5}
 };
 
 let global_hist_length = 20;
@@ -60,9 +60,10 @@ function solve_angles(target_date) {
         // Equatorial coordinates at target date (adjust for precession, nutation)
         let vec = Astronomy.RotateVector(rot, vec_epoch);
 
+        let longitude = Math.atan2(vec.y, vec.x) - sidereal_drift;
         sun.hist.push({
             polar_angle: Math.acos(vec.z / vec.Length()),
-            longitude: Math.atan2(vec.y, vec.x) - sidereal_drift,
+            longitude: (longitude + (4 * Math.PI)) % (2 * Math.PI),
             date: date
         });
 
@@ -191,11 +192,28 @@ compositing_canvas.width = width;
 compositing_canvas.height = height;
 compositing_ctx = compositing_canvas.getContext('2d');
 
-function render_composite(date, callback) {
+function month_str(month) { // [0, 11]
+    return  ("0" + (((month + 12) % 12) + 1).toString()).slice(-2); // [01, 12]
+}
+function month_src(month) {
+    return "/img/greyline/" + month_str(month) + ".jpg"
+}
+function month_img(month) {
+    return document.getElementById("month" + month_str(month));
+}
+function month_is_loaded(month) { // [0, 11]
+    let this_month_src = month_src(month);
+    let this_month_img = month_img(month);
+
+    return (
+        this_month_img.dataset.touched && this_month_img.complete
+    );
+}
+
+function render_composite(date, callback, wait_for_img_load=false) {
     /*
      * date: date object
      * */
-
 
     let bodies = solve_angles(date);
     let {[0]: sun, ...satellites} = bodies;
@@ -209,144 +227,190 @@ function render_composite(date, callback) {
     );
 
     let year = date.getYear();
-    let month = date.getUTCMonth(); // [0, 12]
+    let month = date.getUTCMonth(); // [0, 11]
     let day = date.getUTCDate();
-
-    let pst_month_src = ("0" + (
-        ((month + (day >= 15)) % 12) + 1 // [1, 12]
-    ).toString()).slice(-2);
-    let ftr_month_src = ("0" + (
-        ((month + (day >= 15) + 1) % 12) + 1 // [1, 12]
-    ).toString()).slice(-2);
-
-    let pst_month = document.getElementById("month" + pst_month_src);
-    let ftr_month = document.getElementById("month" + ftr_month_src);
-    pst_month.src = "/img/greyline/" + pst_month_src + ".jpg";
-    ftr_month.src = "/img/greyline/" + ftr_month_src + ".jpg";
 
     // interpolate between images based on time between months.
     // treat day 15 of month as center of month
-    let monthAlpha; // weight of pst month
-    if (day < 15) { // (day into ftr_month) [1, 14].
-        monthAlpha = 0.5 * (16 - day) / 15; // [0.5, 1/15]
-    } else { // (day of pst_month) [15, 31]
-        monthAlpha = 0.5 * (1 + (31 - day) / 16); // [1, 0.5]
+    let monthAlpha; // weight of pst_month
+    let pst_month;
+    let ftr_month;
+    let pst_month_img;
+    let ftr_month_img;
+
+    if (day < 15) {
+        pst_month = month - 1;
+        ftr_month = month;
+        monthAlpha = 0.5 * (15 - day) / 14; // [1, 14] -> [0.5, 1/28]
+    } else {
+        pst_month = month;
+        ftr_month = month + 1;
+        monthAlpha = 0.5 * (1 + (31 - day) / 16); // [15, 31] -> [1, 0.5]
     }
 
-    images_to_load = new Set;
-    function handle_image_load(img) {
+    // get image elements
+    pst_month_img = month_img(pst_month);
+    ftr_month_img = month_img(ftr_month);
 
-        images_to_load.delete(img);
-        if (images_to_load.size == 0) {
+    // trigger image load if not already loaded
+    if (!pst_month_img.dataset.touched) {
+        pst_month_img.src = month_src(pst_month);
+        pst_month_img.dataset.touched = true;
+    }
+    if (!ftr_month_img.dataset.touched) {
+        ftr_month_img.src = month_src(ftr_month);
+        ftr_month_img.dataset.touched = true;
+    }
+
+    if (wait_for_img_load) {
+        images_to_load = new Set;
+
+        for (img of [pst_month_img, ftr_month_img, night]) {
+            if (!img.complete) {
+                images_to_load.add(img);
+                img.onload = function() { handle_image_load(this); };
+            }
+        }
+        function handle_image_load(img) {
+            images_to_load.delete(img);
+            if (images_to_load.size == 0) {
+                draw();
+            }
+        }
+        handle_image_load();
+    } else {
+        // assume night is already loaded.
+        if (month_is_loaded(pst_month) && month_is_loaded(ftr_month)) {
+            draw();
+        }
+        else {
+            let found_month = pst_month;
+            let test_month;
+
+            function look_forward() {
+                test_month = pst_month;
+                if (month_is_loaded(pst_month += 1)) {
+                    found_month = pst_month;
+                    return true;
+                }
+            }
+            function look_back() {
+                test_month = ftr_month;
+                if (month_is_loaded(ftr_month -= 1)) {
+                    found_month = ftr_month;
+                    return true;
+                }
+            }
+
+            while (!(look_forward() || look_back())) {
+                if (test_month <= -11) { break; } // we've looped
+            }
+
+            pst_month = found_month;
+            ftr_month = found_month;
+
             draw();
         }
     }
-    for (img of [pst_month, ftr_month, night]) {
-        if (!img.complete) {
-            images_to_load.add(img);
-            img.onload = function() { handle_image_load(this); };
-        }
-    }
-    handle_image_load();
 
     function draw() {
-        compose_image_layers();
-        draw_celestial_bodies();
+        compose_image_layers(pst_month, ftr_month, monthAlpha);
+        draw_celestial_bodies(bodies);
         if (callback) {
             callback();
         }
     }
+}
 
-    function compose_image_layers() {
+function compose_image_layers(pst_month, ftr_month, monthAlpha) {
 
-        // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing
+    // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing
 
-        compositing_ctx.globalCompositeOperation = "source-over";
+    compositing_ctx.globalCompositeOperation = "source-over";
 
-        compositing_ctx.globalAlpha = 1;
-        compositing_ctx.drawImage(ftr_month, 0, 0, width, height);
-        compositing_ctx.globalAlpha = monthAlpha;
-        compositing_ctx.drawImage(pst_month, 0, 0, width, height);
+    compositing_ctx.globalAlpha = 1;
+    compositing_ctx.drawImage(month_img(ftr_month), 0, 0, width, height);
+    compositing_ctx.globalAlpha = monthAlpha;
+    compositing_ctx.drawImage(month_img(pst_month), 0, 0, width, height);
 
-        // delete dark pixels
-        compositing_ctx.globalAlpha = 1;
-        compositing_ctx.globalCompositeOperation = "destination-out";
-        compositing_ctx.drawImage(gpu_canvas, 0, 0, width, height);
+    // delete dark pixels
+    compositing_ctx.globalAlpha = 1;
+    compositing_ctx.globalCompositeOperation = "destination-out";
+    compositing_ctx.drawImage(gpu_canvas, 0, 0, width, height);
 
-        // place night image behind
-        compositing_ctx.globalCompositeOperation = "destination-over";
-        compositing_ctx.drawImage(night, 0, 0, width, height);
+    // place night image behind
+    compositing_ctx.globalCompositeOperation = "destination-over";
+    compositing_ctx.drawImage(night, 0, 0, width, height);
 
-        compositing_ctx.globalCompositeOperation = "source-over";
+    compositing_ctx.globalCompositeOperation = "source-over";
 
-    }
+}
 
-    function draw_celestial_bodies() {
+function draw_celestial_bodies(bodies) {
 
-        for (idx in bodies) {
-            body = bodies[idx];
+    for (idx in bodies) {
+        body = bodies[idx];
 
-            // get pixel coordinates
-            xs = [];
-            ys = [];
+        // get pixel coordinates
+        let xs = [];
+        let ys = [];
 
-            for (position of body.hist) {
+        for (position of body.hist) {
 
-                let x = (width / 2) * (position.longitude / Math.PI + 1);
-                let y = height * (position.polar_angle / Math.PI);
+            let x = (width / 2) * (position.longitude / Math.PI + 1);
+            let y = height * (position.polar_angle / Math.PI);
 
-                xs.push(x);
-                ys.push(y);
+            xs.push(x);
+            ys.push(y);
+        }
+
+        // patch discontinuities due to angle wrapping
+        // and combine xs and ys into single array
+        points = [];
+        hist_length = xs.length;
+        for (i = 1; i < hist_length; i += 1) {
+            while (xs[i] - xs[i - 1] > (width / 2)) {
+                xs[i] -= width;
             }
-
-            // patch discontinuities due to angle wrapping
-            // and combine xs and ys into single array
-            points = [];
-            hist_length = xs.length;
-            for (i = 1; i < hist_length; i += 1) {
-                if (xs[i] - xs[i - 1] > (width / 2)) {
-                    xs[i] -= width;
-                }
-                else if (xs[i] - xs[i - 1] < -(width / 2)) {
-                    xs[i] += width;
-                }
-                points.push(xs[i]);
-                points.push(ys[i]);
+            while (xs[i] - xs[i - 1] < -(width / 2)) {
+                xs[i] += width;
             }
+            points.push(xs[i]);
+            points.push(ys[i]);
+        }
 
-            let points_interpolated = getCurvePoints(points, 0.5); // [[x0, y0, x1, y1], tension, numOfSeg
-            let xs_interpolated = [];
-            let ys_interpolated = [];
-            for (i = 0; i < points_interpolated.length / 2; i += 1) {
-                xs_interpolated.push(points_interpolated[2 * i]);
-                ys_interpolated.push(points_interpolated[2 * i + 1]);
-            }
+        let points_interpolated = getCurvePoints(points, 0.5); // [[x0, y0, x1, y1], tension, numOfSeg
+        let xs_interpolated = [];
+        let ys_interpolated = [];
+        for (i = 0; i < points_interpolated.length / 2; i += 1) {
+            xs_interpolated.push(points_interpolated[2 * i]);
+            ys_interpolated.push(points_interpolated[2 * i + 1]);
+        }
 
-            // allow to wrap horizontally
-            for (let i = -1; i < 2; i += 1){
-                let width_offset = width * i;
+        // allow to wrap horizontally
+        for (let i = -1; i < 2; i += 1){
+            let width_offset = width * i;
 
-                // reset parameters
-                compositing_ctx.fillStyle = "#FFFFFFFF";
-                compositing_ctx.strokeStyle = "#FFFFFFFF";
-                compositing_ctx.lineWidth = body.linewidth;
+            // reset parameters
+            compositing_ctx.fillStyle = "#FFFFFFFF";
+            compositing_ctx.strokeStyle = "#FFFFFFFF";
+            compositing_ctx.lineWidth = body.linewidth;
 
-                // draw analemma
-                interpolated_length = xs_interpolated.length;
-                for (ii = 1; ii < interpolated_length; ii += 1) {
-                    compositing_ctx.strokeStyle = 'rgba(255, 255, 255, ' + (1 - (ii / interpolated_length)) + ')';
+            // draw analemma
+            interpolated_length = xs_interpolated.length;
+            for (ii = 1; ii < interpolated_length; ii += 1) {
+                compositing_ctx.strokeStyle = 'rgba(255, 255, 255, ' + (1 - (ii / interpolated_length)) + ')';
 
-                    compositing_ctx.beginPath();
-                    compositing_ctx.moveTo(xs_interpolated[ii - 1] + width_offset, ys_interpolated[ii - 1]);
-                    compositing_ctx.lineTo(xs_interpolated[ii] + width_offset, ys_interpolated[ii]);
-                    compositing_ctx.stroke();
-                }
+                compositing_ctx.beginPath();
+                compositing_ctx.moveTo(xs_interpolated[ii - 1] + width_offset, ys_interpolated[ii - 1]);
+                compositing_ctx.lineTo(xs_interpolated[ii] + width_offset, ys_interpolated[ii]);
+                compositing_ctx.stroke();
             }
         }
     }
 }
 
-function transfer_to_canvas(phi) {
+function transfer_to_canvas(phi, callback) {
     /* phi: longitude to center in view */
 
     let canvas = document.getElementById("canvas");
@@ -372,40 +436,179 @@ function transfer_to_canvas(phi) {
         0, 0, width - phi_offset, height           // dest offset x, offset y, width, height
     );
 
+    if (callback) {
+        callback();
+    }
+
 }
 
 
+let date_in_image;
+let date_in_buffer;
+let date;
+
+let phi_in_image;
+let phi;
+
+let composite_busy = false;
+let canvas_busy = false;
+
+let dateEl = document.getElementById("date");
+
+var pointer;
+var mouse;
+
+function handleMousedown(e) {
+
+    let x = e.clientX;
+    let y = e.clientY;
+
+    mouse = {x: x, y: y};
+}
+function handleTouchstart(e) {
+
+    let x = e.touches[0].clientX;
+    let y = e.touches[0].clientY;
+
+    touch = {x: x, y: y};
+}
+
+function handleMousemove(e) {
+
+    // global variable in main.js
+    if (!mouseDown) {
+        return;
+    }
+
+    let x = e.clientX;
+    let y = e.clientY;
+
+    let dx = -(x - mouse.x) / Number(getComputedStyle(canvas).getPropertyValue("width").slice(0, -2)) * width;
+    let dy = -(y - mouse.y)
+
+    handle_interface({ x: dx, y: dy });
+    mouse = { x: x, y: y };
+
+}
+function handleTouchmove(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let x = e.touches[0].clientX;
+    let y = e.touches[0].clientY;
+
+    let dx = -(x - touch.x) / Number(getComputedStyle(canvas).getPropertyValue("width").slice(0, -2)) * width;
+    let dy = -(y - touch.y)
+
+    handle_interface({ x: dx, y: dy });
+
+    touch = { x: x, y: y };
+
+}
+
+function handleWheel(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let dx = e.deltaX;
+    let dy = e.deltaY;
+
+    handle_interface({ x: dx, y: dy });
+};
+
+function handle_interface(delta) {
+    if (delta.x) {
+        // fire up animate_canvas if not already running.
+        phi += delta.x / width * 2 * Math.PI;
+        addAnimation(animate_canvas);
+    }
+
+    if (delta.y) {
+        // fire up animate_composite if not already running.
+        // it will run at least twice,
+        // triggering animate_canvas after the first run.
+        let delta_t = Math.round(delta.y / 10) * 1000 * 3600 * 24
+        date = new Date(date.getTime() + delta_t);
+        addAnimation(animate_composite);
+    }
+}
+
+function animate_composite() {
+    // our work is done
+    if (date_in_buffer == date) {
+        removeAnimation(animate_composite);
+    }
+    // we have work to do
+    else {
+        // if not currently working on it
+        if (!composite_busy) {
+            composite_busy = true;
+            render_composite(date, function() {
+                composite_busy = false;
+                date_in_buffer = date;
+                addAnimation(animate_canvas);
+            });
+        }
+    }
+    // await the next scheduled animation
+}
+
+function animate_canvas() {
+    // composite canvas is up to date and our work is done
+    if ((phi_in_image == phi) && (date_in_image == date_in_buffer)) {
+        removeAnimation(animate_canvas);
+    }
+    // not done
+    else {
+        // if not currently working on it
+        if (!canvas_busy) {
+            canvas_busy = true;
+            transfer_to_canvas(phi, function() {
+                canvas_busy = false;
+                date_in_image = date_in_buffer;
+                dateEl.innerHTML = date.toUTCString();
+                phi_in_image = phi;
+            });
+        }
+    }
+    // await next scheduled animation
+}
+
+live_update_interval = 1000 * 12; // 12 seconds = 0.5 pixel at 3600 px width
+
+function live_update() {
+    date = new Date(date.getTime() + live_update_interval);
+    addAnimation(animate_composite);
+    setTimeout(live_update, live_update_interval);
+}
+
 onReady(function(){
 
-    let date = new Date();
+    date = new Date();
     let hour = date.getUTCHours();
     let minutes = date.getUTCMinutes();
-    let phi = Math.PI - (hour + minutes /  60) / 12 * Math.PI;
+
+    phi = Math.PI - (hour + minutes /  60) / 12 * Math.PI;
+
+    // initial render, delay for images to load.
+    render_composite(
+        date,
+        callback=function() {
+            transfer_to_canvas(phi);
+            setTimeout(live_update, live_update_interval);
+            dateEl.innerHTML = date.toUTCString();
+        },
+        wait_for_img_load=true
+    );
 
     let canvas = document.getElementById("canvas");
-
-    var handleWheel = function(e) {
-        e.preventDefault();
-        phi += e.deltaX / 1000;
-
-        // TODO HERE: rate-limited time update.
-        // if (e.deltaY) {
-        //     let date = new Date(target_date.getTime() - delta_t * j);
-        // }
-        //
-        // also TODO. Reimplement ability to pause animations
-    };
-
     canvas.addEventListener('wheel', handleWheel);
+    canvas.addEventListener('touchstart', handleTouchstart);
+    canvas.addEventListener('touchmove', handleTouchmove);
+    canvas.addEventListener('mousedown', handleMousedown);
+    canvas.addEventListener('mousemove', handleMousemove);
+    canvas.addEventListener('touchstart', handleTouchstart);
 
-    render_composite(date, init_callback);
-
-    function animate() {
-        transfer_to_canvas(phi);
-    }
-
-    function init_callback() {
-        addAnimation(animate);
-    }
+    // continually update time and phi synchronously
 
 });
