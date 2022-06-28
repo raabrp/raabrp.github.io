@@ -60,10 +60,9 @@ function solve_angles(target_date) {
         // Equatorial coordinates at target date (adjust for precession, nutation)
         let vec = Astronomy.RotateVector(rot, vec_epoch);
 
-        let longitude = Math.atan2(vec.y, vec.x) - sidereal_drift;
         sun.hist.push({
             polar_angle: Math.acos(vec.z / vec.Length()),
-            longitude: (longitude + (4 * Math.PI)) % (2 * Math.PI),
+            longitude: Math.atan2(vec.y, vec.x) - sidereal_drift,
             date: date
         });
 
@@ -366,6 +365,7 @@ function draw_celestial_bodies(bodies) {
 
         // patch discontinuities due to angle wrapping
         // and combine xs and ys into single array
+        xs[0] = (xs[0] + 2 * width) % width;
         points = [];
         hist_length = xs.length;
         for (i = 1; i < hist_length; i += 1) {
