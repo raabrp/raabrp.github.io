@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-22 Wed 20:40 -->
+<!-- 2022-08-30 Tue 11:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Curriculum Vitae</title>
@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
+<script src="js/lib/copy-tex.js"></script>
 <meta name="description" content="My Curriculum Vitae"/>
 </head>
 <body>
@@ -24,7 +25,7 @@
 <h1 class="title">Curriculum Vitae</h1>
 </header><table><tr><td width="300px"><center>
 
-<figure id="org3c7f2f3">
+<figure id="orgea98c4b">
 <img src="./img/2022.jpg" alt="2022.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Me (in red).</figcaption>
@@ -54,9 +55,9 @@ advised by <a href="http://www.yliuu.com">Yang Liu</a>
 <li><a href="#Expertise">Expertise</a></li>
 <li><a href="#Work-amp-Research">Work &amp; Research</a></li>
 <li><a href="#Education">Education</a></li>
-<li><a href="#Publications">Publications</a></li>
 <li><a href="#Teaching-Experience">Teaching Experience</a></li>
 <li><a href="#Honors-amp-Awards">Honors &amp; Awards</a></li>
+<li><a href="#Publications">Publications</a></li>
 </ul>
 </div>
 </nav>
@@ -147,7 +148,7 @@ abroad, remotely developing software related to automated circuit design.
 </tr>
 </table>
 <div class="cv-bullets">
-Dynamics of multiagent human-AI systems<br />Issues of fairness and incentive alignment
+Dynamics of multiagent human-AI systems<br />Evolutionary game theory, reinforcement learning, control theory<br />Fairness, incentive alignment, domain adaptation
 </div>
 </div>
 
@@ -164,7 +165,7 @@ Dynamics of multiagent human-AI systems<br />Issues of fairness and incentive al
 </tr>
 </table>
 <div class="cv-bullets">
-Integrating electronic design automation tools<br />Developing full-stack Internet-of-Things solutions
+Design of full-stack Internet-of-Things solutions<br />Development of electronic design automation tools
 </div>
 </div>
 
@@ -181,7 +182,7 @@ Integrating electronic design automation tools<br />Developing full-stack Intern
 </tr>
 </table>
 <div class="cv-bullets">
-Fabrication, assembly, and testing of custom hardware<br />Noise reduction in GHz signal chain for superconducting qubit control<br />Thesis on single-qubit gate error induced by signal-chain imperfections
+Fabrication, assembly, and testing of custom hardware<br />Characterization and reduction of noise in GHz qubit-control signal chain<br />Thesis on single-qubit gate error induced by signal-chain imperfections
 </div>
 </div>
 
@@ -257,35 +258,6 @@ High Honors<br />Distinction in the Major
 UCEAP Scholarship<br />UCSB EAP Scholarship
 </div>
 </div>
-</div>
-</div>
-
-<div id="outline-container-Publications" class="outline-2">
-<h2 id="Publications">Publications</h2>
-<div class="outline-text-2" id="text-orge996a7b">
-<p>
-<a href="https://arxiv.org/pdf/2206.00129.pdf">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
-Yatong Chen, <strong>Reilly Raab</strong>, Jialu Wang, and Yang Liu <br>
-<em>Arxiv. Submitted for peer-review. (2022)</em>
-</p>
-
-<p>
-<a href="https://proceedings.neurips.cc/paper/2021/file/db00f1b7fdf48fd26b5fb5f309e9afaf-Paper.pdf">Unintended Selection: Persistent Qualification Rate Disparities and Interventions</a> <br>
-<strong>Reilly Raab</strong> and Yang liu <br>
-<em>NeurIPS. (2021) <strong>Spotlight Paper</strong></em>
-</p>
-
-<p>
-<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing</a> <br>
-<strong>Reilly Raab</strong> <br>
-<em>Undergraduate Thesis. Not peer-reviewed. (2015)</em>
-</p>
-
-<p>
-<a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c">Systematic study of exciton diffusion length in organic semiconductors by six experimental methods</a> <br>
-Jason D. A. Lin <strong>et. al.</strong> <br>
-<em>Materials Horizons. (2014)</em>
-</p>
 </div>
 </div>
 
@@ -432,6 +404,41 @@ Same as above
 
 </div>
 </div>
+</div>
+</div>
+
+<div id="outline-container-Publications" class="outline-2">
+<h2 id="Publications">Publications</h2>
+<div class="outline-text-2" id="text-orge996a7b">
+<p>
+<a href="https://arxiv.org/pdf/2206.00129.pdf">Conjugate Natural Selection</a> <br>
+<strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu <br>
+<em>Submitted to Arxiv. (2022)</em>
+</p>
+
+<p>
+<a href="https://arxiv.org/pdf/2206.00129.pdf">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
+Yatong Chen, <strong>Reilly Raab</strong>, Jialu Wang, and Yang Liu <br>
+<em>Arxiv. Submitted for peer-review. (2022)</em>
+</p>
+
+<p>
+<a href="https://proceedings.neurips.cc/paper/2021/file/db00f1b7fdf48fd26b5fb5f309e9afaf-Paper.pdf">Unintended Selection: Persistent Qualification Rate Disparities and Interventions</a> <br>
+<strong>Reilly Raab</strong> and Yang liu <br>
+<em>NeurIPS. (2021) <strong>Spotlight Paper</strong></em>
+</p>
+
+<p>
+<a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing</a> <br>
+<strong>Reilly Raab</strong> <br>
+<em>Undergraduate Thesis. Not peer-reviewed. (2015)</em>
+</p>
+
+<p>
+<a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c">Systematic study of exciton diffusion length in organic semiconductors by six experimental methods</a> <br>
+Jason D. A. Lin <strong>et. al.</strong> <br>
+<em>Materials Horizons. (2014)</em>
+</p>
 </div>
 </div>
 </main>

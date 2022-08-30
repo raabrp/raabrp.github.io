@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-22 Wed 20:41 -->
+<!-- 2022-07-02 Sat 18:16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
+<script src="js/lib/copy-tex.js"></script>
 <link rel="canonical" href="https://reillyraab.com/demo" />
 <meta name="description" content="Examples of how blocks of org-mode text map to HTML, for demonstration and personal reference." />
 </head>
@@ -69,7 +70,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="org6ad129a">
+<figure id="orgc42ecca">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
@@ -145,12 +146,19 @@ the inline tags <samp>$... $</samp>, <samp>\( ... \)</samp> are recognized. Conv
 </p>
 
 <p>
+<strong>Idiosyncrasies</strong>:
+</p>
+<ul class="org-ul">
+<li>if using <samp>\begin{...}</samp> inside the math environment, use <samp>\begin{equation}</samp> or another
+explicit environment to declare the math rather than, <em>e.g.</em>, <samp>\[ ... \]</samp>.</li>
+</ul>
+
+<p>
 <a href="#eqn-1">Eq. (1)</a> is the <a href="https://en.wikipedia.org/wiki/Euler-Lagrange_equations">Euler-Lagrange</a> equation with respect to scalar field
 value <!--\phi-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span>
  with space-time coordinates indexed by <!--\mu-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span>
-.
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span>.
 </p>
 </div>
 </div>
@@ -355,9 +363,9 @@ and the output will be
 <!--Footnotes-->
 <hr/>
 
-<div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><span class="footpara">
+<div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><p class="footpara">
 &#x2026;but sometimes you want footnotes.
-</span></span></div>
+</p></span></div>
 
 
 </div>
