@@ -1,0 +1,18 @@
+# Ignore all HTML Files by default
+*.html
+
+# Until we are ready to publish them
+!404.html
+!about.html
+!chess.html
+!dark-chess.html
+!demo.html
+!euler-lagrange.html
+!fischer-random.html
+!greyline.html
+!index.html
+!ito.html
+!julia.html
+!reading-list.html
+!site-info.html
+!tex.html
