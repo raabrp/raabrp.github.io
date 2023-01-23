@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-06-21 Tue 21:43 -->
+<!-- 2023-01-23 Mon 08:32 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Julia Sets</title>
@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
 <script src="js/main.js"></script>
+<script src="js/lib/copy-tex.js"></script>
 <link rel="canonical" href="https://reillyraab.com/julia" />
 <meta name="description" content="A brief explanation of the canonical Julia sets (z <- z^2 + c) with an interactive visualization." />
 </head>
@@ -79,8 +80,7 @@ slices of the same four-dimensional object, where the Julia sets fix values of
 <!--c-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
  and the Mandelbrot set fixes <!--x = 0-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>
-. We can visualize the Mandelbrot
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. We can visualize the Mandelbrot
 set in the background of the set above. Pay attention to the origin, noting that
 the origin is in the Julia set if and only if your mouse is in the Mandelbrot
 set.
@@ -511,7 +511,7 @@ onReady(function() {
 
 <div id="outline-container-Fragment-Shader-" class="outline-2">
 <h2 id="Fragment-Shader-">Fragment Shader:</h2>
-<div class="outline-text-2" id="text-org3f6c88f">
+<div class="outline-text-2" id="text-org9436175">
 <p>
 Using <a href="https://twgljs.org">twgl.js</a> behind the scenes, here is the code to generate the Julia sets
 above:
@@ -712,7 +712,7 @@ uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;"
 </div>
 </main>
 <footer id="postamble" class="boilerplate">
-Copyright © 2022 Reilly Raab
+Copyright © 2023 Reilly Raab
 </footer>
 </body>
 </html>

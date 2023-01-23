@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-02 Sat 18:16 -->
+<!-- 2023-01-23 Mon 08:31 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -46,7 +46,7 @@
 
 <div id="outline-container-Text-Decoration" class="outline-2">
 <h2 id="Text-Decoration">Text Decoration</h2>
-<div class="outline-text-2" id="text-orga3cd2f3">
+<div class="outline-text-2" id="text-org815ce67">
 <p>
 Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">underlined</span>, <kbd>verbatim</kbd>, <samp>monospace</samp>, or
 <del>strike-through</del>.
@@ -62,7 +62,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 
 <div id="outline-container-Images" class="outline-2">
 <h2 id="Images">Images</h2>
-<div class="outline-text-2" id="text-orge09697d">
+<div class="outline-text-2" id="text-orga3d9352">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+CAPTION:</span> <span style="background-color: #23272e;">Caption goes here. Click for fullscreen.</span>
 <span style="color: #ECBE7B; font-weight: bold; text-decoration: underline;"><a href="./img/2015.jpg">./img/2015.jpg</a></span>
@@ -70,7 +70,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="orgc42ecca">
+<figure id="orgb904bae">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
@@ -80,11 +80,11 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 
 <div id="outline-container-Source-Code" class="outline-2">
 <h2 id="Source-Code">Source Code</h2>
-<div class="outline-text-2" id="text-org9cd4a3a">
+<div class="outline-text-2" id="text-org7200174">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_src python</span>
 <span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">lazy</span><span style="background-color: #23272e;">(f):</span>
-<span style="background-color: #23272e;">    </span><span style="color: #dcaeea; background-color: #23272e;">a</span><span style="background-color: #23272e;"> = f</span><span style="color: #98be65; background-color: #23272e;">'_lazy_{f.__name__}'</span>
+<span style="background-color: #23272e;">    </span><span style="color: #dcaeea; background-color: #23272e;">a</span><span style="background-color: #23272e;"> = f</span><span style="color: #98be65; background-color: #23272e;">'_lazy_</span><span style="background-color: #23272e;">{f.</span><span style="color: #c678dd; background-color: #23272e;">__name__</span><span style="background-color: #23272e;">}</span><span style="color: #98be65; background-color: #23272e;">'</span>
 <span style="background-color: #23272e;">    @</span><span style="color: #c678dd; background-color: #23272e;">property</span>
 <span style="background-color: #23272e;">    </span><span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">wrapper</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">):</span>
 <span style="background-color: #23272e;">        </span><span style="color: #51afef; background-color: #23272e;">if</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">not</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">hasattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a):</span>
@@ -100,7 +100,7 @@ Output:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">lazy</span>(f):
-    <span style="color: #dcaeea;">a</span> = f<span style="color: #98be65;">'_lazy_{f.__name__}'</span>
+    <span style="color: #dcaeea;">a</span> = f<span style="color: #98be65;">'_lazy_</span>{f.<span style="color: #c678dd;">__name__</span>}<span style="color: #98be65;">'</span>
     @<span style="color: #c678dd;">property</span>
     <span style="color: #51afef;">def</span> <span style="color: #c678dd;">wrapper</span>(<span style="color: #51afef;">self</span>):
         <span style="color: #51afef;">if</span> <span style="color: #51afef;">not</span> <span style="color: #c678dd;">hasattr</span>(<span style="color: #51afef;">self</span>, a):
@@ -114,7 +114,7 @@ Output:
 
 <div id="outline-container-Math" class="outline-2">
 <h2 id="Math">Math</h2>
-<div class="outline-text-2" id="text-org68999ea">
+<div class="outline-text-2" id="text-org6e4db44">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
 <span style="color: #51afef; background-color: #23272e;">\begin</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}</span>
@@ -127,15 +127,6 @@ Output:
 
 <!-- \label{eqn-1}\tag{1} \frac{\partial L}{\partial \phi} - \sum_\mu \partial_\mu \bigg( \frac{\partial L}{\partial (\partial_\mu \phi)}\bigg) = 0 -->
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>L</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>ϕ</mi></mrow></mfrac><mo>−</mo><munder><mo>∑</mo><mi>μ</mi></munder><msub><mi mathvariant="normal">∂</mi><mi>μ</mi></msub><mo fence="false" stretchy="true" minsize="2.4em" maxsize="2.4em">(</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>L</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mo stretchy="false">(</mo><msub><mi mathvariant="normal">∂</mi><mi>μ</mi></msub><mi>ϕ</mi><mo stretchy="false">)</mo></mrow></mfrac><mo fence="false" stretchy="true" minsize="2.4em" maxsize="2.4em">)</mo><mo>=</mo><mn>0</mn></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation} \label{eqn-1}\tag{1} \frac{\partial L}{\partial \phi} - \sum_\mu \partial_\mu \bigg( \frac{\partial L}{\partial (\partial_\mu \phi)}\bigg) = 0 \end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.8361em;vertical-align:-1.1681em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6681em;"><span style="top:-3.6681em;"><span class="pstrut" style="height:3.45em;"></span><span class="mord"><span class="enclosing" id="eqn-1"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal">ϕ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.9em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3861em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mopen">(</span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord mathnormal">ϕ</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="delimsizing size3">)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1681em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6681em;"><span style="top:-3.6681em;"><span class="pstrut" style="height:3.45em;"></span><span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1681em;"><span></span></span></span></span></span></span></span></span>
-
-<div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
-[&#8203;[eqn:euler-lagrange]] is the
-[&#8203;[h&#8203;ttps://en.wikipedia.org/wiki/Euler-Lagrange_equations][Euler-Lagrange]]
-equation with respect to scalar field value<span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">$</span><span style="color: #98be65; background-color: #23272e;">\phi</span><span style="color: #98be65; background-color: #23272e;">$</span><span style="background-color: #23272e;"> </span>with space-time
-coordinates indexed by <span style="color: #98be65; background-color: #23272e;">\(\mu\)</span>.
-</pre>
-</div>
 
 <p>
 The standard block-math tags <samp>equation</samp>, <samp>align</samp>, <samp>\[ ... \]</samp>, <samp>$$ ... $$</samp> and
@@ -154,6 +145,18 @@ explicit environment to declare the math rather than, <em>e.g.</em>, <samp>\[ ..
 </ul>
 
 <p>
+<strong>References</strong>:
+</p>
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
+[&#8203;[eqn:euler-lagrange]] is the
+[&#8203;[h&#8203;ttps://en.wikipedia.org/wiki/Euler-Lagrange_equations][Euler-Lagrange]]
+equation with respect to scalar field value<span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">$</span><span style="color: #98be65; background-color: #23272e;">\phi</span><span style="color: #98be65; background-color: #23272e;">$</span><span style="background-color: #23272e;"> </span>with space-time
+coordinates indexed by <span style="color: #98be65; background-color: #23272e;">\(\mu\)</span>.
+</pre>
+</div>
+
+<p>
 <a href="#eqn-1">Eq. (1)</a> is the <a href="https://en.wikipedia.org/wiki/Euler-Lagrange_equations">Euler-Lagrange</a> equation with respect to scalar field
 value <!--\phi-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span>
@@ -165,7 +168,7 @@ value <!--\phi-->
 
 <div id="outline-container-Internal-Links" class="outline-2">
 <h2 id="Internal-Links">Internal Links</h2>
-<div class="outline-text-2" id="text-org4b6671c">
+<div class="outline-text-2" id="text-org3a2fa5c">
 <ul class="org-ul">
 <li><p>
 Internal link to header inside this document (source document in org;
@@ -206,7 +209,7 @@ HTML-only link
 
 <div id="outline-container-Wikipedia-Links" class="outline-2">
 <h2 id="Wikipedia-Links">Wikipedia Links</h2>
-<div class="outline-text-2" id="text-org4b700b1">
+<div class="outline-text-2" id="text-orgc49d2fa">
 <div class="org-src-container">
 <pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will
 display summaries when hovered over.
@@ -221,7 +224,7 @@ Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages w
 
 <div id="outline-container-Foot-notes" class="outline-2">
 <h2 id="Foot-notes">Foot​notes</h2>
-<div class="outline-text-2" id="text-orga193029">
+<div class="outline-text-2" id="text-org67175a6">
 <p>
 Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>
 </p>
@@ -230,7 +233,7 @@ Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footre
 
 <div id="outline-container-Block-Quotes" class="outline-2">
 <h2 id="Block-Quotes">Block Quotes</h2>
-<div class="outline-text-2" id="text-org94173dd">
+<div class="outline-text-2" id="text-org3b8433c">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_quote</span>
 <span style="background-color: #23272e; font-style: italic;">There was only one catch and that was Catch-22, which specified that a concern</span>
@@ -262,7 +265,7 @@ would have to fly more missions.
 
 <div id="outline-container-Tables" class="outline-2">
 <h2 id="Tables">Tables</h2>
-<div class="outline-text-2" id="text-org2c0dfe8">
+<div class="outline-text-2" id="text-orge9d99b6">
 <p>
 I don&rsquo;t use org-mode for tables. The feature-set is limited (<em>e.g.</em>, cells
 spanning multiple columns). At the moment, I write tables in <a href="#Raw-HTML">Raw HTML</a> or
@@ -273,7 +276,7 @@ using <a href="#Inline-Lisp">Inline Lisp</a>.
 
 <div id="outline-container-Raw-HTML" class="outline-2">
 <h2 id="Raw-HTML">Raw HTML</h2>
-<div class="outline-text-2" id="text-org79d16bd">
+<div class="outline-text-2" id="text-orgb9d1dd4">
 Arbitrary <button>HTML</button> can go here.
 
 <div class="org-src-container">
@@ -296,7 +299,7 @@ Inline <button>HTML</button> is also possible.
 
 <div id="outline-container-Scripts-Style-Meta" class="outline-2">
 <h2 id="Scripts-Style-Meta">Scripts, Style, Meta</h2>
-<div class="outline-text-2" id="text-orgda677a4">
+<div class="outline-text-2" id="text-org314ba30">
 <p>
 Individual source files can provide additional material to include in the
 <samp>&lt;head&gt;</samp> of the exported HTML document. For example,
@@ -314,7 +317,7 @@ Individual source files can provide additional material to include in the
 
 <div id="outline-container-Inline-Lisp" class="outline-2">
 <h2 id="Inline-Lisp">Inline Lisp</h2>
-<div class="outline-text-2" id="text-orgf908865">
+<div class="outline-text-2" id="text-orgaa40e14">
 <p>
 We can include blocks of lisp that don&rsquo;t get rendered to HTML output (as
 syntax-highlighted source code), but instead define functions we may call while
@@ -372,7 +375,7 @@ and the output will be
 </div>
 </main>
 <footer id="postamble" class="boilerplate">
-Copyright © 2022 Reilly Raab
+Copyright © 2023 Reilly Raab
 </footer>
 </body>
 </html>
