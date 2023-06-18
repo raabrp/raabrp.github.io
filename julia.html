@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-23 Mon 08:32 -->
+<!-- 2023-06-17 Sat 18:12 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Julia Sets</title>
 <meta name="author" content="Reilly Raab" />
 <meta name="generator" content="Org Mode" />
 <link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
-<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
-<link rel="stylesheet" type="text/css" href="css/fonts.css">
-<link rel="stylesheet" type="text/css" href="css/custom.css">
-<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
-<script src="js/lib/copy-tex.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
 <link rel="canonical" href="https://reillyraab.com/julia" />
 <meta name="description" content="A brief explanation of the canonical Julia sets (z <- z^2 + c) with an interactive visualization." />
 </head>
@@ -25,18 +25,21 @@
 <header>
 <h1 class="title">Julia Sets</h1>
 </header><p>
-This is an interactive visualization of a set of points in the complex plane,
-where a complex number <!--z-->
+This page includes an interactive visualization of representing sets of points
+in the complex plane. We depict a complex number <!--z-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>
- may be represented in <!--(x, y)-->
+ by the screen-relative
+coordinates <!--(x, y)-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>
- coordinates by the
-decomposition
-<!-- z = x + iy -->
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">z = x + iy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span></span>
+ (i.e., rightward, upward) such that
+<!-- z = x + iy. -->
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">z = x + iy.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">.</span></span></span></span></span>
 
-Specifically, the <a href="https://en.wikipedia.org/wiki/Julia_set">Julia set(s)</a> that we visualize on this page are the points
-that stay close to the origin when repeatedly mapped according to
+</p>
+
+<p>
+The <a href="https://en.wikipedia.org/wiki/Julia_set">Julia set(s)</a> that we visualize on this page are the set of <em>starting</em> points
+that will stay close to the origin when repeatedly mapped according to
 </p>
 
 <!-- \label{eqn-1}\tag{1} z \rightarrow z^{2} + c \quad ; \quad \begin{bmatrix} x \\ y \end{bmatrix} \mapsto \begin{bmatrix} x^{2} - y^{2} + c_{x} \\ 2xy + c_{y} \end{bmatrix} -->
@@ -49,8 +52,9 @@ where <!--c-->
 of <!--c-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
  thus defines a unique set, which we visualize by mapping <em>how long</em> an
-initial point (a pixel in this image) stays close to the origin using color. Go
-ahead, move your mouse over the image!
+initial point (a pixel in this image) stays close to the origin using color. The
+longer an initial point stays close to the origin, the more color (i.e., the
+brighter) it gets. Go ahead, move your mouse over the image below!
 </p>
 
 <div style="position: relative;">
@@ -87,7 +91,7 @@ set.
 </p>
 
 <input id="mandelbrot_checkbox" name="mandelbrot_checkbox" type="checkbox" />
-Show Mandelbrot set above
+&nbsp;Show Mandelbrot set above
 
 <script src="/js/lib/twgl.js"></script>
 <script src="/js/minshader.js"></script>

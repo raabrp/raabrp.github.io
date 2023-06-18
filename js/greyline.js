@@ -108,10 +108,18 @@ const gpu_canvas = document.createElement('canvas');
 gpu_canvas.width = width;
 gpu_canvas.height = height;
 const gpu_gl = gpu_canvas.getContext('webgl2', { premultipliedAlpha: false });
-const gpu = new GPU({
-    gpu_canvas,
-    context: gpu_gl
-});
+let gpu;
+try {
+    gpu = new GPU.GPU({ // Chrome
+        gpu_canvas,
+        context: gpu_gl
+    });
+} catch(error) {
+    gpu = new GPU({ // Firefox
+        gpu_canvas,
+        context: gpu_gl
+    });
+}
 
 // tha is theta (north polar angle)
 // phi is longitude

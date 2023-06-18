@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-23 Mon 08:31 -->
+<!-- 2023-06-16 Fri 15:43 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
 <meta name="author" content="Reilly Raab" />
 <meta name="generator" content="Org Mode" />
 <link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
-<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
-<link rel="stylesheet" type="text/css" href="css/fonts.css">
-<link rel="stylesheet" type="text/css" href="css/custom.css">
-<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
-<script src="js/lib/copy-tex.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
 <link rel="canonical" href="https://reillyraab.com/demo" />
 <meta name="description" content="Examples of how blocks of org-mode text map to HTML, for demonstration and personal reference." />
 </head>
@@ -70,7 +70,7 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="orgb904bae">
+<figure id="org104c484">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
@@ -225,6 +225,13 @@ Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages w
 <div id="outline-container-Foot-notes" class="outline-2">
 <h2 id="Foot-notes">Foot​notes</h2>
 <div class="outline-text-2" id="text-org67175a6">
+<div class="org-src-container">
+<pre class="src src-org">Sometimes you don't need footnotes...<span style="color: #da8548;">[fn:1]</span>
+
+<span style="color: #da8548;">[fn:1]</span> ...but sometimes you want footnotes.
+</pre>
+</div>
+
 <p>
 Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>
 </p>
@@ -368,6 +375,12 @@ and the output will be
 
 <div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><p class="footpara">
 &#x2026;but sometimes you want footnotes.
+</p>
+
+<p class="footpara">
+Note that, in the source, the footnote contents end at the next footnote
+definition, headline, or after two consecutive empty lines
+(<a href="https://orgmode.org/manual/Creating-Footnotes.html">org-mode manual</a>)
 </p></span></div>
 
 
