@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-23 Mon 08:29 -->
+<!-- 2023-10-04 Wed 10:13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Site Info</title>
 <meta name="author" content="Reilly Raab" />
 <meta name="generator" content="Org Mode" />
 <link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
-<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
-<link rel="stylesheet" type="text/css" href="css/fonts.css">
-<link rel="stylesheet" type="text/css" href="css/custom.css">
-<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
-<script src="js/lib/copy-tex.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
 </head>
 <body>
 <div id="preamble" class="boilerplate">
@@ -57,53 +57,66 @@ to github.io&rsquo;s IP addresses.
 </p></li>
 
 <li><p>
-<a href="http://users.soe.ucsc.edu/~rraab">http://users.soe.ucsc.edu/~rraab</a>
+<a href="http://users.soe.ucsc.edu/~rraab">http://users.soe.ucsc.edu/~rraab</a> (redirects to my <a href="./about.html">CV</a>)
 </p>
 
 <p>
-My user account has an <a href="https://en.wikipedia.org/wiki/.htaccess">.htaccess</a> file that reads
+My user home directory with SOE has an
+<a href="https://en.wikipedia.org/wiki/.htaccess">.htaccess</a> file that reads
 </p>
-<pre class="example">
-  RedirectMatch 301 ^/$ https://reillyraab.com/about.html
-</pre></li>
+<div class="org-src-container">
+<pre class="src src-nil">  RedirectMatch 301 ^/$ https://reillyraab.com/about.html
+</pre>
+</div></li>
 </ul>
-
 <div id="outline-container-Privacy" class="outline-2">
 <h2 id="Privacy">Privacy</h2>
-<div class="outline-text-2" id="text-org626acf4">
+<div class="outline-text-2" id="text-org6a6d2b8">
 <p>
 I store no information about you whatsoever.
 </p>
 
 <p>
-Network resources (<a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>, fonts, etc.), including library code, are
-hosted by this site itself and content delivery networks are largely avoided
-(except any used by Cloudflare).
+Network resources (<a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a>,
+<a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>, fonts, etc.),
+including library code, have been copied and are hosted by this site itself in
+order to avoid content delivery networks (which can track you).
+</p>
+
+<p>
+That being said, I&rsquo;m using
+<a href="https://en.wikipedia.org/wiki/Cloudflare">Cloudflare</a>, which means all your
+network requests can be tracked anyway (by Cloudflare):
 </p>
 </div>
 </div>
-
 <div id="outline-container-Third-Party-Privacy-Policy" class="outline-2">
 <h2 id="Third-Party-Privacy-Policy">Third-Party Privacy Policy</h2>
-<div class="outline-text-2" id="text-org73684b1">
+<div class="outline-text-2" id="text-orgd33d06c">
 <p>
-By using this site, you are an end user of Coudflare&rsquo;s services.
+By using this site, you are an end user of Cloudflare&rsquo;s services.
+</p>
+
+<p>
+<strong>TL;DR</strong>: <em>Cloudflare is tracking which pages you look at on this website.</em>
 </p>
 
 <p>
 Cloudflare acts as a <a href="https://en.wikipedia.org/wiki/Reverse_proxy">reverse proxy</a> for <samp>reillyraab.com</samp> and handles <a href="https://en.wikipedia.org/wiki/HTTPS">HTTPS</a>
 encryption / decryption with your browser, technically acting as a
-<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle</a> for communication with the origin server at <samp>github.io</samp>. The
-lack of end-to-end encryption in this configuration isn&rsquo;t a huge deal since
-Cloudflare performs caching and the <samp>github.io</samp> content is static.
+<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle</a> for communication with the origin server at <samp>github.io</samp>.
 </p>
 
 <p>
 For all intents and purposes, when your browser is communicating with this site,
-it&rsquo;s communicating with Cloudflare. While HTTPS might hide which specific
-interactions you have with this site from your <a href="https://en.wikipedia.org/wiki/Internet_service_provider">ISP</a>, this does not hinder
-Cloudflare in seeing your specific network requests for the content of this
-site.
+it&rsquo;s communicating with Cloudflare&rsquo;s servers. While HTTPS might hide which
+specific interactions you have with this site  from your
+<a href="https://en.wikipedia.org/wiki/Internet_service_provider">ISP</a>, this does not
+hinder Cloudflare in seeing your specific network requests for the content of
+this site (that is, which pages you read). The lack of end-to-end encryption in
+this configuration has limited consequences, since the only interaction this
+website provides is serving you rather mundane, static content, but it may not
+be appropriate for all types of online services.
 </p>
 
 <blockquote>

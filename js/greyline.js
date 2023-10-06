@@ -494,6 +494,12 @@ function handleMousemove(e) {
     let dx = -(x - mouse.x) / Number(getComputedStyle(canvas).getPropertyValue("width").slice(0, -2)) * width;
     let dy = -(y - mouse.y)
 
+    if (Math.abs(dx) > Math.abs(dy)) {
+        dy = 0;
+    } else {
+        dx = 0;
+    }
+
     handle_interface({ x: dx, y: dy });
     mouse = { x: x, y: y };
 
@@ -508,12 +514,19 @@ function handleTouchmove(e) {
     let dx = -(x - touch.x) / Number(getComputedStyle(canvas).getPropertyValue("width").slice(0, -2)) * width;
     let dy = -(y - touch.y)
 
+    if (Math.abs(dx) > Math.abs(dy)) {
+        dy = 0;
+    } else {
+        dx = 0;
+    }
+
     handle_interface({ x: dx, y: dy });
 
     touch = { x: x, y: y };
 
 }
 
+// currently disabled
 function handleWheel(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -527,11 +540,11 @@ function handleWheel(e) {
 function handle_interface(delta) {
     if (delta.x) {
         // fire up animate_canvas if not already running.
+        let delta_t = -delta.x / width * 1000 * 3600 * 24
+        date = new Date(date.getTime() + delta_t);
         phi += delta.x / width * 2 * Math.PI;
-        addAnimation(animate_canvas);
-    }
-
-    if (delta.y) {
+        addAnimation(animate_composite);
+    } else if (delta.y) {
         // fire up animate_composite if not already running.
         // it will run at least twice,
         // triggering animate_canvas after the first run.
@@ -596,7 +609,8 @@ onReady(function(){
     let hour = date.getUTCHours();
     let minutes = date.getUTCMinutes();
 
-    phi = Math.PI - (hour + minutes /  60) / 12 * Math.PI;
+    // split at local ~4:00 am
+    phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
 
     // initial render, delay for images to load.
     render_composite(
@@ -610,12 +624,11 @@ onReady(function(){
     );
 
     let canvas = document.getElementById("canvas");
-    canvas.addEventListener('wheel', handleWheel);
+    // canvas.addEventListener('wheel', handleWheel);
     canvas.addEventListener('touchstart', handleTouchstart);
     canvas.addEventListener('touchmove', handleTouchmove);
     canvas.addEventListener('mousedown', handleMousedown);
     canvas.addEventListener('mousemove', handleMousemove);
-    canvas.addEventListener('touchstart', handleTouchstart);
 
     // continually update time and phi synchronously
 

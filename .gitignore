@@ -1,7 +1,8 @@
 # Ignore all HTML Files by default
+# Until we are ready to publish them
 *.html
 
-# Until we are ready to publish them
+# Explicit whitelist
 !404.html
 !about.html
 !chess.html
@@ -16,3 +17,6 @@
 !reading-list.html
 !site-info.html
 !tex.html
+
+# also ignore
+.sshprofile

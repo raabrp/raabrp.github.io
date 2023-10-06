@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-06-16 Fri 15:43 -->
+<!-- 2023-10-04 Wed 10:36 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -43,10 +43,9 @@
 </ul>
 </div>
 </nav>
-
 <div id="outline-container-Text-Decoration" class="outline-2">
 <h2 id="Text-Decoration">Text Decoration</h2>
-<div class="outline-text-2" id="text-org815ce67">
+<div class="outline-text-2" id="text-org01c6145">
 <p>
 Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">underlined</span>, <kbd>verbatim</kbd>, <samp>monospace</samp>, or
 <del>strike-through</del>.
@@ -59,10 +58,9 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 </div>
 </div>
-
 <div id="outline-container-Images" class="outline-2">
 <h2 id="Images">Images</h2>
-<div class="outline-text-2" id="text-orga3d9352">
+<div class="outline-text-2" id="text-org18eeba3">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+CAPTION:</span> <span style="background-color: #23272e;">Caption goes here. Click for fullscreen.</span>
 <span style="color: #ECBE7B; font-weight: bold; text-decoration: underline;"><a href="./img/2015.jpg">./img/2015.jpg</a></span>
@@ -70,17 +68,16 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 
 
-<figure id="org104c484">
+<figure id="org4b4ee5f">
 <img src="./img/2015.jpg" alt="2015.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
 </figure>
 </div>
 </div>
-
 <div id="outline-container-Source-Code" class="outline-2">
 <h2 id="Source-Code">Source Code</h2>
-<div class="outline-text-2" id="text-org7200174">
+<div class="outline-text-2" id="text-orge73b63c">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_src python</span>
 <span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">lazy</span><span style="background-color: #23272e;">(f):</span>
@@ -111,10 +108,14 @@ Output:
 </div>
 </div>
 </div>
-
 <div id="outline-container-Math" class="outline-2">
 <h2 id="Math">Math</h2>
-<div class="outline-text-2" id="text-org6e4db44">
+<div class="outline-text-2" id="text-orgfb82b1f">
+<p>
+Math is rendered <em>server-side</em> using <a href="https://katex.org/"><!--\KaTeX-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></a>.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
 <span style="color: #51afef; background-color: #23272e;">\begin</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}</span>
@@ -132,20 +133,22 @@ Output:
 The standard block-math tags <samp>equation</samp>, <samp>align</samp>, <samp>\[ ... \]</samp>, <samp>$$ ... $$</samp> and
 the inline tags <samp>$... $</samp>, <samp>\( ... \)</samp> are recognized. Conversion is powered by
 <a href="https://katex.org/"><!--\KaTeX-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>
-</a>, pre-rendered server-side.
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></a>, pre-rendered server-side.
 </p>
 
 <p>
-<strong>Idiosyncrasies</strong>:
+<strong>Idiosyncrasies (notes to self)</strong>:
 </p>
 <ul class="org-ul">
-<li>if using <samp>\begin{...}</samp> inside the math environment, use <samp>\begin{equation}</samp> or another
-explicit environment to declare the math rather than, <em>e.g.</em>, <samp>\[ ... \]</samp>.</li>
+<li>if using <samp>\begin{...}</samp> inside a math environment, ensure that the math
+environment was opened with <samp>\begin{equation}</samp> or another explicit environment
+rather than, <em>e.g.</em>, <samp>\[ ... \]</samp>.</li>
+<li><samp>katex</samp> must be an available command, but will not be called if the input has
+been memoized (may need to clear <samp>~/.cache/memoize</samp>).</li>
 </ul>
 
 <p>
-<strong>References</strong>:
+<strong>References to equations</strong>:
 </p>
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
@@ -159,57 +162,40 @@ coordinates indexed by <span style="color: #98be65; background-color: #23272e;">
 <p>
 <a href="#eqn-1">Eq. (1)</a> is the <a href="https://en.wikipedia.org/wiki/Euler-Lagrange_equations">Euler-Lagrange</a> equation with respect to scalar field
 value <!--\phi-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span>
- with space-time coordinates indexed by <!--\mu-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span> with space-time coordinates indexed by <!--\mu-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span>.
 </p>
 </div>
 </div>
-
 <div id="outline-container-Internal-Links" class="outline-2">
 <h2 id="Internal-Links">Internal Links</h2>
-<div class="outline-text-2" id="text-org3a2fa5c">
-<ul class="org-ul">
-<li><p>
-Internal link to header inside this document (source document in org;
-corresponding HTML header in export)
+<div class="outline-text-2" id="text-org8438581">
+<p>
+Standard internal link:
 </p>
 <div class="org-src-container">
-<pre class="src src-org">  [&#8203;[*Internal Links]]
+<pre class="src src-org">[&#8203;[*Internal Links]]
 </pre>
 </div>
 <p>
 <a href="#Internal-Links">Internal Links</a>
-</p></li>
+</p>
 
-<li><p>
-Link to source document (in org) or HTML page (in export)
+<p>
+Using general link syntax:
 </p>
 <div class="org-src-container">
-<pre class="src src-org">  [&#8203;[./demo.org]]
+<pre class="src src-org">[&#8203;[./demo.html#Internal-Links][Internal Links]]
 </pre>
 </div>
 <p>
-Link to document (<em>e.g.</em>, <a href="./demo.html">./demo.html</a>)
-</p></li>
-
-<li><p>
-HTML-only link
+<a href="./demo.html#Internal-Links">Internal Links</a>
 </p>
-<div class="org-src-container">
-<pre class="src src-org">  [&#8203;[./demo.html#Internal-Links]]
-</pre>
-</div>
-<p>
-<a href="./demo.html#Internal-Links">./demo.html#Internal-Links</a>
-</p></li>
-</ul>
 </div>
 </div>
-
 <div id="outline-container-Wikipedia-Links" class="outline-2">
 <h2 id="Wikipedia-Links">Wikipedia Links</h2>
-<div class="outline-text-2" id="text-orgc49d2fa">
+<div class="outline-text-2" id="text-orgcdfa111">
 <div class="org-src-container">
 <pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will
 display summaries when hovered over.
@@ -217,30 +203,38 @@ display summaries when hovered over.
 </div>
 
 <p>
-Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages will display summaries when hovered over.
+Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages will display summaries when hovered over (on desktop).
 </p>
 </div>
 </div>
-
 <div id="outline-container-Foot-notes" class="outline-2">
 <h2 id="Foot-notes">Foot​notes</h2>
-<div class="outline-text-2" id="text-org67175a6">
+<div class="outline-text-2" id="text-orga2ddbe8">
 <div class="org-src-container">
 <pre class="src src-org">Sometimes you don't need footnotes...<span style="color: #da8548;">[fn:1]</span>
 
-<span style="color: #da8548;">[fn:1]</span> ...but sometimes you want footnotes.
+<span style="color: #da8548;">[fn:1]</span> ...but sometimes you do want footnotes!
 </pre>
 </div>
 
 <p>
 Sometimes you don&rsquo;t need footnotes&#x2026;<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>
 </p>
-</div>
-</div>
 
+<p>
+Like Wikipedia links, when hovered over, the footnote content will display (on
+desktop).
+</p>
+
+<p>
+When writing, note that the footnote definitions ends at the next footnote
+definition or headline, or after two consecutive empty lines (<a href="https://orgmode.org/manual/Creating-Footnotes.html">org-mode manual</a>).
+</p>
+</div>
+</div>
 <div id="outline-container-Block-Quotes" class="outline-2">
 <h2 id="Block-Quotes">Block Quotes</h2>
-<div class="outline-text-2" id="text-org3b8433c">
+<div class="outline-text-2" id="text-org94dc0e3">
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_quote</span>
 <span style="background-color: #23272e; font-style: italic;">There was only one catch and that was Catch-22, which specified that a concern</span>
@@ -269,10 +263,9 @@ would have to fly more missions.
 </blockquote>
 </div>
 </div>
-
 <div id="outline-container-Tables" class="outline-2">
 <h2 id="Tables">Tables</h2>
-<div class="outline-text-2" id="text-orge9d99b6">
+<div class="outline-text-2" id="text-org078e4c1">
 <p>
 I don&rsquo;t use org-mode for tables. The feature-set is limited (<em>e.g.</em>, cells
 spanning multiple columns). At the moment, I write tables in <a href="#Raw-HTML">Raw HTML</a> or
@@ -280,15 +273,14 @@ using <a href="#Inline-Lisp">Inline Lisp</a>.
 </p>
 </div>
 </div>
-
 <div id="outline-container-Raw-HTML" class="outline-2">
 <h2 id="Raw-HTML">Raw HTML</h2>
-<div class="outline-text-2" id="text-orgb9d1dd4">
+<div class="outline-text-2" id="text-orga1ff226">
 Arbitrary <button>HTML</button> can go here.
 
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+BEGIN_EXPORT html</span>
-<span style="background-color: #23272e;">Arbitrary &lt;</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt;HTML&lt;/</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt; can go here.</span>
+Arbitrary &lt;button&gt;HTML&lt;/button&gt; can go here.
 <span style="color: #5B6268; background-color: #23272e;">#+END_EXPORT</span>
 </pre>
 </div>
@@ -303,10 +295,9 @@ Inline <button>HTML</button> is also possible.
 </div>
 </div>
 </div>
-
 <div id="outline-container-Scripts-Style-Meta" class="outline-2">
 <h2 id="Scripts-Style-Meta">Scripts, Style, Meta</h2>
-<div class="outline-text-2" id="text-org314ba30">
+<div class="outline-text-2" id="text-orgb2c2efc">
 <p>
 Individual source files can provide additional material to include in the
 <samp>&lt;head&gt;</samp> of the exported HTML document. For example,
@@ -321,20 +312,19 @@ Individual source files can provide additional material to include in the
 </div>
 </div>
 </div>
-
 <div id="outline-container-Inline-Lisp" class="outline-2">
 <h2 id="Inline-Lisp">Inline Lisp</h2>
-<div class="outline-text-2" id="text-orgaa40e14">
+<div class="outline-text-2" id="text-org85a7a2d">
 <p>
 We can include blocks of lisp that don&rsquo;t get rendered to HTML output (as
-syntax-highlighted source code), but instead define functions we may call while
-writing our document to produce arbitrary HTML during the export.
+syntax-highlighted <a href="#Source-Code">source code</a>), but instead define functions
+that get called by Emacs during export to produce arbitrary HTML.
 </p>
 
 <p>
-For example, define the function <samp>example-func</samp>, which renders two <samp>&lt;div&gt;</samp>
-elements, one in steelblue and one in darkgoldenrod, where the contents of each div
-are passed as the arguments <samp>a</samp> and <samp>b</samp>:
+For example, let us define the function <samp>example-func</samp>, which renders two
+<samp>&lt;div&gt;</samp> elements, one in steelblue and one in darkgoldenrod, where the contents
+of each div are passed as the arguments <samp>a</samp> and <samp>b</samp>:
 </p>
 
 <div class="org-src-container">
@@ -349,7 +339,7 @@ are passed as the arguments <samp>a</samp> and <samp>b</samp>:
 </div>
 
 <p>
-We may call this function from the source file as
+We may call this function from the source (<samp>.org</samp>) file as
 </p>
 
 <div class="org-src-container">
@@ -374,13 +364,7 @@ and the output will be
 <hr/>
 
 <div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><p class="footpara">
-&#x2026;but sometimes you want footnotes.
-</p>
-
-<p class="footpara">
-Note that, in the source, the footnote contents end at the next footnote
-definition, headline, or after two consecutive empty lines
-(<a href="https://orgmode.org/manual/Creating-Footnotes.html">org-mode manual</a>)
+&#x2026;but sometimes you do want footnotes!
 </p></span></div>
 
 

@@ -77,6 +77,19 @@ main {
     max-width: 672px;
   }
 }
+@media (max-width: 675px) {
+  main {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  .katex .mfrac .frac-line {
+    display: inline-block;
+    width: 100%;
+    color: var(--text);
+    border-bottom-width: 1px !important;
+  }
+}
+
 
 .title  {
   text-align: center;
@@ -166,6 +179,13 @@ h4 {
   text-decoration: underline;
 }
 
+p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 /* verbatim */
 kbd {
   font-family: "Source Code Pro", monospace;
@@ -204,6 +224,10 @@ a:hover {
 /* references, footnotes */
 .footnote {
   width: 100%;
+}
+.footpara > p {
+  display: inline-block;
+  margin-block-start: 0em;
 }
 .hidden {
   display: none;

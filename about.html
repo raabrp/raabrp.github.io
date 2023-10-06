@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-23 Mon 08:30 -->
+<!-- 2023-10-04 Wed 17:16 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Curriculum Vitae</title>
 <meta name="author" content="Reilly Raab" />
 <meta name="generator" content="Org Mode" />
 <link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
-<link rel="stylesheet" type="text/css" href="css/lib/normalize.css">
-<link rel="stylesheet" type="text/css" href="css/fonts.css">
-<link rel="stylesheet" type="text/css" href="css/custom.css">
-<link rel="stylesheet" type="text/css" href="css/lib/katex.min.css">
-<script src="js/main.js"></script>
-<script src="js/lib/copy-tex.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
 <meta name="description" content="My Curriculum Vitae"/>
 </head>
 <body>
@@ -23,14 +23,40 @@
 <main id="content" class="content">
 <header>
 <h1 class="title">Curriculum Vitae</h1>
-</header><table><tr><td width="300px"><center>
+</header><style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.outline-2 li, .awards td {
+  font-size: 16px;
+  margin: 0px;
+}
+table {
+  width: 100%;
+  font-size: 16px;
+}
+@media (min-device-width: 555px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>
+<div class="grid">
+  <div>
 
-<figure id="orgcd15212">
+
+<figure id="org92b41a6">
 <img src="./img/2022.jpg" alt="2022.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Me (in red).</figcaption>
 </figure>
-</td><td>
+
+<p>
+</div>
+<div>
+</p>
+
 <p>
 Ph.D. Candidate <br>
 in <a href="https://www.soe.ucsc.edu/departments/computer-science-and-engineering">Computer Science and Engineering</a> <br>
@@ -39,28 +65,18 @@ advised by <a href="http://www.yliuu.com">Yang Liu</a>
 </p>
 
 <p>
-<samp>rraab [at] ucsc (dot) edu</samp> <br>
-<a href="https://github.com/raabrp">Github</a> <br>
-<a href="https://scholar.google.com/citations?user=kmyHu24AAAAJ">Google Scholar</a>
+<samp>rraab [at] ucsc (dot) edu</samp>
 </p>
 
-</td></tr></table>
-
-<nav id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#Summary">Summary</a></li>
-<li><a href="#Research-Interests">Research Interests</a></li>
-<li><a href="#Expertise">Expertise</a></li>
-<li><a href="#Work-amp-Research">Work &amp; Research</a></li>
-<li><a href="#Education">Education</a></li>
-<li><a href="#Teaching-Experience">Teaching Experience</a></li>
-<li><a href="#Honors-amp-Awards">Honors &amp; Awards</a></li>
-<li><a href="#Publications">Publications</a></li>
+<ul class="org-ul">
+<li><a href="https://github.com/raabrp">Github</a></li>
+<li><a href="https://scholar.google.com/citations?user=kmyHu24AAAAJ">Google Scholar</a></li>
 </ul>
+
+<p>
 </div>
-</nav>
+</div>
+</p>
 
 <style type="text/css">
 p, main li {
@@ -84,7 +100,7 @@ nav li {
   text-align: right;
 }
 .cv-block-c {
-  font-size: 90%;
+  font-style: italic;
   font-weight: 700;
 }
 .cv-block-d {
@@ -92,15 +108,22 @@ nav li {
   font-style: italic;
   text-align: right;
 }
-.cv-bullets {
-  padding-left: 1em;
-  font-size: 90%;
+.awards-a {
+  color: var(--g3);
+}
+.awards-c {
+  text-align: right;
 }
 </style>
 
+<p>
+<center>
+This document is also available as a <a href="./files/cv.pdf">PDF</a>.
+</center>
+</p>
 <div id="outline-container-Summary" class="outline-2">
 <h2 id="Summary">Summary</h2>
-<div class="outline-text-2" id="text-org01327ae">
+<div class="outline-text-2" id="text-org88a5df2">
 <p>
 My current research involves the dynamics of multiagent systems and the
 alignment of local incentives with global objectives. My background is in
@@ -110,120 +133,32 @@ abroad, remotely developing software related to automated circuit design.
 </p>
 </div>
 </div>
-
-<div id="outline-container-Research-Interests" class="outline-2">
-<h2 id="Research-Interests">Research Interests</h2>
-<div class="outline-text-2" id="text-org98130a8">
-<ul class="org-ul">
-<li>Multiagent systems, algorithmic game theory</li>
-<li>Theories of collective learning</li>
-<li>Fundamental physical limits of computation</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-Expertise" class="outline-2">
-<h2 id="Expertise">Expertise</h2>
-<div class="outline-text-2" id="text-orgcbec981">
-<ul class="org-ul">
-<li>Non-linear dynamics, signal-processing, optimization</li>
-<li>Multiple programming paradigms (C, Python, JavaScript, Lisp, Haskell, Prolog, Shell) <br></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-Work-amp-Research" class="outline-2">
-<h2 id="Work-amp-Research">Work &amp; Research</h2>
-<div class="outline-text-2" id="text-org6c75794">
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Liu Group: Human-Centered Machine Learning</div></td>
-  <td><div class="cv-block-b">Sept. 2019 – Present</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Graduate Student Researcher</div></td>
-  <td><div class="cv-block-d">Santa Cruz, CA</div></td>
-</tr>
-</table>
-<div class="cv-bullets">
-Dynamics of multiagent human-AI systems<br />Evolutionary game theory, reinforcement learning, control theory<br />Fairness, incentive alignment, domain adaptation
-</div>
-</div>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Breadware, Inc.</div></td>
-  <td><div class="cv-block-b">Oct. 2016 – Aug. 2018</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Software Developer</div></td>
-  <td><div class="cv-block-d">Reno, Nevada</div></td>
-</tr>
-</table>
-<div class="cv-bullets">
-Design of full-stack Internet-of-Things solutions<br />Development of electronic design automation tools
-</div>
-</div>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Martinis Group: Josephson Junction Quantum Computing</div></td>
-  <td><div class="cv-block-b">Feb 2013 – Jun. 2015</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Undergraduate Intern, California NanoSystems Institute</div></td>
-  <td><div class="cv-block-d">Santa Barbara, CA</div></td>
-</tr>
-</table>
-<div class="cv-bullets">
-Fabrication, assembly, and testing of custom hardware<br />Characterization and reduction of noise in GHz qubit-control signal chain<br />Thesis on single-qubit gate error induced by signal-chain imperfections
-</div>
-</div>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Nguyen Group: Organic Electronic Devices and Characterization</div></td>
-  <td><div class="cv-block-b">Jan 2011 – July 2011</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Undergraduate Intern, Center for Energy Efficient Materials</div></td>
-  <td><div class="cv-block-d">Santa Barbara, CA</div></td>
-</tr>
-</table>
-<div class="cv-bullets">
-Organic semiconductor device fabrication and characterization<br />Surface morphology and exciton diffusion length measurements
-</div>
-</div>
-</div>
-</div>
-
 <div id="outline-container-Education" class="outline-2">
 <h2 id="Education">Education</h2>
-<div class="outline-text-2" id="text-orge3ddd6f">
+<div class="outline-text-2" id="text-orgb2683c1">
 
 <div class="cv-block">
 <table>
 <tr>
   <td><div class="cv-block-a">University of California, Santa Cruz</div></td>
-  <td><div class="cv-block-b">Sept 2019 – Present</div></td>
+  <td><div class="cv-block-b">Sept 2019 – Winter 2024 (Anticipated)</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">PhD in Computer Science and Engineering</div></td>
+  <td><div class="cv-block-c">PhD, Computer Science and Engineering</div></td>
   <td><div class="cv-block-d">Santa Cruz, CA</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-ARCS Scholar (2022)<br />UC Regent's Fellowship (2019)<br />Dean's Fellowship (2019)
 </div>
-</div>
+
+<ul class="org-ul">
+<li>Dissertation Year Fellowship (Winter 2024)</li>
+<li>Dissertation Year Fellowship (Fall 2023)</li>
+<li>ARCS Scholar (2022)</li>
+<li>Advancement with Honors (2021)</li>
+<li>Regent&rsquo;s Fellowship (2019)</li>
+<li>Dean&rsquo;s Fellowship (2019)</li>
+</ul>
+
 
 
 <div class="cv-block">
@@ -237,201 +172,344 @@ ARCS Scholar (2022)<br />UC Regent's Fellowship (2019)<br />Dean's Fellowship (2
   <td><div class="cv-block-d">Santa Barbara, CA</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-High Honors<br />Distinction in the Major
-</div>
 </div>
 
+<ul class="org-ul">
+<li>High Honors</li>
+<li>Distinction in the Major</li>
+<li>UC Education Abroad Program (The University of Edinburgh; Fall 2013)
+<ul class="org-ul">
+<li>UCEAP Scholarship</li>
+<li>UCSB EAP Scholarship</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Expertise" class="outline-2">
+<h2 id="Expertise">Expertise</h2>
+<div class="outline-text-2" id="text-org3ada46b">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Convex Optimization</td>
+<td class="org-left">Classical Mechanics</td>
+<td class="org-left">Dynamical Systems</td>
+<td class="org-left">GNU/Linux</td>
+</tr>
+
+<tr>
+<td class="org-left">Information Theory</td>
+<td class="org-left">JavaScript</td>
+<td class="org-left">Linear Algebra</td>
+<td class="org-left">Machine Learning</td>
+</tr>
+
+<tr>
+<td class="org-left">Python</td>
+<td class="org-left">Quantum Computing</td>
+<td class="org-left">Signal Processing</td>
+<td class="org-left">Scientific Visualization</td>
+</tr>
+
+<tr>
+<td class="org-left">Statistical Mechanics</td>
+<td class="org-left">Stochastic Calculus</td>
+<td class="org-left">Variational Calculus</td>
+<td class="org-left">Vector Calculus</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-Experience" class="outline-2">
+<h2 id="Experience">Experience</h2>
+<div class="outline-text-2" id="text-org66c2274">
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">UC Education Abroad Program</div></td>
-  <td><div class="cv-block-b">Fall 2013</div></td>
+  <td><div class="cv-block-a">Machine Learning Basics</div></td>
+  <td><div class="cv-block-b">Winter 2022</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">The University of Edinburgh</div></td>
-  <td><div class="cv-block-d">Edinburgh, Scotland</div></td>
+  <td><div class="cv-block-c">Course Design Consultant</div></td>
+  <td><div class="cv-block-d">UC Santa Cruz</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-UCEAP Scholarship<br />UCSB EAP Scholarship
-</div>
-</div>
-</div>
 </div>
 
-<div id="outline-container-Teaching-Experience" class="outline-2">
-<h2 id="Teaching-Experience">Teaching Experience</h2>
-<div class="outline-text-2" id="text-org6995a82">
+<ul class="org-ul">
+<li>Designed autograding infrastructure providing instant assignment feedback for a class of approx. 100 students.</li>
+<li>Authored interactive (Jupyter notebook) assignments with automated tests.</li>
+</ul>
+
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Course Design Consultant</div></td>
+  <td><div class="cv-block-a">Machine Learning Basics</div></td>
   <td><div class="cv-block-b">Spring 2021</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">Machine Learning Basics: Data Analysis and Empirical Methods</div></td>
+  <td><div class="cv-block-c">Course Design Consultant</div></td>
   <td><div class="cv-block-d">UC Santa Cruz</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-Design of interactive assignments using Python, GitLab CI hooks<br />Led team to design and score written assignments and exams
 </div>
-</div>
+
+<ul class="org-ul">
+<li>Authored interactive (Jupyter notebook) assignments, written assignments, and exams.</li>
+<li>Wrote scripts for distributing, validating, and testing interactive assignments for a class of approx. 50 students.</li>
+<li>Led grading team.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Teaching Assistant</div></td>
+  <td><div class="cv-block-a">Machine Learning</div></td>
   <td><div class="cv-block-b">Fall 2020</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">Machine Learning</div></td>
+  <td><div class="cv-block-c">Teaching Assistant</div></td>
   <td><div class="cv-block-d">UC Santa Cruz</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-Authored and graded assignments; led discussion sections
 </div>
-</div>
+
+<ul class="org-ul">
+<li>Authored and graded written assignments.</li>
+<li>Presented supplementary material in discussion sections.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Teaching Assistant and Residential Mentor</div></td>
-  <td><div class="cv-block-b">Summer 2016</div></td>
+  <td><div class="cv-block-a">Human-Centered Machine Learning</div></td>
+  <td><div class="cv-block-b">Sept 2019 – Present</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">The Summer Science Program (Astrophysics)</div></td>
-  <td><div class="cv-block-d">Socorro, NM</div></td>
+  <td><div class="cv-block-c">Graduate Student Researcher</div></td>
+  <td><div class="cv-block-d">UC Santa Cruz</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-Supervised advanced high school students in university living environment<br />Curriculum of observational astronomy, celestial mechanics, programming, mathematics
 </div>
-</div>
+
+<ul class="org-ul">
+<li>Investigated the dynamical consequences of algorithmic fairness in multiagent systems.</li>
+<li>Published three conference (NeurIPS) papers, with one Spotlight award.</li>
+<li>Contributed to evolutionary game theory, learning theory, and dynamical formulations of fairness.</li>
+<li>Discovered least-squares correspondence between replicator dynamics and natural gradient descent.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Teaching Assistant and Residential Mentor</div></td>
-  <td><div class="cv-block-b">Summer 2015</div></td>
+  <td><div class="cv-block-a">Breadware, Inc.</div></td>
+  <td><div class="cv-block-b">Oct 2016 – Aug 2018</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">The Summer Science Program (Astrophysics)</div></td>
-  <td><div class="cv-block-d">Boulder, CO</div></td>
+  <td><div class="cv-block-c">Software Developer</div></td>
+  <td><div class="cv-block-d">Reno, Nevada</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-Same as above
-</div>
-</div>
-</div>
 </div>
 
-<div id="outline-container-Honors-amp-Awards" class="outline-2">
-<h2 id="Honors-amp-Awards">Honors &amp; Awards</h2>
-<div class="outline-text-2" id="text-org7d14a7a">
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">ARCS Scholar</div></td>
-  <td><div class="cv-block-b">2022</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">ARCS Foundation, Inc., Northern California Chapter</div></td>
-  <td><div class="cv-block-d">San Francisco, CA</div></td>
-</tr>
-</table>
-<div class="cv-bullets">
-
-</div>
-</div>
+<ul class="org-ul">
+<li>Designed and implemented full-stack Internet-of-Things solutions.</li>
+<li>Engineered in-house tools for electronic design automation.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Advancement to PhD Candidacy with Honors</div></td>
-  <td><div class="cv-block-b">2022</div></td>
+  <td><div class="cv-block-a">The Summer Science Program</div></td>
+  <td><div class="cv-block-b">Summer 2016 / Summer 2015</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">University of California, Santa Cruz</div></td>
-  <td><div class="cv-block-d">Santa Cruz, CA</div></td>
+  <td><div class="cv-block-c">Teaching Assistant and Residential Mentor</div></td>
+  <td><div class="cv-block-d">Boulder, CO / Socorro, NM</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
+</div>
 
-</div>
-</div>
+<ul class="org-ul">
+<li>Mentored advanced high school students in a residential university environment.</li>
+<li>Graded assignments in celestial mechanics, programming, and mathematics.</li>
+<li>Supervised operations in observational astronomy.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Dean's Fellowship</div></td>
-  <td><div class="cv-block-b">2019</div></td>
+  <td><div class="cv-block-a">Josephson Junction Quantum Computing</div></td>
+  <td><div class="cv-block-b">Feb 2013 – Jun 2015</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">University of California at Santa Cruz</div></td>
-  <td><div class="cv-block-d">Santa Cruz, CA</div></td>
+  <td><div class="cv-block-c">Undergraduate Intern</div></td>
+  <td><div class="cv-block-d">UC Santa Barbara</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
+</div>
 
-</div>
-</div>
+<ul class="org-ul">
+<li>Investigated noise in a GHz qubit-control signal chain.</li>
+<li>Calculated the effect of IQ-mixing imperfections on single-qubit gate error.</li>
+<li>Wrote software to characterize the phase-noise stability of alternative GHz oscillators.</li>
+<li>Fabricated, assembled, and tested custom hardware.</li>
+</ul>
 
 
 <div class="cv-block">
 <table>
 <tr>
-  <td><div class="cv-block-a">Regents Fellowship</div></td>
-  <td><div class="cv-block-b">2019</div></td>
+  <td><div class="cv-block-a">Organic Electronic Devices and Characterization</div></td>
+  <td><div class="cv-block-b">Jan 2011 – Jul 2011</div></td>
 </tr>
 <tr>
-  <td><div class="cv-block-c">University of California at Santa Cruz</div></td>
-  <td><div class="cv-block-d">Santa Cruz, CA</div></td>
+  <td><div class="cv-block-c">Undergraduate Intern</div></td>
+  <td><div class="cv-block-d">Santa Barbara, CA</div></td>
 </tr>
 </table>
-<div class="cv-bullets">
-
-</div>
-</div>
-</div>
 </div>
 
+<ul class="org-ul">
+<li>Investigated the role of small donor molecule structure on exciton diffusion length.</li>
+<li>Fabricated organic semiconductor devices isolated from oxygen, water, and light.</li>
+<li>Conducted surface morphology measurements via atomic force microscopy.</li>
+<li>Performed laser-induced photoluminescence decay measurements.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Fellowships-amp-Awards" class="outline-2">
+<h2 id="Fellowships-amp-Awards">Fellowships &amp; Awards</h2>
+<div class="outline-text-2" id="text-org86b885c">
+<table class='awards'>
+<tr>
+<td class="awards-a">2024</td>
+<td class="awards-b">Dissertation Year Fellowship (Winter)</td>
+<td class="awards-c">UC Santa Cruz<td>
+</tr> 
+<tr>
+<td class="awards-a">2023</td>
+<td class="awards-b">Dissertation Year Fellowship (Fall)</td>
+<td class="awards-c">UC Santa Cruz<td>
+</tr> 
+<tr>
+<td class="awards-a">2023</td>
+<td class="awards-b">Best Paper Runner-Up</td>
+<td class="awards-c">ICLR (RTML workshop)<td>
+</tr> 
+<tr>
+<td class="awards-a">2023</td>
+<td class="awards-b">Highlighted Paper</td>
+<td class="awards-c">ICLR (RMTL Workshop)<td>
+</tr> 
+<tr>
+<td class="awards-a">2022</td>
+<td class="awards-b">Merit-Based Scholarship</td>
+<td class="awards-c">ARCS Foundation, Inc. (Northern California Chapter)<td>
+</tr> 
+<tr>
+<td class="awards-a">2021</td>
+<td class="awards-b">Advancement with Honors</td>
+<td class="awards-c">UC Santa Cruz<td>
+</tr> 
+<tr>
+<td class="awards-a">2021</td>
+<td class="awards-b">Spotlight Paper</td>
+<td class="awards-c">NeurIPS<td>
+</tr> 
+<tr>
+<td class="awards-a">2019</td>
+<td class="awards-b">Regents Fellowship</td>
+<td class="awards-c">UC Santa Cruz<td>
+</tr> 
+<tr>
+<td class="awards-a">2019</td>
+<td class="awards-b">Dean's Fellowship</td>
+<td class="awards-c">UC Santa Cruz<td>
+</tr> 
+<tr>
+<td class="awards-a">2015</td>
+<td class="awards-b">High Honors (BSc in Physics)</td>
+<td class="awards-c">UC Santa Barbara<td>
+</tr> 
+<tr>
+<td class="awards-a">2015</td>
+<td class="awards-b">Distinction in the Major (Physics)</td>
+<td class="awards-c">UC Santa Barbara<td>
+</tr> 
+<tr>
+<td class="awards-a">2013</td>
+<td class="awards-b">Education Abroad Scholarship</td>
+<td class="awards-c">UC (All Campuses)<td>
+</tr> 
+<tr>
+<td class="awards-a">2013</td>
+<td class="awards-b">Education Abroad Scholarship</td>
+<td class="awards-c">UC Santa Barbara<td>
+</tr> 
+<tr>
+<td class="awards-a">2011</td>
+<td class="awards-b">Undergraduate Research Fellowship</td>
+<td class="awards-c">UC Santa Barbara<td>
+</tr></table>
+</div>
+</div>
 <div id="outline-container-Publications" class="outline-2">
 <h2 id="Publications">Publications</h2>
-<div class="outline-text-2" id="text-org6eb426a">
+<div class="outline-text-2" id="text-orgc98ed4e">
 <p>
-<a href="https://arxiv.org/abs/2208.13898">Conjugate Natural Selection</a> <br>
-<strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu <br>
-<em>Arxiv. (2022)</em>
+<a href="https://arxiv.org/abs/2304.09362">Long-Term Fairness with Unknown Dynamics</a> <br>
+Tongxin Yin, <strong>Reilly Raab</strong>, Mingyan Liu, and Yang Liu <br>
+<em>ICLR RTML (2023) &#x2013; <strong>Best Paper Runner-Up</strong>, <strong>Highlighted Paper Award</strong></em> <br>
+<em>NeurIPS. (2023)</em>
 </p>
 
 <p>
-<a href="https://arxiv.org/abs/2206.00129">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
-Yatong Chen, <strong>Reilly Raab</strong>, Jialu Wang, and Yang Liu <br>
-<em>To appear in NeurIPS (2022)</em>
+Fair Participation via Sequential Policies <br>
+<strong>Reilly Raab</strong>, Ross Boczar, Maryam Fazel, and Yang Liu <br>
+<em>arXiv. (To appear)</em>
+</p>
+
+<p>
+<a href="https://arxiv.org/abs/2208.13898">Conjugate Natural Selection</a> <br>
+<strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu <br>
+<em>arXiv. (2022)</em>
+</p>
+
+<p>
+<a href="https://openreview.net/pdf?id=U3gobB4oKv">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
+Yatong Chen<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, <strong>Reilly Raab</strong><sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, Jialu Wang, and Yang Liu <br>
+<em>NeurIPS. (2022)</em>
 </p>
 
 <p>
 <a href="https://proceedings.neurips.cc/paper/2021/file/db00f1b7fdf48fd26b5fb5f309e9afaf-Paper.pdf">Unintended Selection: Persistent Qualification Rate Disparities and Interventions</a> <br>
 <strong>Reilly Raab</strong> and Yang liu <br>
-<em>NeurIPS. (2021) <strong>Spotlight Paper</strong></em>
+<em>NeurIPS. (2021) &#x2013; <strong>Spotlight Paper Award</strong></em>
 </p>
 
 <p>
 <a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing</a> <br>
 <strong>Reilly Raab</strong> <br>
-<em>Undergraduate Thesis. Not peer-reviewed. (2015)</em>
+<em>Undergraduate Thesis. (2015)</em>
 </p>
 
 <p>
@@ -439,6 +517,17 @@ Yatong Chen, <strong>Reilly Raab</strong>, Jialu Wang, and Yang Liu <br>
 Jason D. A. Lin <strong>et. al.</strong> <br>
 <em>Materials Horizons. (2014)</em>
 </p>
+</div>
+</div>
+<div id="footnote-container">
+<!--Footnotes-->
+<hr/>
+
+<div class="footnote"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">[1]</a></sup> <span class="footpara" role="doc-footnote"><p class="footpara">
+Equal contribution
+</p></span></div>
+
+
 </div>
 </div>
 </main>

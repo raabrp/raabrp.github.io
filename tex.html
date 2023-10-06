@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-06-14 Wed 13:07 -->
+<!-- 2023-10-04 Wed 11:56 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Live Tex to SVG, PNG</title>
@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
 <script src="/js/main.js"></script>
 <script src="/js/lib/copy-tex.js"></script>
-<link rel=“canonical” href=“https://reillyraab.com/tex" />
+<link rel="canonical" href="https://reillyraab.com/tex" />
 <meta name="description" content="Live LaTeX to SVG and PNG rendering in the browser." />
 </head>
 <body>
@@ -39,10 +39,9 @@
 <br />
 <p>
 Font size (PNG only) <!--\in [1, 1000]-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1000</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\in [1, 1000]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1000</span><span class="mclose">]</span></span></span></span>
-:
-<input type="number" id="scale" name="scale" value="100" size="4"/>.
-<span>Color: </span><input type="color" id="color" name="color" value="#000000" />.
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1000</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\in [1, 1000]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1000</span><span class="mclose">]</span></span></span></span>:
+<input type="number" id="scale" name="scale" value="100" size="6"/>.
+<span>Text color: </span><input type="color" id="color" name="color" value="#000000" />.
 </p>
 
 <textarea
@@ -56,10 +55,10 @@ Font size (PNG only) <!--\in [1, 1000]-->
 \Re(z) \coloneqq \frac{z + z^\dagger}{2}
 </textarea>
 
-<p>
-Powered by <a href="https://www.mathjax.org/">MathJax</a>.
-Also see <a href="https://katex.org/">KaTeX</a>, which this site uses server-side.
-</p>
+<ul class="org-ul">
+<li>Interactive math powered by <a href="https://www.mathjax.org/">MathJax</a>.</li>
+<li>Non-interactive math powered by <a href="https://katex.org/">KaTeX</a>, which this site uses server-side.</li>
+</ul>
 
 <!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>-->
 <script id="MathJax-script" async src="js/lib/tex-svg.js"></script>

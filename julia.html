@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-06-17 Sat 18:12 -->
+<!-- 2023-10-04 Wed 10:40 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Julia Sets</title>
@@ -27,14 +27,11 @@
 </header><p>
 This page includes an interactive visualization of representing sets of points
 in the complex plane. We depict a complex number <!--z-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>
- by the screen-relative
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span> by the screen-relative
 coordinates <!--(x, y)-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>
- (i.e., rightward, upward) such that
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> (i.e., rightward, upward) such that
 <!-- z = x + iy. -->
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">z = x + iy.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">.</span></span></span></span></span>
-
 </p>
 
 <p>
@@ -47,11 +44,9 @@ that will stay close to the origin when repeatedly mapped according to
 
 <p>
 where <!--c-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
- is a point determined by the coordinates of your mouse. Each value
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> is a point determined by the coordinates of your mouse. Each value
 of <!--c-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
- thus defines a unique set, which we visualize by mapping <em>how long</em> an
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> thus defines a unique set, which we visualize by mapping <em>how long</em> an
 initial point (a pixel in this image) stays close to the origin using color. The
 longer an initial point stays close to the origin, the more color (i.e., the
 brighter) it gets. Go ahead, move your mouse over the image below!
@@ -82,16 +77,19 @@ origin of the image is in the Julia set, you would map the <a href="https://en.w
 fact, the Julia set(s) and the Mandelbrot set are different two-dimensional
 slices of the same four-dimensional object, where the Julia sets fix values of
 <!--c-->
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
- and the Mandelbrot set fixes <!--x = 0-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> and the Mandelbrot set fixes <!--x = 0-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. We can visualize the Mandelbrot
-set in the background of the set above. Pay attention to the origin, noting that
-the origin is in the Julia set if and only if your mouse is in the Mandelbrot
-set.
+set in the background of the set above.
 </p>
 
 <input id="mandelbrot_checkbox" name="mandelbrot_checkbox" type="checkbox" />
 &nbsp;Show Mandelbrot set above
+
+<p>
+Pay attention to the origin, noting that
+the origin is in the Julia set if and only if your mouse is in the Mandelbrot
+set.
+</p>
 
 <script src="/js/lib/twgl.js"></script>
 <script src="/js/minshader.js"></script>
@@ -512,208 +510,6 @@ onReady(function() {
 
 });
 </script>
-
-<div id="outline-container-Fragment-Shader-" class="outline-2">
-<h2 id="Fragment-Shader-">Fragment Shader:</h2>
-<div class="outline-text-2" id="text-org9436175">
-<p>
-Using <a href="https://twgljs.org">twgl.js</a> behind the scenes, here is the code to generate the Julia sets
-above:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-c">precision <span style="color: #ECBE7B;">mediump</span> <span style="color: #ECBE7B;">float</span>;
-
-<span style="color: #5B6268;">// </span><span style="color: #5B6268;">default uniforms (built in)</span>
-uniform <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">resolution</span>;
-uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">min_dim</span>;
-uniform <span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">mouseover</span>;
-uniform <span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">mousedown</span>;
-uniform <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">mouse</span>;
-uniform <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">mouse_click</span>;
-uniform <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">click_elapsed</span>;
-
-<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">c</span> = mouse;
-<span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">p</span> = max(<span style="color: #da8548; font-weight: bold;">0</span>., <span style="color: #da8548; font-weight: bold;">1000</span>. - click_elapsed) / <span style="color: #da8548; font-weight: bold;">1000</span>.;
-
-<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">iter</span> = <span style="color: #da8548; font-weight: bold;">130</span>;
-<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">fiter</span> = <span style="color: #da8548; font-weight: bold;">130</span>.;
-
-<span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;"> * map interval [0, 1] to RGB color</span>
-<span style="color: #5B6268;"> * use YCoCg color space for simplicity</span>
-<span style="color: #5B6268;"> * https://en.wikipedia.org/wiki/YCoCg</span>
-<span style="color: #5B6268;"> */</span>
-<span style="color: #ECBE7B;">vec3</span> <span style="color: #c678dd;">colormap</span>(<span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">v</span>) {
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">Y</span> = pow(<span style="color: #da8548; font-weight: bold;">1</span>. - pow(v - <span style="color: #da8548; font-weight: bold;">1</span>., <span style="color: #da8548; font-weight: bold;">2</span>.), <span style="color: #da8548; font-weight: bold;">2</span>.); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">logistic on v [0, 1] -&gt; [0, 1]</span>
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">cr</span> = (<span style="color: #da8548; font-weight: bold;">1</span>. - cos(<span style="color: #da8548; font-weight: bold;">6.283</span> * v)) / <span style="color: #da8548; font-weight: bold;">2</span>.;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">radius in "hue space"</span>
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">Cg</span> = cr * sin(<span style="color: #da8548; font-weight: bold;">4</span>. * Y + <span style="color: #da8548; font-weight: bold;">3</span>.);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">in [-1, 1]</span>
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">Co</span> = cr * cos(<span style="color: #da8548; font-weight: bold;">4</span>. * Y + <span style="color: #da8548; font-weight: bold;">3</span>.);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">in [-1, 1]</span>
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">R</span> = Y + Co - Cg;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">G</span> = Y + Cg;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">B</span> = Y - Co - Cg;
-
-    <span style="color: #51afef;">return</span> vec3(R, G, B);
-}
-
-<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">multiply two complex numbers</span><span style="color: #5B6268;"> */</span>
-<span style="color: #ECBE7B;">vec2</span> <span style="color: #c678dd;">c_mul</span>(<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">y</span>) {
-    <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">z</span>;
-
-    z.x = x.x * y.x - x.y * y.y;
-    z.y = x.x * y.y + x.y * y.x;
-
-    <span style="color: #51afef;">return</span> z;
-}
-
-<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">raise complex number to power e</span><span style="color: #5B6268;"> */</span>
-<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">MAX_EXPONENT</span> = <span style="color: #da8548; font-weight: bold;">10</span>;
-<span style="color: #ECBE7B;">vec2</span> <span style="color: #c678dd;">c_pow</span>(<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">e</span>) {
-
-    <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">y</span> = vec2(<span style="color: #da8548; font-weight: bold;">1.0</span>, <span style="color: #da8548; font-weight: bold;">0.0</span>);
-
-    <span style="color: #51afef;">for</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>=<span style="color: #da8548; font-weight: bold;">0</span>; i &lt; MAX_EXPONENT; i++) {
-
-        <span style="color: #51afef;">if</span> (i &gt;= e) { <span style="color: #51afef;">break</span>; }
-
-        y = c_mul(y, x);
-
-    }
-
-    <span style="color: #51afef;">return</span> y;
-
-}
-
-<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">get magnitude-squared of 2-vector</span><span style="color: #5B6268;"> */</span>
-<span style="color: #ECBE7B;">float</span> <span style="color: #c678dd;">mag2</span>(<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">z</span>) {
-    <span style="color: #51afef;">return</span> (z.x * z.x + z.y * z.y);
-}
-
-<span style="color: #ECBE7B;">float</span> <span style="color: #c678dd;">iterate</span>(<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">z</span>) {
-
-    <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">Compute map on z and c up to max iteration</span><span style="color: #5B6268;"> */</span>
-
-    <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">w</span>;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">v</span>;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">r2</span>;
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">iterate map</span>
-    <span style="color: #51afef;">for</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>=<span style="color: #da8548; font-weight: bold;">0</span>; i &lt; iter; i++) {
-
-        w = c_pow(z, <span style="color: #da8548; font-weight: bold;">2</span>) + c;
-
-        v = <span style="color: #ECBE7B;">float</span>(i);
-        r2 = mag2(w);
-
-        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">bailout radius</span>
-        <span style="color: #51afef;">if</span>(r2 &gt; <span style="color: #da8548; font-weight: bold;">5.0</span>) {
-            <span style="color: #51afef;">break</span>;
-        }
-        z.x = w.x;
-        z.y = w.y;
-    }
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">"real" iteration number using potential function</span>
-    <span style="color: #51afef;">if</span> (v == (fiter - <span style="color: #da8548; font-weight: bold;">1</span>.)) {
-        v = v / fiter;
-    } <span style="color: #51afef;">else</span> {
-        v = (v - log2( log(r2) / log(<span style="color: #da8548; font-weight: bold;">5</span>.))) / fiter;
-    }
-
-    <span style="color: #51afef;">return</span> v;
-
-}
-
-<span style="color: #ECBE7B;">float</span> <span style="color: #c678dd;">single_point</span>(<span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">z</span>) {
-
-    <span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;">     * Compute value for single point, allowing</span>
-<span style="color: #5B6268;">     * for parameterization of mapping with cut</span>
-<span style="color: #5B6268;">     *</span>
-<span style="color: #5B6268;">     * Call multiple times for anti-aliasing</span>
-<span style="color: #5B6268;">     */</span>
-
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">r2</span>;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">a</span>;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">theta</span>;
-
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">theta2</span>;
-    <span style="color: #ECBE7B;">vec2</span> <span style="color: #dcaeea;">zcut</span>;
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">v</span> = <span style="color: #da8548; font-weight: bold;">0</span>.;
-
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">rc2</span> = (z.x - c.x) * (z.x - c.x) + (z.y - c.y) * (z.y - c.y);
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">display c</span>
-    <span style="color: #51afef;">if</span> (rc2 &lt; <span style="color: #da8548; font-weight: bold;">0.0001</span>) {
-        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0.0</span>;
-    }
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">apply parameterized, partial inverse mapping</span>
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">so we can visualize the map</span>
-    <span style="color: #51afef;">if</span> (p &gt; <span style="color: #da8548; font-weight: bold;">0</span>.) {
-
-        z.x = z.x + (p - <span style="color: #da8548; font-weight: bold;">1</span>.) * c.x;
-        z.y = z.y + (p - <span style="color: #da8548; font-weight: bold;">1</span>.) * c.y;
-
-        a = <span style="color: #da8548; font-weight: bold;">1.0</span> - <span style="color: #da8548; font-weight: bold;">0.5</span> * (<span style="color: #da8548; font-weight: bold;">1</span>. - p);
-        r2 = z.x * z.x + z.y * z.y;
-
-        theta = a * atan(z.y, z.x);
-        z.y = pow(r2, a / <span style="color: #da8548; font-weight: bold;">2</span>.) * sin(theta);
-        z.x = pow(r2, a / <span style="color: #da8548; font-weight: bold;">2</span>.) * cos(theta);
-
-        theta2 = theta + sign(z.y) * <span style="color: #da8548; font-weight: bold;">3.14159</span> * (<span style="color: #da8548; font-weight: bold;">1</span>. - p);
-        zcut.y = pow(r2, a / <span style="color: #da8548; font-weight: bold;">2</span>.) * sin(theta2);
-        zcut.x = pow(r2, a / <span style="color: #da8548; font-weight: bold;">2</span>.) * cos(theta2);
-
-        <span style="color: #51afef;">if</span> (sign(zcut.y) != sign(z.y)) {
-            v = iterate(zcut);
-        }
-
-    }
-
-    <span style="color: #51afef;">return</span> max(v, iterate(z));
-
-}
-
-<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">main</span>() {
-
-    <span style="color: #ECBE7B;">float</span> <span style="color: #dcaeea;">v</span> = <span style="color: #da8548; font-weight: bold;">0</span>.;
-
-    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">4-Rook Antialiasing</span>
-    v += single_point(
-        vec2(
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x + <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.x) / min_dim,
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y + <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.y) / min_dim
-        )
-    );
-    v += single_point(
-        vec2(
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x + <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.x) / min_dim,
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y - <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.y) / min_dim
-        )
-    );
-    v += single_point(
-        vec2(
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x - <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.x) / min_dim,
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y - <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.y) / min_dim
-        )
-    );
-    v += single_point(
-        vec2(
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.x - <span style="color: #da8548; font-weight: bold;">0.375</span>)) - resolution.x) / min_dim,
-            ((<span style="color: #da8548; font-weight: bold;">2</span>. * (gl_FragCoord.y + <span style="color: #da8548; font-weight: bold;">0.125</span>)) - resolution.y) / min_dim
-        )
-    );
-
-    <span style="color: #ECBE7B;">vec4</span> <span style="color: #dcaeea;">value</span> = vec4(colormap(v / <span style="color: #da8548; font-weight: bold;">4.0</span>), v / <span style="color: #da8548; font-weight: bold;">4.0</span>);
-
-    gl_FragColor = value;
-}
-</pre>
-</div>
-</div>
-</div>
 </main>
 <footer id="postamble" class="boilerplate">
 Copyright © 2023 Reilly Raab
