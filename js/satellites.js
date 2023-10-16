@@ -229,28 +229,62 @@ function get_satellite_date(date, callback) {
     let s_hour = (hour<10? '0' + hour:hour);
 
     let vis_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_VIS/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPVIS_nc.${year}${s_month}${s_day}${s_hour}`;
+    let lir_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPLIR_nc.${year}${s_month}${s_day}${s_hour}`;
+
+    let awaiting = new Set(["vis", "lir"]);
+
+    function handle_response(name, status) {
+
+        if (awaiting == false) {
+            return;
+        }
+        if (status == false) {
+            awaiting = false;
+
+            // use previous hour
+            let date = new Date(Date.UTC(year, month, day, hour - 1));
+            callback(date);
+
+        } else {
+            awaiting.delete(name);
+        }
+
+        if (awaiting.size == 0) {
+
+            // use true clock hour
+            let date = new Date(Date.UTC(year, month, day, hour));
+            callback(date);
+
+        } 
+    }
 
     // ensure file exists, otherwise fall back an hour
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    var vis_xhr = new XMLHttpRequest();
+    vis_xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
             if (this.status == 200) {
-
-                // use true clock hour
-                let date = new Date(Date.UTC(year, month, day, hour));
-                callback(date);
-
+                handle_response("vis", true);
             } else {
-
-                // use previous hour
-                let date = new Date(Date.UTC(year, month, day, hour - 1));
-                callback(date);
-
+                handle_response("vis", false);
             }
         }
     };
-    xhr.open('HEAD', vis_src, true);
-    xhr.send();
+    vis_xhr.open('HEAD', vis_src, true);
+    vis_xhr.send();
+
+    var lir_xhr = new XMLHttpRequest();
+    lir_xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                handle_response("lir", true);
+            } else {
+                handle_response("lir", false);
+            }
+        }
+    };
+    lir_xhr.open('HEAD', lir_src, true);
+    lir_xhr.send();
+
 }
 
 function get_satellite_data(date, onload_callback) {
@@ -590,7 +624,7 @@ function live_update() {
 
 onReady(function(){
 
-    date = new Date();
+    date = new Date((new Date()).getTime() + 1000 * 3600);
     let hour = date.getUTCHours();
     let minutes = date.getUTCMinutes();
 
