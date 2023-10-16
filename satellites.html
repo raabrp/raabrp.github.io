@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-10-15 Sun 21:51 -->
+<!-- 2023-10-15 Sun 22:36 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hourly Satellite Imagery</title>
@@ -29,24 +29,18 @@
 <header>
 <h1 class="title">Hourly Satellite Imagery</h1>
 </header><p>
-This page uses the ~0.6 micron and ~12.0 micron spectral bands extracted from
-the NOAA Global Mosaic of Geostationary Satellite Imagery
-<a href="https://www.ospo.noaa.gov/Products/imagery/gmgsi/">(GMGSI)</a> product, which
-combines data from five geostationary satellites
-(<a href="https://en.wikipedia.org/wiki/Himawari_9">Himawari-9</a>,
-<a href="https://en.wikipedia.org/wiki/GOES-16">GOES-16</a>,
-<a href="https://en.wikipedia.org/wiki/GOES-18">GOES-18</a>,
-<a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-9</a> and
-<a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-10</a>), published at hourly
-intervals at 8 km spatial resolution.
+This page infers cloud cover using the ~0.6 micron and ~12.0 micron spectral
+bands extracted from the NOAA Global Mosaic of Geostationary Satellite Imagery
+<a href="https://www.ospo.noaa.gov/Products/imagery/gmgsi/">(GMGSI)</a>, which combines data from five geostationary satellites (<a href="https://en.wikipedia.org/wiki/Himawari_9">Himawari-9</a>,
+<a href="https://en.wikipedia.org/wiki/GOES-16">GOES-16</a>, <a href="https://en.wikipedia.org/wiki/GOES-18">GOES-18</a>, <a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-9</a> and <a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-10</a>), published at hourly intervals at
+8 km spatial resolution.  Hourly cloud cover data is combined with NASA Blue
+Marble Next Generation imagery including Topography, Bathymetry, and City
+Lights.
 </p>
 
 <p>
-Data is downloaded from this
-<a href="https://noaa-gmgsi-pds.s3.amazonaws.com/index.html">S3 Bucket</a>, processed
-with <a href="https://github.com/usnistgov/h5wasm">h5wasm</a> and
-<a href="https://github.com/gpujs/gpu.js/">gpu.js</a>. Sun and Moon positions are
-calculated with <a href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>.
+Data is downloaded from this <a href="https://noaa-gmgsi-pds.s3.amazonaws.com/index.html">S3 Bucket</a>, processed with <a href="https://github.com/usnistgov/h5wasm">h5wasm</a> and <a href="https://github.com/gpujs/gpu.js/">gpu.js</a>. Sun
+and Moon positions are calculated with <a href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>.
 </p>
 
 
