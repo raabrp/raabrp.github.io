@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-10-04 Wed 11:56 -->
+<!-- 2023-10-16 Mon 09:24 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Live Tex to SVG, PNG</title>
@@ -30,7 +30,7 @@
     style='background-image: repeating-conic-gradient(#fff 0deg  90deg, lightgrey 0 180deg); background-size: 20px 20px;'/>
 <p>PNG — Fixed resolution.</p>
 <div style="min-height: 100px; display: flex; justify-content: center; align-items: center;">
-  <div style='background-image: url("img/parchment.jpg"); height: auto;'>
+  <div style='height: auto;'>
     <img id="demo-img"
          style='max-height: 400px; background-image: repeating-conic-gradient(#fff 0deg  90deg, lightgrey 0 180deg); background-size: 20px 20px;'
          src=""/>
@@ -60,8 +60,7 @@ Font size (PNG only) <!--\in [1, 1000]-->
 <li>Non-interactive math powered by <a href="https://katex.org/">KaTeX</a>, which this site uses server-side.</li>
 </ul>
 
-<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>-->
-<script id="MathJax-script" async src="js/lib/tex-svg.js"></script>
+<script id="MathJax-script" src="js/lib/tex-svg.js"></script>
 
 <script type="text/javascript">
   var dimg = document.getElementById("demo-img");
