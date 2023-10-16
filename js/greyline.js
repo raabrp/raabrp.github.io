@@ -1,7 +1,7 @@
 // Rewritten to use
 // https://github.com/cosinekitty/astronomy/tree/master/source/js
 
-celestial_objects = {
+let celestial_objects = {
     0: {name: 'Sun', linewidth: 3},
     1: {name: 'Mercury', linewidth: 0.5},
     2: {name: 'Venus', linewidth: 2.5},
