@@ -426,6 +426,7 @@ function render_composite(date, callback) {
                 loading_msg("Calling GPU Kernel.")
 
                 draw();
+
             }
         }
         function draw() {
@@ -653,16 +654,21 @@ if (!webgl_support()) {
         // split at local ~4:00 am
         phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
 
+        let canvas = document.getElementById("canvas");
+
         // initial render, delay for images to load.
         render_composite(
             date,
             function() {
                 transfer_to_canvas(phi);
+
+                loading_msg('Image ready. Will display in 10 seconds.')
+                setTimeout(function () { canvas.style.display = "block"; }, 1000 * 10);
+
                 setTimeout(live_update, live_update_interval);
             }
         );
 
-        let canvas = document.getElementById("canvas");
 
         canvas.addEventListener('touchstart', handleTouchstart);
         canvas.addEventListener('touchmove', handleTouchmove);

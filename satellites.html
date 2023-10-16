@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-10-15 Sun 21:12 -->
+<!-- 2023-10-15 Sun 21:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hourly Satellite Imagery</title>
@@ -43,12 +43,15 @@ intervals at 8 km spatial resolution.
 
 <p>
 Data is downloaded from this
-<a href="https://noaa-gmgsi-pds.s3.amazonaws.com/index.html">S3 Bucket</a>, processed with
-<a href="https://github.com/usnistgov/h5wasm">h5wasm</a> and <a href="https://github.com/gpujs/gpu.js/">gpu.js</a>.
+<a href="https://noaa-gmgsi-pds.s3.amazonaws.com/index.html">S3 Bucket</a>, processed
+with <a href="https://github.com/usnistgov/h5wasm">h5wasm</a> and
+<a href="https://github.com/gpujs/gpu.js/">gpu.js</a>. Sun and Moon positions are
+calculated with <a href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>.
 </p>
 
+
 <code id="loading" style="font-size: 50%;"></code>
-<canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%;"></canvas>
+<canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%; display: none;"></canvas>
 <samp id="date" style="position: fixed; top: 0; right: 0; background-color: transparent"></samp>
 <img id="month01" style="display: none;"/>
 <img id="month02" style="display: none;"/>
