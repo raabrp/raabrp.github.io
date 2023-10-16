@@ -38,6 +38,13 @@ function celestial_angles(date) {
 
 }
 
+let loading_div = document.getElementById("loading");
+function loading_msg(text) {
+    let msg = document.createElement("p");
+    msg.innerHTML = "> " + text;
+    loading_div.appendChild(msg);
+}
+
 // https://github.com/gpujs/gpu.js/#alpha
 const gpu_canvas = document.createElement('canvas');
 gpu_canvas.width = width;
@@ -49,7 +56,7 @@ try {
         gpu_canvas,
         context: gpu_gl
     });
-} catch(error) {
+} catch (error) {
     gpu = new GPU({ // Firefox
         gpu_canvas,
         context: gpu_gl
@@ -208,12 +215,6 @@ const gpu_render = gpu.createKernel(function (
 //                           |___/
 
 
-let loading_div = document.getElementById("loading");
-function loading_msg(text) {
-    let msg = document.createElement("p");
-    msg.innerHTML = "> " + text;
-    loading_div.appendChild(msg);
-}
 
 function get_satellite_date(date, callback) {
 
@@ -622,29 +623,51 @@ function live_update() {
     setTimeout(live_update, live_update_interval);
 }
 
-onReady(function(){
+function webgl_support () {
+   try {
+    var canvas = document.createElement('canvas');
+    return !!window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+   } catch(e) {
+     return false;
+   }
+};
 
-    date = new Date((new Date()).getTime() + 1000 * 3600);
-    let hour = date.getUTCHours();
-    let minutes = date.getUTCMinutes();
+if (!webgl_support()) {
 
-    // split at local ~4:00 am
-    phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
+    loading_msg('GPU context is disabled. Aborting.');
+    let a = document.createElement("a");
+    a.href = "https://get.webgl.org/";
+    a.innerHTML = "(More information)"
+    loading_div.appendChild(a);
+    document.getElementById("canvas").remove();
 
-    // initial render, delay for images to load.
-    render_composite(
-        date,
-        function() {
-            transfer_to_canvas(phi);
-            setTimeout(live_update, live_update_interval);
-        }
-    );
+} else {
 
-    let canvas = document.getElementById("canvas");
+    onReady(function(){
 
-    canvas.addEventListener('touchstart', handleTouchstart);
-    canvas.addEventListener('touchmove', handleTouchmove);
-    canvas.addEventListener('mousedown', handleMousedown);
-    canvas.addEventListener('mousemove', handleMousemove);
+        date = new Date((new Date()).getTime() + 1000 * 3600);
+        let hour = date.getUTCHours();
+        let minutes = date.getUTCMinutes();
 
-});
+        // split at local ~4:00 am
+        phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
+
+        // initial render, delay for images to load.
+        render_composite(
+            date,
+            function() {
+                transfer_to_canvas(phi);
+                setTimeout(live_update, live_update_interval);
+            }
+        );
+
+        let canvas = document.getElementById("canvas");
+
+        canvas.addEventListener('touchstart', handleTouchstart);
+        canvas.addEventListener('touchmove', handleTouchmove);
+        canvas.addEventListener('mousedown', handleMousedown);
+        canvas.addEventListener('mousemove', handleMousemove);
+
+    });
+}
