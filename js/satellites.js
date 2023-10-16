@@ -646,7 +646,7 @@ if (!webgl_support()) {
 
     onReady(function(){
 
-        date = new Date((new Date()).getTime() + 1000 * 3600);
+        date = new Date();
         let hour = date.getUTCHours();
         let minutes = date.getUTCMinutes();
 
