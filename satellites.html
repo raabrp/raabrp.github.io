@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-10-15 Sun 20:21 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hourly Satellite Imagery</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
+<link rel=“canonical” href=“https://reillyraab.com/satellites" />
+<meta name="description" content="A map of Earth and interactive astronomical clock" />
+<script defer src="js/lib/astronomy.browser.js"></script>
+<script defer src="js/lib/gpu.js"></script>
+<script defer src="js/lib/curve-calc.js"></script>
+<script defer type="module" src="js/satellites.js"></script>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
+<header>
+<h1 class="title">Hourly Satellite Imagery</h1>
+</header><p>
+This page uses the ~0.6 micron and ~12.0 micron spectral bands extracted from
+the NOAA Global Mosaic of Geostationary Satellite Imagery
+<a href="https://www.ospo.noaa.gov/Products/imagery/gmgsi/">(GMGSI)</a> product, which
+combines data from five geostationary satellites
+(<a href="https://en.wikipedia.org/wiki/Himawari_9">Himawari-9</a>,
+<a href="https://en.wikipedia.org/wiki/GOES-16">GOES-16</a>,
+<a href="https://en.wikipedia.org/wiki/GOES-18">GOES-18</a>,
+<a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-9</a> and
+<a href="https://en.wikipedia.org/wiki/Meteosat">Meteosat-10</a>), generated at hourly
+intervals at 8 km spatial resolution.
+</p>
+
+<p>
+Data is downloaded from this
+<a href="https://noaa-gmgsi-pds.s3.amazonaws.com/index.html">S3 Bucket</a>, processed with
+<a href="https://github.com/usnistgov/h5wasm">h5wasm</a> and <a href="https://github.com/gpujs/gpu.js/">gpu.js</a>.
+</p>
+
+<code id="loading" style="font-size: 50%;"></code>
+<canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%;"></canvas>
+<samp id="date" style="position: fixed; top: 0; right: 0; background-color: transparent"></samp>
+<img id="month01" style="display: none;"/>
+<img id="month02" style="display: none;"/>
+<img id="month03" style="display: none;"/>
+<img id="month04" style="display: none;"/>
+<img id="month05" style="display: none;"/>
+<img id="month06" style="display: none;"/>
+<img id="month07" style="display: none;"/>
+<img id="month08" style="display: none;"/>
+<img id="month09" style="display: none;"/>
+<img id="month10" style="display: none;"/>
+<img id="month11" style="display: none;"/>
+<img id="month12" style="display: none;"/>
+<img id="night" src="/img/greyline/night.jpg" style="display: none;"/>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2023 Reilly Raab
+</footer>
+</body>
+</html>
