@@ -634,7 +634,10 @@ onReady(function(){
     );
 
     lrmsgEl = document.getElementById("lrmsg");
-    lrmsgEl.innerHTML = ("Press [Esc] to toggle render.");
+    lrmsgEl.innerHTML = ("Press [Esc] or click here to toggle render.");
+
+    lrmsgEl.addEventListener('touchstart', toggle_canvas);
+    lrmsgEl.addEventListener('mousedown', toggle_canvas);
 
     document.onkeydown = function(evt) {
         evt = evt || window.event;

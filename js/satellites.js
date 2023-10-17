@@ -225,75 +225,54 @@ const gpu_render = gpu.createKernel(function (
 
 
 
-function get_satellite_date(date, callback) {
+function get_satellite_date(call_date, callback) {
 
-    loading_msg("Polling for most recent data.")
+    loading_msg(`Polling for most recent data at ${call_date.toUTCString()}.`);
 
     let year = date.getFullYear();
     let month = date.getUTCMonth(); // [0, 11]
     let day = date.getUTCDate();
-    let hour = date.getUTCHours() - 1;
+    let hour = date.getUTCHours();
 
-    let s_month = (month<9? '0' + (month + 1):month+1);
-    let s_day = (day<10? '0' + day:day);
-    let s_hour = (hour<10? '0' + hour:hour);
+    let query_date = new Date(Date.UTC(year, month, day, hour));
 
-    let vis_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_VIS/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPVIS_nc.${year}${s_month}${s_day}${s_hour}`;
-    let lir_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPLIR_nc.${year}${s_month}${s_day}${s_hour}`;
+    function query(date, name, inner_callback) {
 
-    let awaiting = new Set(["vis", "lir"]);
+        let year = date.getFullYear();
+        let month = date.getUTCMonth(); // [0, 11]
+        let day = date.getUTCDate();
+        let hour = date.getUTCHours();
 
-    function handle_response(name, status) {
+        let s_month = (month<9? '0' + (month + 1):month+1);
+        let s_day = (day<10? '0' + day:day);
+        let s_hour = (hour<10? '0' + hour:hour);
 
-        if (awaiting == false) {
-            return;
-        }
-        if (status == false) {
-            awaiting = false;
+        let src = {
+            "vis": `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_VIS/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPVIS_nc.${year}${s_month}${s_day}${s_hour}`,
+            "lir": `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPLIR_nc.${year}${s_month}${s_day}${s_hour}`
+        };
 
-            // use previous hour
-            let date = new Date(Date.UTC(year, month, day, hour - 1));
-            callback(date);
-
-        } else {
-            awaiting.delete(name);
-        }
-
-        if (awaiting.size == 0) {
-
-            // use true clock hour
-            let date = new Date(Date.UTC(year, month, day, hour));
-            callback(date);
-
-        } 
+        // ensure file exists, otherwise fall back an hour
+        var vis_xhr = new XMLHttpRequest();
+        vis_xhr.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    inner_callback(date);
+                } else {
+                    query(new Date(date.getTime() - 1000 * 3600), name, inner_callback);
+                }
+            }
+        };
+        vis_xhr.open('HEAD', src[name], true);
+        vis_xhr.send();
     }
 
-    // ensure file exists, otherwise fall back an hour
-    var vis_xhr = new XMLHttpRequest();
-    vis_xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                handle_response("vis", true);
-            } else {
-                handle_response("vis", false);
-            }
-        }
-    };
-    vis_xhr.open('HEAD', vis_src, true);
-    vis_xhr.send();
-
-    var lir_xhr = new XMLHttpRequest();
-    lir_xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                handle_response("lir", true);
-            } else {
-                handle_response("lir", false);
-            }
-        }
-    };
-    lir_xhr.open('HEAD', lir_src, true);
-    lir_xhr.send();
+    query(query_date, "vis", function (found_date) {
+        query(found_date, "lir", function (use_date) {
+            loading_msg(`Using data from ${use_date.toUTCString()}.`);
+            callback(use_date);
+        });
+    });
 
 }
 
@@ -317,7 +296,7 @@ function get_satellite_data(date, onload_callback) {
 }
 function fetch_sat_image(name, url, onload_callback) {
 
-    loading_msg(`Fetching ${name} from ${url}.`);
+    loading_msg(`Fetching ${name} from <a href="${url}">${url}</a>.`);
 
     fetch(url)
         .then(function(response) {
@@ -378,17 +357,25 @@ function get_local_images(pst_month_num, ftr_month_num, onload_callback) {
 let dateEl = document.getElementById("date");
 let lrmsgEl = document.getElementById("lrmsg");
 
-function render_composite(date, callback) {
+var last_data_date = new Date(0);
 
-    get_satellite_date(date, function(date) {
+function render_composite(request_date, callback) {
+
+    get_satellite_date(request_date, function(data_date) {
+
+        if (data_date.getTime() == last_data_date.getTime()) {
+            return callback();
+        } else {
+            last_data_date = data_date;
+        }
 
         // render text
-        dateEl.innerHTML = date.toUTCString();
+        dateEl.innerHTML = data_date.toUTCString();
 
-        let [sun, moon] = celestial_angles(date);
+        let [sun, moon] = celestial_angles(data_date);
 
-        let month = date.getUTCMonth(); // [0, 11]
-        let day = date.getUTCDate();
+        let month = data_date.getUTCMonth(); // [0, 11]
+        let day = data_date.getUTCDate();
 
         let month_alpha; // weight of pst_month
         let pst_month_num, ftr_month_num;
@@ -415,7 +402,7 @@ function render_composite(date, callback) {
         let sat_data_to_load = new Set(["~0.6 micron data", "~12.0 micron data"]);
         let images_to_load = new Set(["for past month", "for future month"]);
 
-        get_satellite_data(date, handle_satellite_ready);
+        get_satellite_data(data_date, handle_satellite_ready);
         get_local_images(pst_month_num, ftr_month_num, handle_img_ready);
 
         function handle_satellite_ready(name, data) {
@@ -433,11 +420,11 @@ function render_composite(date, callback) {
         function attempt_draw() {
             if ((images_to_load.size == 0) && (sat_data_to_load.size == 0)) {
 
-                loading_msg("Calling GPU Kernel.")
+                loading_msg("Rendering Image.")
 
                 draw();
 
-                lrmsgEl.innerHTML = ("Press [Esc] to toggle render.");
+                lrmsgEl.innerHTML = ("Press [Esc] or click here to toggle render.");
 
             }
         }
@@ -630,10 +617,16 @@ function animate_canvas() {
     // await next scheduled animation
 }
 
-let live_update_interval = 1000 * 60 * 60; // 1 hour
+let live_update_interval = 1000 * 60 * 10; // 10 minutes
 
 function live_update() {
     date = new Date(date.getTime() + live_update_interval);
+    console.log("Auto Refresh.");
+
+    let hour = date.getUTCHours();
+    let minutes = date.getUTCMinutes();
+    phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
+
     addAnimation(animate_composite);
     setTimeout(live_update, live_update_interval);
 }
@@ -691,6 +684,9 @@ if (!webgl_support()) {
                 setTimeout(live_update, live_update_interval);
             }
         );
+
+        lrmsgEl.addEventListener('touchstart', toggle_canvas);
+        lrmsgEl.addEventListener('mousedown', toggle_canvas);
 
         document.onkeydown = function(evt) {
             evt = evt || window.event;
