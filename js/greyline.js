@@ -603,6 +603,16 @@ function live_update() {
     setTimeout(live_update, live_update_interval);
 }
 
+function toggle_canvas() {
+    let canvas = document.getElementById("canvas");
+    let current = canvas.style.display;
+    if (current == "block") {
+        canvas.style.display = "none";
+    } else {
+        canvas.style.display = "block";
+    }
+}
+
 onReady(function(){
 
     date = new Date();
@@ -622,6 +632,23 @@ onReady(function(){
         },
         wait_for_img_load=true
     );
+
+    lrmsgEl = document.getElementById("lrmsg");
+    lrmsgEl.innerHTML = ("Press [Esc] to toggle render.");
+
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc");
+        } else {
+            isEscape = (evt.keyCode === 27);
+        }
+        if (isEscape) {
+            toggle_canvas();
+        }
+    };
+
 
     let canvas = document.getElementById("canvas");
     // canvas.addEventListener('wheel', handleWheel);

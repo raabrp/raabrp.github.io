@@ -43,9 +43,9 @@ function loading_msg(text) {
     let msg = document.createElement("p");
     msg.innerHTML = "> " + text;
     loading_div.appendChild(msg);
+    console.log(text);
 }
 
-// https://github.com/gpujs/gpu.js/#alpha
 const gpu_canvas = document.createElement('canvas');
 gpu_canvas.width = width;
 gpu_canvas.height = height;
@@ -156,11 +156,12 @@ const gpu_render = gpu.createKernel(function (
 
     // starts
     let z = (2 * this.thread.y / height - 1);
+    let zz = (
+        0.82 * z +
+        0.5 * z * z * z
+    );
     let mapped_y = Math.floor(
-        height - 1 - (
-            0.82 * z +
-            0.5 * z * z * z
-        ) * (height / 2) - (height / 2)
+        height - 1 - zz * (height / 2) - (height / 2)
     );
 
     // https://vlab.noaa.gov/web/towr-s/gmgsi
@@ -173,31 +174,39 @@ const gpu_render = gpu.createKernel(function (
     // and surface temperature.
     const lir = lir_arr[mapped_y][this.thread.x] / 255;
 
+    if (Math.abs(zz) > 1) {
+        vis = 0;
+        lir = 0;
+    }
 
     // Loosely based on GeoColor by Miller et. al.
     // https://repository.library.noaa.gov/view/noaa/30693
 
+    function limit(x) {
+        return Math.min(1, Math.max(0, x));
+    }
 
-    let gamma = 2;
-    let night_clouds = Math.max(0, Math.min(
-        1,
-        (2 - z * z) / 2 * (gamma + 1) * (lir * lir) / (1 + gamma * lir * lir)
-    ));
-    let night_cloud_mask = 8 * night_clouds / (1 + 7 * night_clouds);
-    let day_clouds = (2 - z * z) / 2 * (gamma + 1) * (vis * lir) / (1 + gamma * vis * lir) + (1 - light) * night_clouds;
+    function sigmoid(x, gamma, t) {
+        return (1 + (gamma + 1) * (x - t) / (1 + gamma * Math.abs(x - t))) / 2;
+    }
 
-    let red = (
-        light * (day_clouds + day[0] * 0.5) +
-            (1 - light) * (night_clouds / 8 + (1 - night_cloud_mask) * night[0] * 4 * night[1] / (1 + 3 * night[1]))
+    const day_cloud_mask = limit(sigmoid(lir * vis, 75, 0.1));
+    const night_cloud_mask = limit(sigmoid(lir - day[0] / 15, 8, 0.5 + zz * zz / 2));
+
+    const lum = (vis * 2 + light) / 3;
+    const night_lum = (1 - light) / 4;
+    const red = (
+        lum * (1 - day_cloud_mask) * day[0] + vis * day_cloud_mask +
+            night_lum * ((1 - night_cloud_mask) * night[0] * night[1] + night_cloud_mask / 2)
     );
-    let green = (
-        light * (day_clouds + day[1] * 0.5) +
-            (1 - light) * (night_clouds / 12 + (1 - night_cloud_mask) * night[1] * 4 * night[1] / (1 + 3 * night[1]))
+    const green = (
+        lum * (1 - day_cloud_mask) * day[1] + vis * day_cloud_mask +
+            night_lum * ((1 - night_cloud_mask) * night[1] * night[1] + night_cloud_mask / 3)
     );
-    let blue = (
-        light * (day_clouds + day[2] * 0.5) +
-            (1 - light) * (night_clouds / 8 + (1 - night_cloud_mask) * night[2] * 4 * night[1] / (1 + 3 * night[1]))
-    ); // TODO remove blue channel, replace with green for night
+    const blue = (
+        lum * (1 - day_cloud_mask) * day[2] + vis * day_cloud_mask +
+            night_lum * ((1 - night_cloud_mask) * night[2] * night[1] + night_cloud_mask / 2.5)
+    );
 
     this.color(red, green, blue, 1);
 
@@ -223,7 +232,7 @@ function get_satellite_date(date, callback) {
     let year = date.getFullYear();
     let month = date.getUTCMonth(); // [0, 11]
     let day = date.getUTCDate();
-    let hour = date.getUTCHours();
+    let hour = date.getUTCHours() - 1;
 
     let s_month = (month<9? '0' + (month + 1):month+1);
     let s_day = (day<10? '0' + day:day);
@@ -367,6 +376,7 @@ function get_local_images(pst_month_num, ftr_month_num, onload_callback) {
 }
 
 let dateEl = document.getElementById("date");
+let lrmsgEl = document.getElementById("lrmsg");
 
 function render_composite(date, callback) {
 
@@ -427,6 +437,8 @@ function render_composite(date, callback) {
 
                 draw();
 
+                lrmsgEl.innerHTML = ("Press [Esc] to toggle render.");
+
             }
         }
         function draw() {
@@ -465,17 +477,19 @@ function transfer_to_canvas(phi, callback) {
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
     // drawIamge(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 
+    let crop = 230;
+
     // https://stackoverflow.com/a/17323608
     let phi_offset = ((((phi / (2 * Math.PI)) % 1) + 1) % 1) * width; // [0, 1]
     ctx.drawImage(
         gpu_canvas,
-        0, 0, phi_offset, height,                  // source offset x, offset y, width, height
-        width - phi_offset, 0, phi_offset, height  // dest offset x, offset y, width, height
+        0, crop, phi_offset, height - crop,               // source offset x, offset y, width, height
+        width - phi_offset, 0, phi_offset, height         // dest offset x, offset y, width, height
     );
     ctx.drawImage(
         gpu_canvas,
-        phi_offset, 0, width - phi_offset, height, // source offset x, offset y, width, height
-        0, 0, width - phi_offset, height           // dest offset x, offset y, width, height
+        phi_offset, crop, width - phi_offset, height - crop,  // source offset x, offset y, width, height
+        0, 0, width - phi_offset, height                   // dest offset x, offset y, width, height
     );
 
     if (callback) {
@@ -624,11 +638,21 @@ function live_update() {
     setTimeout(live_update, live_update_interval);
 }
 
+function toggle_canvas() {
+    let canvas = document.getElementById("canvas");
+    let current = canvas.style.display;
+    if (current == "block") {
+        canvas.style.display = "none";
+    } else {
+        canvas.style.display = "block";
+    }
+}
+
 function webgl_support () {
    try {
-    var canvas = document.createElement('canvas');
+    var test_canvas = document.createElement('canvas');
     return !!window.WebGLRenderingContext &&
-      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+      (test_canvas.getContext('webgl') || test_canvas.getContext('experimental-webgl'));
    } catch(e) {
      return false;
    }
@@ -662,12 +686,24 @@ if (!webgl_support()) {
             function() {
                 transfer_to_canvas(phi);
 
-                loading_msg('Image ready. Will display in 10 seconds.')
-                setTimeout(function () { canvas.style.display = "block"; }, 1000 * 10);
+                canvas.style.display = "block";
 
                 setTimeout(live_update, live_update_interval);
             }
         );
+
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            var isEscape = false;
+            if ("key" in evt) {
+                isEscape = (evt.key === "Escape" || evt.key === "Esc");
+            } else {
+                isEscape = (evt.keyCode === 27);
+            }
+            if (isEscape) {
+                toggle_canvas();
+            }
+        };
 
 
         canvas.addEventListener('touchstart', handleTouchstart);
