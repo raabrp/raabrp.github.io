@@ -229,10 +229,10 @@ function get_satellite_date(call_date, callback) {
 
     loading_msg(`Polling for most recent data at ${call_date.toUTCString()}.`);
 
-    let year = date.getFullYear();
-    let month = date.getUTCMonth(); // [0, 11]
-    let day = date.getUTCDate();
-    let hour = date.getUTCHours();
+    let year = call_date.getFullYear();
+    let month = call_date.getUTCMonth(); // [0, 11]
+    let day = call_date.getUTCDate();
+    let hour = call_date.getUTCHours();
 
     let query_date = new Date(Date.UTC(year, month, day, hour));
 
@@ -309,6 +309,7 @@ function fetch_sat_image(name, url, onload_callback) {
             FS.writeFile(name, new Uint8Array(buffer));
             let f = new h5wasm.File(name, "r");
             onload_callback(name, new GPU.Input(f.get("data").value, [4999, 3000]));
+            f.close()
 
         });
 
@@ -341,31 +342,64 @@ function get_local_images(pst_month_num, ftr_month_num, onload_callback) {
 
     // trigger image load if not already loaded
     if (!pst_month_img.dataset.touched) {
+        pst_month_img.onload = function() {
+            pst_month_img.dataset.touched = true;
+            onload_callback("for past month", pst_month_img);
+        };
         pst_month_img.src = month_src(pst_month_num);
-        pst_month_img.dataset.touched = true;
+    } else {
+        onload_callback("for past month", pst_month_img);
     }
     if (!ftr_month_img.dataset.touched) {
+        ftr_month_img.onload = function() {
+            ftr_month_img.dataset.touched = true;
+            onload_callback("for future month", ftr_month_img);
+        };
         ftr_month_img.src = month_src(ftr_month_num);
-        ftr_month_img.dataset.touched = true;
+    } else {
+        onload_callback("for future month", ftr_month_img);
     }
-
-    pst_month_img.onload = function() { onload_callback("for past month", pst_month_img); };
-    ftr_month_img.onload = function() { onload_callback("for future month", ftr_month_img); };
-
 }
 
 let dateEl = document.getElementById("date");
 let lrmsgEl = document.getElementById("lrmsg");
+let diffEl = document.getElementById("diff");
 
+
+let live_update_interval = 1000 * 12; // 12 seconds = 0.5 pixel at 3600 px width
+var updates_per_poll = 100; // poll for new data every 20 minutes (new data triggers repaint)
+var updates_since_last_poll = updates_per_poll;
 var last_data_date = new Date(0);
+
+function get_lag_string() {
+    let diff = Math.floor((date_to_render.getTime() - last_data_date.getTime()) / 1000);
+    let h = Math.floor(diff / 3600);
+    let m = Math.floor(diff / 60) % 60;
+    let mm = (m<10? '0' + m : m);
+    let s = diff % 60;
+    let ss = (s<10? '0' + s : s);
+    return `-${h}:${mm}:${ss}`;
+}
 
 function render_composite(request_date, callback) {
 
+    // skip re-rendering
+    if (updates_since_last_poll < updates_per_poll) {
+        updates_since_last_poll += 1;
+        return callback();
+    }
+
+    // poll for recent data and maybe repaint
     get_satellite_date(request_date, function(data_date) {
 
+        updates_since_last_poll = 0;
+
+        // no data change
         if (data_date.getTime() == last_data_date.getTime()) {
             return callback();
         } else {
+
+            // new data! Continue from here
             last_data_date = data_date;
         }
 
@@ -418,6 +452,7 @@ function render_composite(request_date, callback) {
             attempt_draw();
         }
         function attempt_draw() {
+
             if ((images_to_load.size == 0) && (sat_data_to_load.size == 0)) {
 
                 loading_msg("Rendering Image.")
@@ -485,18 +520,18 @@ function transfer_to_canvas(phi, callback) {
 
 }
 
-let date_in_image;
-let date_in_buffer;
-let date;
+let date_to_render;
+let date_in_gpu_buffer;
+let date_in_final_render;
 
-let phi_in_image;
-let phi;
+let phi_in_final_render;
+let phi_to_render;
 
 let composite_busy = false;
 let canvas_busy = false;
 
-var pointer;
-var mouse;
+let pointer;
+let mouse;
 
 function handleMousedown(e) {
 
@@ -572,24 +607,27 @@ function handleWheel(e) {
 function handle_interface(delta) {
     if (delta.x) {
         // fire up animate_canvas if not already running.
-        phi += delta.x / width * 2 * Math.PI;
+        phi_to_render += delta.x / width * 2 * Math.PI;
         addAnimation(animate_canvas);
     }
 }
 
 function animate_composite() {
     // our work is done
-    if (date_in_buffer == date) {
+    if (date_in_gpu_buffer == date_to_render) {
         removeAnimation(animate_composite);
     }
     // we have work to do
     else {
+
+        diffEl.innerHTML = get_lag_string();
+
         // if not currently working on it
         if (!composite_busy) {
             composite_busy = true;
-            render_composite(date, function() {
+            render_composite(date_to_render, function() {
                 composite_busy = false;
-                date_in_buffer = date;
+                date_in_gpu_buffer = date_to_render;
                 addAnimation(animate_canvas);
             });
         }
@@ -599,7 +637,7 @@ function animate_composite() {
 
 function animate_canvas() {
     // composite canvas is up to date and our work is done
-    if ((phi_in_image == phi) && (date_in_image == date_in_buffer)) {
+    if ((phi_in_final_render == phi_to_render) && (date_in_final_render == date_in_gpu_buffer)) {
         removeAnimation(animate_canvas);
     }
     // not done
@@ -607,25 +645,24 @@ function animate_canvas() {
         // if not currently working on it
         if (!canvas_busy) {
             canvas_busy = true;
-            transfer_to_canvas(phi, function() {
+            transfer_to_canvas(phi_to_render, function() {
                 canvas_busy = false;
-                date_in_image = date_in_buffer;
-                phi_in_image = phi;
+                date_in_final_render = date_in_gpu_buffer;
+                phi_in_final_render = phi_to_render;
             });
         }
     }
     // await next scheduled animation
 }
 
-let live_update_interval = 1000 * 60 * 10; // 10 minutes
 
 function live_update() {
-    date = new Date(date.getTime() + live_update_interval);
-    console.log("Auto Refresh.");
 
-    let hour = date.getUTCHours();
-    let minutes = date.getUTCMinutes();
-    phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
+    let prev_date = date_to_render;
+    let prev_phi = phi_to_render;
+
+    date_to_render = new Date();
+    phi_to_render = prev_phi - (Math.PI / (12 * 3600 * 1000) * (date_to_render.getTime() - prev_date.getTime()));
 
     addAnimation(animate_composite);
     setTimeout(live_update, live_update_interval);
@@ -664,22 +701,23 @@ if (!webgl_support()) {
 
     onReady(function(){
 
-        date = new Date();
-        let hour = date.getUTCHours();
-        let minutes = date.getUTCMinutes();
+        date_to_render = new Date();
+        let hour = date_to_render.getUTCHours();
+        let minutes = date_to_render.getUTCMinutes();
 
         // split at local ~4:00 am
-        phi = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
+        phi_to_render = -(4 * Math.PI / 6) - (hour + minutes /  60) / 12 * Math.PI;
 
         let canvas = document.getElementById("canvas");
 
         // initial render, delay for images to load.
         render_composite(
-            date,
+            date_to_render,
             function() {
-                transfer_to_canvas(phi);
+                transfer_to_canvas(phi_to_render);
 
                 canvas.style.display = "block";
+                diffEl.innerHTML = get_lag_string();
 
                 setTimeout(live_update, live_update_interval);
             }
