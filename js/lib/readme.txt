@@ -42,9 +42,9 @@ speck.js:
  - Source: https://github.com/wwwtyro/speck
  - License: Public Domain (inline)
 
-tex-svg.js:
+tex-svg.js and all scripts under /js/lib/input/tex/extensions:
  - Source: https://github.com/mathjax/MathJax
- - License: MIT (tex-svg-license.txt)
+ - License: Apache v2 (mathjax-license.txt)
 
 twgl.js:
  - Source: https://github.com/greggman/twgl.js/
