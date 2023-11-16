@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-10-18 Wed 14:25 -->
+<!-- 2023-10-22 Sun 14:17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hourly Satellite Data</title>
@@ -42,7 +42,6 @@ Data is downloaded from this <a href="https://noaa-gmgsi-pds.s3.amazonaws.com/in
 and Moon positions are calculated with <a href="https://github.com/cosinekitty/astronomy">Astronomy Engine</a>.
 </p>
 
-
 <code id="loading" style="font-size: 50%;"></code>
 <canvas id="canvas" style="position: fixed; top: 0; left: 0; width: 100%; display: none;"></canvas>
 <samp id="date" style="position: fixed; top: 0; right: 0; background-color: transparent"></samp>
@@ -61,6 +60,24 @@ and Moon positions are calculated with <a href="https://github.com/cosinekitty/a
 <img id="month11" style="display: none;"/>
 <img id="month12" style="display: none;"/>
 <img id="night" src="/img/greyline/night.jpg" style="display: none;"/>
+
+<p>
+<div style="font-size: 60%; width: 66ch;">
+</p>
+
+<p>
+<strong>Notes</strong>
+</p>
+
+<ul class="org-ul">
+<li>I started doubting some of the data sources when I noticed city lights in
+Western Australia. This is a well-known quirk of the 2017 Black Marble
+Imagery: These are actually fires, as detailed in <a href="https://earthobservatory.nasa.gov/images/80030/city-lights-of-australia-or-not">this article</a>.</li>
+</ul>
+
+<p>
+</div>
+</p>
 </main>
 <footer id="postamble" class="boilerplate">
 Copyright © 2023 Reilly Raab

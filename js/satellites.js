@@ -194,10 +194,10 @@ const gpu_render = gpu.createKernel(function (
     const night_cloud_mask = limit(sigmoid(lir - day[0] / 15, 8, 0.5 + zz * zz / 2));
 
     const lum = (vis * 2 + light) / 3;
-    const night_lum = (1 - light) / 4;
+    const night_lum = (1 - light) / 3;
     const red = (
         lum * (1 - day_cloud_mask) * day[0] + vis * day_cloud_mask +
-            night_lum * ((1 - night_cloud_mask) * night[0] * night[1] + night_cloud_mask / 2)
+            night_lum * ((1 - night_cloud_mask) * night[0] + night_cloud_mask / 1.5)
     );
     const green = (
         lum * (1 - day_cloud_mask) * day[1] + vis * day_cloud_mask +
@@ -381,18 +381,22 @@ function get_lag_string() {
     return `-${h}:${mm}:${ss}`;
 }
 
+let currently_polling = false;
 function render_composite(request_date, callback) {
 
     // skip re-rendering
-    if (updates_since_last_poll < updates_per_poll) {
+    if ((updates_since_last_poll < updates_per_poll) || currently_polling) {
         updates_since_last_poll += 1;
         return callback();
     }
+
+    currently_polling = true;
 
     // poll for recent data and maybe repaint
     get_satellite_date(request_date, function(data_date) {
 
         updates_since_last_poll = 0;
+        currently_polling = false;
 
         // no data change
         if (data_date.getTime() == last_data_date.getTime()) {
