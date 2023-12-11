@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-11-16 Thu 09:57 -->
+<!-- 2023-12-10 Sun 20:11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Curriculum Vitae</title>
@@ -24,6 +24,12 @@
 <header>
 <h1 class="title">Curriculum Vitae</h1>
 </header><style>
+main {
+  max-width: 700px;
+}
+main ul {
+  padding-left: 0px;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -46,7 +52,7 @@ table {
   <div>
 
 
-<figure id="org052a6d7">
+<figure id="orgad37182">
 <img src="./img/2022.jpg" alt="2022.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Me (in red).</figcaption>
@@ -118,7 +124,7 @@ nav li {
 
 <p>
 <center>
-This document is also available as a <a href="./files/cv.pdf">PDF</a>.
+This document is also available as a <a href="./files/reilly-raab-resume.pdf">PDF</a>.
 </center>
 </p>
 <div id="outline-container-Summary" class="outline-2">
@@ -232,7 +238,7 @@ I never really outgrew a sophomoric concern with the
 <tr>
 <td class="org-left">Machine Learning</td>
 <td class="org-left">Game Theory</td>
-<td class="org-left">Parallel Algorithms</td>
+<td class="org-left">GPU Programming</td>
 <td class="org-left">Dynamical Systems</td>
 </tr>
 
@@ -267,67 +273,9 @@ I never really outgrew a sophomoric concern with the
 </table>
 </div>
 </div>
-<div id="outline-container-Experience" class="outline-2">
-<h2 id="Experience">Experience</h2>
-<div class="outline-text-2" id="text-org66c2274">
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Machine Learning Basics</div></td>
-  <td><div class="cv-block-b">Winter 2022</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Course Design Consultant</div></td>
-  <td><div class="cv-block-d">UC Santa Cruz</div></td>
-</tr>
-</table>
-</div>
-
-<ul class="org-ul">
-<li>Designed autograding infrastructure providing instant assignment feedback for a class of approx. 100 students.</li>
-<li>Authored interactive (Jupyter notebook) assignments with automated tests.</li>
-</ul>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Machine Learning Basics</div></td>
-  <td><div class="cv-block-b">Spring 2021</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Course Design Consultant</div></td>
-  <td><div class="cv-block-d">UC Santa Cruz</div></td>
-</tr>
-</table>
-</div>
-
-<ul class="org-ul">
-<li>Authored interactive (Jupyter notebook) assignments, written assignments, and exams.</li>
-<li>Wrote scripts for distributing, validating, and testing interactive assignments for a class of approx. 50 students.</li>
-<li>Led grading team.</li>
-</ul>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">Machine Learning</div></td>
-  <td><div class="cv-block-b">Fall 2020</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Teaching Assistant</div></td>
-  <td><div class="cv-block-d">UC Santa Cruz</div></td>
-</tr>
-</table>
-</div>
-
-<ul class="org-ul">
-<li>Authored and graded written assignments.</li>
-<li>Presented supplementary material in discussion sections.</li>
-</ul>
-
+<div id="outline-container-Work-amp-Research-Experience" class="outline-2">
+<h2 id="Work-amp-Research-Experience">Work &amp; Research Experience</h2>
+<div class="outline-text-2" id="text-org1e589a6">
 
 <div class="cv-block">
 <table>
@@ -343,10 +291,12 @@ I never really outgrew a sophomoric concern with the
 </div>
 
 <ul class="org-ul">
-<li>Investigated the dynamical consequences of algorithmic fairness in multiagent systems.</li>
-<li>Published three conference (NeurIPS) papers, with one Spotlight award.</li>
-<li>Contributed to evolutionary game theory, learning theory, and dynamical formulations of fairness.</li>
-<li>Discovered least-squares correspondence between replicator dynamics and natural gradient descent.</li>
+<li>Published fixed-point analysis of dynamical systems of mutual learners using evolutionary game theory {3}.</li>
+<li>Discovered exact, least-squares correspondence between replicator dynamics and natural gradient descent {5}.</li>
+<li>Established adversarial bounds for constraint violation by data-driven policy due to distribution shift {4}.</li>
+<li>Proposed constrained optimization algorithm for machine learning with policy-induced distribution shift {7}.</li>
+<li>Adapted online reinforcement learning methods to systems of mutually interacting learners {6}.</li>
+<li>Wrote multi-agent simulations in Python using JAX and Taichi for GPU acceleration.</li>
 </ul>
 
 
@@ -364,28 +314,9 @@ I never really outgrew a sophomoric concern with the
 </div>
 
 <ul class="org-ul">
-<li>Designed and implemented full-stack Internet-of-Things solutions.</li>
-<li>Engineered in-house tools for electronic design automation.</li>
-</ul>
-
-
-<div class="cv-block">
-<table>
-<tr>
-  <td><div class="cv-block-a">The Summer Science Program</div></td>
-  <td><div class="cv-block-b">Summer 2016 / Summer 2015</div></td>
-</tr>
-<tr>
-  <td><div class="cv-block-c">Teaching Assistant and Residential Mentor</div></td>
-  <td><div class="cv-block-d">Boulder, CO / Socorro, NM</div></td>
-</tr>
-</table>
-</div>
-
-<ul class="org-ul">
-<li>Mentored advanced high school students in a residential university environment.</li>
-<li>Graded assignments in celestial mechanics, programming, and mathematics.</li>
-<li>Supervised operations in observational astronomy.</li>
+<li>Mapped abstract hardware APIs to I2C bus protocols for modular embedded devices (Python, C).</li>
+<li>Implemented web-based testing of user-logic for embedded devices in simulated environments (JavaScript).</li>
+<li>Wrote scripts for automating electronic design tasks, such as PCB layout (Python).</li>
 </ul>
 
 
@@ -403,10 +334,8 @@ I never really outgrew a sophomoric concern with the
 </div>
 
 <ul class="org-ul">
-<li>Investigated noise in a GHz qubit-control signal chain.</li>
-<li>Calculated the effect of IQ-mixing imperfections on single-qubit gate error.</li>
-<li>Wrote software to characterize the phase-noise stability of alternative GHz oscillators.</li>
-<li>Fabricated, assembled, and tested custom hardware.</li>
+<li>Wrote software to automate phase-noise characterization of GHz oscillators (Python).</li>
+<li>Calculated effect of first-order IQ-mixing imperfections on superconducting quantum gate error {2}.</li>
 </ul>
 
 
@@ -424,10 +353,72 @@ I never really outgrew a sophomoric concern with the
 </div>
 
 <ul class="org-ul">
-<li>Investigated the role of small donor molecule structure on exciton diffusion length.</li>
-<li>Fabricated organic semiconductor devices isolated from oxygen, water, and light.</li>
-<li>Conducted surface morphology measurements via atomic force microscopy.</li>
-<li>Performed laser-induced photoluminescence decay measurements.</li>
+<li>Fit models for spectroscopic ellipsometry to measurements on organic molecules {1}.</li>
+<li>Conducted laser-induced photoluminescence decay measurements and fit to physical models {1}.</li>
+<li>Performed atomic force microscopy measurements and performed statistical analyses.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-Teaching-Experience" class="outline-2">
+<h2 id="Teaching-Experience">Teaching Experience</h2>
+<div class="outline-text-2" id="text-orgb42d1cb">
+
+<div class="cv-block">
+<table>
+<tr>
+  <td><div class="cv-block-a">Machine Learning Basics</div></td>
+  <td><div class="cv-block-b">Spring 2021 | Winter 2022</div></td>
+</tr>
+<tr>
+  <td><div class="cv-block-c">Course Design Consultant</div></td>
+  <td><div class="cv-block-d">UC Santa Cruz</div></td>
+</tr>
+</table>
+</div>
+
+<ul class="org-ul">
+<li>Designed autograding infrastructure providing instant assignment feedback for a class of ~100 students (Python).</li>
+<li>Authored interactive assignments with automated tests, written assignments, and exams (Python).</li>
+<li>Led grading team of undergraduates.</li>
+</ul>
+
+
+<div class="cv-block">
+<table>
+<tr>
+  <td><div class="cv-block-a">Machine Learning</div></td>
+  <td><div class="cv-block-b">Fall 2020</div></td>
+</tr>
+<tr>
+  <td><div class="cv-block-c">Teaching Assistant</div></td>
+  <td><div class="cv-block-d">UC Santa Cruz</div></td>
+</tr>
+</table>
+</div>
+
+<ul class="org-ul">
+<li>Authored and graded written assignments on machine learning fundamentals.</li>
+<li>Presented supplementary material to students in discussion sections.</li>
+</ul>
+
+
+<div class="cv-block">
+<table>
+<tr>
+  <td><div class="cv-block-a">The Summer Science Program</div></td>
+  <td><div class="cv-block-b">Summer 2016 | Summer 2015</div></td>
+</tr>
+<tr>
+  <td><div class="cv-block-c">Teaching Assistant and Residential Mentor</div></td>
+  <td><div class="cv-block-d">Boulder, CO | Socorro, NM</div></td>
+</tr>
+</table>
+</div>
+
+<ul class="org-ul">
+<li>Mentored advanced high school students in a residential university environment.</li>
+<li>Graded assignments in celestial mechanics, programming, and mathematics.</li>
+<li>Supervised student operations in observational astronomy.</li>
 </ul>
 </div>
 </div>
@@ -447,12 +438,12 @@ I never really outgrew a sophomoric concern with the
 </tr> 
 <tr>
 <td class="awards-a">2023</td>
-<td class="awards-b">Best Paper Runner-Up</td>
+<td class="awards-b">Best Paper Runner-Up {6}</td>
 <td class="awards-c">ICLR (RTML workshop)<td>
 </tr> 
 <tr>
 <td class="awards-a">2023</td>
-<td class="awards-b">Highlighted Paper</td>
+<td class="awards-b">Highlighted Paper {6}</td>
 <td class="awards-c">ICLR (RMTL Workshop)<td>
 </tr> 
 <tr>
@@ -467,7 +458,7 @@ I never really outgrew a sophomoric concern with the
 </tr> 
 <tr>
 <td class="awards-a">2021</td>
-<td class="awards-b">Spotlight Paper</td>
+<td class="awards-b">Spotlight Paper {3}</td>
 <td class="awards-c">NeurIPS<td>
 </tr> 
 <tr>
@@ -511,44 +502,44 @@ I never really outgrew a sophomoric concern with the
 <h2 id="Publications">Publications</h2>
 <div class="outline-text-2" id="text-orgc98ed4e">
 <p>
-(7) <a href="https://arxiv.org/abs/2304.09362">Long-Term Fairness with Unknown Dynamics</a> <br>
+{7} Fair Participation via Sequential Policies <br>
+<strong>Reilly Raab</strong>, Ross Boczar, Maryam Fazel, and Yang Liu <br>
+<em>AAAI. (2024)</em>
+</p>
+
+<p>
+{6} <a href="https://arxiv.org/abs/2304.09362">Long-Term Fairness with Unknown Dynamics</a> <br>
 Tongxin Yin<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, <strong>Reilly Raab</strong><sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, Mingyan Liu, and Yang Liu <br>
 <em>ICLR RTML (2023) &#x2013; <strong>Best Paper Runner-Up</strong>, <strong>Highlighted Paper Award</strong></em> <br>
 <em>NeurIPS. (2023)</em>
 </p>
 
 <p>
-(6) Fair Participation via Sequential Policies <br>
-<strong>Reilly Raab</strong>, Ross Boczar, Maryam Fazel, and Yang Liu <br>
-<em>Submitted to AAAI. (Under Review)</em>
-</p>
-
-<p>
-(5) <a href="https://arxiv.org/abs/2208.13898">Conjugate Natural Selection</a> <br>
+{5} <a href="https://arxiv.org/abs/2208.13898">Conjugate Natural Selection</a> <br>
 <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu <br>
 <em>arXiv. (2022)</em>
 </p>
 
 <p>
-(4) <a href="https://openreview.net/pdf?id=U3gobB4oKv">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
+{4} <a href="https://openreview.net/pdf?id=U3gobB4oKv">Fairness Transferability Subject to Bounded Distribution Shift</a> <br>
 Yatong Chen<sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, <strong>Reilly Raab</strong><sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">[1]</a></sup>, Jialu Wang, and Yang Liu <br>
 <em>NeurIPS. (2022)</em>
 </p>
 
 <p>
-(3) <a href="https://proceedings.neurips.cc/paper/2021/file/db00f1b7fdf48fd26b5fb5f309e9afaf-Paper.pdf">Unintended Selection: Persistent Qualification Rate Disparities and Interventions</a> <br>
+{3} <a href="https://proceedings.neurips.cc/paper/2021/file/db00f1b7fdf48fd26b5fb5f309e9afaf-Paper.pdf">Unintended Selection: Persistent Qualification Rate Disparities and Interventions</a> <br>
 <strong>Reilly Raab</strong> and Yang liu <br>
 <em>NeurIPS. (2021) &#x2013; <strong>Spotlight Paper Award</strong></em>
 </p>
 
 <p>
-(2) <a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing</a> <br>
+{2} <a href="http://web.physics.ucsb.edu/~martinisgroup/theses/Raab2015.pdf">Single-Gate Error for Superconducting Qubits Imposed by Sideband Products of IQ Mixing</a> <br>
 <strong>Reilly Raab</strong> <br>
 <em>Undergraduate Thesis. (2015)</em>
 </p>
 
 <p>
-(1) <a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c">Systematic Study of Exciton Diffusion Length in Organic Semiconductors by Six Experimental Methods</a> <br>
+{1} <a href="https://pubs.rsc.org/en/content/articlehtml/2014/mh/c3mh00089c">Systematic Study of Exciton Diffusion Length in Organic Semiconductors by Six Experimental Methods</a> <br>
 Jason D. A. Lin <strong>et. al.</strong> <br>
 <em>Materials Horizons. (2014)</em>
 </p>
