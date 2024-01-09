@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-12-29 Fri 12:42 -->
+<!-- 2024-01-09 Tue 15:56 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reilly Raab</title>
@@ -52,7 +52,7 @@ table {
   <div>
 
 
-<figure id="org0e953ed">
+<figure id="org9cfd16d">
 <img src="./img/2022.jpg" alt="2022.jpg">
 
 <figcaption><span class="figure-number">Figure 1: </span>Me (in red).</figcaption>
@@ -132,7 +132,7 @@ My resume is also available as a <a href="./files/reilly-raab-resume.pdf">PDF</a
 <h2 id="Summary">Summary</h2>
 <div class="outline-text-2" id="text-org88a5df2">
 <p>
-My current research in machine learning involves the dynamics of multiagent
+My current research in machine learning involves the dynamics of multi-agent
 systems and the alignment of local incentives with global objectives. My
 background is in physics, with experience in scientific computing, signal
 processing for quantum systems, and electronics. I spent a few years between
@@ -146,25 +146,18 @@ related to automated circuit design.
 <div class="outline-text-2" id="text-orgb1b16d2">
 <ul class="org-ul">
 <li>I strongly suspect that the next generation of &ldquo;Artificial Intelligence&rdquo; will
-not be focused on single models, but on multiagent systems understood in terms
-of interacting units of control. Ideas around
-<a href="https://en.wikipedia.org/wiki/Predictive_coding">predictive coding</a> and
-<a href="https://en.wikipedia.org/wiki/Free_energy_principle#Active_inference">&ldquo;active inference&rdquo;</a>
-give off some of this flavor, but don&rsquo;t emphasize recursive organization.
+not be focused on single models, but on multi-agent systems understood in terms
+of interacting units of control.
+In particular, does there exist a multi-agent game (for instance, based on a variational principle) such that individual agents that play the game with their environment (composed mostly of other agents) form a system that plays the game with the external environment more capably than any agent?
 If you know of any active research programs with this flavor, I would love to
 hear from you (and you should feel welcome to email me).</li>
-
-<li>I occasionally become absorbed by attempts to prove that
-<a href="https://en.wikipedia.org/wiki/P_versus_NP_problem"><!--P \subsetneq NP-->
+<li>I occasionally become absorbed by attempts to prove that <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem"><!--P \subsetneq NP-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>⊊</mo><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \subsetneq NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⊊</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">NP</span></span></span></span></a>
-implies or is implied by the
-<a href="https://en.wikipedia.org/wiki/Fluctuation_theorem">fluctuation theorem</a>. So
-far, it&rsquo;s been a reliably humbling experience.</li>
-
-<li>I&rsquo;d like to better understand
-<a href="https://en.wikipedia.org/wiki/Quantum_decoherence">quantum decoherence</a>.
-I never really outgrew a sophomoric concern with the
-<a href="https://en.wikipedia.org/wiki/Measurement_problem">Measurement Problem</a>.</li>
+implies or is implied by the <a href="https://en.wikipedia.org/wiki/Fluctuation_theorem">fluctuation theorem</a>. So far, it&rsquo;s been a reliably
+humbling experience.</li>
+<li>I&rsquo;d like to better understand <a href="https://en.wikipedia.org/wiki/Quantum_decoherence">quantum decoherence</a>.  I never really outgrew a
+sophomoric concern with the <a href="https://en.wikipedia.org/wiki/Measurement_problem">Measurement Problem</a>.</li>
+<li>I would be keen to develop architectures for normalizing flows that allow exact or cheaply-approximated Fisher-Rao natural gradient descent. Such an architectures would allow accelerated simulation of evolutionary dynamics as a consequence of my prior work relating natural gradient descent and evolutionary game theory {5}.</li>
 </ul>
 </div>
 </div>
@@ -181,18 +174,18 @@ I never really outgrew a sophomoric concern with the
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left"><strong>Machine Learning:</strong></td>
-<td class="org-left">Kernel Methods, Adversarial Networks, Reinforcement Learning.</td>
+<td class="org-left"><strong>Machine Learning</strong></td>
+<td class="org-left">Multi-agent Systems, Reinforcement Learning, Nonstationary Environments.</td>
 </tr>
 
 <tr>
-<td class="org-left"><strong>Optimization:</strong></td>
+<td class="org-left"><strong>Optimization</strong></td>
 <td class="org-left">Convex Optimization, Evolutionary Game Theory, Approximate Newton Methods.</td>
 </tr>
 
 <tr>
-<td class="org-left"><strong>Programming:</strong></td>
-<td class="org-left">GNU/Linux, Python, JavaScript, Lisp, C, Differentiable Programming, GPU Acceleration.</td>
+<td class="org-left"><strong>Programming</strong></td>
+<td class="org-left">GNU/Linux, Python (incl. NumPy, SciPy, Jax, Taichi, Gym), C, Lisp, JavaScript, Open-Source.</td>
 </tr>
 </tbody>
 </table>
@@ -263,12 +256,15 @@ I never really outgrew a sophomoric concern with the
 </table>
 </div>
 
+<p>
+The Human-Centered Machine Learning Group at UC Santa Cruz researches the real-world, human consequences of deployed machine learning (ML) systems. My role in this group involves proposing original research questions, deriving theoretical results, designing numerical experiments, authoring computational simulations, writing papers and technical appendices, and presenting our research in multiple top conferences in talks and posters.
+</p>
 <ul class="org-ul">
 <li>Described dynamics of systems of mutual learners using evolutionary game theory {3}.</li>
-<li>Established adversarial bounds for fairness violation due to distribution shift [4].</li>
-<li>Discovered exact, least-squares correspondence between replicator dynamics and natural gradient descent [5].</li>
-<li>Adapted online reinforcement learning methods to systems of mutually interacting learners [6].</li>
-<li>Mapped machine learning with policy-induced distribution shift to a novel constrained optimization algorithm [7].</li>
+<li>Established adversarial bounds for fairness violation due to distribution shift {4}.</li>
+<li>Discovered exact, least-squares correspondence between replicator dynamics and natural gradient descent {5}.</li>
+<li>Adapted online reinforcement learning methods to systems of mutually interacting learners {6}.</li>
+<li>Mapped machine learning with policy-induced distribution shift to a novel constrained optimization algorithm {7}.</li>
 <li>Wrote multi-agent simulations in Python using JAX and Taichi for GPU acceleration.</li>
 </ul>
 
@@ -286,6 +282,9 @@ I never really outgrew a sophomoric concern with the
 </table>
 </div>
 
+<p>
+As a startup company, Breadware, Inc. offered consulting and rapid prototyping for internet-of-things (IoT) products. My role at the company was to build proprietary tools to modularize device development and automate associated engineering tasks.
+</p>
 <ul class="org-ul">
 <li>Mapped abstract hardware APIs to I2C bus protocols for modular embedded devices (Python, C).</li>
 <li>Implemented web-based testing of user-logic for embedded devices in simulated environments (JavaScript).</li>
@@ -306,6 +305,9 @@ I never really outgrew a sophomoric concern with the
 </table>
 </div>
 
+<p>
+The Summer Science Program is a non-profit organization, run by its alumni (of which I am one), that, since 1959, has hosted advanced high school students at university campuses take accelerated college-level coursework and conduct research in observational astrophysics. I was a Teaching Assistant and Residential Mentor for the program in the summers of 2015 (at New Mexico Tech) and 2016 (at CU Boulder).
+</p>
 <ul class="org-ul">
 <li>Mentored and supervised advanced high school students in observational astronomy.</li>
 <li>Graded written and programming assignments in celestial mechanics, programming, and mathematics.</li>
@@ -326,11 +328,16 @@ I never really outgrew a sophomoric concern with the
 </table>
 </div>
 
+<p>
+Under the California NanoSystems Institute, I was a paid undergraduate research intern for the Josephson Junction Superconducting Quantum Computing Group at UC Santa Barbara (now Google Quantum AI). My role included myriad tasks, in hardware, software, and calculation, to build one of the world&rsquo;s first scalable universal quantum computers.
+</p>
 <ul class="org-ul">
-<li>Helped build universal Josephson junction superconducting quantum computers for Google Quantum AI.</li>
-<li>Calculated effect of hardware signal-chain imperfections on quantum gate error for software correction [2].</li>
-<li>Wrote software to automate phase-noise characterization of GHz oscillators (Python).</li>
-</ul>
+<li>Fabricated a vibration-damped platform for a new liquid-helium refrigerator, superconducting cables and their brackets.</li>
+<li>Designed a printed circuit board for a radio-frequency amplifier.</li>
+<li>Wrote a Python package to automate phase-noise characterization of GHz voltage oscillators.</li>
+<li><p>
+Calculated the effect of hardware signal-chain imperfections on quantum gate errors, enabling software compensation {2}.
+</p>
 
 
 <div class="cv-block">
@@ -344,8 +351,12 @@ I never really outgrew a sophomoric concern with the
   <td><div class="cv-block-d">Santa Barbara, CA</div></td>
 </tr>
 </table>
-</div>
+</div></li>
+</ul>
 
+<p>
+With a paid undergraduate research internship awarded by the UC Santa Barbara Center for Energy Efficient Materials, I worked for a group in the Chemistry Department on characterizing organic molecules for use in plastic solar cells.
+</p>
 <ul class="org-ul">
 <li>Worked on organic electric device characterization to develop plastic solar cells.</li>
 <li>Fit spectroscopic ellipsometry measurements to models for organic electron-donor molecules [1].</li>
