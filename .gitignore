@@ -18,6 +18,7 @@
 !satellites.html
 !site-info.html
 !tex.html
+!hopfield.html
 
 # also ignore
 .sshprofile
