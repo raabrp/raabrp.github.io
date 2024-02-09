@@ -190,8 +190,8 @@ p {
 kbd {
   font-family: "Source Code Pro", monospace;
   font-size: 80%;
-  color: var(--g1);
-  background-color: var(--text);
+  /* color: var(--g1); */
+  /* background-color: var(--text); */
   border: 1px solid var(--g3);
   display: inline-block;
   font-weight: bold;
