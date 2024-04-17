@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-01-11 Thu 09:37 -->
+<!-- 2024-04-17 Wed 09:46 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beyond Gradient Descent</title>
@@ -124,9 +124,10 @@ There are a number of generalizations of <a href="#eqn-2">Eq. (2)</a> beyond
 <p>
 In the following sections, I give examples of each of these generalizations.
 </p>
+
 <div id="outline-container-Pseudo-Riemannian-Geometry" class="outline-2">
 <h2 id="Pseudo-Riemannian-Geometry">Pseudo-Riemannian Geometry</h2>
-<div class="outline-text-2" id="text-org0bad524">
+<div class="outline-text-2" id="text-org722fb0f">
 <p>
 Let us consider linear approximations of the form
 </p>
@@ -185,9 +186,10 @@ Note that we use the dot (e.g., over <!--x_{t}-->
 time-derivative.
 </p>
 </div>
+
 <div id="outline-container-Gauss-Newton" class="outline-3">
 <h3 id="Gauss-Newton">Gauss-Newton</h3>
-<div class="outline-text-3" id="text-org33ea3df">
+<div class="outline-text-3" id="text-orgfb1589d">
 <p>
 If our objective function <!--f-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> is <em>convex</em>, we are guaranteed that the Hessian
@@ -226,9 +228,10 @@ models, the second term is identically zero.
 </p>
 </div>
 </div>
+
 <div id="outline-container-Fisher-Rao" class="outline-3">
 <h3 id="Fisher-Rao">Fisher-Rao</h3>
-<div class="outline-text-3" id="text-org7813da7">
+<div class="outline-text-3" id="text-orgbd98f54">
 <p>
 We may also choose values of <!--G-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span> that derive from spaces other than
@@ -284,9 +287,10 @@ other forms of &ldquo;natural gradient descent&rdquo;
 </p>
 </div>
 </div>
+
 <div id="outline-container-Projective-Geometry" class="outline-3">
 <h3 id="Projective-Geometry">Projective Geometry</h3>
-<div class="outline-text-3" id="text-orgc95c4a6">
+<div class="outline-text-3" id="text-orge98301e">
 <p>
 Vanilla gradient descent does not <em>require</em> a Euclidean metric.
 </p>
@@ -313,9 +317,10 @@ Therefore, the update rule that solves <!--\nabla(\hat{f}_{t} + D_{t}) = 0-->
 </div>
 </div>
 </div>
+
 <div id="outline-container-Multi-iterate-Methods" class="outline-2">
 <h2 id="Multi-iterate-Methods">Multi-iterate Methods</h2>
-<div class="outline-text-2" id="text-orgef3cff3">
+<div class="outline-text-2" id="text-org9574e7b">
 <p>
 So far, we have only discussed updates that rely on at most one previous iterate
 of <!--x_{t}-->
@@ -330,9 +335,10 @@ penalties that rely on additional history of the solution candidates <!--(x_{t},
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x_{t}, x_{t-1}, ...)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mclose">)</span></span></span></span>.
 </p>
 </div>
+
 <div id="outline-container-Momentum" class="outline-3">
 <h3 id="Momentum">Momentum</h3>
-<div class="outline-text-3" id="text-orga5425c6">
+<div class="outline-text-3" id="text-org1a73fa6">
 <p>
 An example of a multi-iterate approach is given by the classical &ldquo;Momentum&rdquo;
 variant of gradient descent. Consider, for example, a penalty term <!--D_{t}-->
@@ -379,9 +385,10 @@ with decay parameterized by <!--\xi-->
 </p>
 </div>
 </div>
+
 <div id="outline-container-Nth-Order-Regularization" class="outline-3">
 <h3 id="Nth-Order-Regularization">Nth-Order Regularization</h3>
-<div class="outline-text-3" id="text-org7d2610d">
+<div class="outline-text-3" id="text-org7c7c36e">
 <p>
 There is yet another update penalty <!--D_{t}-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">D_{t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> that may be used to derive the
@@ -435,9 +442,10 @@ the standard momentum update.
 </div>
 </div>
 </div>
+
 <div id="outline-container-Surrogate-Approximation" class="outline-2">
 <h2 id="Surrogate-Approximation">Surrogate Approximation</h2>
-<div class="outline-text-2" id="text-orge56800e">
+<div class="outline-text-2" id="text-org0e99a76">
 <p>
 As <!--x-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> varies from <!--x_{t}-->
@@ -455,9 +463,10 @@ of <!--f-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>.
 </p>
 </div>
+
 <div id="outline-container-Nesterov-Acceleration" class="outline-3">
 <h3 id="Nesterov-Acceleration">Nesterov Acceleration</h3>
-<div class="outline-text-3" id="text-orgdf18377">
+<div class="outline-text-3" id="text-org1d4a1bd">
 <p>
 When using <a href="#eqn-8">Eq. (8)</a>, one &ldquo;zero-cost&rdquo; (i.e., if we decouple candidate
 solutions <!--x_{t}-->
@@ -483,9 +492,10 @@ gradient descent with momentum:
 </div>
 </div>
 </div>
+
 <div id="outline-container-Dealing-with-Constraints" class="outline-2">
 <h2 id="Dealing-with-Constraints">Dealing with Constraints</h2>
-<div class="outline-text-2" id="text-org1744fc1">
+<div class="outline-text-2" id="text-org2e9a62a">
 <p>
 Consider the basic (constrained) optimization problem
 </p>
@@ -528,9 +538,10 @@ Within this &ldquo;feasible set&rdquo; of <!--x-->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> should be minimized.
 </p>
 </div>
+
 <div id="outline-container-Primal-Dual" class="outline-3">
 <h3 id="Primal-Dual">Primal-Dual</h3>
-<div class="outline-text-3" id="text-org512c199">
+<div class="outline-text-3" id="text-org9f34ad8">
 <p>
 We may iteratively approximate <a href="#eqn-12">Eq. (12)</a> with a sequence of subproblems in the form of <a href="#eqn-2">Eq. (2)</a>:
 </p>
@@ -615,9 +626,10 @@ constrained optimization problem <a href="#eqn-12">Eq. (12)</a>.
 </p>
 </div>
 </div>
+
 <div id="outline-container-Generalizing-Fletcher-rsquo-s-Method" class="outline-3">
 <h3 id="Generalizing-Fletcher-rsquo-s-Method">Generalizing Fletcher&rsquo;s Method</h3>
-<div class="outline-text-3" id="text-org4f77cd6">
+<div class="outline-text-3" id="text-org4006ff1">
 <p>
 In this section, we show how a rather interesting penalty choice for the dual
 variable <!--\lambda-->
@@ -718,9 +730,10 @@ towards decreasing the objective <!--f-->
 </div>
 </div>
 </div>
+
 <div id="outline-container-References" class="outline-2">
 <h2 id="References">References</h2>
-<div class="outline-text-2" id="text-orge32f28d">
+<div class="outline-text-2" id="text-orgbc89adc">
 <ul class="org-ul">
 <li><a href="https://arxiv.org/abs/2208.13898">Conjugate Natural Selection. Raab et. al. (2022)</a></li>
 <li><a href="https://arxiv.org/abs/2202.06236">Efficient Natural Gradient Descent Methods for Large-Scale PDE-Based Optimization Problems. Nurbekyan et. al. (2022)</a></li>
@@ -735,7 +748,7 @@ towards decreasing the objective <!--f-->
 </div>
 </main>
 <footer id="postamble" class="boilerplate">
-Copyright © 2023 Reilly Raab
+Copyright © 2024 Reilly Raab
 </footer>
 </body>
 </html>

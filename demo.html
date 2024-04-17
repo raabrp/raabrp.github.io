@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-01-11 Thu 09:38 -->
+<!-- 2024-03-12 Tue 12:28 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -62,16 +62,17 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 <h2 id="Images">Images</h2>
 <div class="outline-text-2" id="text-org312a149">
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+CAPTION:</span> <span style="background-color: #23272e;">Caption goes here. Click for fullscreen.</span>
+<pre class="src src-org"><span style="color: #83898d;">#+CAPTION:</span> <span style="background-color: #23272e;">Caption goes here.</span>
+<span style="color: #83898d;">#+ATTR_HTML: :width 100%</span>
 <span style="color: #ECBE7B; font-weight: bold; text-decoration: underline;"><a href="./img/2015.jpg">./img/2015.jpg</a></span>
 </pre>
 </div>
 
 
-<figure id="orge0af6d1">
-<img src="./img/2015.jpg" alt="2015.jpg">
+<figure id="orga7a9145">
+<img src="./img/2015.jpg" alt="2015.jpg" width="100%">
 
-<figcaption><span class="figure-number">Figure 1: </span>Caption goes here. Click for fullscreen.</figcaption>
+<figcaption><span class="figure-number">Figure 1: </span>Caption goes here.</figcaption>
 </figure>
 </div>
 </div>
@@ -329,7 +330,7 @@ of each div are passed as the arguments <samp>a</samp> and <samp>b</samp>:
 
 <div class="org-src-container">
 <pre class="src src-org"><span style="color: #83898d;">#+name: example-func</span>
-<span style="color: #5B6268; background-color: #23272e;">#+begin_src emacs-lisp :exports none :var a="a" b="b"</span>
+<span style="color: #5B6268; background-color: #23272e;">#+begin_src emacs-lisp :exports none :results html :var a="a" b="b"</span>
 <span style="color: #51afef; background-color: #23272e;">(</span><span style="color: #a9a1e1; background-color: #23272e;">format</span><span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">"</span>
 <span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: steelblue;\"&gt;%s&lt;/div&gt;</span>
 <span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: darkgoldenrod;\"&gt;%s&lt;/div&gt;</span>
@@ -346,7 +347,7 @@ We may call this function from the source (<samp>.org</samp>) file as
 <pre class="src src-org"><span style="color: #83898d;">#+call: example-func(</span>
 "This text is steelblue.",
 "This text is darkgoldenrod."
-) :results html
+)
 </pre>
 </div>
 
@@ -372,7 +373,7 @@ and the output will be
 </div>
 </main>
 <footer id="postamble" class="boilerplate">
-Copyright © 2023 Reilly Raab
+Copyright © 2024 Reilly Raab
 </footer>
 </body>
 </html>
