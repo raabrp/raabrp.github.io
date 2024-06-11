@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-06-11 Tue 14:46 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keyboard Layout</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
+<link rel="canonical" href="https://reillyraab.com/keyboard" />
+<meta name="description" content="My keyboard layout." />
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
+<header>
+<h1 class="title">Keyboard Layout</h1>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#Basic-Layout">Basic Layout</a></li>
+<li><a href="#Level-3-Caps-Lock-Held-">Level 3 (Caps Lock Held)</a></li>
+<li><a href="#Level-5-Right-Alt-Held-">Level 5 (Right Alt Held)</a></li>
+</ul>
+</div>
+</nav>
+<style>
+pre { font-size: 60%;}
+</style>
+
+<p>
+This page documents my keyboard layout. It is essentially <a href="https://en.wikipedia.org/wiki/Colemak">colemak</a> with some
+additions that make it quite nice for movement through text interfaces and for programming.
+</p>
+
+<p>
+The layout is defined by this <a href="./files/keyboard.txt">file</a>, which I use with the <a href="https://en.wikipedia.org/wiki/Sway_(window_manager)">Sway</a> window manager on <a href="https://en.wikipedia.org/wiki/Fedora_Linux">Fedora Linux</a>.
+</p>
+
+<div id="outline-container-Basic-Layout" class="outline-2">
+<h2 id="Basic-Layout">Basic Layout</h2>
+<div class="outline-text-2" id="text-orgd8baa9f">
+<pre class="example">
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+│     │ !   │ @   │ #   │ $   │ %   │ ^   │ &amp;   │ *   │ (   │ )   │ _   │     │        │
+│     │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ -   │     │   Bksp │
+├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+│        │ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ ~   │     │ |   │
+│ Tab    │ q   │ w   │ f   │ p   │ g   │ j   │ l   │ u   │ y   │ ;   │ |   │     │ \   │
+┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+┃         ┃ A   │ R   │ S   │ T   │ D   │ H   │ N   │ E   │ I   │ O   │ !   │          │
+┃  Lvl3   ┃ a   │ r   │ s   │ t   │ d   │ h   │ n   │ e   │ i   │ o   │ ?   │   Return │
+┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ &lt;   │ &gt;   │ \   ┃            ┃
+┃  Shift      ┃ z   │ x   │ c   │ v   │ b   │ k   │ m   │ ,   │ .   │ /   ┃     Shift  ┃
+┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+┃       ┃     ┃     ┃     ┃                             ┃ Lvl ┃     ┃         ↑
+┃ Ctrl  ┃     ┃ Win ┃ *WM*┃            Space            ┃  5  ┃ Ctrl┃     ←   ↓   →
+┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+</pre>
+
+<ul class="org-ul">
+<li>The <kbd>WM</kbd> key (left alt) is used for window-manager shortcuts.</li>
+<li>The <kbd>space</kbd> key is the leader in (<a href="https://github.com/doomemacs/doomemacs">Doom</a>) Emacs with Evil mode.</li>
+<li>I use a browser extension to allow vim-style shortcuts.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-Level-3-Caps-Lock-Held-" class="outline-2">
+<h2 id="Level-3-Caps-Lock-Held-">Level 3 (Caps Lock Held)</h2>
+<div class="outline-text-2" id="text-org19de60e">
+<pre class="example">
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+│     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+│     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+│        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+│        │     │     │ {   │ }   │ "   │     │ PgDn│ PgUp│ Esc │ Del │     │     │     │
+┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+┃         ┃     │     │     │     │     │     │     │     │     │     │     │          │
+┃ *Lvl3*  ┃     │     │ (   │ )   │ '   │ ←   │ ↓   │ ↑   │ →   │ BkSp│ Ret │          │
+┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+┃             ┃     │     │     │     │     │     │     │     │     │     ┃            ┃
+┃             ┃     │     │ [   │ ]   │ `   │     │ Home│ End │     │     ┃            ┃
+┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+┃       ┃     ┃     ┃     ┃                             ┃     ┃     ┃         ↑
+┃       ┃     ┃     ┃     ┃            Space            ┃     ┃     ┃     ←   ↓   →
+┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-Level-5-Right-Alt-Held-" class="outline-2">
+<h2 id="Level-5-Right-Alt-Held-">Level 5 (Right Alt Held)</h2>
+<div class="outline-text-2" id="text-org5c90cdd">
+<pre class="example">
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+│     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+│     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+│        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+│        │     │     │     │     │     │     │ -   │ +   │ *   │ =   │ &amp;   │     │     │
+┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+┃         ┃     │     │     │     │     │     │     │     │     │     │     │          │
+┃         ┃     │     │     │ _   │     │     │ $   │ &lt;   │ &gt;   │     │ Ret │          │
+┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+┃             ┃     │     │     │     │     │     │     │     │     │     ┃            ┃
+┃             ┃     │     │     │     │     │     │     │ %   │     │     ┃            ┃
+┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+┃       ┃     ┃     ┃     ┃                             ┃*Lvl*┃     ┃         ↑
+┃       ┃     ┃     ┃     ┃            Space            ┃ *5* ┃     ┃     ←   ↓   →
+┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+</pre>
+</div>
+</div>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2024 Reilly Raab
+</footer>
+</body>
+</html>

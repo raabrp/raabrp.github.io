@@ -1,0 +1,275 @@
+# coding: utf-8
+
+//
+// + I overwrite `/usr/share/X11/xkb/symbols/ru` with this file
+// + my `~/.config/sway/config` contains the following
+//
+// ```
+// # Keyboard layout
+// input "1:1:AT_Translated_Set_2_keyboard" {
+//    xkb_layout ru,us
+//    xkb_options grp:shifts_toggle,lv5:ralt_switch_lock
+// }
+// ```
+//
+// For XKB options, refer to:
+// https://www.mankier.com/7/xkeyboard-config#Options-Key_to_choose_5th_level 
+
+////////////////////////////////////////////////////////////////////////////////
+
+// References:
+// A)  https://medium.com/@damko/a-simple-humble-but-comprehensive-guide-to-xkb-for-linux-6f1ad5e13450
+// B)  https://www.charvolant.org/doug/xkb/html/index.html
+
+// HOW A KEY PRESS BECOMES INTERPRETED INPUT:
+//
+// key-codes     ->     key-symbols     ->    interpreted input
+//         (`evdev` file)          (kbd layout)
+//                                       ↑
+//                                 You are here
+//
+// e.g.
+//       "38"    ->       <AC01>        ->    "a"
+//
+
+// 1)
+//
+// "Key-codes" (numeric values sent by hardware with "keyup" and "keydown"
+// signals) are mapped to "Key-symbols" via:
+//
+// /usr/share/X11/xkb/keycodes/evdev
+// or another file in the same directory, as dictated by `/etc/default/keyboard`
+// (if present)
+//
+// e.g. "38" -> <AC01>
+//
+// NOT ALL KEYS BEHAVE THE SAME AS SEEN BY THE OPERATING SYSTEM
+// * Most keys will repeatedly send signals while being depressed.
+// * "Modifier keys" (e.g. ctrl, alt) do not.
+//   NOT ALL KEYS CAN BE USED AS MODIFIERS FOR THIS REASON
+// * Some keys are hardware only (OS does not see them), such as "Fn"
+//
+// This step in the chain may be debugged with the `showkey` command
+// (may need sudo)
+
+// 2)
+//
+// Keyboard layouts (such as this file) map key-symbols to user input
+//
+// List of valid input symbols:
+//   http://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
+//   https://en.wikipedia.org/wiki/List_of_Unicode_characters
+//
+// e.g. <AC01> -> "a"
+//
+// The mapping between key-symbols and keysyms (confusing names much ??)
+// can be "modified" with modifier keys, essentially yielding 2^N potential
+// available interpretations for N ≤ 3 modifier keys
+//
+// prefer using (Shift, ISO_Level_3, and ISO_Level_5)
+//
+// The "levels" are enumerated ala binary (+1 offset)
+//
+// 1:  - NO MODIFIER -
+// 2:               SHIFT
+// 3:        LVL3
+// 4:        LVL3   SHIFT
+// 5: LVL5
+// 6: LVL5          SHIFT
+// 7: LVL5   LVL3
+// 8: LVL5   LVL3   SHIFT
+//
+//
+////////////////////////////////////////////////////////////////////////////////
+// Layout
+//
+//  _                   _   _     ____
+// | |    _____   _____| | / |   |___ \
+// | |   / _ \ \ / / _ \ | | |     __) |
+// | |__|  __/\ V /  __/ | | |_   / __/
+// |_____\___| \_/ \___|_| |_( ) |_____|
+//                           |/
+//         ┌───────┐
+// Level 2 │ Shift │
+// Level 1 │ Key   │                █ = key removed (maps to nothing)
+//         └───────┘
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+// │ ~ █ │ !   │ @   │ #   │ $   │ %   │ ^   │ &   │ *   │ (   │ )   │ _   │ + █ │        │
+// │ `   │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ -   │ =   │   Bksp │
+// ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+// │        │ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ ~   │ } █ │ |   │
+// │ Tab    │ q   │ w   │ f   │ p   │ g   │ j   │ l   │ u   │ y   │ ;   │ |   │ ]   │ \   │
+// ┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+// ┃         ┃ A   │ R   │ S   │ T   │ D   │ H   │ N   │ E   │ I   │ O   │ !   │          │
+// ┃ Lvl3    ┃ a   │ r   │ s   │ t   │ d   │ h   │ n   │ e   │ i   │ o   │ ?   │   Return │
+// ┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+// ┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ <   │ >   │ \   ┃            ┃
+// ┃ Shift       ┃ z   │ x   │ c   │ v   │ b   │ k   │ m   │ ,   │ .   │ /   ┃      Shift ┃
+// ┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+// ┃       ┃     ┃     ┃     ┃                             ┃     ┃     ┃         ↑
+// ┃ Ctrl  ┃     ┃ Win ┃ Alt ┃            Space            ┃ Lvl5┃ Ctrl┃     ←   ↓   →
+// ┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+//
+//  _                   _   _____    _  _
+// | |    _____   _____| | |___ /   | || |
+// | |   / _ \ \ / / _ \ |   |_ \   | || |_
+// | |__|  __/\ V /  __/ |  ___) |  |__   _|
+// |_____\___| \_/ \___|_| |____( )    |_|
+//                              |/
+//         ┌──────────────┐
+// Level 4 │ Lvl3 + Shift │
+// Level 3 │ Lvl3         │ < Page navigation and punctuation >
+//         └──────────────┘
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+// │        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+// │        │     │     │ {   │ }   │ "   │     │ PgDn│ PgUp│ Esc │ Del │     │     │     │
+// ┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+// ┃         ┃     │     │     │     │     │     │     │     │     │     │     │          │
+// ┃ Lvl3    ┃     │     │ (   │ )   │ '   │ ←   │ ↓   │ ↑   │ →   │ BkSp│ Ret │          │
+// ┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+// ┃             ┃     │     │     │     │     │     │     │     │     │     ┃            ┃
+// ┃ Shift       ┃     │     │ [   │ ]   │ `   │     │ Home│ End │     │     ┃      Shift ┃
+// ┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+// ┃       ┃     ┃     ┃     ┃                             ┃     ┃     ┃         ↑
+// ┃       ┃     ┃     ┃     ┃            Space            ┃     ┃     ┃     ←   ↓   →
+// ┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+//
+//  _                   _   ____      __
+// | |    _____   _____| | | ___|    / /_
+// | |   / _ \ \ / / _ \ | |___ \   | '_ \
+// | |__|  __/\ V /  __/ |  ___) |  | (_) |
+// |_____\___| \_/ \___|_| |____( )  \___/
+//                              |/
+//         ┌──────────────┐
+// Level 6 │ Lvl5 + Shift │
+// Level 5 │ Lvl5         │
+//         └──────────────┘
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+// │        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+// │        │     │     │     │     │     │     │ -   │ +   │ *   │ =   │ &   │     │     │
+// ┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+// ┃         ┃     │     │     │     │     │     │     │     │     │     │     │          │
+// ┃         ┃     │     │     │ _   │     │     │ $   │ <   │ >   │     │ Ret │          │
+// ┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+// ┃             ┃     │     │     │     │     │     │     │     │     │     ┃            ┃
+// ┃ Shift       ┃     │     │     │     │     │     │     │ %   │     │     ┃      Shift ┃
+// ┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+// ┃       ┃     ┃     ┃     ┃                             ┃     ┃     ┃         ↑
+// ┃       ┃     ┃     ┃     ┃            Space            ┃ Lvl5┃     ┃     ←   ↓   →
+// ┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+//
+//
+//  _                   _   _____    ___
+// | |    _____   _____| | |___  |  ( _ )
+// | |   / _ \ \ / / _ \ |    / /   / _ \
+// | |__|  __/\ V /  __/ |   / /_  | (_) |
+// |_____\___| \_/ \___|_|  /_/( )  \___/
+//                             |/
+//         ┌─────────────────────┐
+// Level 8 │ Lvl5 + Lvl3 + Shift │
+// Level 7 │ Lvl5 + Lvl3         │
+//         └─────────────────────┘
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────┐
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// │     │     │     │     │     │     │     │     │     │     │     │     │     │        │
+// ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────┤
+// │        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+// │        │     │     │     │     │     │     │     │     │     │     │     │     │     │
+// ┢━━━━━━━━┷┱────┴┬────┴┬────┴┲════╧┱────┴┬────┴┲════╧┱────┴┬────┴┬────┴┬────┴┬────┴─────┤
+// ┃         ┃     │     │     │     │     │     │     │     │     │     │     │          │ 
+// ┃ Lvl3    ┃     │     │     │     │     │     │     │     │     │     │     │          │
+// ┣━━━━━━━━━┻━━━┱─┴───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┺═══╤═┹───┬─┴───┬─┴───┬─┴───┲━┷━━━━━━━━━━┪
+// ┃             ┃     │     │     │     │     │     │     │     │     │     ┃            ┃
+// ┃ Shift       ┃     │     │     │     │     │     │     │     │     │     ┃      Shift ┃
+// ┣━━━━━━━┳━━━━━╋━━━━━╈━━━━━╅─────┴─────┴─────┴─────┴─────╆━━━━━╈━━━━━╅─────┺━━━━━━━━━━━━┛
+// ┃       ┃     ┃     ┃     ┃                             ┃     ┃     ┃         ↑
+// ┃       ┃     ┃     ┃     ┃                             ┃ Lvl5┃     ┃     ←   ↓   →
+// ┗━━━━━━━┛     ┗━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┛
+//
+
+////////////////////////////////////////////////////////////////////////////////
+
+// partial, because we're ignoring special function keys, F-## keys, Key Pad, etc.
+// specifically, we claim that we're only addressing the alphanumeric_keys and modifier_keys
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    name[Group1]= "Custom";
+    key.type[Group1] = "EIGHT_LEVEL";
+
+    // First Row
+    //     Level: 1                 2                 3                 4                 5                 6                 7                 8
+    key <TLDE> {[ NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // ` ~
+    key <AE01> {[ 1,                exclam,           NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 1 !
+    key <AE02> {[ 2,                at,               NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 2 @
+    key <AE03> {[ 3,                numbersign,       NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 3 #
+    key <AE04> {[ 4,                dollar,           NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 4 $
+    key <AE05> {[ 5,                percent,          NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 5 %
+    key <AE06> {[ 6,                asciicircum,      NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 6 ^
+    key <AE07> {[ 7,                ampersand,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 7 &
+    key <AE08> {[ 8,                asterisk,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 8 *
+    key <AE09> {[ 9,                parenleft,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 9 (
+    key <AE10> {[ 0,                parenright,       NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // 0 )
+    key <AE11> {[ minus,            NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // - _
+    key <AE12> {[ NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // = +
+
+    // Second Row
+    //     Level: 1                 2                 3                 4                 5                 6                 7                 8
+    key <AD01> {[ q,                Q,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // Q
+    key <AD02> {[ w,                W,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // W
+    key <AD03> {[ f,                F,                braceleft,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // E
+    key <AD04> {[ p,                P,                braceright,       NoSymbol,         asciicircum,      NoSymbol,         NoSymbol,         NoSymbol          ]}; // R
+    key <AD05> {[ g,                G,                quotedbl,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // T
+    key <AD06> {[ j,                J,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // Y
+    key <AD07> {[ l,                L,                Next,             NoSymbol,         minus,            NoSymbol,         NoSymbol,         NoSymbol          ]}; // U
+    key <AD08> {[ u,                U,                Prior,            NoSymbol,         plus,             NoSymbol,         NoSymbol,         NoSymbol          ]}; // I
+    key <AD09> {[ y,                Y,                Escape,           NoSymbol,         asterisk,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // O
+    key <AD10> {[ semicolon,        colon,            Delete,           NoSymbol,         equal,            NoSymbol,         NoSymbol,         NoSymbol          ]}; // P
+    key <AD11> {[ bar,              asciitilde,       NoSymbol,         NoSymbol,         ampersand,        NoSymbol,         NoSymbol,         NoSymbol          ]}; // [ {
+    key <AD12> {[ NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // ] }
+    key <BKSL> {[ NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // \ |
+
+    // Third (Home) Row
+    //     Level: 1                 2                 3                 4                 5                 6                 7                 8
+    key <CAPS> {[ ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift, ISO_Level3_Shift  ]}; // TAB
+    key <AC01> {[ a,                A,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // A
+    key <AC02> {[ r,                R,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // S
+    key <AC03> {[ s,                S,                parenleft,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // D
+    key <AC04> {[ t,                T,                parenright,       NoSymbol,         underscore,       NoSymbol,         NoSymbol,         NoSymbol          ]}; // F
+    key <AC05> {[ d,                D,                apostrophe,       NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // G
+    key <AC06> {[ h,                H,                Left,             NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // H
+    key <AC07> {[ n,                N,                Down,             NoSymbol,         dollar,           NoSymbol,         NoSymbol,         NoSymbol          ]}; // J
+    key <AC08> {[ e,                E,                Up,               NoSymbol,         less,             NoSymbol,         NoSymbol,         NoSymbol          ]}; // K
+    key <AC09> {[ i,                I,                Right,            NoSymbol,         greater,          NoSymbol,         NoSymbol,         NoSymbol          ]}; // L
+    key <AC10> {[ o,                O,                BackSpace,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // ; :
+    key <AC11> {[ question,         exclam,           Return,           NoSymbol,         Return,           NoSymbol,         NoSymbol,         NoSymbol          ]}; // ' "
+    // key <RTRN>
+
+    // Fourth Row
+    //     Level: 1                 2                 3                 4                 5                 6                 7                 8
+    key <AB01> {[ z,                Z,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // Z
+    key <AB02> {[ x,                X,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // X
+    key <AB03> {[ c,                C,                bracketleft,      NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // C
+    key <AB04> {[ v,                V,                bracketright,     NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // V
+    key <AB05> {[ b,                B,                grave,            NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // B
+    key <AB06> {[ k,                K,                NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // N
+    key <AB07> {[ m,                M,                Home,             NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // M
+    key <AB08> {[ comma,            less,             End,              NoSymbol,         percent,          NoSymbol,         NoSymbol,         NoSymbol          ]}; // , <
+    key <AB09> {[ period,           greater,          NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // . >
+    key <AB10> {[ slash,            backslash,        NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol,         NoSymbol          ]}; // / ?
+
+    // Fifth Row
+    //     Level: 1                 2                 3                 4                 5                 6                 7                 8
+    key <LCTL> {[ Control_L,        Control_L,        Control_L,        Control_L,        Control_L,        Control_L,        Control_L,        Control_L         ]};
+    key <LWIN> {[ Super_L,          Super_L,          Super_L,          Super_L,          Super_L,          Super_L,          Super_L,          Super_L           ]};
+    key <LALT> {[ Alt_L,            Alt_L,            Alt_L,            Alt_L,            Alt_L,            Alt_L,            Alt_L,            Alt_L             ]};
+    key <SPCE> {[ space,            space,            space,            space,            space,            space,            space,            space             ]};
+    key <RALT> {[ ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift, ISO_Level5_Shift  ]};
+    key <RCTL> {[ Control_R,        Control_R,        Control_R,        Control_R,        Control_R,        Control_R,        Control_R,        Control_R         ]};
+};
