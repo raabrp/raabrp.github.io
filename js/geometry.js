@@ -881,8 +881,21 @@ svg.addEventListener("mousedown", (event) => {
     }
     tools[currentTool].mousedown(vec);
 });
+svg.addEventListener("touchstart", (event) => {
+    let vec;
+    if (event.target.classList.contains("point")) {
+        vec = event.target.platonic;
+    } else {
+        vec = get_vec(event);
+    }
+    tools[currentTool].mousedown(vec);
+});
 
 svg.addEventListener("mousemove", (event) => {
+    const vec = get_vec(event);
+    tools[currentTool].mousemove(vec);
+});
+svg.addEventListener("touchmove", (event) => {
     const vec = get_vec(event);
     tools[currentTool].mousemove(vec);
 });
@@ -890,6 +903,14 @@ svg.addEventListener("mousemove", (event) => {
 svg.addEventListener("mouseup", (event) => {
     const vec = get_vec(event);
     tools[currentTool].mouseup(vec);
+});
+svg.addEventListener("touchend", (event) => {
+    const vec = get_vec(event);
+    tools[currentTool].mouseup(vec);
+});
+
+svg.addEventListener("touchcancel", (event) => {
+    cancelConstruction();
 });
 
 ////////////////////////////////////////////////////////////////////////////////
