@@ -1,0 +1,78 @@
+/* General Reset */
+body, html {
+  overflow: hidden;
+}
+
+/* Toolbar */
+.toolbar {
+  position: absolute; 
+  top: 10px;
+  right: 20px;
+}
+
+button.active {
+  background: var(--g3);
+  color: var(--text);
+}
+
+/*****************************************************************************/
+
+svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  cursor: crosshair;
+}
+
+/* Line */
+line {
+  stroke: var(--text);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+line.temp {
+  stroke: grey;
+  stroke-dasharray: 5, 5;
+}
+
+/* Circle */
+circle {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+circle.temp {
+  stroke: grey;
+  stroke-dasharray: 5, 5;
+}
+
+/* Point */
+circle.point {
+  stroke: var(--link-color);
+  vector-effect: non-scaling-size;
+  cursor: pointer;
+  fill: transparent;
+  stroke-width: 3;
+}
+circle.point:hover {
+  stroke-width: 5;
+}
+
+circle.point.intersection {
+  fill: transparent;
+  stroke: transparent;
+}
+circle.point.intersection:hover {
+  fill: #bc6ec5;
+  stroke: transparent;
+}
+circle.point.intersection.reified {
+  fill: transparent;
+  stroke: #bc6ec5;
+}
+.hidden {
+  display: none;
+}

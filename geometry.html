@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-12-22 Sun 14:23 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Geometry</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
+<link rel="canonical" href="https://reillyraab.com/geometry" />
+<meta name="description" content="Geometry" />
+<link href="/css/geometry.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
+<header>
+<h1 class="title">Geometry</h1>
+</header><svg id="geometry-svg">
+  <g id="plane">
+    <g id="line-layer"></g>
+    <g id="circle-layer"></g>
+    <g id="intersect-layer"></g>
+    <g id="point-layer"></g>
+  </g>
+</svg>
+
+<div class="toolbar">
+  Tool:
+  <button id="point-tool"><sup>1</sup>Point</button>
+  <button id="line-tool"><sup>2</sup>Line</button>
+  <button id="circle-tool"><sup>3</sup>Circle</button>
+  <button id="pan-tool"><sup>4</sup>Pan</button>
+</div>
+
+<script type="text/javascript">
+global_disable_fullscreen_img_on_click = true;
+onReady(function() {
+    document.getElementsByClassName('title')[0].remove();
+    document.getElementById('postamble').remove();
+});
+</script>
+
+<script src="/js/lib/d3.js"></script>
+<script src="/js/geometry.js"></script>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2024 Reilly Raab
+</footer>
+</body>
+</html>

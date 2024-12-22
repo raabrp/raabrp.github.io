@@ -24,7 +24,7 @@ curve-calc.js:
 
 d3.js:
  - Source: https://github.com/d3/d3
- - License: BSD 3-Clause (inline)
+ - License: ISC (inline)
 
 glMatrix.js:
  - Source: https://github.com/toji/gl-matrix

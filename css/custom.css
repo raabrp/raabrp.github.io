@@ -338,8 +338,11 @@ textarea, input, button, input[type=button], select {
 button, input[type=button] {
   text-align: center;
 }
+button:hover, input[type=button]:hover {
+  background: var(--g2);
+}
 input[type=checkbox] {
-    transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 /* scrollbar */
