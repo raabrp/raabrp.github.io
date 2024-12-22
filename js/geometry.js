@@ -26,10 +26,6 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-// during undo/redo, elem gets disassociated.
-// intersections should not have to be recalculated on euclidean.remove.
-
 const EPS = 0.0001
 const RADIUS = 7
 let ALLOWFREE = false;
