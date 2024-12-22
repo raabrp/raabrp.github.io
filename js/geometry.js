@@ -416,6 +416,9 @@ toolbarButtons.forEach((button) => {
     }
 });
 
+// Undo button for mobile
+document.getElementById("undo-button").addEventListener("click", undo);
+
 // Keyboard shortcuts
 document.addEventListener("keydown", (event) => {
     switch(event.key) {
