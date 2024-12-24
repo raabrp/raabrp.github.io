@@ -27,8 +27,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 const EPS = 0.0001
-const RADIUS = 7
+
+let RADIUS = 7;
 let ALLOWFREE = false;
+let RENDER_EPHEMERAL = true;
+
+// touch screen
+if (navigator.maxTouchPoints || 'ontouchstart' in document.documentElement) {
+    RADIUS = 12;
+    RENDER_EPHEMERAL = false;
+}
 
 // Interface Vec2 = {x: float, y: float}
 
@@ -730,7 +738,10 @@ tools = {
 
             return action;
         },
-        render_ephemeral: function(p1, p2) {
+        render_ephemeral: function(p1, p2) { // line
+            if (!RENDER_EPHEMERAL) {
+                return;
+            }
             if (!tempElement) {
                 tempElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 tempElement.classList.add("temp")
@@ -819,7 +830,10 @@ tools = {
             }
             return action;
         },
-        render_ephemeral: function(center, rad_point) {
+        render_ephemeral: function(center, rad_point) { // circle
+            if (!RENDER_EPHEMERAL) {
+                return;
+            }
             const radius = Math.sqrt((center.x - rad_point.x) ** 2 + (center.y - rad_point.y) ** 2);
 
             if (!tempElement) {
