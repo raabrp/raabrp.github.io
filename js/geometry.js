@@ -413,7 +413,8 @@ toolbarButtons.forEach((button) => {
 });
 
 // Undo button for mobile
-// document.getElementById("undo-button").addEventListener("click", undo);
+document.getElementById("undo-button").addEventListener("click", undo);
+document.getElementById("redo-button").addEventListener("click", redo);
 
 // Keyboard shortcuts
 document.addEventListener("keydown", (event) => {
@@ -871,7 +872,7 @@ function get_vec(event) {
     return { x: inverted[0], y: inverted[1] };
 }
 
-svg.addEventListener("mousedown", (event) => {
+svg.addEventListener("pointerdown", (event) => {
     let vec;
     if (event.target.classList.contains("point")) {
         vec = event.target.platonic;
@@ -880,37 +881,16 @@ svg.addEventListener("mousedown", (event) => {
     }
     tools[currentTool].mousedown(vec);
 });
-// svg.addEventListener("touchstart", (event) => {
-//     let vec;
-//     if (event.target.classList.contains("point")) {
-//         vec = event.target.platonic;
-//     } else {
-//         vec = get_vec(event);
-//     }
-//     tools[currentTool].mousedown(vec);
-// });
 
-svg.addEventListener("mousemove", (event) => {
+svg.addEventListener("pointermove", (event) => {
     const vec = get_vec(event);
     tools[currentTool].mousemove(vec);
 });
-// svg.addEventListener("touchmove", (event) => {
-//     const vec = get_vec(event);
-//     tools[currentTool].mousemove(vec);
-// });
 
-svg.addEventListener("mouseup", (event) => {
+svg.addEventListener("pointerup", (event) => {
     const vec = get_vec(event);
     tools[currentTool].mouseup(vec);
 });
-// svg.addEventListener("touchend", (event) => {
-//     const vec = get_vec(event);
-//     tools[currentTool].mouseup(vec);
-// });
-
-// svg.addEventListener("touchcancel", (event) => {
-//     cancelConstruction();
-// });
 
 ////////////////////////////////////////////////////////////////////////////////
 // Manual state initialization
