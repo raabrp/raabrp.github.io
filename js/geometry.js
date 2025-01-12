@@ -1790,9 +1790,6 @@ let problems = {
         let a = init_point(-1, 1);
         let b = init_point(2, 0);
         let c = init_point(0, -2);
-        let ab = init_line(a, b);
-        let bc = init_line(b, c);
-        let ca = init_line(c, a);
 
         function solution([a, b, c]) {
 
