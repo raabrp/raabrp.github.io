@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-01-11 Sat 19:52 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Geometric Constructions</title>
+<meta name="author" content="Reilly Raab" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
+<link rel="canonical" href="https://reillyraab.com/geometry-index" />
+<meta name="description" content="Geometry Challenges" />
+</head>
+<body>
+<div id="preamble" class="boilerplate">
+<menu><a href="/">Home</a></menu>
+</div>
+<main id="content" class="content">
+<header>
+<h1 class="title">Geometric Constructions</h1>
+</header><p>
+This page indexes the set of target constructions I&rsquo;ve implemented for a
+web-based geometry tool (which may also be used
+<a href="./geometry.html">independently</a>). This way, I may sufficiently describe each
+problem/challenge without cluttering the UI. I will also use this page to
+briefly describe the interface.
+</p>
+<div id="outline-container-Instructions" class="outline-4">
+<h4 id="Instructions">Instructions</h4>
+<div class="outline-text-4" id="text-org999a702">
+<p>
+For each objective linked below, a target object (or multiple) will appear in
+dashed, gold strokes. The task is to recreate the target(s) via
+compass-and-straightedge construction, given an initial set of reference objects
+(points, lines, circles) and the following rules:
+</p>
+<ul class="org-ul">
+<li>New points may be constructed at the intersections of lines and/or circles.</li>
+<li>New lines may be constructed to pass through any two established points.</li>
+<li>New circles must be centered on a first point and pass through a second.</li>
+<li>The straightedge draws lines, but cannot measure distance.</li>
+<li>The compass resets after each circle drawn; it does not remember radii.</li>
+</ul>
+
+<p>
+Success is determined by a battery of pseudorandom unit tests which treat the
+construction as a function of the set of initial points.
+</p>
+</div>
+</div>
+<div id="outline-container-Interface" class="outline-4">
+<h4 id="Interface">Interface</h4>
+<div class="outline-text-4" id="text-orga426ad1">
+<ul class="org-ul">
+<li>Points that are not intersections may be freely moved. This will update the
+constructions that depend on the selected point&rsquo;s position in real time. Intersections are displayed as small, unfilled circles, while &ldquo;free&rdquo; points are rendered as filled (solid color).</li>
+<li>The camera view may be zoomed or panned.</li>
+<li>Any construction may be shared via URL: Use the <samp>Link</samp> button to copy a link. Constructions shared by link can be &ldquo;replayed&rdquo; step-by-step using undo/redo.</li>
+</ul>
+
+<p>
+Hotkeys <br>
+ <kbd>1</kbd> Point tool (move or construct points) <br>
+ <kbd>2</kbd> Line tool (construct lines) <br>
+ <kbd>3</kbd> Circle tool (construct circles) <br>
+ <kbd>4</kbd> Pan tool (move the view) <br>
+ <kbd>Ctrl+Z</kbd> Undo <br>
+ <kbd>Shift+Ctrl+Z</kbd> Redo
+</p>
+</div>
+</div>
+<div id="outline-container-Basic-Constructions" class="outline-2">
+<h2 id="Basic-Constructions">Basic Constructions</h2>
+<div class="outline-text-2" id="text-org0e48921">
+</div>
+<div id="outline-container--a-href-geometry-html-init-perpendicular-bisector-Perpendicular-Bisector-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-perpendicular-bisector-Perpendicular-Bisector-a-"><a href="./geometry.html?init=perpendicular-bisector">Perpendicular Bisector</a></h3>
+<div class="outline-text-3" id="text-org0f9ef30">
+<p>
+Given a line-segment AB, construct a line perpendicular to it that passes halfway between A and B.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-angle-bisector-Angle-Bisector-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-angle-bisector-Angle-Bisector-a-"><a href="./geometry.html?init=angle-bisector">Angle Bisector</a></h3>
+<div class="outline-text-3" id="text-org2ef3a92">
+<p>
+Given an angle, construct the line that cuts it in half.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-projection-Orthogonal-Projection-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-projection-Orthogonal-Projection-a-"><a href="./geometry.html?init=projection">Orthogonal Projection</a></h3>
+<div class="outline-text-3" id="text-orgee85657">
+<p>
+Project a point onto a line.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-parallel-Parallel-Offset-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-parallel-Parallel-Offset-a-"><a href="./geometry.html?init=parallel">Parallel Offset</a></h3>
+<div class="outline-text-3" id="text-orga249d34">
+<p>
+A line parallel to the first, passing through a given point.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-dist-transfer-Distance-Transfer-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-dist-transfer-Distance-Transfer-a-"><a href="./geometry.html?init=dist-transfer">Distance Transfer</a></h3>
+<div class="outline-text-3" id="text-org29a14d8">
+<p>
+Translate a distance to another point and direction.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-tangent-Tangent-Line-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-tangent-Tangent-Line-a-"><a href="./geometry.html?init=tangent">Tangent Line</a></h3>
+<div class="outline-text-3" id="text-org6f2b1ca">
+<p>
+Intersect a circle at only one point.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-Triangles" class="outline-2">
+<h2 id="Triangles">Triangles</h2>
+<div class="outline-text-2" id="text-org34a7f88">
+</div>
+<div id="outline-container--a-href-geometry-html-init-circumscribe-Circumscribe-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-circumscribe-Circumscribe-a-"><a href="./geometry.html?init=circumscribe">Circumscribe</a></h3>
+<div class="outline-text-3" id="text-org9135d91">
+<p>
+Given three points that are not colinear, construct a circle that passes through all three.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-inscribe-Inscribe-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-inscribe-Inscribe-a-"><a href="./geometry.html?init=inscribe">Inscribe</a></h3>
+<div class="outline-text-3" id="text-orgb2dd28c">
+<p>
+Given a triangle, construct the largest circle possible inside it.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-escribe-Escribe-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-escribe-Escribe-a-"><a href="./geometry.html?init=escribe">Escribe</a></h3>
+<div class="outline-text-3" id="text-org20672c1">
+<p>
+Find the other way to construct a circle that is tangent to three lines.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-Functions" class="outline-2">
+<h2 id="Functions">Functions</h2>
+<div class="outline-text-2" id="text-org444ea07">
+</div>
+<div id="outline-container--a-href-geometry-html-init-vector-add-Vector-Add-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-vector-add-Vector-Add-a-"><a href="./geometry.html?init=vector-add">Vector Add</a></h3>
+<div class="outline-text-3" id="text-orgc3a95c0">
+<p>
+Add two vectors in <!--\bf{R}^{2}-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="bold">R</mi><mn mathvariant="bold">2</mn></msup></mrow><annotation encoding="application/x-tex">\bf{R}^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathbf">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathbf mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span>.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-angle-add-Angle-Add-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-angle-add-Angle-Add-a-"><a href="./geometry.html?init=angle-add">Angle Add</a></h3>
+<div class="outline-text-3" id="text-org3d82691">
+<p>
+Construct one of:
+</p>
+<ul class="org-ul">
+<li>The sum of two angles.</li>
+<li>The differences of two angles.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-multiply-Multiply-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-multiply-Multiply-a-"><a href="./geometry.html?init=multiply">Multiply</a></h3>
+<div class="outline-text-3" id="text-org942570f">
+<p>
+Given concentric circles of radii <!--1-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, <!--r-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>, and <!--s-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>, construct a fourth concentric circle of radius <!--(r \cdot s)-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>⋅</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(r \cdot s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mclose">)</span></span></span></span>.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-invert-Invert-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-invert-Invert-a-"><a href="./geometry.html?init=invert">Invert</a></h3>
+<div class="outline-text-3" id="text-org3fb05e7">
+<p>
+Given concentric circles of radii <!--1-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> and <!--r-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>, construct a third concentric circle of radius <!--1 / r-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">1 / r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-square-root-Square-Root-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-square-root-Square-Root-a-"><a href="./geometry.html?init=square-root">Square Root</a></h3>
+<div class="outline-text-3" id="text-orge21b589">
+<p>
+Given concentric circles of radii <!--1-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> and <!--r-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>, construct a third concentric circle of radius <!--\sqrt{r}-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>r</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{r}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.2397em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,-221l0 -0c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47zM834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span></span>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container--In-Famous-Problems" class="outline-2">
+<h2 id="-In-Famous-Problems">(In)Famous Problems</h2>
+<div class="outline-text-2" id="text-orgc559f4c">
+<p>
+Try not to spend too much time on these. While it is possible to pass finite-precision unit tests for these problems, I did not even implement them.
+</p>
+</div>
+<div id="outline-container--a-href-geometry-html-init-angle-trisector-Angle-Trisector-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-angle-trisector-Angle-Trisector-a-"><a href="./geometry.html?init=angle-trisector">Angle Trisector</a></h3>
+<div class="outline-text-3" id="text-orgb199270">
+<p>
+Given an angle less than <!--\pi-->
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>, construct either third of it.
+</p>
+</div>
+</div>
+<div id="outline-container--a-href-geometry-html-init-square-circle-Square-the-Circle-a-" class="outline-3">
+<h3 id="-a-href-geometry-html-init-square-circle-Square-the-Circle-a-"><a href="./geometry.html?init=square-circle">Square the Circle</a></h3>
+<div class="outline-text-3" id="text-org24a014f">
+<p>
+Construct a square with the same area as a given circle.
+</p>
+</div>
+</div>
+</div>
+</main>
+<footer id="postamble" class="boilerplate">
+Copyright © 2025 Reilly Raab
+</footer>
+</body>
+</html>

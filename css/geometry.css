@@ -4,11 +4,21 @@ body, html {
 }
 
 /* Toolbar */
-.toolbar {
+#toolbar {
   font-size: 110%;
   position: absolute; 
   top: 10px;
   right: 20px;
+}
+
+#done {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+}
+#notification {
+  position: absolute;
+  right: 0px;
 }
 
 button.active {
@@ -18,7 +28,7 @@ button.active {
 
 /*****************************************************************************/
 
-svg {
+#geometry-svg {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -31,7 +41,7 @@ svg {
 /* Line */
 line {
   stroke: var(--text);
-  stroke-width: 2px;
+  stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
 line.temp {
@@ -42,8 +52,8 @@ line.temp {
 /* Circle */
 circle {
   fill: none;
-  stroke: var(--text);
-  stroke-width: 2px;
+  stroke: currentColor;
+  stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
 circle.temp {
@@ -53,32 +63,44 @@ circle.temp {
 
 /* Point */
 circle.point {
-  stroke: var(--link-color);
+  /* stroke: var(--link-color); */
   vector-effect: non-scaling-size;
   cursor: pointer;
-  fill: transparent;
+  fill: currentColor;
+  stroke: currentColor;
   stroke-width: 3;
 }
 circle.point:hover {
   stroke-width: 5;
 }
-
 circle.point.intersection {
   fill: transparent;
   stroke: transparent;
 }
 circle.point.intersection:hover {
-  fill: #bc6ec5;
+  fill: var(--text);
   stroke: transparent;
 }
 circle.point.intersection.reified {
+  stroke: currentColor;
   fill: transparent;
-  stroke: #bc6ec5;
 }
 .hidden {
   display: none;
 }
-
+.target {
+  stroke: #fdd500;
+  stroke-dasharray: 5, 5;
+}
+circle.point.target {
+  stroke: #fdd500;
+  fill: transparent;
+  stroke-width: 3;
+  cursor: crosshair;
+}
+circle.point.target:hover {
+  stroke-width: 3;
+}
 
 @media (min-device-width: 672px) {
   .active-ref {
@@ -91,4 +113,150 @@ circle.point.intersection.reified {
     border: 1px solid var(--text);
     background: var(--g1a);
   }
+}
+
+
+circle.c0, circle.point.c0, circle.point.intersection.c0 {
+  color: #5CD6D6;
+}
+circle.c1, circle.point.c1, circle.point.intersection.c1 {
+  color: #5CB8D6;
+}
+circle.c2, circle.point.c2, circle.point.intersection.c2 {
+  color: #5C99D6;
+}
+circle.c3, circle.point.c3, circle.point.intersection.c3 {
+  color: #5C7AD6;
+}
+circle.c4, circle.point.c4, circle.point.intersection.c4 {
+  color: #5C5CD6;
+}
+circle.c5, circle.point.c5, circle.point.intersection.c5 {
+  color: #7A5CD6;
+}
+circle.c6, circle.point.c6, circle.point.intersection.c6 {
+  color: #995CD6;
+}
+circle.c7, circle.point.c7, circle.point.intersection.c7 {
+  color: #B85CD6;
+}
+circle.c8, circle.point.c8, circle.point.intersection.c8 {
+  color: #D65CD6;
+}
+circle.c9, circle.point.c9, circle.point.intersection.c9 {
+  color: #D65CB8;
+}
+circle.c10, circle.point.c10, circle.point.intersection.c10 {
+  color: #D65C99;
+}
+circle.c11, circle.point.c11, circle.point.intersection.c11 {
+  color: #D65C7A;
+}
+circle.c12, circle.point.c12, circle.point.intersection.c12 {
+  color: #D65C5C;
+}
+circle.c13, circle.point.c13, circle.point.intersection.c13 {
+  color: #D6785C;
+}
+circle.c14, circle.point.c14, circle.point.intersection.c14 {
+  color: #D6975C;
+}
+circle.c15, circle.point.c15, circle.point.intersection.c15 {
+  color: #D6B65C;
+}
+circle.c16, circle.point.c16, circle.point.intersection.c16 {
+  color: #D6D45C;
+}
+circle.c17, circle.point.c17, circle.point.intersection.c17 {
+  color: #BAD65C;
+}
+circle.c18, circle.point.c18, circle.point.intersection.c18 {
+  color: #9BD65C;
+}
+circle.c19, circle.point.c19, circle.point.intersection.c19 {
+  color: #7CD65C;
+}
+circle.c20, circle.point.c20, circle.point.intersection.c20 {
+  color: #5ED65C;
+}
+circle.c21, circle.point.c21, circle.point.intersection.c21 {
+  color: #5CD678;
+}
+circle.c22, circle.point.c22, circle.point.intersection.c22 {
+  color: #5CD697;
+}
+circle.c23, circle.point.c23, circle.point.intersection.c23 {
+  color: #5CD6B6;
+}
+circle.c24, circle.point.c24, circle.point.intersection.c24 {
+  color: #3D8F8F;
+}
+circle.c25, circle.point.c25, circle.point.intersection.c25 {
+  color: #3D7A8F;
+}
+circle.c26, circle.point.c26, circle.point.intersection.c26 {
+  color: #3D668F;
+}
+circle.c27, circle.point.c27, circle.point.intersection.c27 {
+  color: #3D528F;
+}
+circle.c28, circle.point.c28, circle.point.intersection.c28 {
+  color: #3D3D8F;
+}
+circle.c29, circle.point.c29, circle.point.intersection.c29 {
+  color: #523D8F;
+}
+circle.c30, circle.point.c30, circle.point.intersection.c30 {
+  color: #663D8F;
+}
+circle.c31, circle.point.c31, circle.point.intersection.c31 {
+  color: #7A3D8F;
+}
+circle.c32, circle.point.c32, circle.point.intersection.c32 {
+  color: #8F3D8F;
+}
+circle.c33, circle.point.c33, circle.point.intersection.c33 {
+  color: #8F3D7A;
+}
+circle.c34, circle.point.c34, circle.point.intersection.c34 {
+  color: #8F3D66;
+}
+circle.c35, circle.point.c35, circle.point.intersection.c35 {
+  color: #8F3D52;
+}
+circle.c36, circle.point.c36, circle.point.intersection.c36 {
+  color: #8F3D3D;
+}
+circle.c37, circle.point.c37, circle.point.intersection.c37 {
+  color: #8F503D;
+}
+circle.c38, circle.point.c38, circle.point.intersection.c38 {
+  color: #8F653D;
+}
+circle.c39, circle.point.c39, circle.point.intersection.c39 {
+  color: #8F793D;
+}
+circle.c40, circle.point.c40, circle.point.intersection.c40 {
+  color: #8F8D3D;
+}
+circle.c41, circle.point.c41, circle.point.intersection.c41 {
+  color: #7C8F3D;
+}
+circle.c42, circle.point.c42, circle.point.intersection.c42 {
+  color: #678F3D;
+}
+circle.c43, circle.point.c43, circle.point.intersection.c43 {
+  color: #538F3D;
+}
+circle.c44, circle.point.c44, circle.point.intersection.c44 {
+  color: #3F8F3D;
+}
+circle.c45, circle.point.c45, circle.point.intersection.c45 {
+  color: #3D8F50;
+}
+circle.c46, circle.point.c46, circle.point.intersection.c46 {
+  color: #3D8F65;
+}
+circle.c47, circle.point.c47, circle.point.intersection.c47 {
+  color: #3D8F79;
 }

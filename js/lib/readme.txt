@@ -34,9 +34,17 @@ gpu.js:
  - Source: https://github.com/gpujs/gpu.js
  - License: MIT (gpujs-license.txt)
 
+jsrand.js:
+ - Source: https://github.com/DomenicoDeFelice/jsrand
+ - License: MIT (inline)
+
 jquery.js:
  - Source: https://github.com/jquery/jquery
  - License: MIT (inline)
+
+math.js:
+ - Source: https://github.com/josdejong/mathjs
+ - License: Apache v2 (inline)
 
 speck.js:
  - Source: https://github.com/wwwtyro/speck

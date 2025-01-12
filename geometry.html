@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-12-23 Mon 16:43 -->
+<!-- 2025-01-11 Sat 09:54 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Geometry</title>
@@ -27,6 +27,7 @@
 <h1 class="title">Geometry</h1>
 </header><svg id="geometry-svg">
   <g id="plane">
+    <g id="target-layer"></g>
     <g id="line-layer"></g>
     <g id="circle-layer"></g>
     <g id="intersect-layer"></g>
@@ -34,14 +35,23 @@
   </g>
 </svg>
 
-<div class="toolbar">
-  <button id="point-tool"><sup>1</sup>Point</button>
-  <button id="line-tool"><sup>2</sup>Line</button>
-  <button id="circle-tool"><sup>3</sup>Circle</button>
-  <button id="pan-tool"><sup>4</sup>Pan</button>
-  <button id="undo-button">Undo</button>
-  <button id="redo-button">Redo</button>
+<div id="toolbar">
+  <div>
+    <button id="point-tool"><sup>1</sup>Point</button>
+    <button id="line-tool"><sup>2</sup>Line</button>
+    <button id="circle-tool"><sup>3</sup>Circle</button>
+    <button id="pan-tool"><sup>4</sup>Pan</button>
+    <button id="undo-button">↶</button>
+    <button id="redo-button">↷</button>
+    <button id="share-button">Link</button>
+  </div>
+  <div>
+    <span id="notification"></span>
+  </div>
 </div>
+
+<div id="done"></div>
+
 
 <script type="text/javascript">
 global_disable_fullscreen_img_on_click = true;
@@ -51,11 +61,12 @@ onReady(function() {
 });
 </script>
 
-<script src="/js/lib/d3.js"></script>
+<script src="/js/lib/d3.js"></script> <!-- for zoom -->
+<script src="/js/lib/jsrand.js"></script> <!-- deterministic test cases -->
 <script src="/js/geometry.js"></script>
 </main>
 <footer id="postamble" class="boilerplate">
-Copyright © 2024 Reilly Raab
+Copyright © 2025 Reilly Raab
 </footer>
 </body>
 </html>
