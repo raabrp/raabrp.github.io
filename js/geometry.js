@@ -418,6 +418,11 @@ d3svg = d3.select("#geometry-svg")
         d3.zoom()
             .scaleExtent([0.1, 10])  // Set limits for zooming (min, max)
             .filter(function () {
+                // disallow double click to zoom
+                if (event.type === "dblclick") {
+                    return false;
+                }
+
                 // Allow wheel and pinch gestures
                 if (event.type === "wheel" || event.type === "touchmove") {
                     return true;
