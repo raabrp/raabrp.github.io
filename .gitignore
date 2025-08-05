@@ -2,6 +2,8 @@
 # Until we are ready to publish them
 *.html
 
+drafts
+
 # Explicit whitelist
 !404.html
 !about.html
@@ -12,12 +14,14 @@
 !fischer-random.html
 !geometry.html
 !geometry-index.html
-!guitar.html
+!gradient-descent.html
 !greyline.html
+!guitar.html
 !index.html
 !ito.html
 !julia.html
 !keyboard.html
+!laboring-monkeys.html
 !reading-list.html
 !satellites.html
 !site-info.html
