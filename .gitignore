@@ -7,6 +7,7 @@ drafts
 # Explicit whitelist
 !404.html
 !about.html
+!bed-time-for-patriots.html
 !chess.html
 !dark-chess.html
 !demo.html
@@ -26,6 +27,7 @@ drafts
 !satellites.html
 !site-info.html
 !tex.html
+!topaz-earring.html
 !hopfield.html
 
 # also ignore
