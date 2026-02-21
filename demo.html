@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-06-07 Sat 22:41 -->
+<!-- 2026-02-21 Sat 00:41 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTML Demo &amp; Reference</title>
@@ -45,31 +45,31 @@
 </nav>
 <div id="outline-container-Text-Decoration" class="outline-2">
 <h2 id="Text-Decoration">Text Decoration</h2>
-<div class="outline-text-2" id="text-orgd047e9a">
+<div class="outline-text-2" id="text-orgc16ef28">
 <p>
 Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">underlined</span>, <kbd>verbatim</kbd>, <samp>monospace</samp>, or
 <del>strike-through</del>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org">Words may be <span style="font-weight: bold;">*bold*</span>, <span style="font-style: italic;">/italic/</span>, <span style="text-decoration: underline;">_underlined_</span>, <span style="color: #98be65;">=verbatim=</span> and <span style="color: #da8548; background-color: #23272e;">~monospace~</span>, or
-<span style="text-decoration: line-through;">+strike-through+</span>.
+<pre class="src src-org">Words may be <span style="font-weight: bold;">bold</span>, <span style="font-style: italic;">italic</span>, <span style="text-decoration: underline;">underlined</span>, <span style="color: #98be65;">verbatim</span> and <span style="color: #da8548; background-color: #23272e;">monospace</span>, or<span style="color: #51afef;">
+</span><span style="text-decoration: line-through;">strike-through</span>.
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-Images" class="outline-2">
 <h2 id="Images">Images</h2>
-<div class="outline-text-2" id="text-orgb1a3ffe">
+<div class="outline-text-2" id="text-org761336a">
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+CAPTION:</span> <span style="background-color: #23272e;">Caption goes here.</span>
-<span style="color: #83898d;">#+ATTR_HTML: :width 100%</span>
-[[<span style="color: #ECBE7B; font-weight: bold; text-decoration: underline;"><a href="./img/2015.jpg">./img/2015.jpg</a></span>]]
+<pre class="src src-org"><span style="color: #83898d;">CAPTION:</span> <span style="background-color: #23272e;">Caption goes here.</span><span style="color: #51afef;">
+</span><span style="color: #83898d;">ATTR_HTML: :width 100%</span><span style="color: #51afef;">
+</span>[[<span style="color: #ECBE7B; font-weight: bold; text-decoration: underline;"><a href="./img/2015.jpg">./img/2015.jpg</a></span>]]
 </pre>
 </div>
 
 
-<figure id="org467f071">
+<figure id="org3e9d5eb">
 <img src="./img/2015.jpg" alt="2015.jpg" width="100%">
 
 <figcaption><span class="figure-number">Figure 1: </span>Caption goes here.</figcaption>
@@ -78,18 +78,18 @@ Words may be <strong>bold</strong>, <em>italic</em>, <span class="underline">und
 </div>
 <div id="outline-container-Source-Code" class="outline-2">
 <h2 id="Source-Code">Source Code</h2>
-<div class="outline-text-2" id="text-orga9605f0">
+<div class="outline-text-2" id="text-orge686c94">
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_src python</span>
-<span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">lazy</span><span style="background-color: #23272e;">(f):</span>
-<span style="background-color: #23272e;">    </span><span style="color: #dcaeea; background-color: #23272e;">a</span><span style="background-color: #23272e;"> </span><span style="background-color: #23272e;">=</span><span style="background-color: #23272e;"> f</span><span style="color: #98be65; background-color: #23272e;">'_lazy_</span><span style="background-color: #23272e;">{f.</span><span style="color: #c678dd; background-color: #23272e;">__name__</span><span style="background-color: #23272e;">}</span><span style="color: #98be65; background-color: #23272e;">'</span>
-<span style="background-color: #23272e;">    @</span><span style="color: #c678dd; background-color: #23272e;">property</span>
-<span style="background-color: #23272e;">    </span><span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">wrapper</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">):</span>
-<span style="background-color: #23272e;">        </span><span style="color: #51afef; background-color: #23272e;">if</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">not</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">hasattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a):</span>
-<span style="background-color: #23272e;">            </span><span style="color: #c678dd; background-color: #23272e;">setattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a, f(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">))</span>
-<span style="background-color: #23272e;">        </span><span style="color: #51afef; background-color: #23272e;">return</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">getattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a)</span>
-<span style="background-color: #23272e;">    </span><span style="color: #51afef; background-color: #23272e;">return</span><span style="background-color: #23272e;"> wrapper</span>
-<span style="color: #5B6268; background-color: #23272e;">#+end_src</span>
+<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">src</span><span style="color: #5B6268; background-color: #23272e;"> python
+</span><span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">lazy</span><span style="background-color: #23272e;">(f):
+    </span><span style="color: #dcaeea; background-color: #23272e;">a</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">=</span><span style="background-color: #23272e;"> f</span><span style="color: #98be65; background-color: #23272e;">'_lazy_</span><span style="background-color: #23272e;">{f.</span><span style="color: #c678dd; background-color: #23272e;">__name__</span><span style="background-color: #23272e;">}</span><span style="color: #98be65; background-color: #23272e;">'</span><span style="background-color: #23272e;">
+    @</span><span style="color: #c678dd; background-color: #23272e;">property</span><span style="background-color: #23272e;">
+    </span><span style="color: #51afef; background-color: #23272e;">def</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">wrapper</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">):
+        </span><span style="color: #51afef; background-color: #23272e;">if</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">not</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">hasattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a):
+            </span><span style="color: #c678dd; background-color: #23272e;">setattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a, f(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">))
+        </span><span style="color: #51afef; background-color: #23272e;">return</span><span style="background-color: #23272e;"> </span><span style="color: #c678dd; background-color: #23272e;">getattr</span><span style="background-color: #23272e;">(</span><span style="color: #51afef; background-color: #23272e;">self</span><span style="background-color: #23272e;">, a)
+    </span><span style="color: #51afef; background-color: #23272e;">return</span><span style="background-color: #23272e;"> wrapper
+</span><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">src</span>
 </pre>
 </div>
 
@@ -98,7 +98,7 @@ Output:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">lazy</span>(f):
-    <span style="color: #dcaeea;">a</span> = f<span style="color: #98be65;">'_lazy_</span>{f.<span style="color: #c678dd;">__name__</span>}<span style="color: #98be65;">'</span>
+    <span style="color: #dcaeea;">a</span> <span style="color: #51afef;">=</span> f<span style="color: #98be65;">'_lazy_</span>{f.<span style="color: #c678dd;">__name__</span>}<span style="color: #98be65;">'</span>
     @<span style="color: #c678dd;">property</span>
     <span style="color: #51afef;">def</span> <span style="color: #c678dd;">wrapper</span>(<span style="color: #51afef;">self</span>):
         <span style="color: #51afef;">if</span> <span style="color: #51afef;">not</span> <span style="color: #c678dd;">hasattr</span>(<span style="color: #51afef;">self</span>, a):
@@ -111,19 +111,19 @@ Output:
 </div>
 <div id="outline-container-Math" class="outline-2">
 <h2 id="Math">Math</h2>
-<div class="outline-text-2" id="text-orgf9913d8">
+<div class="outline-text-2" id="text-org8d6094b">
 <p>
 Math is rendered <em>server-side</em> using <a href="https://katex.org/"><!-- \KaTeX -->
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>KaTeX</mtext></mrow><annotation encoding="application/x-tex">\KaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">K</span><span class="mspace" style="margin-right:-0.17em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+LABEL: eqn:euler-lagrange</span>
-<span style="color: #51afef; background-color: #23272e;">\begin</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}</span>
-<span style="color: #51afef; background-color: #23272e;">\frac</span><span style="background-color: #23272e;">{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> L}{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\phi</span><span style="background-color: #23272e;">}</span>
-<span style="color: #51afef; background-color: #23272e;">-</span><span style="color: #282c34; background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\sum</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span>
-<span style="color: #51afef; background-color: #23272e;">\bigg</span><span style="background-color: #23272e;">( </span><span style="color: #51afef; background-color: #23272e;">\frac</span><span style="background-color: #23272e;">{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> L}{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> (</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\phi</span><span style="background-color: #23272e;">)} </span><span style="color: #51afef; background-color: #23272e;">\bigg</span><span style="background-color: #23272e;">) = 0</span>
-<span style="color: #51afef; background-color: #23272e;">\end</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}</span>
+<pre class="src src-org"><span style="color: #83898d;">LABEL: eqn:euler-lagrange</span><span style="color: #51afef;">
+</span><span style="color: #51afef; background-color: #23272e;">\begin</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}
+</span><span style="color: #51afef; background-color: #23272e;">\frac</span><span style="background-color: #23272e;">{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> L}{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\phi</span><span style="background-color: #23272e;">}
+&#8211;</span><span style="color: #21242b; background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\sum</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span><span style="background-color: #23272e;">
+</span><span style="color: #51afef; background-color: #23272e;">\bigg</span><span style="background-color: #23272e;">( </span><span style="color: #51afef; background-color: #23272e;">\frac</span><span style="background-color: #23272e;">{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> L}{</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;"> (</span><span style="color: #51afef; background-color: #23272e;">\partial</span><span style="background-color: #23272e;">_</span><span style="color: #51afef; background-color: #23272e;">\mu</span><span style="background-color: #23272e;"> </span><span style="color: #51afef; background-color: #23272e;">\phi</span><span style="background-color: #23272e;">)} </span><span style="color: #51afef; background-color: #23272e;">\bigg</span><span style="background-color: #23272e;">) = 0
+</span><span style="color: #51afef; background-color: #23272e;">\end</span><span style="background-color: #23272e;">{</span><span style="color: #c678dd; background-color: #23272e;">equation</span><span style="background-color: #23272e;">}</span>
 </pre>
 </div>
 
@@ -152,10 +152,10 @@ been memoized (may need to clear <samp>~/.cache/memoize</samp>).</li>
 <strong>References to equations</strong>:
 </p>
 <div class="org-src-container">
-<pre class="src src-org">[[<span style="color: #51afef; font-weight: bold; text-decoration: underline;"><a href="eqn:euler-lagrange">eqn:euler-lagrange</a></span>]] is the
-[[<span style="color: #51afef; font-weight: bold; text-decoration: underline;"><a href="h&#8203;ttps://en.wikipedia.org/wiki/Euler-Lagrange_equations">Euler-Lagrange</a></span>]]
-equation with respect to scalar field value<span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">$\phi$</span><span style="background-color: #23272e;"> </span>with space-time
-coordinates indexed by <span style="color: #51afef; background-color: #23272e;">\(\mu\)</span>.
+<pre class="src src-org">[[<span style="color: #51afef; font-weight: bold; text-decoration: underline;"><a href="eqn:euler-lagrange">eqn:euler-lagrange</a></span>]] is the<span style="color: #51afef;">
+</span>[[<span style="color: #51afef; font-weight: bold; text-decoration: underline;"><a href="h&#8203;ttps://en.wikipedia.org/wiki/Euler-Lagrange_equations">Euler-Lagrange</a></span>]]<span style="color: #51afef;">
+</span>equation with respect to scalar field value<span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">$\phi$</span><span style="background-color: #23272e;"> </span>with space-time<span style="color: #51afef;">
+</span>coordinates indexed by <span style="color: #51afef; background-color: #23272e;">\(\mu\)</span>.
 </pre>
 </div>
 
@@ -169,7 +169,7 @@ value <!-- \phi -->
 </div>
 <div id="outline-container-Internal-Links" class="outline-2">
 <h2 id="Internal-Links">Internal Links</h2>
-<div class="outline-text-2" id="text-org702429b">
+<div class="outline-text-2" id="text-orgcf608da">
 <p>
 Standard internal link:
 </p>
@@ -195,10 +195,10 @@ Using general link syntax:
 </div>
 <div id="outline-container-Wikipedia-Links" class="outline-2">
 <h2 id="Wikipedia-Links">Wikipedia Links</h2>
-<div class="outline-text-2" id="text-org0ddc59b">
+<div class="outline-text-2" id="text-org51a089f">
 <div class="org-src-container">
-<pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will
-display summaries when hovered over.
+<pre class="src src-org">Links to [&#8203;[ht&#8203;tps://en.wikipedia.org/wiki/Wikipedia][Wikipedia]] pages will<span style="color: #51afef;">
+</span>display summaries when hovered over.
 </pre>
 </div>
 
@@ -209,11 +209,11 @@ Links to <a href="https://en.wikipedia.org/wiki/Wikipedia">Wikipedia</a> pages w
 </div>
 <div id="outline-container-Foot-notes" class="outline-2">
 <h2 id="Foot-notes">Foot​notes</h2>
-<div class="outline-text-2" id="text-orgdc0fa9f">
+<div class="outline-text-2" id="text-org07f4e3d">
 <div class="org-src-container">
-<pre class="src src-org">Sometimes you don't need footnotes...<span style="color: #da8548;">[fn:1]</span>
+<pre class="src src-org">Sometimes you don't need footnotes...[<span style="color: #da8548;">1]</span><span style="color: #51afef;">
 
-<span style="color: #da8548;">[fn:1]</span> ...but sometimes you do want footnotes!
+[</span><span style="color: #da8548;">1]</span> ...but sometimes you do want footnotes!
 </pre>
 </div>
 
@@ -234,17 +234,17 @@ definition or headline, or after two consecutive empty lines (<a href="https://o
 </div>
 <div id="outline-container-Block-Quotes" class="outline-2">
 <h2 id="Block-Quotes">Block Quotes</h2>
-<div class="outline-text-2" id="text-org9a6b634">
+<div class="outline-text-2" id="text-org06878f1">
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+begin_quote</span>
-<span style="background-color: #23272e; font-style: italic;">There was only one catch and that was Catch-22, which specified that a concern</span>
-<span style="background-color: #23272e; font-style: italic;">for one's own safety in the face of dangers that were real and immediate was</span>
-<span style="background-color: #23272e; font-style: italic;">the process of a rational mind. Orr was crazy and could be grounded. All he</span>
-<span style="background-color: #23272e; font-style: italic;">had to do was ask; and as soon as he did, he would no longer be crazy and</span>
-<span style="background-color: #23272e; font-style: italic;">would have to fly more missions.</span>
+<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">quote</span><span style="color: #5B6268; background-color: #23272e;">
+</span><span style="background-color: #23272e; font-style: italic;">There was only one catch and that was Catch-22, which specified that a concern
+for one's own safety in the face of dangers that were real and immediate was
+the process of a rational mind. Orr was crazy and could be grounded. All he
+had to do was ask; and as soon as he did, he would no longer be crazy and
+would have to fly more missions.
 
-<span style="background-color: #23272e; font-style: italic;">-- Joseph Heller, Catch-22 (1961)</span>
-<span style="color: #5B6268; background-color: #23272e;">#+end_quote</span>
+-- Joseph Heller, Catch-22 (1961)
+</span><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">quote</span>
 </pre>
 </div>
 
@@ -265,7 +265,7 @@ would have to fly more missions.
 </div>
 <div id="outline-container-Tables" class="outline-2">
 <h2 id="Tables">Tables</h2>
-<div class="outline-text-2" id="text-orga019466">
+<div class="outline-text-2" id="text-org157d6cf">
 <p>
 I don&rsquo;t use org-mode for tables. The feature-set is limited (<em>e.g.</em>, cells
 spanning multiple columns). At the moment, I write tables in <a href="#Raw-HTML">Raw HTML</a> or
@@ -275,13 +275,13 @@ using <a href="#Inline-Lisp">Inline Lisp</a>.
 </div>
 <div id="outline-container-Raw-HTML" class="outline-2">
 <h2 id="Raw-HTML">Raw HTML</h2>
-<div class="outline-text-2" id="text-org0b341fa">
+<div class="outline-text-2" id="text-org93724fa">
 Arbitrary <button>HTML</button> can go here.
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e;">#+BEGIN_EXPORT html</span>
-<span style="background-color: #23272e;">Arbitrary &lt;</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt;HTML&lt;/</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt; can go here.</span>
-<span style="color: #5B6268; background-color: #23272e;">#+END_EXPORT</span>
+<pre class="src src-org"><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">EXPORT</span><span style="color: #5B6268; background-color: #23272e;"> html
+</span><span style="background-color: #23272e;">Arbitrary &lt;</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt;HTML&lt;/</span><span style="color: #c678dd; background-color: #23272e;">button</span><span style="background-color: #23272e;">&gt; can go here.
+</span><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">EXPORT</span>
 </pre>
 </div>
 
@@ -297,24 +297,24 @@ Inline <button>HTML</button> is also possible.
 </div>
 <div id="outline-container-Scripts-Style-Meta" class="outline-2">
 <h2 id="Scripts-Style-Meta">Scripts, Style, Meta</h2>
-<div class="outline-text-2" id="text-org27bc9c7">
+<div class="outline-text-2" id="text-org7b4859f">
 <p>
 Individual source files can provide additional material to include in the
 <samp>&lt;head&gt;</samp> of the exported HTML document. For example,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;link rel=&#8220;canonical&#8221; href=&#8220;<a href="https://reillyraab.com/page">https://reillyraab.com/page</a>" /&gt;</span>
-<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;meta name="description" content="All about this page" /&gt;</span>
-<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;link rel="stylesheet" href="<a href="https://pyscript.net/alpha/pyscript.css">https://pyscript.net/alpha/pyscript.css</a>" /&gt;</span>
-<span style="color: #83898d;">#+HTML_HEAD_EXTRA: &lt;script defer src="<a href="https://pyscript.net/alpha/pyscript.js">https://pyscript.net/alpha/pyscript.js</a>"&gt;&lt;/script&gt;</span>
+<pre class="src src-org"><span style="color: #83898d;">HTML_HEAD_EXTRA: &lt;link rel=&#8220;canonical&#8221; href=&#8220;<a href="https://reillyraab.com/page">https://reillyraab.com/page</a>" /&gt;</span><span style="color: #51afef;">
+</span><span style="color: #83898d;">HTML_HEAD_EXTRA: &lt;meta name="description" content="All about this page" /&gt;</span><span style="color: #51afef;">
+</span><span style="color: #83898d;">HTML_HEAD_EXTRA: &lt;link rel="stylesheet" href="<a href="https://pyscript.net/alpha/pyscript.css">https://pyscript.net/alpha/pyscript.css</a>" /&gt;</span><span style="color: #51afef;">
+</span><span style="color: #83898d;">HTML_HEAD_EXTRA: &lt;script defer src="<a href="https://pyscript.net/alpha/pyscript.js">https://pyscript.net/alpha/pyscript.js</a>"&gt;&lt;/script&gt;</span>
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-Inline-Lisp" class="outline-2">
 <h2 id="Inline-Lisp">Inline Lisp</h2>
-<div class="outline-text-2" id="text-org0da05a3">
+<div class="outline-text-2" id="text-org384e42a">
 <p>
 We can include blocks of lisp that don&rsquo;t get rendered to HTML output (as
 syntax-highlighted <a href="#Source-Code">source code</a>), but instead define functions
@@ -328,13 +328,13 @@ of each div are passed as the arguments <samp>a</samp> and <samp>b</samp>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+name: example-func</span>
-<span style="color: #5B6268; background-color: #23272e;">#+begin_src emacs-lisp :exports none :results html :var a="a" b="b"</span>
-<span style="color: #51afef; background-color: #23272e;">(</span><span style="color: #a9a1e1; background-color: #23272e;">format</span><span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">"</span>
-<span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: steelblue;\"&gt;%s&lt;/div&gt;</span>
-<span style="color: #98be65; background-color: #23272e;">&lt;div style=\"color: darkgoldenrod;\"&gt;%s&lt;/div&gt;</span>
-<span style="color: #98be65; background-color: #23272e;">"</span><span style="background-color: #23272e;"> a b</span><span style="color: #51afef; background-color: #23272e;">)</span>
-<span style="color: #5B6268; background-color: #23272e;">#+end_src</span>
+<pre class="src src-org"><span style="color: #83898d;">name: example-func</span><span style="color: #51afef;">
+</span><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">src</span><span style="color: #5B6268; background-color: #23272e;"> emacs-lisp :exports none :results html :var a="a" b="b"
+</span><span style="background-color: #23272e;">(</span><span style="color: #a9a1e1; background-color: #23272e;">format</span><span style="background-color: #23272e;"> </span><span style="color: #98be65; background-color: #23272e;">"
+&lt;div style=\"color: steelblue;\"&gt;%s&lt;/div&gt;
+&lt;div style=\"color: darkgoldenrod;\"&gt;%s&lt;/div&gt;
+"</span><span style="background-color: #23272e;"> a b)
+</span><span style="color: #5B6268; background-color: #23272e; font-size: 80%;">src</span>
 </pre>
 </div>
 
@@ -343,10 +343,10 @@ We may call this function from the source (<samp>.org</samp>) file as
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #83898d;">#+call: example-func(</span>
-"This text is steelblue.",
-"This text is darkgoldenrod."
-)
+<pre class="src src-org"><span style="color: #83898d;">call: example-func(</span><span style="color: #51afef;">
+</span>"This text is steelblue.",<span style="color: #51afef;">
+</span>"This text is darkgoldenrod."<span style="color: #51afef;">
+</span>)
 </pre>
 </div>
 
