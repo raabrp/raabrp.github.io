@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-07-16 Thu 21:38 -->
+<!-- 2026-07-29 Wed 21:15 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Site Info</title>
@@ -74,25 +74,28 @@ My user home directory with SOE has an
 <h2 id="Privacy">Privacy</h2>
 <div class="outline-text-2">
 <p>
-I store no information about you whatsoever.
+I, personally, store no information about you whatsoever.
+I don&rsquo;t know how many, if any, people visit this site, nor how often, and I may as well be speaking into the void.
+I prefer it this way, but the network of computers connecting us has other incentives.
 </p>
 
 <p>
-Network resources (<a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>, fonts, etc.), including library code, have
-been copied (consistent with open-source licenses) and are hosted by this site
+For my part, all network resources (<a href="https://en.wikipedia.org/wiki/JavaScript">javascript</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">css</a>, fonts, etc.) served by this website,
+including library code, have been copied (consistent with open-source licenses) and are hosted by this site
 itself in order to avoid content delivery networks (which can track you).
 </p>
-
 <ul class="org-ul">
 <li><a href="./js/lib/readme.txt">Open-source Javascript served by this site</a>.</li>
 <li><a href="./css/lib/readme.txt">Open-source CSS served by this site</a>.</li>
 </ul>
 
 <p>
-That being said, I&rsquo;m using
-<a href="https://en.wikipedia.org/wiki/Cloudflare">Cloudflare</a>, which means all your
-network requests can be tracked anyway (by Cloudflare):
+As for the network between us, I&rsquo;m using <a href="https://en.wikipedia.org/wiki/Cloudflare">Cloudflare</a>, which means all your network requests may be tracked by Cloudflare.
 </p>
+
+<ul class="org-ul">
+<li>As of 2026, Cloudflare is injecting a final <samp>&lt;script type="module" src="https://static.cloudflareinsights.com/beacon.min.js ...</samp> element just before <kbd>&lt;/body&gt;</kbd> that is absent from the HTML I upload to Github. This script isn&rsquo;t loaded by my own browser (because it violates <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">CORS</a>), but the intent is clear.</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-Third-Party-Privacy-Policy" class="outline-2">
