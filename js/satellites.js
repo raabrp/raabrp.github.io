@@ -229,71 +229,94 @@ function get_satellite_date(call_date, callback) {
 
     loading_msg(`Polling for most recent data at ${call_date.toUTCString()}.`);
 
-    let year = call_date.getFullYear();
-    let month = call_date.getUTCMonth(); // [0, 11]
-    let day = call_date.getUTCDate();
-    let hour = call_date.getUTCHours();
+    function s3_list(prefix, inner_callback) {
+        const url =
+            "https://noaa-gmgsi-pds.s3.amazonaws.com/" +
+            "?list-type=2&prefix=" +
+            encodeURIComponent(prefix);
 
-    let query_date = new Date(Date.UTC(year, month, day, hour));
-
-    function query(date, name, inner_callback) {
-
-        let year = date.getFullYear();
-        let month = date.getUTCMonth(); // [0, 11]
-        let day = date.getUTCDate();
-        let hour = date.getUTCHours();
-
-        let s_month = (month<9? '0' + (month + 1):month+1);
-        let s_day = (day<10? '0' + day:day);
-        let s_hour = (hour<10? '0' + hour:hour);
-
-        let src = {
-            "vis": `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_VIS/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPVIS_nc.${year}${s_month}${s_day}${s_hour}`,
-            "lir": `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPLIR_nc.${year}${s_month}${s_day}${s_hour}`
-        };
-
-        // ensure file exists, otherwise fall back an hour
-        var vis_xhr = new XMLHttpRequest();
-        vis_xhr.onreadystatechange = function() {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    inner_callback(date);
-                } else {
-                    query(new Date(date.getTime() - 1000 * 3600), name, inner_callback);
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`S3 listing returned ${response.status}`);
                 }
-            }
-        };
-        vis_xhr.open('HEAD', src[name], true);
-        vis_xhr.send();
+                return response.text();
+            })
+            .then(text => {
+                const xml = new DOMParser().parseFromString(text, "application/xml");
+                const keys = [...xml.querySelectorAll("Key")]
+                    .map(x => x.textContent);
+
+                inner_callback(keys);
+            });
     }
 
-    query(query_date, "vis", function (found_date) {
-        query(found_date, "lir", function (use_date) {
-            loading_msg(`Using data from ${use_date.toUTCString()}.`);
-            callback(use_date);
-        });
-    });
+    function try_hour(date) {
 
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const hour = String(date.getUTCHours()).padStart(2, "0");
+
+        const vis_prefix =
+            `GMGSI_VIS/${year}/${month}/${day}/${hour}/`;
+
+        const lir_prefix =
+            `GMGSI_LW/${year}/${month}/${day}/${hour}/`;
+
+        s3_list(vis_prefix, vis_keys => {
+
+            s3_list(lir_prefix, lir_keys => {
+
+                const vis = vis_keys.find(k =>
+                    k.includes("GLOBCOMPVIS") && k.endsWith(".nc"));
+
+                const lir = lir_keys.find(k =>
+                    k.includes("GLOBCOMPLIR") && k.endsWith(".nc"));
+
+                if (vis && lir) {
+
+                    window.gmgsi_urls = {
+                        vis: "https://noaa-gmgsi-pds.s3.amazonaws.com/" + vis,
+                        lir: "https://noaa-gmgsi-pds.s3.amazonaws.com/" + lir
+                    };
+
+                    loading_msg(`Using data from ${date.toUTCString()}.`);
+                    callback(date);
+
+                } else {
+
+                    // No product for this hour; try the previous hour.
+                    try_hour(new Date(date.getTime() - 3600 * 1000));
+                }
+            });
+        });
+    }
+
+    try_hour(new Date(Date.UTC(
+        call_date.getUTCFullYear(),
+        call_date.getUTCMonth(),
+        call_date.getUTCDate(),
+        call_date.getUTCHours()
+    )));
 }
+
 
 function get_satellite_data(date, onload_callback) {
 
-    let year = date.getFullYear();
-    let month = date.getUTCMonth(); // [0, 11]
-    let day = date.getUTCDate();
-    let hour = date.getUTCHours();
+    fetch_sat_image(
+        "~0.6 micron data",
+        window.gmgsi_urls.vis,
+        onload_callback
+    );
 
-    let s_month = (month<9? '0' + (month + 1):month+1);
-    let s_day = (day<10? '0' + day:day);
-    let s_hour = (hour<10? '0' + hour:hour);
-
-    let vis_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_VIS/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPVIS_nc.${year}${s_month}${s_day}${s_hour}`;
-    let lir_src = `https://noaa-gmgsi-pds.s3.amazonaws.com/GMGSI_LW/${year}/${s_month}/${s_day}/${s_hour}/GLOBCOMPLIR_nc.${year}${s_month}${s_day}${s_hour}`;
-
-    fetch_sat_image("~0.6 micron data", vis_src, onload_callback);
-    fetch_sat_image("~12.0 micron data", lir_src, onload_callback);
-
+    fetch_sat_image(
+        "~12.0 micron data",
+        window.gmgsi_urls.lir,
+        onload_callback
+    );
 }
+
 function fetch_sat_image(name, url, onload_callback) {
 
     loading_msg(`Fetching ${name} from <a href="${url}">${url}</a>.`);
