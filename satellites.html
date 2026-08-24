@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-07-16 Thu 21:38 -->
+<!-- 2026-08-24 Mon 13:20 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hourly Satellite Data</title>
@@ -74,6 +74,8 @@ and Moon positions are calculated with <a href="https://github.com/cosinekitty/a
 <li>I started doubting some of the data sources when I noticed city lights in
 Western Australia. This is a well-known quirk of the 2017 Black Marble
 Imagery: These are actually fires, as detailed in <a href="https://earthobservatory.nasa.gov/images/80030/city-lights-of-australia-or-not">this article</a>.</li>
+
+<li>The current processing struggles with correcting for latitude (far from the equator, the Earth looks &ldquo;foggy&rdquo;) and does not infer smoke very well. NOAA&rsquo;s <a href="https://www.nesdis.noaa.gov/imagery/satellite-maps/earth-real-time">Earth in Real-Time</a> provides more easily consumed viewer of near-realtime geostationary satellite imagery that does better in this regard.</li>
 </ul>
 
 <p>
